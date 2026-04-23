@@ -307,6 +307,9 @@ section {
 .about {
   background: var(--paper);
 }
+.about .sec-head {
+  margin-bottom: 32px;
+}
 .about-grid {
   display: grid;
   grid-template-columns: 0.55fr 1fr;
@@ -315,7 +318,7 @@ section {
 }
 .about-portrait {
   position: relative;
-  max-width: 420px;
+  max-width: 580px;
 }
 .portrait-frame {
   position: relative;
@@ -328,12 +331,10 @@ section {
   width: 100%; height: calc(100% + 8px);
   object-fit: cover;
   object-position: center 15%;
-  filter: grayscale(100%) contrast(1.03);
   display: block;
   transition: filter 0.6s;
+  filter: sepia(25%) saturate(0.9);
 }
-html[data-bg="ink"] .portrait-frame img { filter: grayscale(100%) contrast(1.1) brightness(0.95); }
-html[data-bg="riso"] .portrait-frame img { filter: grayscale(100%) contrast(1.08); }
 
 .portrait-caption {
   margin-top: 14px;
@@ -998,6 +999,185 @@ body:not([data-view="index"]) .masthead-tag { display: none; }
 }
 
 /* ============== RESPONSIVE ============== */
+/* ============== GUESTBOOK ============== */
+.guestbook {
+  margin-top: 64px;
+  padding-top: 48px;
+  border-top: 1px solid var(--rule);
+  text-align: left;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.guestbook-title {
+  font-family: var(--serif);
+  font-size: clamp(22px, 2.5vw, 28px);
+  color: var(--ink);
+  margin-bottom: 6px;
+  font-weight: 400;
+  text-align: center;
+}
+.guestbook-desc {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 16px;
+  color: var(--ink-2);
+  margin-bottom: 28px;
+  text-align: center;
+}
+.guestbook-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.guestbook-list li {
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--ink);
+  line-height: 1.8;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+}
+.guestbook-list .guestbook-name {
+  font-weight: 500;
+  color: #fff;
+  background: var(--accent);
+  padding: 1px 5px;
+  margin-right: 6px;
+  font-size: 11px;
+  vertical-align: middle;
+  display: inline-block;
+}
+.guestbook-list .guestbook-name::after {
+  content: '';
+}
+.guestbook-list .date {
+  display: block;
+  width: 100%;
+  margin-top: 2px;
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--ink-3);
+  letter-spacing: 0.06em;
+}
+.guestbook-empty {
+  font-family: var(--sans);
+  font-size: 14px;
+  color: var(--ink-3);
+  font-style: italic;
+}
+.guestbook-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  margin-top: 20px;
+  font-family: var(--mono);
+  font-size: 10px;
+}
+.guestbook-pagination button {
+  padding: 5px 10px;
+  background: transparent;
+  border: 1px solid var(--rule);
+  color: var(--ink-2);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.guestbook-pagination button:hover {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+.guestbook-pagination button:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+.guestbook-pagination button:disabled:hover {
+  border-color: var(--rule);
+  color: var(--ink-2);
+}
+
+/* ============== GATE ============== */
+#gate {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  background: var(--paper);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+#gate.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.gate-content {
+  text-align: center;
+  padding: 40px;
+}
+.gate-name {
+  font-family: var(--serif);
+  font-size: clamp(32px, 6vw, 56px);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-bottom: 24px;
+}
+.gate-input-wrap {
+  position: relative;
+  display: inline-block;
+}
+.gate-prompt {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 16px;
+  color: var(--ink-2);
+  margin-bottom: 16px;
+}
+#gate-name,
+#gate-input {
+  font-family: var(--sans);
+  font-size: 16px;
+  padding: 14px 20px;
+  border: 1px solid var(--rule);
+  background: transparent;
+  color: var(--ink);
+  text-align: center;
+  outline: none;
+  transition: border-color 0.2s;
+  display: block;
+  margin: 0 auto 12px;
+}
+#gate-name {
+  width: min(280px, 70vw);
+  font-size: 14px;
+  padding: 12px 16px;
+}
+#gate-input {
+  width: min(400px, 80vw);
+}
+#gate-name::placeholder,
+#gate-input::placeholder {
+  color: var(--ink-3);
+}
+#gate-name:focus,
+#gate-input:focus {
+  border-color: var(--accent);
+}
+.gate-hint {
+  display: block;
+  margin-top: 12px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
 @media (max-width: 720px) {
   .skills-grid { grid-template-columns: repeat(2, 1fr); }
 }
@@ -1025,6 +1205,19 @@ body:not([data-view="index"]) .masthead-tag { display: none; }
 </head>
 <body>
 
+<!-- ================= GATE (Landing) ================= -->
+<div id="gate">
+  <div class="gate-content">
+    <h1 class="gate-name">Olivier Jiyoun Jung</h1>
+    <div class="gate-input-wrap">
+      <p class="gate-prompt">Who are you? A friend, a stranger, a curious mind...<br>Leave a note before you enter.</p>
+      <input type="text" id="gate-name" placeholder="Your name or whatever defines you" autocomplete="off" maxlength="30">
+      <input type="text" id="gate-input" placeholder="Leave a message" autocomplete="off" maxlength="50">
+      <span class="gate-hint">Press Enter</span>
+    </div>
+  </div>
+</div>
+
 <!-- ================= MASTHEAD ================= -->
 <header class="masthead">
   <div class="left"><a href="#" class="nav-link" data-target="home">Olivier Jiyoun Jung</a></div>
@@ -1044,10 +1237,12 @@ body:not([data-view="index"]) .masthead-tag { display: none; }
 
   <p class="hero-kicker">Researcher · Seoul</p>
 
-  <h1 class="hero-title">
-    Olivier<br>
-    Jiyoun <span class="it">Jung</span>
-  </h1>
+  <a href="#about" class="nav-link" data-target="about" style="text-decoration: none;">
+    <h1 class="hero-title">
+      Olivier<br>
+      Jiyoun <span class="it">Jung</span>
+    </h1>
+  </a>
 
   <div class="hero-lede">
     <dl class="hero-meta">
@@ -1057,7 +1252,7 @@ body:not([data-view="index"]) .masthead-tag { display: none; }
       </div>
       <div>
         <dt>Focus</dt>
-        <dd>Human–AI Interaction<br>Computational Social Science<br>Machine Learning</dd>
+        <dd>Human–AI Interaction<br>Multimodal Deep Learning<br>Computational Social Science</dd>
       </div>
       <div>
         <dt>Correspondence</dt>
@@ -1084,7 +1279,7 @@ body:not([data-view="index"]) .masthead-tag { display: none; }
   <div class="about-grid">
     <div class="about-portrait reveal">
       <div class="portrait-frame">
-        <img src="uploads/profile_nobg.png" alt="Portrait of Olivier Jiyoun Jung">
+        <img src="uploads/profile.png" alt="Portrait of Olivier Jiyoun Jung">
       </div>
       <div class="portrait-caption">
         <span>O. J. Jung, 2026</span>
@@ -1094,10 +1289,7 @@ body:not([data-view="index"]) .masthead-tag { display: none; }
 
     <div class="about-body reveal">
       <p>
-        I’m a master’s student at Ewha Womans University studying how AI is changing the way people communicate and interact in public spaces. My work sits at the intersection of <strong>Human–AI Interaction</strong> and <strong>Computational Social Science</strong>, where I use tools like speech modeling and natural language processing to explore how AI shapes trust, perception, and conversation.
-      </p>
-      <p>
-        I’m especially interested in building AI systems that help people communicate in more constructive and inclusive ways.
+        Olivier Jiyoun Jung is a graduate researcher in Communication & Media at Ewha Womans University. Bridging <strong>computational social science</strong> and <strong>multimodal deep learning</strong>, her research examines how AI systems reshape human communication, media trust, and public discourse. She combines methods across speech, vision, and text to investigate authenticity perception, AI-mediated dialogue, and the societal impact of synthetic media.
       </p>
     </div>
   </div>
@@ -1424,21 +1616,29 @@ body:not([data-view="index"]) .masthead-tag { display: none; }
 <!-- ================= COLOPHON / CONTACT ================= -->
 <section class="colophon" id="contact">
 
-  <p class="colophon-mark">Fin. — correspondence welcome</p>
-  <h2 class="colophon-title reveal">Let's <em>correspond.</em></h2>
+  <p class="colophon-mark">Fin. — say hello</p>
+  <h2 class="colophon-title reveal">Get in <em>touch.</em></h2>
   <p class="colophon-sub reveal"></p>
   <div class="colophon-links reveal">
     <a href="mailto:olivierjiyounjung@gmail.com" class="primary">Say hello ↗</a>
     <a href="https://www.linkedin.com/in/olivier-jiyoun-jung-290287389" target="_blank">LinkedIn</a>
     <a href="CV_OlivierJiyounJung.pdf" target="_blank">Curriculum Vitae (PDF)</a>
   </div>
+
+  <!-- Guestbook -->
+  <div class="guestbook reveal">
+    <h3 class="guestbook-title">Guestbook</h3>
+    <p class="guestbook-desc">Notes from visitors who stopped by.</p>
+    <ul class="guestbook-list" id="guestbook-list"></ul>
+    <div class="guestbook-pagination" id="guestbook-pagination"></div>
+  </div>
 </section>
 
 <!-- ================= FOOTER ================= -->
 <footer>
   <span>© 2026 O. J. Jung</span>
-  <span class="center accent">Human–AI Interaction · Computational Social Science</span>
-  <span class="right">Set in Instrument Serif &amp; Inter</span>
+  <span class="center accent">Human–AI Interaction · Multimodal Deep Learning · Computational Social Science</span>
+  <span class="right"></span>
 </footer>
 
 <!-- ================= TWEAKS ================= -->
@@ -1482,6 +1682,191 @@ body:not([data-view="index"]) .masthead-tag { display: none; }
 </div>
 
 <script>
+// ============== GATE & GUESTBOOK ==============
+const gate = document.getElementById('gate');
+const gateInput = document.getElementById('gate-input');
+const guestbookList = document.getElementById('guestbook-list');
+const guestbookPagination = document.getElementById('guestbook-pagination');
+const GUESTBOOK_API = 'https://script.google.com/macros/s/AKfycbx0cx9MLj0ngnBkJV7LqFiS58JiZpzvMmC4Npoh6ZTvlwtcOSKy_nYpQHdP8wKa_0g/exec';
+const ENTRIES_PER_PAGE = 10;
+const MAX_CHARS = 50;
+
+let allEntries = [];
+let currentPage = 1;
+
+// Render guestbook page
+function renderGuestbook() {
+  guestbookList.innerHTML = '';
+
+  if (allEntries.length === 0) {
+    guestbookList.innerHTML = '<li class="guestbook-empty">No visitors yet. Be the first!</li>';
+    guestbookPagination.innerHTML = '';
+    return;
+  }
+
+  const reversed = allEntries.slice().reverse();
+  const totalPages = Math.ceil(reversed.length / ENTRIES_PER_PAGE);
+  const start = (currentPage - 1) * ENTRIES_PER_PAGE;
+  const pageEntries = reversed.slice(start, start + ENTRIES_PER_PAGE);
+
+  pageEntries.forEach(entry => {
+    const li = document.createElement('li');
+    const nameDisplay = entry.name ? `<span class="guestbook-name">${entry.name}</span>` : '';
+    // Format date to KST
+    let dateStr = entry.date;
+    try {
+      const d = new Date(entry.date);
+      if (!isNaN(d)) {
+        dateStr = d.toLocaleString('ko-KR', { timeZone: 'Asia/Seoul', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
+      }
+    } catch(e) {}
+    li.innerHTML = `${nameDisplay}${entry.message}<span class="date">${dateStr}</span>`;
+    guestbookList.appendChild(li);
+  });
+
+  // Pagination
+  if (totalPages > 1) {
+    guestbookPagination.innerHTML = `
+      <button id="gb-prev" ${currentPage === 1 ? 'disabled' : ''}>← Prev</button>
+      <span style="padding: 8px; color: var(--ink-3);">${currentPage} / ${totalPages}</span>
+      <button id="gb-next" ${currentPage === totalPages ? 'disabled' : ''}>Next →</button>
+    `;
+    document.getElementById('gb-prev')?.addEventListener('click', () => { currentPage--; renderGuestbook(); });
+    document.getElementById('gb-next')?.addEventListener('click', () => { currentPage++; renderGuestbook(); });
+  } else {
+    guestbookPagination.innerHTML = '';
+  }
+}
+
+// Load guestbook entries from Google Sheets
+async function loadGuestbook() {
+  guestbookList.innerHTML = '<li class="guestbook-empty">Loading...</li>';
+  guestbookPagination.innerHTML = '';
+
+  try {
+    const res = await fetch(GUESTBOOK_API);
+    allEntries = await res.json();
+    currentPage = 1;
+    renderGuestbook();
+  } catch (err) {
+    guestbookList.innerHTML = '<li class="guestbook-empty">Could not load guestbook.</li>';
+  }
+}
+
+// Parse user agent for device info
+function parseUserAgent() {
+  const ua = navigator.userAgent;
+  let device = 'Unknown';
+  let os = 'Unknown';
+  let browser = 'Unknown';
+
+  // Device
+  if (/iPhone/.test(ua)) device = ua.match(/iPhone[^;)]*/)?.[0] || 'iPhone';
+  else if (/iPad/.test(ua)) device = 'iPad';
+  else if (/Android/.test(ua)) {
+    const match = ua.match(/Android[^;]*;[^;]*;?\s*([^)]+)\)/);
+    device = match ? match[1].trim() : 'Android Device';
+  }
+  else if (/Macintosh/.test(ua)) device = 'Mac';
+  else if (/Windows/.test(ua)) device = 'Windows PC';
+  else if (/Linux/.test(ua)) device = 'Linux PC';
+
+  // OS
+  if (/iPhone OS (\d+[_\d]*)/.test(ua)) os = 'iOS ' + ua.match(/iPhone OS (\d+[_\d]*)/)[1].replace(/_/g, '.');
+  else if (/iPad.*OS (\d+[_\d]*)/.test(ua)) os = 'iPadOS ' + ua.match(/OS (\d+[_\d]*)/)[1].replace(/_/g, '.');
+  else if (/Android (\d+[.\d]*)/.test(ua)) os = 'Android ' + ua.match(/Android (\d+[.\d]*)/)[1];
+  else if (/Mac OS X (\d+[_\d]*)/.test(ua)) os = 'macOS ' + ua.match(/Mac OS X (\d+[_\d]*)/)[1].replace(/_/g, '.');
+  else if (/Windows NT (\d+\.\d+)/.test(ua)) {
+    const ver = ua.match(/Windows NT (\d+\.\d+)/)[1];
+    const winVer = { '10.0': '10/11', '6.3': '8.1', '6.2': '8', '6.1': '7' };
+    os = 'Windows ' + (winVer[ver] || ver);
+  }
+
+  // Browser
+  if (/Edg\//.test(ua)) browser = 'Edge';
+  else if (/Chrome\//.test(ua) && !/Chromium/.test(ua)) browser = 'Chrome';
+  else if (/Safari\//.test(ua) && !/Chrome/.test(ua)) browser = 'Safari';
+  else if (/Firefox\//.test(ua)) browser = 'Firefox';
+
+  return { device, os, browser };
+}
+
+// Get IP info from API
+async function getIpInfo() {
+  try {
+    const res = await fetch('https://ipapi.co/json/');
+    const data = await res.json();
+    return {
+      query: data.ip || '',
+      country: data.country_name || '',
+      city: data.city || '',
+      isp: data.org || ''
+    };
+  } catch (err) {
+    console.error('IP fetch failed:', err);
+    return {};
+  }
+}
+
+// Save entry to Google Sheets
+async function saveToGuestbook(name, message) {
+  try {
+    const ipInfo = await getIpInfo();
+    const uaInfo = parseUserAgent();
+
+    await fetch(GUESTBOOK_API, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: name.slice(0, 30),
+        message: message.slice(0, MAX_CHARS),
+        ip: ipInfo.query || '',
+        country: ipInfo.country || '',
+        city: ipInfo.city || '',
+        isp: ipInfo.isp || '',
+        device: uaInfo.device,
+        os: uaInfo.os,
+        browser: uaInfo.browser,
+        referrer: document.referrer || 'Direct',
+        language: navigator.language || ''
+      })
+    });
+    // Reload after short delay (no-cors doesn't return response)
+    setTimeout(loadGuestbook, 1500);
+  } catch (err) {
+    console.error('Failed to save:', err);
+  }
+}
+
+// Check if already entered
+if (sessionStorage.getItem('gateEntered')) {
+  gate.classList.add('hidden');
+}
+
+const gateName = document.getElementById('gate-name');
+let isSubmitting = false;
+
+gateInput.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' && !e.isComposing && gateInput.value.trim() !== '' && !isSubmitting) {
+    isSubmitting = true;
+    const name = gateName.value.trim() || 'Anonymous';
+    saveToGuestbook(name, gateInput.value.trim());
+    gate.classList.add('hidden');
+    sessionStorage.setItem('gateEntered', 'true');
+  }
+});
+
+gateName.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    gateInput.focus();
+  }
+});
+
+// Load guestbook on page load
+loadGuestbook();
+
 // ============== REVEAL ==============
 const io = new IntersectionObserver(
   (entries) => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
