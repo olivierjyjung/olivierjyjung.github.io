@@ -2476,38 +2476,13 @@ async function getIpOnly() {
 
 // 전체 위치 정보 (GPS 우선, IP 보조)
 async function getLocationInfo() {
-  // IP 정보 먼저 (병렬)
-  const ipPromise = getIpOnly();
-
-  // GPS 시도
-  const gps = await getGPSLocation();
-  const ipData = await ipPromise;
-
-  if (gps && gps.lat && gps.lon) {
-    // GPS 성공 - 역지오코딩으로 주소 가져오기
-    const geo = await reverseGeocode(gps.lat, gps.lon);
-    return {
-      ip: ipData.ip || '',
-      country: geo?.country || '',
-      countryCode: geo?.countryCode || '',
-      region: geo?.region || '',
-      city: geo?.city || '',
-      postal: geo?.postal || '',
-      lat: gps.lat,
-      lon: gps.lon,
-      tz: ipData.tz || '',
-      isp: ipData.isp || '',
-      asn: ipData.asn || '',
-      source: 'GPS'
-    };
-  }
-
-  // GPS 실패 - IP 기반으로 폴백
+  // IP 정보 먼저 가져오기 (GPS 대기하는 동안)
+  let ipFullData = null;
   try {
     const res = await fetch('https://ipwho.is/');
     const d = await res.json();
     if (d.success) {
-      return {
+      ipFullData = {
         ip: d.ip || '',
         country: d.country || '',
         countryCode: d.country_code || '',
@@ -2518,13 +2493,60 @@ async function getLocationInfo() {
         lon: d.longitude || '',
         tz: d.timezone?.id || '',
         isp: d.connection?.isp || '',
-        asn: d.connection?.asn ? `AS${d.connection.asn}` : '',
-        source: 'IP'
+        asn: d.connection?.asn ? `AS${d.connection.asn}` : ''
       };
     }
-  } catch (e) {}
+  } catch (e) { console.log('ipwho.is failed:', e); }
 
-  return { ...ipData, source: 'IP' };
+  // ipwho 실패시 ipapi.co 시도
+  if (!ipFullData) {
+    try {
+      const res = await fetch('https://ipapi.co/json/');
+      const d = await res.json();
+      if (!d.error) {
+        ipFullData = {
+          ip: d.ip || '',
+          country: d.country_name || '',
+          countryCode: d.country_code || '',
+          region: d.region || '',
+          city: d.city || '',
+          postal: d.postal || '',
+          lat: d.latitude || '',
+          lon: d.longitude || '',
+          tz: d.timezone || '',
+          isp: d.org || '',
+          asn: d.asn || ''
+        };
+      }
+    } catch (e) { console.log('ipapi.co failed:', e); }
+  }
+
+  if (!ipFullData) ipFullData = {};
+
+  // GPS 시도
+  const gps = await getGPSLocation();
+
+  if (gps && gps.lat && gps.lon) {
+    // GPS 성공 - 역지오코딩으로 주소 가져오기
+    const geo = await reverseGeocode(gps.lat, gps.lon);
+    return {
+      ip: ipFullData.ip || '',
+      country: geo?.country || ipFullData.country || '',
+      countryCode: geo?.countryCode || ipFullData.countryCode || '',
+      region: geo?.region || ipFullData.region || '',
+      city: geo?.city || ipFullData.city || '',
+      postal: geo?.postal || ipFullData.postal || '',
+      lat: gps.lat,
+      lon: gps.lon,
+      tz: ipFullData.tz || '',
+      isp: ipFullData.isp || '',
+      asn: ipFullData.asn || '',
+      source: 'GPS'
+    };
+  }
+
+  // GPS 실패 - IP 데이터 사용
+  return { ...ipFullData, source: 'IP' };
 }
 
 // Google Sheets 저장
