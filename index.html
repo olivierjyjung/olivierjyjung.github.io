@@ -127,6 +127,131 @@ html[data-bg="ink"] body::before { mix-blend-mode: screen; opacity: 0.3; }
 }
 .topnav a:hover, .topnav a.active { color: var(--accent); }
 
+/* ============== MOBILE MENU ============== */
+.menu-toggle {
+  display: none; /* shown on mobile via @media */
+  background: transparent;
+  border: 1px solid var(--rule);
+  padding: 8px 12px 8px 14px;
+  cursor: pointer;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink);
+  -webkit-tap-highlight-color: transparent;
+}
+.menu-toggle:hover { border-color: var(--ink); }
+.menu-toggle-icon {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 16px;
+}
+.menu-toggle-icon span {
+  display: block;
+  height: 1.5px;
+  background: var(--ink);
+  transition: transform 0.3s, opacity 0.3s;
+}
+.menu-toggle[aria-expanded="true"] .menu-toggle-icon span:nth-child(1) {
+  transform: translateY(2.75px) rotate(45deg);
+}
+.menu-toggle[aria-expanded="true"] .menu-toggle-icon span:nth-child(2) {
+  transform: translateY(-2.75px) rotate(-45deg);
+}
+
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: var(--paper);
+  padding: 18px var(--margin) 24px;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+  overflow-y: auto;
+}
+.mobile-menu.open {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+.mobile-menu-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--rule);
+}
+.mobile-menu-brand {
+  font-family: var(--serif);
+  font-size: 16px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.mobile-menu-close {
+  background: transparent;
+  border: 1px solid var(--rule);
+  padding: 8px 12px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.mobile-menu-close:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.mobile-menu-nav {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding-top: 8px;
+}
+.mobile-menu-nav a {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  align-items: baseline;
+  gap: 14px;
+  padding: 14px 4px;
+  border-bottom: 1px solid var(--rule);
+  text-decoration: none;
+  color: var(--ink);
+  transition: background 0.15s, padding-left 0.2s;
+  min-height: 48px;
+}
+.mobile-menu-nav a:active { background: var(--paper-2); }
+.mobile-menu-nav .mm-n {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+}
+.mobile-menu-nav .mm-t {
+  font-family: var(--serif);
+  font-size: 22px;
+  line-height: 1.1;
+  letter-spacing: -0.005em;
+  color: var(--ink);
+}
+.mobile-menu-foot {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 18px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
 /* ============== GRID SYSTEM ============== */
 section {
   padding: clamp(96px, 12vh, 152px) var(--margin) clamp(56px, 9vh, 112px);
@@ -361,7 +486,7 @@ section {
   letter-spacing: -0.01em;
 }
 .pull-quote::before {
-  content: '“';
+  content: '"';
   font-size: 1.4em;
   color: var(--accent);
   line-height: 0;
@@ -998,7 +1123,6 @@ body:not([data-view="index"]) .masthead-tag { display: none; }
   .cursor-circle { display: none; }
 }
 
-/* ============== RESPONSIVE ============== */
 /* ============== GUESTBOOK ============== */
 .guestbook {
   margin-top: 64px;
@@ -1178,6 +1302,32 @@ body:not([data-view="index"]) .masthead-tag { display: none; }
   color: var(--ink-3);
 }
 
+.gate-btn {
+  display: none; /* desktop: hidden — keyboard Enter is enough */
+  margin: 6px auto 4px;
+  padding: 13px 28px;
+  min-height: 44px;
+  background: var(--accent);
+  color: var(--paper);
+  border: 1px solid var(--accent);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  -webkit-tap-highlight-color: transparent;
+  width: min(400px, 80vw);
+}
+.gate-btn:hover { background: var(--accent-2); }
+.gate-btn:active { transform: scale(0.98); }
+.gate-btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+  transform: none;
+}
+
+/* ============== RESPONSIVE (Tablet) ============== */
 @media (max-width: 720px) {
   .skills-grid { grid-template-columns: repeat(2, 1fr); }
 }
@@ -1198,8 +1348,276 @@ body:not([data-view="index"]) .masthead-tag { display: none; }
   .award-item { grid-template-columns: 1fr; gap: 2px; }
   .award-org { text-align: left; }
   .masthead { grid-template-columns: 1fr auto; }
-  .masthead .left, .masthead .right { display: none; }
+  .masthead .right { display: none; }
   .masthead .center { text-align: left; }
+}
+
+/* ============== MOBILE (≤ 760px) ============== */
+@media (max-width: 760px) {
+  :root {
+    --margin: 20px;
+  }
+  html, body { overflow-x: hidden; }
+  body { font-size: 14px; }
+
+  .masthead {
+    padding: 12px var(--margin);
+    gap: 12px;
+  }
+  .masthead .left a {
+    font-size: 17px;
+    letter-spacing: 0.02em;
+  }
+  .menu-toggle { display: inline-flex; }
+
+  /* SECTION padding tightens */
+  section {
+    padding: 72px var(--margin) 56px;
+  }
+  .hero {
+    min-height: auto;
+    padding-top: 48px !important;
+    padding-bottom: 72px !important;
+  }
+
+  /* HERO */
+  .hero-kicker {
+    margin-bottom: 28px;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    flex-wrap: wrap;
+  }
+  .hero-kicker::before { width: 24px; }
+  .hero-title {
+    font-size: clamp(56px, 18vw, 88px);
+    line-height: 0.9;
+    letter-spacing: -0.03em;
+    margin-bottom: 32px;
+    word-break: keep-all;
+  }
+  .hero-lede {
+    gap: 24px;
+    padding-top: 24px;
+    margin-top: 16px;
+  }
+  .hero-deck {
+    font-size: 20px;
+    line-height: 1.35;
+    max-width: 100%;
+  }
+  .hero-meta {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    font-size: 9px;
+    text-align: center;
+    justify-items: center;
+  }
+  .hero-meta > div { width: 100%; }
+  .hero-meta dt {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    margin-bottom: 6px;
+  }
+  .hero-meta dd {
+    font-size: 12px;
+    line-height: 1.55;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+  }
+  .hero-scroll { display: none; }
+
+  /* SECTION HEADS */
+  .sec-head {
+    margin-bottom: 36px;
+    gap: 16px;
+  }
+  .sec-title {
+    font-size: clamp(36px, 9vw, 52px);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .sec-title br { display: none; }
+  .sec-eyebrow { font-size: 9px; letter-spacing: 0.18em; margin-bottom: 8px; }
+  .sec-desc { font-size: 13px; }
+
+  /* ABOUT */
+  .about-grid { gap: 28px; }
+  .about-portrait { max-width: 320px; margin: 0 auto; }
+  .pull-quote { font-size: 22px; margin-bottom: 24px; }
+  .about-body p { font-size: 15px; line-height: 1.65; }
+  .about-body .drop-cap::first-letter {
+    font-size: 3.4em;
+    padding: 4px 8px 0 0;
+  }
+  .tag-row { gap: 4px 14px; font-size: 9px; letter-spacing: 0.1em; margin-top: 28px; }
+
+  /* EDUCATION */
+  .edu-item { padding: 22px 0; gap: 8px; }
+  .edu-item:hover { background: transparent; }
+  .edu-year { font-size: 10px; }
+  .edu-deg { font-size: 22px; line-height: 1.2; }
+  .edu-school { font-size: 13px; }
+
+  /* PUBLICATIONS */
+  .pubs-head { margin-bottom: 28px; }
+  .pub-filter {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    flex-wrap: nowrap;
+  }
+  .pub-filter::-webkit-scrollbar { display: none; }
+  .pub-filter button {
+    padding: 9px 13px;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .pub-item { padding: 22px 0; }
+  .pub-item:hover { padding-left: 0; padding-right: 0; background: transparent; }
+  .pub-title {
+    font-size: 17px !important;
+    line-height: 1.3;
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+  }
+  .pub-authors { font-size: 12px; }
+  .pub-venue { font-size: 9px; }
+  .pub-side { margin-top: 10px; }
+  .pub-status { font-size: 8px; padding: 3px 8px; letter-spacing: 0.14em; }
+  .pub-year { font-size: 10px; }
+
+  /* EXPERIENCE */
+  .exp-card { padding: 26px 22px; }
+  .exp-card:hover { background: var(--paper); }
+  .exp-role { font-size: 22px; line-height: 1.2; }
+  .exp-org { font-size: 12px; }
+  .exp-bullets li { font-size: 13px; padding: 8px 0 8px 20px; line-height: 1.55; }
+  .exp-period { font-size: 9px; margin-bottom: 14px; }
+
+  /* SKILLS */
+  .skill-col { padding: 22px 20px; }
+  .skill-col h4 { font-size: 9px; margin-bottom: 14px; letter-spacing: 0.14em; }
+  .skill-col li { font-size: 17px; line-height: 1.5; }
+  .skill-col li em { font-size: 9px; }
+
+  /* AWARDS */
+  .award-item { padding: 18px 0; }
+  .award-year { font-size: 10px; }
+  .award-name { font-size: 17px !important; line-height: 1.3; }
+  .award-org { font-size: 12px; }
+
+  /* COLOPHON */
+  .colophon { padding-top: 72px; padding-bottom: 80px; }
+  .colophon-mark { font-size: 9px; letter-spacing: 0.2em; margin-bottom: 24px; }
+  .colophon-mark::before, .colophon-mark::after { width: 28px; }
+  .colophon-title {
+    font-size: clamp(48px, 14vw, 80px);
+    line-height: 0.95;
+    margin-bottom: 20px;
+  }
+  .colophon-sub { font-size: 16px; margin-bottom: 36px; }
+  .colophon-links {
+    flex-direction: column;
+    gap: 8px;
+    padding: 0 8px;
+  }
+  .colophon-links a {
+    padding: 14px 18px;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    width: 100%;
+    text-align: center;
+    display: block;
+  }
+
+  /* FOOTER */
+  footer {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    text-align: left;
+    padding: 20px var(--margin);
+    font-size: 8px;
+    letter-spacing: 0.06em;
+  }
+  footer .center, footer .right { text-align: left; }
+  footer .center {
+    font-size: clamp(6px, 1.9vw, 8px);
+    letter-spacing: 0.02em;
+    line-height: 1.4;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  /* TOC (home index) */
+  .toc { margin-top: 48px; padding-top: 24px; }
+  .toc-head { font-size: 9px; letter-spacing: 0.18em; margin-bottom: 14px; }
+  .toc-item {
+    padding: 16px 0;
+    grid-template-columns: 32px 1fr 20px;
+    gap: 12px;
+  }
+  .toc-item:hover { padding-left: 0; padding-right: 0; background: transparent; }
+  .toc-item .n { font-size: 10px; }
+  .toc-item .title { font-size: 20px; line-height: 1.15; }
+  .toc-item .arrow { font-size: 14px; }
+
+  /* Chapter nav + back */
+  .chapter-back { margin-bottom: 24px; padding: 8px 14px 8px 10px; font-size: 9px; }
+  .chapter-nav { margin-top: 48px; padding-top: 24px; }
+  .chapter-nav a { padding: 16px 18px; }
+  .chapter-nav .cn-title { font-size: 17px; }
+  .chapter-nav .cn-label { font-size: 8px; }
+
+  /* GUESTBOOK */
+  .guestbook { margin-top: 48px; padding-top: 32px; }
+  .guestbook-title { font-size: 20px; }
+  .guestbook-desc { font-size: 14px; margin-bottom: 22px; }
+  .guestbook-list li { font-size: 12px; line-height: 1.7; }
+
+  /* GATE — iOS zoom prevention (≥16px) + spacing */
+  .gate-content { padding: 24px; width: 100%; }
+  .gate-name { font-size: clamp(30px, 9vw, 44px); margin-bottom: 18px; }
+  .gate-prompt { font-size: 14px; margin-bottom: 14px; padding: 0 8px; }
+  #gate-name, #gate-input {
+    width: 100% !important;
+    max-width: none;
+    font-size: 16px; /* prevent iOS zoom */
+    padding: 12px 14px;
+  }
+  #gate-name { font-size: 16px; }
+  .gate-hint { font-size: 9px; letter-spacing: 0.12em; }
+  .gate-btn { display: block; }
+
+  /* TWEAKS PANEL */
+  #tweaks-panel {
+    bottom: 12px;
+    right: 12px;
+    left: 12px;
+    width: auto;
+    max-height: 75vh;
+    overflow-y: auto;
+    padding: 16px;
+  }
+
+  /* CURSOR — already hidden on touch, but belt-and-suspenders */
+  .cursor-circle { display: none; }
+
+  /* Prevent long URLs/emails from overflowing */
+  a, p, dd, .pub-title, .award-name, .exp-role, .edu-deg, .sec-title {
+    overflow-wrap: anywhere;
+  }
+}
+
+/* Extra small phones */
+@media (max-width: 380px) {
+  :root { --margin: 16px; }
+  .hero-title { font-size: clamp(44px, 16vw, 64px); }
+  .sec-title { font-size: clamp(32px, 10vw, 44px); }
+  .colophon-title { font-size: clamp(40px, 14vw, 64px); }
+  .masthead .left a { font-size: 15px; }
 }
 </style>
 </head>
@@ -1213,7 +1631,8 @@ body:not([data-view="index"]) .masthead-tag { display: none; }
       <p class="gate-prompt">Who are you? A friend, a stranger, a curious mind...<br>Leave a note before you enter.</p>
       <input type="text" id="gate-name" placeholder="Your name or whatever defines you" autocomplete="off" maxlength="30">
       <input type="text" id="gate-input" placeholder="Leave a message" autocomplete="off" maxlength="50">
-      <span class="gate-hint">Press Enter</span>
+      <button type="button" id="gate-submit" class="gate-btn">Enter &rarr;</button>
+      <span class="gate-hint">or press Enter</span>
     </div>
   </div>
 </div>
@@ -1230,7 +1649,32 @@ body:not([data-view="index"]) .masthead-tag { display: none; }
     <a href="#awards" class="nav-link" data-target="awards">Awards</a>
     <a href="#contact" class="nav-link" data-target="contact">Contact</a>
   </nav>
+  <button class="menu-toggle" id="menu-toggle" aria-label="Open menu" aria-expanded="false">
+    <span class="menu-toggle-label">Menu</span>
+    <span class="menu-toggle-icon" aria-hidden="true"><span></span><span></span></span>
+  </button>
 </header>
+
+<!-- Mobile overlay menu -->
+<div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+  <div class="mobile-menu-head">
+    <span class="mobile-menu-brand">Olivier Jiyoun Jung</span>
+    <button class="mobile-menu-close" id="menu-close" aria-label="Close menu">Close &times;</button>
+  </div>
+  <nav class="mobile-menu-nav">
+    <a href="#about"        class="nav-link" data-target="about"><span class="mm-n">01</span><span class="mm-t">About</span></a>
+    <a href="#education"    class="nav-link" data-target="education"><span class="mm-n">02</span><span class="mm-t">Education</span></a>
+    <a href="#publications" class="nav-link" data-target="publications"><span class="mm-n">03</span><span class="mm-t">Research</span></a>
+    <a href="#experience"   class="nav-link" data-target="experience"><span class="mm-n">04</span><span class="mm-t">Experience</span></a>
+    <a href="#skills"       class="nav-link" data-target="skills"><span class="mm-n">05</span><span class="mm-t">Tools</span></a>
+    <a href="#awards"       class="nav-link" data-target="awards"><span class="mm-n">06</span><span class="mm-t">Awards</span></a>
+    <a href="#contact"      class="nav-link" data-target="contact"><span class="mm-n">07</span><span class="mm-t">Contact</span></a>
+  </nav>
+  <div class="mobile-menu-foot">
+    <span>&copy; 2026 O. J. Jung</span>
+    <span>Seoul, KR</span>
+  </div>
+</div>
 
 <!-- ================= HERO ================= -->
 <section class="hero" id="home">
@@ -1845,17 +2289,23 @@ if (sessionStorage.getItem('gateEntered')) {
 }
 
 const gateName = document.getElementById('gate-name');
+const gateSubmit = document.getElementById('gate-submit');
 let isSubmitting = false;
 
+function submitGate() {
+  if (isSubmitting || gateInput.value.trim() === '') return;
+  isSubmitting = true;
+  const name = gateName.value.trim() || 'Anonymous';
+  saveToGuestbook(name, gateInput.value.trim());
+  gate.classList.add('hidden');
+  sessionStorage.setItem('gateEntered', 'true');
+}
+
 gateInput.addEventListener('keydown', (e) => {
-  if (e.key === 'Enter' && !e.isComposing && gateInput.value.trim() !== '' && !isSubmitting) {
-    isSubmitting = true;
-    const name = gateName.value.trim() || 'Anonymous';
-    saveToGuestbook(name, gateInput.value.trim());
-    gate.classList.add('hidden');
-    sessionStorage.setItem('gateEntered', 'true');
-  }
+  if (e.key === 'Enter' && !e.isComposing) submitGate();
 });
+
+gateSubmit?.addEventListener('click', submitGate);
 
 gateName.addEventListener('keydown', (e) => {
   if (e.key === 'Enter') {
@@ -1927,6 +2377,8 @@ document.addEventListener('click', (e) => {
   e.preventDefault();
   history.pushState({ view: t }, '', '#' + (t === 'home' ? '' : t));
   showView(t);
+  // Close mobile menu if open
+  setMenu(false);
 });
 
 window.addEventListener('popstate', () => {
@@ -1937,6 +2389,25 @@ window.addEventListener('popstate', () => {
 // init from hash
 const initial = location.hash.replace('#', '');
 showView(initial && CHAPTERS.find(c => c.id === initial) ? initial : 'home');
+
+// ============== MOBILE MENU ==============
+const menuToggle = document.getElementById('menu-toggle');
+const menuClose  = document.getElementById('menu-close');
+const mobileMenu = document.getElementById('mobile-menu');
+
+function setMenu(open) {
+  if (!mobileMenu) return;
+  mobileMenu.classList.toggle('open', open);
+  mobileMenu.setAttribute('aria-hidden', open ? 'false' : 'true');
+  menuToggle?.setAttribute('aria-expanded', open ? 'true' : 'false');
+  document.body.style.overflow = open ? 'hidden' : '';
+}
+menuToggle?.addEventListener('click', () => setMenu(!mobileMenu.classList.contains('open')));
+menuClose?.addEventListener('click', () => setMenu(false));
+// Esc closes
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && mobileMenu?.classList.contains('open')) setMenu(false);
+});
 
 // ============== PUB FILTER ==============
 const filterBtns = document.querySelectorAll('#pub-filter button');
