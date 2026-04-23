@@ -1152,11 +1152,11 @@ body:not([data-view="index"]) .masthead-tag { display: none; }
 }
 .guestbook-header {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 28px;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 24px;
 }
-.guestbook-header > div { flex: 1; }
 .guestbook-title {
   font-family: var(--serif);
   font-size: clamp(22px, 2.5vw, 28px);
@@ -1165,14 +1165,22 @@ body:not([data-view="index"]) .masthead-tag { display: none; }
   font-weight: 400;
   text-align: center;
 }
+.guestbook-desc {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 16px;
+  color: var(--ink-2);
+  margin-bottom: 12px;
+  text-align: center;
+}
 .gb-sort-btn {
   font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  padding: 6px 12px;
+  font-size: 8px;
+  letter-spacing: 0.08em;
+  padding: 4px 8px;
   background: transparent;
   border: 1px solid var(--rule);
-  color: var(--ink-2);
+  color: var(--ink-3);
   cursor: pointer;
   white-space: nowrap;
   transition: all 0.2s;
@@ -1180,13 +1188,6 @@ body:not([data-view="index"]) .masthead-tag { display: none; }
 .gb-sort-btn:hover {
   border-color: var(--accent);
   color: var(--accent);
-}
-.guestbook-desc {
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: 16px;
-  color: var(--ink-2);
-  margin-bottom: 0;
   text-align: center;
 }
 .guestbook-list {
@@ -2118,10 +2119,8 @@ body:not([data-view="index"]) .masthead-tag { display: none; }
   <!-- Guestbook -->
   <div class="guestbook reveal">
     <div class="guestbook-header">
-      <div>
-        <h3 class="guestbook-title">Guestbook</h3>
-        <p class="guestbook-desc">Notes from visitors who stopped by.</p>
-      </div>
+      <h3 class="guestbook-title">Guestbook</h3>
+      <p class="guestbook-desc">Notes from visitors who stopped by.</p>
       <button id="gb-sort-toggle" class="gb-sort-btn">↑ Oldest first</button>
     </div>
     <ul class="guestbook-list" id="guestbook-list"></ul>
