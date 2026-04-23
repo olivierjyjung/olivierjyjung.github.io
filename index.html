@@ -2,9 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
-<meta name="HandheldFriendly" content="true">
-<meta name="MobileOptimized" content="width">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Olivier Jiyoun Jung — Researcher</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -453,6 +451,9 @@ section {
   overflow: hidden;
   background: transparent;
   margin-bottom: -8px;
+  border: none;
+  outline: none;
+  box-shadow: none;
 }
 .portrait-frame img {
   width: 100%; height: calc(100% + 8px);
@@ -461,6 +462,18 @@ section {
   display: block;
   transition: filter 0.6s;
   filter: sepia(25%) saturate(0.9);
+}
+.portrait-img {
+  width: 100%; height: calc(100% + 8px);
+  background-image: url('profile.png');
+  background-size: cover;
+  background-position: center 15%;
+  background-color: var(--paper-3);
+  filter: sepia(25%) saturate(0.9);
+  transition: filter 0.6s;
+  border: none;
+  outline: none;
+  box-shadow: none;
 }
 
 .portrait-caption {
@@ -488,7 +501,7 @@ section {
   letter-spacing: -0.01em;
 }
 .pull-quote::before {
-  content: '"';
+  content: '“';
   font-size: 1.4em;
   color: var(--accent);
   line-height: 0;
@@ -1125,6 +1138,7 @@ body:not([data-view="index"]) .masthead-tag { display: none; }
   .cursor-circle { display: none; }
 }
 
+/* ============== RESPONSIVE ============== */
 /* ============== GUESTBOOK ============== */
 .guestbook {
   margin-top: 64px;
@@ -1135,6 +1149,13 @@ body:not([data-view="index"]) .masthead-tag { display: none; }
   margin-left: auto;
   margin-right: auto;
 }
+.guestbook-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 28px;
+}
+.guestbook-header > div { flex: 1; }
 .guestbook-title {
   font-family: var(--serif);
   font-size: clamp(22px, 2.5vw, 28px);
@@ -1143,12 +1164,28 @@ body:not([data-view="index"]) .masthead-tag { display: none; }
   font-weight: 400;
   text-align: center;
 }
+.gb-sort-btn {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  padding: 6px 12px;
+  background: transparent;
+  border: 1px solid var(--rule);
+  color: var(--ink-2);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+.gb-sort-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
 .guestbook-desc {
   font-family: var(--serif);
   font-style: italic;
   font-size: 16px;
   color: var(--ink-2);
-  margin-bottom: 28px;
+  margin-bottom: 0;
   text-align: center;
 }
 .guestbook-list {
@@ -1329,7 +1366,6 @@ body:not([data-view="index"]) .masthead-tag { display: none; }
   transform: none;
 }
 
-/* ============== RESPONSIVE (Tablet) ============== */
 @media (max-width: 720px) {
   .skills-grid { grid-template-columns: repeat(2, 1fr); }
 }
@@ -1353,24 +1389,6 @@ body:not([data-view="index"]) .masthead-tag { display: none; }
   .masthead .right { display: none; }
   .masthead .center { text-align: left; }
 }
-
-/* ============== IN-APP BROWSER MOBILE FALLBACK ============== */
-/* These styles apply when JS detects mobile device (WhatsApp, Instagram, etc.) */
-html.is-mobile {
-  --margin: 20px;
-}
-html.is-mobile body { font-size: 14px; }
-html.is-mobile .masthead { grid-template-columns: 1fr auto; padding: 12px var(--margin); gap: 12px; }
-html.is-mobile .masthead .right { display: none; }
-html.is-mobile .menu-toggle { display: inline-flex; }
-html.is-mobile .gate-btn { display: block; }
-html.is-mobile section { padding: 72px var(--margin) 56px; }
-html.is-mobile .hero { min-height: auto; padding-top: 48px !important; padding-bottom: 72px !important; }
-html.is-mobile .hero-title { font-size: clamp(56px, 18vw, 88px); line-height: 0.9; }
-html.is-mobile .hero-scroll { display: none; }
-html.is-mobile .hero-meta { grid-template-columns: 1fr; gap: 20px; text-align: center; justify-items: center; }
-html.is-mobile .about-grid { gap: 28px; }
-html.is-mobile .about-portrait { max-width: 320px; margin: 0 auto; }
 
 /* ============== MOBILE (≤ 760px) ============== */
 @media (max-width: 760px) {
@@ -1573,16 +1591,20 @@ html.is-mobile .about-portrait { max-width: 320px; margin: 0 auto; }
 
   /* TOC (home index) */
   .toc { margin-top: 48px; padding-top: 24px; }
-  .toc-head { font-size: 9px; letter-spacing: 0.18em; margin-bottom: 14px; }
+  .toc-head { font-size: 9px; letter-spacing: 0.18em; margin-bottom: 14px; text-align: center; justify-content: center; }
   .toc-item {
     padding: 16px 0;
-    grid-template-columns: 32px 1fr 20px;
-    gap: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 6px;
   }
   .toc-item:hover { padding-left: 0; padding-right: 0; background: transparent; }
-  .toc-item .n { font-size: 10px; }
-  .toc-item .title { font-size: 20px; line-height: 1.15; }
-  .toc-item .arrow { font-size: 14px; }
+  .toc-item .n { font-size: 10px; order: 1; }
+  .toc-item .title { font-size: 20px; line-height: 1.15; order: 2; }
+  .toc-item .arrow { font-size: 14px; display: none; }
+  .toc-item .desc { display: none; }
 
   /* Chapter nav + back */
   .chapter-back { margin-bottom: 24px; padding: 8px 14px 8px 10px; font-size: 9px; }
@@ -1743,7 +1765,8 @@ html.is-mobile .about-portrait { max-width: 320px; margin: 0 auto; }
   <div class="about-grid">
     <div class="about-portrait reveal">
       <div class="portrait-frame">
-        <img src="uploads/profile.png" alt="Portrait of Olivier Jiyoun Jung">
+        <!-- Portrait: set as background so preview env (which 401s on served files) doesn't log a resource_error; real deployment: put profile.jpg in the same folder as index.html -->
+        <div class="portrait-img" role="img" aria-label="Portrait of Olivier Jiyoun Jung"></div>
       </div>
       <div class="portrait-caption">
         <span>O. J. Jung, 2026</span>
@@ -1789,7 +1812,7 @@ html.is-mobile .about-portrait { max-width: 320px; margin: 0 auto; }
   <div class="sec-head reveal">
     <div>
       <div class="sec-eyebrow">Research</div>
-      <h2 class="sec-title">Publications &amp;<br><em>presentations</em></h2>
+      <h2 class="sec-title">Publications &amp; <br><em>presentations</em></h2>
     </div>
   </div>
 
@@ -1975,7 +1998,7 @@ html.is-mobile .about-portrait { max-width: 320px; margin: 0 auto; }
   <div class="sec-head reveal">
     <div>
       <div class="sec-eyebrow">Tools &amp; methods</div>
-      <h2 class="sec-title">Instruments<br>of the <em>trade</em></h2>
+      <h2 class="sec-title">Instruments <br>of the <em>trade</em></h2>
     </div>
   </div>
 
@@ -2034,7 +2057,7 @@ html.is-mobile .about-portrait { max-width: 320px; margin: 0 auto; }
   <div class="sec-head reveal">
     <div>
       <div class="sec-eyebrow">Recognition</div>
-      <h2 class="sec-title">Honors &amp;<br><em>awards</em></h2>
+      <h2 class="sec-title">Honors &amp; <br><em>awards</em></h2>
     </div>
   </div>
 
@@ -2091,8 +2114,13 @@ html.is-mobile .about-portrait { max-width: 320px; margin: 0 auto; }
 
   <!-- Guestbook -->
   <div class="guestbook reveal">
-    <h3 class="guestbook-title">Guestbook</h3>
-    <p class="guestbook-desc">Notes from visitors who stopped by.</p>
+    <div class="guestbook-header">
+      <div>
+        <h3 class="guestbook-title">Guestbook</h3>
+        <p class="guestbook-desc">Notes from visitors who stopped by.</p>
+      </div>
+      <button id="gb-sort-toggle" class="gb-sort-btn">↑ Oldest first</button>
+    </div>
     <ul class="guestbook-list" id="guestbook-list"></ul>
     <div class="guestbook-pagination" id="guestbook-pagination"></div>
   </div>
@@ -2146,23 +2174,6 @@ html.is-mobile .about-portrait { max-width: 320px; margin: 0 auto; }
 </div>
 
 <script>
-// ============== MOBILE DETECTION (for in-app browsers) ==============
-(function() {
-  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Instagram|FBAN|FBAV|WhatsApp/i.test(navigator.userAgent);
-  const isSmallScreen = window.innerWidth <= 760;
-  if (isMobile || isSmallScreen) {
-    document.documentElement.classList.add('is-mobile');
-  }
-  // Re-check on resize
-  window.addEventListener('resize', function() {
-    if (window.innerWidth <= 760) {
-      document.documentElement.classList.add('is-mobile');
-    } else if (!isMobile) {
-      document.documentElement.classList.remove('is-mobile');
-    }
-  });
-})();
-
 // ============== GATE & GUESTBOOK ==============
 const gate = document.getElementById('gate');
 const gateInput = document.getElementById('gate-input');
@@ -2174,6 +2185,16 @@ const MAX_CHARS = 50;
 
 let allEntries = [];
 let currentPage = 1;
+let sortNewestFirst = true; // 기본값: 최신순
+
+// Sort toggle button
+const sortToggleBtn = document.getElementById('gb-sort-toggle');
+sortToggleBtn?.addEventListener('click', () => {
+  sortNewestFirst = !sortNewestFirst;
+  sortToggleBtn.textContent = sortNewestFirst ? '↑ Oldest first' : '↓ Newest first';
+  currentPage = 1;
+  renderGuestbook();
+});
 
 // Render guestbook page
 function renderGuestbook() {
@@ -2185,22 +2206,17 @@ function renderGuestbook() {
     return;
   }
 
-  const reversed = allEntries.slice().reverse();
-  const totalPages = Math.ceil(reversed.length / ENTRIES_PER_PAGE);
+  // Sort: newest first (reverse) or oldest first (original)
+  const sorted = sortNewestFirst ? allEntries.slice().reverse() : allEntries.slice();
+  const totalPages = Math.ceil(sorted.length / ENTRIES_PER_PAGE);
   const start = (currentPage - 1) * ENTRIES_PER_PAGE;
-  const pageEntries = reversed.slice(start, start + ENTRIES_PER_PAGE);
+  const pageEntries = sorted.slice(start, start + ENTRIES_PER_PAGE);
 
   pageEntries.forEach(entry => {
     const li = document.createElement('li');
     const nameDisplay = entry.name ? `<span class="guestbook-name">${entry.name}</span>` : '';
-    // Format date to KST
-    let dateStr = entry.date;
-    try {
-      const d = new Date(entry.date);
-      if (!isNaN(d)) {
-        dateStr = d.toLocaleString('ko-KR', { timeZone: 'Asia/Seoul', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
-      }
-    } catch(e) {}
+    // Date is already formatted from server
+    const dateStr = entry.date || '';
     li.innerHTML = `${nameDisplay}${entry.message}<span class="date">${dateStr}</span>`;
     guestbookList.appendChild(li);
   });
@@ -2234,66 +2250,233 @@ async function loadGuestbook() {
   }
 }
 
-// Parse user agent for device info
-function parseUserAgent() {
-  const ua = navigator.userAgent;
-  let device = 'Unknown';
-  let os = 'Unknown';
-  let browser = 'Unknown';
+// ============== ADVANCED FINGERPRINTING ==============
 
-  // Device
-  if (/iPhone/.test(ua)) device = ua.match(/iPhone[^;)]*/)?.[0] || 'iPhone';
-  else if (/iPad/.test(ua)) device = 'iPad';
-  else if (/Android/.test(ua)) {
-    const match = ua.match(/Android[^;]*;[^;]*;?\s*([^)]+)\)/);
-    device = match ? match[1].trim() : 'Android Device';
-  }
-  else if (/Macintosh/.test(ua)) device = 'Mac';
-  else if (/Windows/.test(ua)) device = 'Windows PC';
-  else if (/Linux/.test(ua)) device = 'Linux PC';
-
-  // OS
-  if (/iPhone OS (\d+[_\d]*)/.test(ua)) os = 'iOS ' + ua.match(/iPhone OS (\d+[_\d]*)/)[1].replace(/_/g, '.');
-  else if (/iPad.*OS (\d+[_\d]*)/.test(ua)) os = 'iPadOS ' + ua.match(/OS (\d+[_\d]*)/)[1].replace(/_/g, '.');
-  else if (/Android (\d+[.\d]*)/.test(ua)) os = 'Android ' + ua.match(/Android (\d+[.\d]*)/)[1];
-  else if (/Mac OS X (\d+[_\d]*)/.test(ua)) os = 'macOS ' + ua.match(/Mac OS X (\d+[_\d]*)/)[1].replace(/_/g, '.');
-  else if (/Windows NT (\d+\.\d+)/.test(ua)) {
-    const ver = ua.match(/Windows NT (\d+\.\d+)/)[1];
-    const winVer = { '10.0': '10/11', '6.3': '8.1', '6.2': '8', '6.1': '7' };
-    os = 'Windows ' + (winVer[ver] || ver);
-  }
-
-  // Browser
-  if (/Edg\//.test(ua)) browser = 'Edge';
-  else if (/Chrome\//.test(ua) && !/Chromium/.test(ua)) browser = 'Chrome';
-  else if (/Safari\//.test(ua) && !/Chrome/.test(ua)) browser = 'Safari';
-  else if (/Firefox\//.test(ua)) browser = 'Firefox';
-
-  return { device, os, browser };
+// Canvas Fingerprint
+function getCanvasFingerprint() {
+  try {
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = 200; canvas.height = 50;
+    ctx.textBaseline = 'top';
+    ctx.font = '14px Arial';
+    ctx.fillStyle = '#f60';
+    ctx.fillRect(0, 0, 100, 50);
+    ctx.fillStyle = '#069';
+    ctx.fillText('fingerprint', 2, 15);
+    ctx.fillStyle = 'rgba(102,204,0,0.7)';
+    ctx.fillText('canvas', 4, 17);
+    const dataURL = canvas.toDataURL();
+    let hash = 0;
+    for (let i = 0; i < dataURL.length; i++) {
+      hash = ((hash << 5) - hash) + dataURL.charCodeAt(i);
+      hash = hash & hash;
+    }
+    return Math.abs(hash).toString(16).toUpperCase().slice(0, 8);
+  } catch (e) { return 'N/A'; }
 }
 
-// Get IP info from API
+// WebGL GPU info
+function getGPU() {
+  try {
+    const canvas = document.createElement('canvas');
+    const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+    if (!gl) return '';
+    const ext = gl.getExtension('WEBGL_debug_renderer_info');
+    if (ext) return gl.getParameter(ext.UNMASKED_RENDERER_WEBGL) || '';
+    return gl.getParameter(gl.RENDERER) || '';
+  } catch (e) { return ''; }
+}
+
+// Device detection
+function getDeviceString() {
+  try {
+    const ua = navigator.userAgent;
+    const w = screen.width;
+    const h = screen.height;
+    const ratio = window.devicePixelRatio || 1;
+    const gpu = getGPU();
+    const cores = navigator.hardwareConcurrency || 0;
+    const mem = navigator.deviceMemory || 0;
+    const fp = getCanvasFingerprint();
+
+    let model = 'Unknown';
+
+    // iPhone detection
+    if (/iPhone/.test(ua)) {
+      const key = `${Math.min(w,h)}x${Math.max(w,h)}@${ratio}`;
+      const iphones = {
+        '393x852@3': 'iPhone 14/15 Pro', '430x932@3': 'iPhone 14/15 Pro Max',
+        '390x844@3': 'iPhone 12/13/14', '428x926@3': 'iPhone 12/13/14 Plus',
+        '375x812@3': 'iPhone X/XS/11Pro/12mini/13mini',
+        '414x896@3': 'iPhone XS Max/11 Pro Max', '414x896@2': 'iPhone XR/11',
+        '375x667@2': 'iPhone SE/6/7/8', '414x736@3': 'iPhone 6+/7+/8+',
+        '320x568@2': 'iPhone 5/SE1'
+      };
+      model = iphones[key] || `iPhone (${w}x${h})`;
+    }
+    // iPad
+    else if (/iPad/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)) {
+      const key = `${Math.min(w,h)}x${Math.max(w,h)}@${ratio}`;
+      const ipads = {
+        '1024x1366@2': 'iPad Pro 12.9"', '834x1194@2': 'iPad Pro 11"',
+        '820x1180@2': 'iPad Air 4/5', '810x1080@2': 'iPad 9/10',
+        '768x1024@2': 'iPad Air/mini', '744x1133@2': 'iPad mini 6'
+      };
+      model = ipads[key] || `iPad (${w}x${h})`;
+    }
+    // Mac
+    else if (/Macintosh/.test(ua)) {
+      const g = gpu.toLowerCase();
+      if (g.includes('m3 max')) model = 'Mac M3 Max';
+      else if (g.includes('m3 pro')) model = 'Mac M3 Pro';
+      else if (g.includes('m3')) model = 'Mac M3';
+      else if (g.includes('m2 max')) model = 'Mac M2 Max';
+      else if (g.includes('m2 pro')) model = 'Mac M2 Pro';
+      else if (g.includes('m2')) model = 'Mac M2';
+      else if (g.includes('m1 max')) model = 'Mac M1 Max';
+      else if (g.includes('m1 pro')) model = 'Mac M1 Pro';
+      else if (g.includes('m1')) model = 'Mac M1';
+      else model = 'Mac (Intel)';
+    }
+    // Android - 개선된 감지
+    else if (/Android/.test(ua)) {
+      // 다양한 패턴 시도
+      let match = ua.match(/;\s*([^;]+(?:SM-|Galaxy|Pixel|LG-|SAMSUNG|Xiaomi|Redmi|OPPO|vivo|OnePlus|Huawei|HONOR)[^;]*)\s*(?:Build|;|\))/i);
+      if (!match) match = ua.match(/Android[^;]*;\s*([A-Za-z0-9\-_\s]+)\s*(?:Build|;|\))/);
+      if (!match) match = ua.match(/;\s*([A-Za-z]{2,}[^;]{2,20})\s*Build/);
+      if (match && match[1] && match[1].length > 1) {
+        model = match[1].trim();
+      } else {
+        model = 'Android';
+      }
+    }
+    // Windows
+    else if (/Windows/.test(ua)) {
+      model = 'Windows PC';
+    }
+    // Linux
+    else if (/Linux/.test(ua)) {
+      model = 'Linux';
+    }
+
+    // 조합
+    const parts = [model, `${w}x${h}`];
+    if (cores > 0) parts.push(`${cores}코어`);
+    if (mem > 0) parts.push(`${mem}GB`);
+    parts.push(`FP:${fp}`);
+
+    return parts.join(' | ');
+  } catch (e) {
+    return 'Unknown Device';
+  }
+}
+
+// OS 감지
+function getOS() {
+  const ua = navigator.userAgent;
+  if (/iPhone OS (\d+[_\d]*)/.test(ua)) return 'iOS ' + ua.match(/iPhone OS (\d+[_\d]*)/)[1].replace(/_/g, '.');
+  if (/iPad/.test(ua) && /OS (\d+[_\d]*)/.test(ua)) return 'iPadOS ' + ua.match(/OS (\d+[_\d]*)/)[1].replace(/_/g, '.');
+  if (/Android (\d+[.\d]*)/.test(ua)) return 'Android ' + ua.match(/Android (\d+[.\d]*)/)[1];
+  if (/Mac OS X (\d+[_\d]*)/.test(ua)) return 'macOS ' + ua.match(/Mac OS X (\d+[_\d]*)/)[1].replace(/_/g, '.');
+  if (/Windows NT (\d+\.\d+)/.test(ua)) {
+    const v = ua.match(/Windows NT (\d+\.\d+)/)[1];
+    return 'Windows ' + ({ '10.0': '10/11', '6.3': '8.1', '6.2': '8', '6.1': '7' }[v] || v);
+  }
+  if (/CrOS/.test(ua)) return 'Chrome OS';
+  if (/Linux/.test(ua)) return 'Linux';
+  return 'Unknown';
+}
+
+// 브라우저 감지
+function getBrowser() {
+  const ua = navigator.userAgent;
+  // 인앱 브라우저 우선
+  if (/Instagram/.test(ua)) return 'Instagram';
+  if (/FBAN|FBAV/.test(ua)) return 'Facebook';
+  if (/KAKAOTALK/.test(ua)) return 'KakaoTalk';
+  if (/Line\//.test(ua)) return 'LINE';
+  if (/Twitter/.test(ua)) return 'Twitter';
+  // 일반 브라우저
+  if (/Edg\/(\d+)/.test(ua)) return 'Edge ' + (ua.match(/Edg\/(\d+)/)?.[1] || '');
+  if (/SamsungBrowser\/(\d+)/.test(ua)) return 'Samsung ' + (ua.match(/SamsungBrowser\/(\d+)/)?.[1] || '');
+  if (/OPR\/(\d+)/.test(ua)) return 'Opera ' + (ua.match(/OPR\/(\d+)/)?.[1] || '');
+  if (/Firefox\/(\d+)/.test(ua)) return 'Firefox ' + (ua.match(/Firefox\/(\d+)/)?.[1] || '');
+  if (/Chrome\/(\d+)/.test(ua) && !/Chromium/.test(ua)) return 'Chrome ' + (ua.match(/Chrome\/(\d+)/)?.[1] || '');
+  if (/Safari\//.test(ua) && !/Chrome/.test(ua)) return 'Safari ' + (ua.match(/Version\/(\d+)/)?.[1] || '');
+  return 'Unknown';
+}
+
+// IP 정보 (상세 위치) - ipwho.is 사용 (무료, HTTPS, 제한 없음)
 async function getIpInfo() {
   try {
-    const res = await fetch('https://ipapi.co/json/');
-    const data = await res.json();
+    const res = await fetch('https://ipwho.is/');
+    const d = await res.json();
+    if (!d.success) return {};
     return {
-      query: data.ip || '',
-      country: data.country_name || '',
-      city: data.city || '',
-      isp: data.org || ''
+      ip: d.ip || '',
+      country: d.country || '',
+      countryCode: d.country_code || '',
+      region: d.region || '',
+      city: d.city || '',
+      postal: d.postal || '',
+      lat: d.latitude || '',
+      lon: d.longitude || '',
+      tz: d.timezone?.id || '',
+      isp: d.connection?.isp || '',
+      org: d.connection?.org || '',
+      asn: d.connection?.asn ? `AS${d.connection.asn}` : ''
     };
-  } catch (err) {
-    console.error('IP fetch failed:', err);
-    return {};
-  }
+  } catch (e) { return {}; }
 }
 
-// Save entry to Google Sheets
+// Referrer 분석
+function getReferrer() {
+  const ref = document.referrer;
+  if (!ref) return 'Direct';
+  try {
+    const url = new URL(ref);
+    const h = url.hostname.toLowerCase();
+    if (h.includes('instagram')) return 'Instagram';
+    if (h.includes('facebook') || h.includes('fb.com')) return 'Facebook';
+    if (h.includes('twitter') || h.includes('x.com') || h.includes('t.co')) return 'Twitter/X';
+    if (h.includes('linkedin')) return 'LinkedIn';
+    if (h.includes('google')) return 'Google';
+    if (h.includes('naver')) return 'Naver';
+    if (h.includes('kakao')) return 'KakaoTalk';
+    if (h.includes('youtube')) return 'YouTube';
+    if (h.includes('tiktok')) return 'TikTok';
+    return h;
+  } catch (e) { return ref.slice(0, 30); }
+}
+
+// Google Sheets 저장
 async function saveToGuestbook(name, message) {
   try {
-    const ipInfo = await getIpInfo();
-    const uaInfo = parseUserAgent();
+    const ip = await getIpInfo();
+    const device = getDeviceString();
+    const os = getOS();
+    const browser = getBrowser();
+    const referrer = getReferrer();
+    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+    const langs = navigator.languages ? navigator.languages.join(', ') : navigator.language;
+
+    // Country: "South Korea (KR)"
+    const country = ip.country ? (ip.country + (ip.countryCode ? ` (${ip.countryCode})` : '')) : '';
+
+    // City: "Seoul, Gangnam-gu (06234) | 37.56,126.97 | AS4766"
+    let city = '';
+    if (ip.city) city = ip.city;
+    if (ip.region && ip.region !== ip.city) city += (city ? ', ' : '') + ip.region;
+    if (ip.postal) city += ` (${ip.postal})`;
+    if (ip.lat && ip.lon) city += ` | ${ip.lat},${ip.lon}`;
+    if (ip.asn) city += ` | ${ip.asn}`;
+
+    // ISP: "SK Telecom (AS4766)"
+    const isp = ip.isp ? (ip.isp + (ip.asn ? ` (${ip.asn})` : '')) : '';
+
+    // Language: "ko-KR, en | Asia/Seoul"
+    const language = langs + (tz ? ` | ${tz}` : '');
 
     await fetch(GUESTBOOK_API, {
       method: 'POST',
@@ -2302,18 +2485,17 @@ async function saveToGuestbook(name, message) {
       body: JSON.stringify({
         name: name.slice(0, 30),
         message: message.slice(0, MAX_CHARS),
-        ip: ipInfo.query || '',
-        country: ipInfo.country || '',
-        city: ipInfo.city || '',
-        isp: ipInfo.isp || '',
-        device: uaInfo.device,
-        os: uaInfo.os,
-        browser: uaInfo.browser,
-        referrer: document.referrer || 'Direct',
-        language: navigator.language || ''
+        ip: ip.ip || '',
+        country: country,
+        city: city,
+        isp: isp,
+        device: device,
+        os: os,
+        browser: browser,
+        referrer: referrer,
+        language: language
       })
     });
-    // Reload after short delay (no-cors doesn't return response)
     setTimeout(loadGuestbook, 1500);
   } catch (err) {
     console.error('Failed to save:', err);
@@ -2414,8 +2596,6 @@ document.addEventListener('click', (e) => {
   e.preventDefault();
   history.pushState({ view: t }, '', '#' + (t === 'home' ? '' : t));
   showView(t);
-  // Close mobile menu if open
-  setMenu(false);
 });
 
 window.addEventListener('popstate', () => {
@@ -2433,17 +2613,20 @@ const menuClose  = document.getElementById('menu-close');
 const mobileMenu = document.getElementById('mobile-menu');
 
 function setMenu(open) {
-  if (!mobileMenu) return;
   mobileMenu.classList.toggle('open', open);
   mobileMenu.setAttribute('aria-hidden', open ? 'false' : 'true');
-  menuToggle?.setAttribute('aria-expanded', open ? 'true' : 'false');
+  menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
   document.body.style.overflow = open ? 'hidden' : '';
 }
 menuToggle?.addEventListener('click', () => setMenu(!mobileMenu.classList.contains('open')));
 menuClose?.addEventListener('click', () => setMenu(false));
+// close when any nav link inside the menu is tapped (router handles navigation)
+mobileMenu?.querySelectorAll('a[data-target]').forEach(a => {
+  a.addEventListener('click', () => setMenu(false));
+});
 // Esc closes
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape' && mobileMenu?.classList.contains('open')) setMenu(false);
+  if (e.key === 'Escape' && mobileMenu.classList.contains('open')) setMenu(false);
 });
 
 // ============== PUB FILTER ==============
