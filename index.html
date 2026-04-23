@@ -236,11 +236,12 @@ html[data-bg="ink"] body::before { mix-blend-mode: screen; opacity: 0.3; }
   color: var(--accent);
 }
 .mobile-menu-nav .mm-t {
-  font-family: var(--serif);
-  font-size: 22px;
+  font-family: var(--sans);
+  font-size: 20px;
   line-height: 1.1;
-  letter-spacing: -0.005em;
+  letter-spacing: 0.02em;
   color: var(--ink);
+  font-weight: 400;
 }
 .mobile-menu-foot {
   display: flex;
@@ -1482,8 +1483,9 @@ body:not([data-view="index"]) .masthead-tag { display: none; }
   /* ABOUT */
   .about-grid { gap: 28px; }
   .about-portrait { max-width: 320px; margin: 0 auto; }
-  .pull-quote { font-size: 22px; margin-bottom: 24px; }
-  .about-body p { font-size: 15px; line-height: 1.65; }
+  .about-body { text-align: center; }
+  .pull-quote { font-size: 22px; margin-bottom: 24px; text-align: center; }
+  .about-body p { font-size: 15px; line-height: 1.65; text-align: center; }
   .about-body .drop-cap::first-letter {
     font-size: 3.4em;
     padding: 4px 8px 0 0;
