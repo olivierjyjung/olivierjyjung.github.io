@@ -1627,10 +1627,12 @@ body:not([data-view="index"]) .masthead-tag { display: none; }
   #gate-name, #gate-input {
     width: 100% !important;
     max-width: none;
-    font-size: 16px; /* prevent iOS zoom */
-    padding: 12px 14px;
+    font-size: 14px;
+    padding: 10px 12px;
   }
-  #gate-name { font-size: 16px; }
+  #gate-name::placeholder, #gate-input::placeholder {
+    font-size: 12px;
+  }
   .gate-hint { font-size: 9px; letter-spacing: 0.12em; }
   .gate-btn { display: block; }
 
