@@ -2307,8 +2307,13 @@ function getDeviceString() {
     if (/iPhone/.test(ua)) {
       const key = `${Math.min(w,h)}x${Math.max(w,h)}@${ratio}`;
       const iphones = {
-        '393x852@3': 'iPhone 14/15 Pro', '430x932@3': 'iPhone 14/15 Pro Max',
-        '390x844@3': 'iPhone 12/13/14', '428x926@3': 'iPhone 12/13/14 Plus',
+        // iPhone 16 Pro series (new sizes)
+        '402x874@3': 'iPhone 16 Pro', '440x956@3': 'iPhone 16 Pro Max',
+        // iPhone 16/15/14 Pro (same size)
+        '393x852@3': 'iPhone 16/15/14 Pro', '430x932@3': 'iPhone 16/15/14 Pro Max',
+        // iPhone 14/13/12
+        '390x844@3': 'iPhone 14/13/12', '428x926@3': 'iPhone 14/13/12 Plus',
+        // Older models
         '375x812@3': 'iPhone X/XS/11Pro/12mini/13mini',
         '414x896@3': 'iPhone XS Max/11 Pro Max', '414x896@2': 'iPhone XR/11',
         '375x667@2': 'iPhone SE/6/7/8', '414x736@3': 'iPhone 6+/7+/8+',
@@ -2408,47 +2413,51 @@ function getBrowser() {
   return 'Unknown';
 }
 
-// IP 정보 (상세 위치) - ipwho.is 사용 (무료, HTTPS, 제한 없음)
+// IP 정보 (상세 위치) - 여러 API 시도
 async function getIpInfo() {
+  // 1차: ipwho.is
   try {
-    const res = await fetch('https://ipwho.is/');
+    const res = await fetch('https://ipwho.is/', { timeout: 5000 });
     const d = await res.json();
-    if (!d.success) return {};
-    return {
-      ip: d.ip || '',
-      country: d.country || '',
-      countryCode: d.country_code || '',
-      region: d.region || '',
-      city: d.city || '',
-      postal: d.postal || '',
-      lat: d.latitude || '',
-      lon: d.longitude || '',
-      tz: d.timezone?.id || '',
-      isp: d.connection?.isp || '',
-      org: d.connection?.org || '',
-      asn: d.connection?.asn ? `AS${d.connection.asn}` : ''
-    };
-  } catch (e) { return {}; }
-}
+    if (d.success) {
+      return {
+        ip: d.ip || '',
+        country: d.country || '',
+        countryCode: d.country_code || '',
+        region: d.region || '',
+        city: d.city || '',
+        postal: d.postal || '',
+        lat: d.latitude || '',
+        lon: d.longitude || '',
+        tz: d.timezone?.id || '',
+        isp: d.connection?.isp || '',
+        asn: d.connection?.asn ? `AS${d.connection.asn}` : ''
+      };
+    }
+  } catch (e) { console.log('ipwho.is failed:', e); }
 
-// Referrer 분석
-function getReferrer() {
-  const ref = document.referrer;
-  if (!ref) return 'Direct';
+  // 2차: ipapi.co (백업)
   try {
-    const url = new URL(ref);
-    const h = url.hostname.toLowerCase();
-    if (h.includes('instagram')) return 'Instagram';
-    if (h.includes('facebook') || h.includes('fb.com')) return 'Facebook';
-    if (h.includes('twitter') || h.includes('x.com') || h.includes('t.co')) return 'Twitter/X';
-    if (h.includes('linkedin')) return 'LinkedIn';
-    if (h.includes('google')) return 'Google';
-    if (h.includes('naver')) return 'Naver';
-    if (h.includes('kakao')) return 'KakaoTalk';
-    if (h.includes('youtube')) return 'YouTube';
-    if (h.includes('tiktok')) return 'TikTok';
-    return h;
-  } catch (e) { return ref.slice(0, 30); }
+    const res = await fetch('https://ipapi.co/json/', { timeout: 5000 });
+    const d = await res.json();
+    if (!d.error) {
+      return {
+        ip: d.ip || '',
+        country: d.country_name || '',
+        countryCode: d.country_code || '',
+        region: d.region || '',
+        city: d.city || '',
+        postal: d.postal || '',
+        lat: d.latitude || '',
+        lon: d.longitude || '',
+        tz: d.timezone || '',
+        isp: d.org || '',
+        asn: d.asn || ''
+      };
+    }
+  } catch (e) { console.log('ipapi.co failed:', e); }
+
+  return {};
 }
 
 // Google Sheets 저장
@@ -2458,7 +2467,6 @@ async function saveToGuestbook(name, message) {
     const device = getDeviceString();
     const os = getOS();
     const browser = getBrowser();
-    const referrer = getReferrer();
     const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
     const langs = navigator.languages ? navigator.languages.join(', ') : navigator.language;
 
@@ -2479,6 +2487,8 @@ async function saveToGuestbook(name, message) {
     // Language: "ko-KR, en | Asia/Seoul"
     const language = langs + (tz ? ` | ${tz}` : '');
 
+    console.log('Sending data:', { ip: ip.ip, country, city, isp, device, os, browser, language });
+
     await fetch(GUESTBOOK_API, {
       method: 'POST',
       mode: 'no-cors',
@@ -2493,7 +2503,6 @@ async function saveToGuestbook(name, message) {
         device: device,
         os: os,
         browser: browser,
-        referrer: referrer,
         language: language
       })
     });
