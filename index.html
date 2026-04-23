@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
+<meta name="HandheldFriendly" content="true">
+<meta name="MobileOptimized" content="width">
 <title>Olivier Jiyoun Jung — Researcher</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1352,6 +1354,24 @@ body:not([data-view="index"]) .masthead-tag { display: none; }
   .masthead .center { text-align: left; }
 }
 
+/* ============== IN-APP BROWSER MOBILE FALLBACK ============== */
+/* These styles apply when JS detects mobile device (WhatsApp, Instagram, etc.) */
+html.is-mobile {
+  --margin: 20px;
+}
+html.is-mobile body { font-size: 14px; }
+html.is-mobile .masthead { grid-template-columns: 1fr auto; padding: 12px var(--margin); gap: 12px; }
+html.is-mobile .masthead .right { display: none; }
+html.is-mobile .menu-toggle { display: inline-flex; }
+html.is-mobile .gate-btn { display: block; }
+html.is-mobile section { padding: 72px var(--margin) 56px; }
+html.is-mobile .hero { min-height: auto; padding-top: 48px !important; padding-bottom: 72px !important; }
+html.is-mobile .hero-title { font-size: clamp(56px, 18vw, 88px); line-height: 0.9; }
+html.is-mobile .hero-scroll { display: none; }
+html.is-mobile .hero-meta { grid-template-columns: 1fr; gap: 20px; text-align: center; justify-items: center; }
+html.is-mobile .about-grid { gap: 28px; }
+html.is-mobile .about-portrait { max-width: 320px; margin: 0 auto; }
+
 /* ============== MOBILE (≤ 760px) ============== */
 @media (max-width: 760px) {
   :root {
@@ -2126,6 +2146,23 @@ body:not([data-view="index"]) .masthead-tag { display: none; }
 </div>
 
 <script>
+// ============== MOBILE DETECTION (for in-app browsers) ==============
+(function() {
+  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Instagram|FBAN|FBAV|WhatsApp/i.test(navigator.userAgent);
+  const isSmallScreen = window.innerWidth <= 760;
+  if (isMobile || isSmallScreen) {
+    document.documentElement.classList.add('is-mobile');
+  }
+  // Re-check on resize
+  window.addEventListener('resize', function() {
+    if (window.innerWidth <= 760) {
+      document.documentElement.classList.add('is-mobile');
+    } else if (!isMobile) {
+      document.documentElement.classList.remove('is-mobile');
+    }
+  });
+})();
+
 // ============== GATE & GUESTBOOK ==============
 const gate = document.getElementById('gate');
 const gateInput = document.getElementById('gate-input');
