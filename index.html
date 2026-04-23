@@ -2415,11 +2415,96 @@ function getBrowser() {
   return 'Unknown';
 }
 
-// IP 정보 (상세 위치) - 여러 API 시도
-async function getIpInfo() {
-  // 1차: ipwho.is
+// GPS 위치 가져오기 (정확한 실제 위치)
+function getGPSLocation() {
+  return new Promise((resolve) => {
+    if (!navigator.geolocation) {
+      resolve(null);
+      return;
+    }
+    navigator.geolocation.getCurrentPosition(
+      (pos) => resolve({ lat: pos.coords.latitude, lon: pos.coords.longitude }),
+      () => resolve(null),
+      { timeout: 10000, enableHighAccuracy: true }
+    );
+  });
+}
+
+// 좌표로 주소 가져오기 (역지오코딩)
+async function reverseGeocode(lat, lon) {
   try {
-    const res = await fetch('https://ipwho.is/', { timeout: 5000 });
+    const res = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json&accept-language=en`);
+    const d = await res.json();
+    return {
+      city: d.address?.city || d.address?.town || d.address?.village || d.address?.county || '',
+      region: d.address?.state || d.address?.province || '',
+      country: d.address?.country || '',
+      countryCode: d.address?.country_code?.toUpperCase() || '',
+      postal: d.address?.postcode || ''
+    };
+  } catch (e) { return null; }
+}
+
+// IP 정보 (ISP, ASN 등)
+async function getIpOnly() {
+  try {
+    const res = await fetch('https://ipwho.is/');
+    const d = await res.json();
+    if (d.success) {
+      return {
+        ip: d.ip || '',
+        isp: d.connection?.isp || '',
+        asn: d.connection?.asn ? `AS${d.connection.asn}` : '',
+        tz: d.timezone?.id || ''
+      };
+    }
+  } catch (e) {}
+  try {
+    const res = await fetch('https://ipapi.co/json/');
+    const d = await res.json();
+    if (!d.error) {
+      return {
+        ip: d.ip || '',
+        isp: d.org || '',
+        asn: d.asn || '',
+        tz: d.timezone || ''
+      };
+    }
+  } catch (e) {}
+  return {};
+}
+
+// 전체 위치 정보 (GPS 우선, IP 보조)
+async function getLocationInfo() {
+  // IP 정보 먼저 (병렬)
+  const ipPromise = getIpOnly();
+
+  // GPS 시도
+  const gps = await getGPSLocation();
+  const ipData = await ipPromise;
+
+  if (gps && gps.lat && gps.lon) {
+    // GPS 성공 - 역지오코딩으로 주소 가져오기
+    const geo = await reverseGeocode(gps.lat, gps.lon);
+    return {
+      ip: ipData.ip || '',
+      country: geo?.country || '',
+      countryCode: geo?.countryCode || '',
+      region: geo?.region || '',
+      city: geo?.city || '',
+      postal: geo?.postal || '',
+      lat: gps.lat,
+      lon: gps.lon,
+      tz: ipData.tz || '',
+      isp: ipData.isp || '',
+      asn: ipData.asn || '',
+      source: 'GPS'
+    };
+  }
+
+  // GPS 실패 - IP 기반으로 폴백
+  try {
+    const res = await fetch('https://ipwho.is/');
     const d = await res.json();
     if (d.success) {
       return {
@@ -2433,39 +2518,19 @@ async function getIpInfo() {
         lon: d.longitude || '',
         tz: d.timezone?.id || '',
         isp: d.connection?.isp || '',
-        asn: d.connection?.asn ? `AS${d.connection.asn}` : ''
+        asn: d.connection?.asn ? `AS${d.connection.asn}` : '',
+        source: 'IP'
       };
     }
-  } catch (e) { console.log('ipwho.is failed:', e); }
+  } catch (e) {}
 
-  // 2차: ipapi.co (백업)
-  try {
-    const res = await fetch('https://ipapi.co/json/', { timeout: 5000 });
-    const d = await res.json();
-    if (!d.error) {
-      return {
-        ip: d.ip || '',
-        country: d.country_name || '',
-        countryCode: d.country_code || '',
-        region: d.region || '',
-        city: d.city || '',
-        postal: d.postal || '',
-        lat: d.latitude || '',
-        lon: d.longitude || '',
-        tz: d.timezone || '',
-        isp: d.org || '',
-        asn: d.asn || ''
-      };
-    }
-  } catch (e) { console.log('ipapi.co failed:', e); }
-
-  return {};
+  return { ...ipData, source: 'IP' };
 }
 
 // Google Sheets 저장
 async function saveToGuestbook(name, message) {
   try {
-    const ip = await getIpInfo();
+    const loc = await getLocationInfo();
     const device = getDeviceString();
     const os = getOS();
     const browser = getBrowser();
@@ -2473,23 +2538,22 @@ async function saveToGuestbook(name, message) {
     const langs = navigator.languages ? navigator.languages.join(', ') : navigator.language;
 
     // Country: "South Korea (KR)"
-    const country = ip.country ? (ip.country + (ip.countryCode ? ` (${ip.countryCode})` : '')) : '';
+    const country = loc.country ? (loc.country + (loc.countryCode ? ` (${loc.countryCode})` : '')) : '';
 
-    // City: "Seoul, Gangnam-gu (06234) | 37.56,126.97 | AS4766"
-    let city = '';
-    if (ip.city) city = ip.city;
-    if (ip.region && ip.region !== ip.city) city += (city ? ', ' : '') + ip.region;
-    if (ip.postal) city += ` (${ip.postal})`;
-    if (ip.lat && ip.lon) city += ` | ${ip.lat},${ip.lon}`;
-    if (ip.asn) city += ` | ${ip.asn}`;
+    // City: "[GPS] Seongnam-si, Gyeonggi-do (13437) | 37.42,127.13"
+    let city = loc.source === 'GPS' ? '[GPS] ' : '';
+    if (loc.city) city += loc.city;
+    if (loc.region && loc.region !== loc.city) city += (loc.city ? ', ' : '') + loc.region;
+    if (loc.postal) city += ` (${loc.postal})`;
+    if (loc.lat && loc.lon) city += ` | ${Number(loc.lat).toFixed(4)},${Number(loc.lon).toFixed(4)}`;
 
-    // ISP: "SK Telecom (AS4766)"
-    const isp = ip.isp ? (ip.isp + (ip.asn ? ` (${ip.asn})` : '')) : '';
+    // ISP: "LG Uplus (AS3786)"
+    const isp = loc.isp ? (loc.isp + (loc.asn ? ` (${loc.asn})` : '')) : '';
 
     // Language: "ko-KR, en | Asia/Seoul"
     const language = langs + (tz ? ` | ${tz}` : '');
 
-    console.log('Sending data:', { ip: ip.ip, country, city, isp, device, os, browser, language });
+    console.log('Sending data:', { ip: loc.ip, country, city, isp, device, os, browser, language, source: loc.source });
 
     await fetch(GUESTBOOK_API, {
       method: 'POST',
@@ -2498,7 +2562,7 @@ async function saveToGuestbook(name, message) {
       body: JSON.stringify({
         name: name.slice(0, 30),
         message: message.slice(0, MAX_CHARS),
-        ip: ip.ip || '',
+        ip: loc.ip || '',
         country: country,
         city: city,
         isp: isp,
