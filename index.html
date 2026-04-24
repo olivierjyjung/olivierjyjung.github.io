@@ -1435,7 +1435,7 @@ body:not([data-view="index"]) .masthead-tag { display: none; }
 }
 .guestbook-content {
   max-width: 600px;
-  margin-top: 0;
+  margin: 0 auto;
 }
 .gb-form-wrap {
   display: flex;
@@ -1548,11 +1548,17 @@ body:not([data-view="index"]) .masthead-tag { display: none; }
   gap: 16px;
   margin-top: 32px;
 }
+.gb-pagination .gb-ctrl-btn {
+  min-width: 100px;
+  text-align: center;
+}
 .gb-page-info {
   font-family: var(--mono);
   font-size: 11px;
   color: var(--ink-2);
   letter-spacing: 0.05em;
+  min-width: 50px;
+  text-align: center;
 }
 .gb-ctrl-btn:disabled {
   opacity: 0.3;
