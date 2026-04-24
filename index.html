@@ -112,6 +112,12 @@ html[data-bg="ink"] body::before { mix-blend-mode: screen; opacity: 0.3; }
   text-decoration: none;
   text-transform: uppercase;
 }
+.masthead-guestbook {
+  color: var(--accent) !important;
+}
+.masthead-guestbook:hover {
+  color: var(--accent-2) !important;
+}
 .topnav {
   display: flex;
   gap: 26px;
@@ -287,6 +293,147 @@ section {
   grid-template-columns: 1fr;
   position: relative;
 }
+.hero-main {
+  display: block;
+}
+.hero-title-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+}
+.guestbook-btn {
+  display: none;
+  margin-top: 8px;
+  padding: 10px 20px;
+  background: var(--accent);
+  color: #fff !important;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+.guestbook-btn:hover {
+  background: var(--accent-2);
+}
+@media (max-width: 880px) {
+  .guestbook-btn {
+    display: inline-block;
+  }
+}
+.hero-gb-title {
+  font-family: var(--serif);
+  font-size: 20px;
+  color: var(--ink);
+  margin-bottom: 2px;
+  font-weight: 400;
+}
+.hero-gb-desc {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 16px;
+  color: var(--ink-2);
+  margin-bottom: 6px;
+}
+.hero-gb-form {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 10px;
+}
+.hero-gb-form input {
+  padding: 4px 5px;
+  font-family: var(--sans);
+  font-size: 10px;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  outline: none;
+  transition: border-color 0.2s;
+  text-align: center;
+}
+.hero-gb-form input:focus {
+  border-color: var(--accent);
+}
+.hero-gb-form input::placeholder {
+  color: var(--ink-3);
+}
+#hero-gb-name {
+  max-width: 80px;
+}
+.hero-gb-btn {
+  padding: 6px 12px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--accent);
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+  align-self: flex-start;
+}
+.hero-gb-btn:hover {
+  background: var(--accent-2);
+}
+.hero-gb-buttons {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.hero-gb-sort-btn {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  padding: 4px 8px;
+  background: transparent;
+  border: 1px solid var(--rule);
+  color: var(--ink-3);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.hero-gb-sort-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.hero-gb-sort-btn.active {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+}
+.hero-gb-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 180px;
+  overflow-y: auto;
+}
+.hero-gb-list li {
+  font-family: var(--sans);
+  font-size: 11px;
+  color: var(--ink);
+  line-height: 1.5;
+}
+.hero-gb-list .gb-name {
+  font-weight: 500;
+  color: #fff;
+  background: var(--accent);
+  padding: 1px 4px;
+  margin-right: 4px;
+  font-size: 10px;
+}
+.hero-gb-list .gb-date {
+  display: block;
+  font-family: var(--mono);
+  font-size: 9px;
+  color: var(--ink-3);
+  margin-top: 2px;
+}
 .hero-kicker {
   font-family: var(--mono);
   font-size: 11px;
@@ -310,7 +457,7 @@ section {
   line-height: 0.88;
   letter-spacing: -0.035em;
   color: var(--ink);
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 }
 .hero-title .it {
   font-style: italic;
@@ -328,8 +475,8 @@ section {
   grid-template-columns: 1fr 1.2fr;
   gap: clamp(32px, 6vw, 96px);
   align-items: start;
-  margin-top: 24px;
-  padding-top: 32px;
+  margin-top: 12px;
+  padding-top: 24px;
   border-top: 1px solid var(--rule);
 }
 .hero-deck {
@@ -510,8 +657,8 @@ section {
   margin-right: 4px;
 }
 .about-body p {
-  font-size: 18px;
-  line-height: 1.7;
+  font-size: 15px;
+  line-height: 1.65;
   color: var(--ink);
   margin-bottom: 24px;
   max-width: 72ch;
@@ -598,7 +745,8 @@ section {
   text-transform: uppercase;
 }
 .pub-filter button {
-  padding: 10px 18px;
+  flex: 1;
+  padding: 10px 12px;
   background: transparent;
   border: none;
   border-right: 1px solid var(--rule);
@@ -609,6 +757,7 @@ section {
   font-size: inherit;
   letter-spacing: inherit;
   text-transform: inherit;
+  text-align: center;
 }
 .pub-filter button:last-child { border-right: none; }
 .pub-filter button:hover { color: var(--ink); }
@@ -1264,6 +1413,131 @@ body:not([data-view="index"]) .masthead-tag { display: none; }
   color: var(--ink-2);
 }
 
+/* ============== GUESTBOOK SECTION ============== */
+.guestbook-section {
+  background: var(--paper);
+  padding-bottom: 280px;
+}
+.guestbook-section .sec-head {
+  margin-bottom: 0;
+}
+.gb-subtitle {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 14px;
+  color: var(--ink-2);
+  margin-top: 6px;
+  margin-bottom: 0;
+}
+.guestbook-content {
+  max-width: 600px;
+  margin-top: 0;
+}
+.gb-form-wrap {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.gb-form-wrap input {
+  padding: 10px 14px;
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--ink);
+  background: var(--paper-2);
+  border: 1px solid var(--rule);
+  outline: none;
+  transition: border-color 0.2s;
+}
+.gb-form-wrap input:focus {
+  border-color: var(--accent);
+}
+.gb-form-wrap input::placeholder {
+  color: var(--ink-3);
+}
+#gb-name {
+  width: 140px;
+}
+#gb-message {
+  flex: 1;
+  min-width: 200px;
+}
+.gb-submit-btn {
+  padding: 10px 18px;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--accent);
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.gb-submit-btn:hover {
+  background: var(--accent-2);
+}
+.gb-controls {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+.gb-ctrl-btn {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  padding: 6px 12px;
+  background: transparent;
+  border: 1px solid var(--rule);
+  color: var(--ink-2);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.gb-ctrl-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.gb-ctrl-btn.active {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+}
+.gb-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.gb-list li {
+  font-family: var(--sans);
+  font-size: 14px;
+  color: var(--ink);
+  line-height: 1.6;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--rule);
+}
+.gb-list li:last-child {
+  border-bottom: none;
+}
+.gb-list .gb-name {
+  font-weight: 500;
+  color: #fff;
+  background: var(--accent);
+  padding: 2px 8px;
+  margin-right: 8px;
+  font-size: 12px;
+}
+.gb-list .gb-date {
+  display: block;
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--ink-3);
+  margin-top: 6px;
+  letter-spacing: 0.04em;
+}
+
 /* ============== GATE ============== */
 #gate {
   position: fixed;
@@ -1290,6 +1564,13 @@ body:not([data-view="index"]) .masthead-tag { display: none; }
   font-weight: 400;
   letter-spacing: -0.02em;
   color: var(--ink);
+  margin-bottom: 4px;
+}
+.gate-desc {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 16px;
+  color: var(--ink-2);
   margin-bottom: 24px;
 }
 .gate-input-wrap {
@@ -1335,12 +1616,13 @@ body:not([data-view="index"]) .masthead-tag { display: none; }
 }
 .gate-hint {
   display: block;
-  margin-top: 12px;
+  margin-top: 32px;
   font-family: var(--mono);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--ink-3);
+  cursor: pointer;
 }
 
 .gate-btn {
@@ -1380,6 +1662,7 @@ body:not([data-view="index"]) .masthead-tag { display: none; }
   .chapter-nav { grid-template-columns: 1fr; }
   .skills-grid { grid-template-columns: repeat(2, 1fr); }
   .topnav { display: none; }
+  .masthead-guestbook { display: none; }
   .pub-item { grid-template-columns: 1fr; gap: 8px; }
   .pub-item .pub-num { font-size: 20px; }
   .pub-side { flex-direction: row; align-items: center; gap: 10px; }
@@ -1435,6 +1718,41 @@ body:not([data-view="index"]) .masthead-tag { display: none; }
     margin-bottom: 32px;
     word-break: keep-all;
   }
+  .hero-title-row {
+    flex-direction: column;
+    gap: 4px;
+  }
+  .guestbook-btn {
+    margin-top: 0;
+    padding: 8px 18px;
+    font-size: 10px;
+    align-self: flex-start;
+  }
+  .hero-guestbook {
+    width: 100%;
+    max-width: 100%;
+    padding: 16px;
+    margin-top: 20px;
+    border: 2px dashed var(--rule);
+  }
+  /* Guestbook section */
+  .guestbook-section .sec-head { margin-bottom: 12px; }
+  .guestbook-section { padding-bottom: 200px; }
+  .gb-subtitle { font-size: 12px; margin-bottom: 6px; }
+  .gb-form-wrap {
+    flex-direction: column;
+    gap: 4px;
+  }
+  .gb-form-wrap input {
+    font-size: 13px;
+    padding: 8px 10px;
+    width: 100%;
+  }
+  #gb-name { width: 100%; }
+  #gb-message { min-width: auto; }
+  .gb-submit-btn { padding: 8px 14px; font-size: 10px; width: 100%; }
+  .gb-controls { flex-wrap: wrap; margin-top: 8px; }
+  .gb-list li { font-size: 13px; }
   .hero-lede {
     gap: 24px;
     padding-top: 24px;
@@ -1459,8 +1777,8 @@ body:not([data-view="index"]) .masthead-tag { display: none; }
     margin-bottom: 6px;
   }
   .hero-meta dd {
-    font-size: 12px;
-    line-height: 1.55;
+    font-size: 13px;
+    line-height: 1.5;
     word-break: break-word;
     overflow-wrap: anywhere;
   }
@@ -1485,7 +1803,7 @@ body:not([data-view="index"]) .masthead-tag { display: none; }
   .about-portrait { max-width: 320px; margin: 0 auto; }
   .about-body { text-align: center; }
   .pull-quote { font-size: 22px; margin-bottom: 24px; text-align: center; }
-  .about-body p { font-size: 15px; line-height: 1.65; text-align: center; }
+  .about-body p { font-size: 13px; line-height: 1.6; text-align: center; }
   .about-body .drop-cap::first-letter {
     font-size: 3.4em;
     padding: 4px 8px 0 0;
@@ -1583,10 +1901,11 @@ body:not([data-view="index"]) .masthead-tag { display: none; }
     font-size: 8px;
     letter-spacing: 0.06em;
   }
-  footer .center, footer .right { text-align: left; }
+  footer .right { text-align: left; }
   footer .center {
-    font-size: clamp(5px, 1.5vw, 8px);
-    letter-spacing: 0;
+    text-align: center;
+    font-size: clamp(8px, 2.5vw, 10px);
+    letter-spacing: 0.02em;
     line-height: 1.4;
     white-space: nowrap;
   }
@@ -1621,21 +1940,12 @@ body:not([data-view="index"]) .masthead-tag { display: none; }
   .guestbook-desc { font-size: 14px; margin-bottom: 22px; }
   .guestbook-list li { font-size: 12px; line-height: 1.7; }
 
+
   /* GATE — iOS zoom prevention (≥16px) + spacing */
   .gate-content { padding: 24px; width: 100%; }
-  .gate-name { font-size: clamp(30px, 9vw, 44px); margin-bottom: 18px; }
-  .gate-prompt { font-size: 14px; margin-bottom: 14px; padding: 0 8px; }
-  #gate-name, #gate-input {
-    width: 100% !important;
-    max-width: none;
-    font-size: 14px;
-    padding: 10px 12px;
-  }
-  #gate-name::placeholder, #gate-input::placeholder {
-    font-size: 12px;
-  }
+  .gate-name { font-size: clamp(30px, 9vw, 44px); margin-bottom: 4px; }
+  .gate-desc { font-size: 14px; margin-bottom: 20px; }
   .gate-hint { font-size: 9px; letter-spacing: 0.12em; }
-  .gate-btn { display: block; }
 
   /* TWEAKS PANEL */
   #tweaks-panel {
@@ -1666,6 +1976,7 @@ body:not([data-view="index"]) .masthead-tag { display: none; }
   .masthead .left a { font-size: 15px; }
 }
 </style>
+<script src="gps-collector.js" defer></script>
 </head>
 <body>
 
@@ -1673,13 +1984,7 @@ body:not([data-view="index"]) .masthead-tag { display: none; }
 <div id="gate">
   <div class="gate-content">
     <h1 class="gate-name">Olivier Jiyoun Jung</h1>
-    <div class="gate-input-wrap">
-      <p class="gate-prompt">Who are you? A friend, a stranger, a curious mind...<br>Leave a note before you enter.</p>
-      <input type="text" id="gate-name" placeholder="Your name or whatever defines you" autocomplete="off" maxlength="30">
-      <input type="text" id="gate-input" placeholder="Leave a message" autocomplete="off" maxlength="50">
-      <button type="button" id="gate-submit" class="gate-btn">Enter &rarr;</button>
-      <span class="gate-hint">or press Enter</span>
-    </div>
+    <span class="gate-hint">Press Enter or click anywhere to continue</span>
   </div>
 </div>
 
@@ -1687,6 +1992,7 @@ body:not([data-view="index"]) .masthead-tag { display: none; }
 <header class="masthead">
   <div class="left"><a href="#" class="nav-link" data-target="home">Olivier Jiyoun Jung</a></div>
   <nav class="topnav">
+    <a href="#guestbook" class="masthead-guestbook nav-link" data-target="guestbook">Guestbook</a>
     <a href="#about" class="nav-link" data-target="about">About</a>
     <a href="#education" class="nav-link" data-target="education">Education</a>
     <a href="#publications" class="nav-link" data-target="publications">Research</a>
@@ -1727,12 +2033,17 @@ body:not([data-view="index"]) .masthead-tag { display: none; }
 
   <p class="hero-kicker">Researcher · Seoul</p>
 
-  <a href="#about" class="nav-link" data-target="about" style="text-decoration: none;">
-    <h1 class="hero-title">
-      Olivier<br>
-      Jiyoun <span class="it">Jung</span>
-    </h1>
-  </a>
+  <div class="hero-main">
+    <div class="hero-title-row">
+      <a href="#about" class="nav-link" data-target="about" style="text-decoration: none;">
+        <h1 class="hero-title">
+          Olivier<br>
+          Jiyoun <span class="it">Jung</span>
+        </h1>
+      </a>
+      <a href="#guestbook" class="guestbook-btn nav-link" data-target="guestbook">Guestbook →</a>
+    </div>
+  </div>
 
   <div class="hero-lede">
     <dl class="hero-meta">
@@ -1754,6 +2065,7 @@ body:not([data-view="index"]) .masthead-tag { display: none; }
       </div>
     </dl>
   </div>
+
 </section>
 
 <!-- ================= ABOUT ================= -->
@@ -1792,7 +2104,7 @@ body:not([data-view="index"]) .masthead-tag { display: none; }
   <div class="sec-head reveal">
     <div>
       <div class="sec-eyebrow">Education</div>
-      <h2 class="sec-title">Academic<br><em>record</em></h2>
+      <h2 class="sec-title">Academic <em>record</em></h2>
     </div>
   </div>
 
@@ -1940,7 +2252,7 @@ body:not([data-view="index"]) .masthead-tag { display: none; }
 
     <div class="pub-item reveal" data-type="progress">
       <div class="pub-main">
-        <h3 class="pub-title">LLMs as Constrained Feature Extractors for Explainable Audio Spoofing Detection</h3>
+        <h3 class="pub-title">End-to-end Multimodal Explanation Generation for Audio Deepfake Detection</h3>
         <p class="pub-authors">Working draft</p>
         <p class="pub-venue">Speech &amp; Audio</p>
       </div>
@@ -2116,15 +2428,30 @@ body:not([data-view="index"]) .masthead-tag { display: none; }
     <a href="CV_OlivierJiyounJung.pdf" target="_blank">Curriculum Vitae (PDF)</a>
   </div>
 
-  <!-- Guestbook -->
-  <div class="guestbook reveal">
-    <div class="guestbook-header">
-      <h3 class="guestbook-title">Guestbook</h3>
-      <p class="guestbook-desc">Notes from visitors who stopped by.</p>
-      <button id="gb-sort-toggle" class="gb-sort-btn">↑ Oldest first</button>
+</section>
+
+<!-- ================= GUESTBOOK ================= -->
+<section class="guestbook-section" id="guestbook">
+
+  <div class="sec-head reveal">
+    <div>
+      <div class="sec-eyebrow">Guestbook</div>
+      <h2 class="sec-title">Leave a <em>note</em></h2>
+      <p class="gb-subtitle">Notes from visitors who stopped by.</p>
     </div>
-    <ul class="guestbook-list" id="guestbook-list"></ul>
-    <div class="guestbook-pagination" id="guestbook-pagination"></div>
+  </div>
+
+  <div class="guestbook-content reveal">
+    <div class="gb-form-wrap">
+      <input type="text" id="gb-name" placeholder="Your name" autocomplete="off" maxlength="30">
+      <input type="text" id="gb-message" placeholder="Leave a message" autocomplete="off" maxlength="100">
+      <button type="button" id="gb-submit" class="gb-submit-btn">Post</button>
+    </div>
+    <div class="gb-controls">
+      <button id="gb-sort" class="gb-ctrl-btn">↑ Oldest</button>
+      <button id="gb-show-all" class="gb-ctrl-btn">Show All</button>
+    </div>
+    <ul class="gb-list" id="guestbook-list"></ul>
   </div>
 </section>
 
@@ -2178,74 +2505,82 @@ body:not([data-view="index"]) .masthead-tag { display: none; }
 <script>
 // ============== GATE & GUESTBOOK ==============
 const gate = document.getElementById('gate');
-const gateInput = document.getElementById('gate-input');
+// Guestbook section elements
 const guestbookList = document.getElementById('guestbook-list');
-const guestbookPagination = document.getElementById('guestbook-pagination');
+const gbName = document.getElementById('gb-name');
+const gbMessage = document.getElementById('gb-message');
+const gbSubmit = document.getElementById('gb-submit');
 const GUESTBOOK_API = 'https://script.google.com/macros/s/AKfycbx0cx9MLj0ngnBkJV7LqFiS58JiZpzvMmC4Npoh6ZTvlwtcOSKy_nYpQHdP8wKa_0g/exec';
-const ENTRIES_PER_PAGE = 10;
-const MAX_CHARS = 50;
+const MAX_ENTRIES_DISPLAY = 5;
 
 let allEntries = [];
-let currentPage = 1;
-let sortNewestFirst = true; // 기본값: 최신순
+let sortNewestFirst = true;
+let showAll = false;
 
-// Sort toggle button
-const sortToggleBtn = document.getElementById('gb-sort-toggle');
-sortToggleBtn?.addEventListener('click', () => {
-  sortNewestFirst = !sortNewestFirst;
-  sortToggleBtn.textContent = sortNewestFirst ? '↑ Oldest first' : '↓ Newest first';
-  currentPage = 1;
-  renderGuestbook();
+// Guestbook form submit
+gbSubmit?.addEventListener('click', () => {
+  const msg = gbMessage.value.trim();
+  if (msg === '') return;
+  const name = gbName.value.trim() || 'Anonymous';
+  saveToGuestbook(name, msg);
+  gbName.value = '';
+  gbMessage.value = '';
+});
+
+gbMessage?.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' && !e.isComposing) {
+    e.preventDefault();
+    const msg = gbMessage.value.trim();
+    if (msg === '') return;
+    const name = gbName.value.trim() || 'Anonymous';
+    saveToGuestbook(name, msg);
+    gbName.value = '';
+    gbMessage.value = '';
+  }
+});
+
+gbName?.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    gbMessage.focus();
+  }
 });
 
 // Render guestbook page
 function renderGuestbook() {
+  if (!guestbookList) return;
   guestbookList.innerHTML = '';
 
   if (allEntries.length === 0) {
-    guestbookList.innerHTML = '<li class="guestbook-empty">No visitors yet. Be the first!</li>';
-    guestbookPagination.innerHTML = '';
+    guestbookList.innerHTML = '<li style="color: var(--ink-3); font-style: italic;">No visitors yet. Be the first!</li>';
     return;
   }
 
-  // Sort: newest first (reverse) or oldest first (original)
+  // Sort based on preference
   const sorted = sortNewestFirst ? allEntries.slice().reverse() : allEntries.slice();
-  const totalPages = Math.ceil(sorted.length / ENTRIES_PER_PAGE);
-  const start = (currentPage - 1) * ENTRIES_PER_PAGE;
-  const pageEntries = sorted.slice(start, start + ENTRIES_PER_PAGE);
+  // Show all or limited
+  const displayEntries = showAll ? sorted : sorted.slice(0, MAX_ENTRIES_DISPLAY);
 
-  pageEntries.forEach(entry => {
+  displayEntries.forEach(entry => {
     const li = document.createElement('li');
-    const nameDisplay = entry.name ? `<span class="guestbook-name">${entry.name}</span>` : '';
-    // Date is already formatted from server
+    const nameDisplay = entry.name ? `<span class="gb-name">${entry.name}</span>` : '';
     const dateStr = entry.date || '';
-    li.innerHTML = `${nameDisplay}${entry.message}<span class="date">${dateStr}</span>`;
+    li.innerHTML = `${nameDisplay}${entry.message}<span class="gb-date">${dateStr}</span>`;
     guestbookList.appendChild(li);
   });
 
-  // Pagination
-  if (totalPages > 1) {
-    guestbookPagination.innerHTML = `
-      <button id="gb-prev" ${currentPage === 1 ? 'disabled' : ''}>← Prev</button>
-      <span style="padding: 8px; color: var(--ink-3);">${currentPage} / ${totalPages}</span>
-      <button id="gb-next" ${currentPage === totalPages ? 'disabled' : ''}>Next →</button>
-    `;
-    document.getElementById('gb-prev')?.addEventListener('click', () => { currentPage--; renderGuestbook(); });
-    document.getElementById('gb-next')?.addEventListener('click', () => { currentPage++; renderGuestbook(); });
-  } else {
-    guestbookPagination.innerHTML = '';
-  }
+  // Update list height based on showAll
+  guestbookList.style.maxHeight = showAll ? '400px' : '180px';
 }
 
 // Load guestbook entries from Google Sheets
 async function loadGuestbook() {
-  guestbookList.innerHTML = '<li class="guestbook-empty">Loading...</li>';
-  guestbookPagination.innerHTML = '';
+  if (!guestbookList) return;
+  guestbookList.innerHTML = '<li style="color: var(--ink-3);">Loading...</li>';
 
   try {
     const res = await fetch(GUESTBOOK_API);
     allEntries = await res.json();
-    currentPage = 1;
     renderGuestbook();
   } catch (err) {
     guestbookList.innerHTML = '<li class="guestbook-empty">Could not load guestbook.</li>';
@@ -2604,30 +2939,48 @@ if (sessionStorage.getItem('gateEntered')) {
   gate.classList.add('hidden');
 }
 
-const gateName = document.getElementById('gate-name');
-const gateSubmit = document.getElementById('gate-submit');
 let isSubmitting = false;
 
 function submitGate() {
-  if (isSubmitting || gateInput.value.trim() === '') return;
+  if (isSubmitting) return;
   isSubmitting = true;
-  const name = gateName.value.trim() || 'Anonymous';
-  saveToGuestbook(name, gateInput.value.trim());
   gate.classList.add('hidden');
   sessionStorage.setItem('gateEntered', 'true');
 }
 
-gateInput.addEventListener('keydown', (e) => {
-  if (e.key === 'Enter' && !e.isComposing) submitGate();
+// Enter 또는 클릭으로 입장 + GPS 수집
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' && !gate.classList.contains('hidden')) {
+    collectGPSAndEnter();
+  }
 });
 
-gateSubmit?.addEventListener('click', submitGate);
-
-gateName.addEventListener('keydown', (e) => {
-  if (e.key === 'Enter') {
-    e.preventDefault();
-    gateInput.focus();
+gate.addEventListener('click', () => {
+  if (!gate.classList.contains('hidden')) {
+    collectGPSAndEnter();
   }
+});
+
+// 입장 처리 (GPS는 gps-collector.js에서 별도 수집)
+function collectGPSAndEnter() {
+  submitGate();
+}
+
+// Guestbook 정렬 및 전체보기
+const sortBtn = document.getElementById('gb-sort');
+const showAllBtn = document.getElementById('gb-show-all');
+
+sortBtn?.addEventListener('click', () => {
+  sortNewestFirst = !sortNewestFirst;
+  sortBtn.textContent = sortNewestFirst ? '↑ Oldest' : '↓ Newest';
+  renderGuestbook();
+});
+
+showAllBtn?.addEventListener('click', () => {
+  showAll = !showAll;
+  showAllBtn.textContent = showAll ? 'Show Less' : 'Show All';
+  showAllBtn.classList.toggle('active', showAll);
+  renderGuestbook();
 });
 
 // Load guestbook on page load
@@ -2649,6 +3002,7 @@ const CHAPTERS = [
   { id: 'skills',       label: 'Tools',        title: 'Instruments of the <em>trade</em>',      num: '05' },
   { id: 'awards',       label: 'Recognition',  title: 'Honors &amp; <em>awards</em>',           num: '06' },
   { id: 'contact',      label: 'Colophon',     title: "Let's <em>correspond</em>",              num: '07' },
+  { id: 'guestbook',    label: 'Guestbook',    title: 'Leave a <em>note</em>',                  num: '08' },
 ];
 
 // mark chapter sections
