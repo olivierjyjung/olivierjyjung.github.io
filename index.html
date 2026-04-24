@@ -1072,7 +1072,6 @@ footer {
 footer .center { text-align: center; }
 footer .right { text-align: right; }
 footer .accent { color: var(--accent); }
-body:not([data-view="index"]) footer { display: none; }
 
 /* ============== REVEAL ============== */
 .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.7s ease, transform 0.7s ease; }
@@ -1420,6 +1419,9 @@ body:not([data-view="index"]) .masthead-tag { display: none; }
 }
 
 /* ============== GUESTBOOK SECTION ============== */
+.guestbook-section {
+  border-bottom: none;
+}
 .guestbook-section .sec-head {
   margin-bottom: 0;
 }
