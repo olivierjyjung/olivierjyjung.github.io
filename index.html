@@ -1072,6 +1072,7 @@ footer {
 footer .center { text-align: center; }
 footer .right { text-align: right; }
 footer .accent { color: var(--accent); }
+body:not([data-view="index"]) footer { display: none; }
 
 /* ============== REVEAL ============== */
 .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.7s ease, transform 0.7s ease; }
