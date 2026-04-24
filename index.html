@@ -74,6 +74,9 @@ body {
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
   transition: background 0.4s, color 0.4s;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 /* ============== GRAIN / PAPER TEXTURE ============== */
@@ -1067,6 +1070,10 @@ footer {
   letter-spacing: 0.08em;
   color: var(--ink-3);
   text-transform: uppercase;
+  background: var(--paper);
+  position: relative;
+  z-index: 10;
+  margin-top: auto;
 }
 footer .center { text-align: center; }
 footer .right { text-align: right; }
@@ -1420,8 +1427,8 @@ body:not([data-view="index"]) .masthead-tag { display: none; }
 /* ============== GUESTBOOK SECTION ============== */
 .guestbook-section {
   background: var(--paper);
-  padding-bottom: 120px;
-  margin-bottom: 80px;
+  padding-bottom: 60px;
+  flex: 1;
 }
 .guestbook-section .sec-head {
   margin-bottom: 0;
