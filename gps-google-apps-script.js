@@ -6,6 +6,7 @@
 // 4. 배포 > 새 배포 > 웹 앱 선택
 // 5. 액세스: "모든 사용자" 선택
 // 6. 배포 후 URL 복사해서 gps-collector.js의 GPS_API_ENDPOINT에 붙여넣기
+// 7. 기존 배포가 있다면 "배포 관리"에서 새 버전으로 배포해야 함
 
 function doPost(e) {
   try {
@@ -14,18 +15,20 @@ function doPost(e) {
 
     // 첫 번째 행이 비어있으면 헤더 추가
     if (sheet.getLastRow() === 0) {
-      sheet.appendRow(['Timestamp', 'Latitude', 'Longitude', 'Accuracy', 'User Agent', 'Referrer', 'IP Info']);
+      sheet.appendRow(['Timestamp', 'IP', 'Country', 'City', 'ISP', 'Device', 'OS', 'Browser', 'Language']);
     }
 
     // 데이터 추가
     sheet.appendRow([
-      data.timestamp || new Date().toISOString(),
-      data.latitude || '',
-      data.longitude || '',
-      data.accuracy || '',
-      data.userAgent || '',
-      data.referrer || '',
-      data.ipInfo || ''
+      new Date().toISOString(),
+      data.ip || '',
+      data.country || '',
+      data.city || '',
+      data.isp || '',
+      data.device || '',
+      data.os || '',
+      data.browser || '',
+      data.language || ''
     ]);
 
     return ContentService
