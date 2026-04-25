@@ -293,13 +293,15 @@ footer .acc{color:var(--accent);}
   .colophon{padding:60px 20px 80px;}
   footer{grid-template-columns:1fr;gap:4px;padding:16px 20px;}
   footer .fr,.fc{text-align:left;}
-  #about-windows{height:220px!important;overflow:visible!important;}
+  #about-windows{height:auto!important;padding-top:230px!important;overflow:visible!important;}
   .about-win{max-width:90px!important;}
+  .about-win-body img{max-height:105px!important;object-fit:cover!important;width:100%!important;}
   .about-win-bar{padding:3px 6px!important;}
   .about-win-title{display:none!important;}
-  .aw-tl,.aw-ty,.aw-tg{width:7px!important;height:7px!important;gap:4px;}
-  #about-close-btn{font-size:10px!important;padding:7px 16px!important;min-height:34px!important;border-radius:14px!important;}
-  #ch-about .ch-sec{padding:16px 20px 16px!important;}
+  .aw-tl,.aw-ty,.aw-tg{width:7px!important;height:7px!important;}
+  #about-btn-wrap{position:static!important;transform:none!important;text-align:center;display:block;margin-top:14px;}
+  #about-close-btn{font-size:10px!important;padding:7px 18px!important;min-height:36px!important;border-radius:14px!important;}
+  #ch-about .ch-sec{padding:16px 20px 20px!important;}
   #ch-about .sec-head{margin-bottom:16px!important;}
   #about-text{display:none!important;}
   #about-text.revealed{display:block!important;}
@@ -464,7 +466,7 @@ footer .acc{color:var(--accent);}
         <div class="about-win-bar"><div class="about-win-lights"><span class="aw-tl"></span><span class="aw-ty"></span><span class="aw-tg"></span></div><span class="about-win-title">olivierjyjung_9.jpg</span></div>
         <div class="about-win-body" style="height:190px;overflow:hidden"><img src="./assets/olivierjyjung_9.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block" loading="lazy"/></div>
       </div>
-      <div style="position:absolute;bottom:-28px;left:50%;transform:translateX(-50%);z-index:20">
+      <div id="about-btn-wrap" style="position:absolute;bottom:-28px;left:50%;transform:translateX(-50%);z-index:20">
         <button id="about-close-btn" style="background:#f5e642;color:#000;border:none;font-family:'VCRMono',monospace;font-size:13px;letter-spacing:.06em;padding:12px 28px;border-radius:20px;cursor:pointer;box-shadow:0 4px 20px rgba(245,230,66,.4);transition:transform .15s,box-shadow .15s;min-height:44px;">Learn More About Me →</button>
       </div>
     </div>
