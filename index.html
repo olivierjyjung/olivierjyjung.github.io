@@ -1159,7 +1159,7 @@ document.getElementById('pub-filter')?.querySelectorAll('button').forEach(btn =>
       txt.style.display='block';
       requestAnimationFrame(()=>{txt.style.opacity='1';txt.style.transform='none';txt.style.pointerEvents='auto';});
     }
-    if(container){container.style.height='0';container.style.paddingTop='0';container.style.overflow='hidden';}
+    if(container){container.style.setProperty('height','0','important');container.style.setProperty('padding-top','0','important');container.style.setProperty('overflow','hidden','important');container.style.setProperty('margin','0','important');}
     const btn=document.getElementById('about-btn-wrap');
     if(btn) btn.style.display='none';
   }
