@@ -248,10 +248,11 @@ body.in-chapter .ch{bottom:50px;}
 .colophon-title em{color:var(--accent);font-style:normal;}
 .colophon-sub{font-family:'UnifontExMono',monospace;font-size:clamp(14px,1.4vw,17px);color:var(--ink-2);max-width:36ch;margin:0 auto 40px;line-height:1.5;}
 .colophon-links{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;}
-footer{padding:22px 48px;border-top:1px solid var(--rule);display:grid;grid-template-columns:1fr 1fr 1fr;font-family:'VCRMono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);}
+footer{padding:22px 48px 16px;border-top:1px solid var(--rule);display:grid;grid-template-columns:1fr 1fr 1fr;font-family:'VCRMono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);}
 footer .fc{text-align:center;}
 footer .fr{text-align:right;}
 footer .acc{color:var(--accent);}
+.footer-kicker{grid-column:1/-1;border-top:1px solid var(--rule);margin-top:12px;padding-top:12px;text-align:center;font-family:'VCRMono',monospace;font-size:clamp(6.5px,1.75vw,9px);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 
 /* buttons */
 @keyframes pearl{0%{background-position:200% center;opacity:1;}100%{background-position:-200% center;opacity:0;}}
@@ -292,7 +293,9 @@ footer .acc{color:var(--accent);}
   .colophon{padding:60px 20px 80px;}
   footer{grid-template-columns:1fr;gap:4px;padding:16px 20px;}
   footer .fr,.fc{text-align:left;}
-  #about-windows{display:none!important;}
+  #about-windows{position:static!important;display:grid!important;grid-template-columns:repeat(3,1fr);gap:6px;height:auto!important;margin-bottom:24px;}
+  .about-win{position:static!important;transform:none!important;width:100%!important;z-index:auto!important;}
+  .about-win-bar{display:none;}
   #about-text{opacity:1!important;transform:none!important;pointer-events:auto!important;}
   #about-close-btn{display:none!important;}
   .about-text-wrap{margin-top:0!important;}
@@ -394,10 +397,6 @@ footer .acc{color:var(--accent);}
     <div class="folio">
       <span><span class="num">01</span> &nbsp; Introduction</span>
       <span>olivierjyjung.github.io</span>
-    </div>
-    <div class="hero-kicker">
-      Human–AI Interaction · Multimodal Deep Learning · Computational Social Science
-      <span style="margin-left:auto;color:var(--ink-3)">2025</span>
     </div>
     <h1 class="hero-title">Olivier<br><em>Jiyoun</em><br>Jung</h1>
     <div class="hero-lede">
@@ -681,14 +680,15 @@ footer .acc{color:var(--accent);}
       <div class="colophon-sub">Open to research collaborations, speaking invitations, and interesting conversations.</div>
       <div class="colophon-links">
         <a class="btn btn-accent" href="mailto:olivierjiyounjung@gmail.com">Say hello ↗</a>
-        <a class="btn btn-border" href="#">LinkedIn</a>
-        <a class="btn btn-border" href="#">Curriculum Vitae (PDF)</a>
+        <a class="btn btn-border" href="https://www.linkedin.com/in/olivier-jiyoun-jung-290287389" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn btn-border" href="./assets/CV_OJJ.pdf" target="_blank">Curriculum Vitae (PDF)</a>
       </div>
     </div>
     <footer>
       <span><span class="acc">©</span> 2025 Olivier Jiyoun Jung</span>
       <span class="fc">Ewha Womans University · Seoul, KR</span>
       <span class="fr">olivierjyjung.github.io</span>
+      <span class="footer-kicker">Human–AI Interaction · Multimodal Deep Learning · Computational Social Science</span>
     </footer>
   </div>
 </div>
