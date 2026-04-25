@@ -3,3259 +3,1178 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Olivier Jiyoun Jung — Researcher</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=JetBrains+Mono:wght@400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>Olivier Jiyoun Jung</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
+@font-face { font-family:'KiwiSoda';    src:url('./fonts/KiwiSoda.ttf') format('truetype'); font-display:swap; }
+@font-face { font-family:'UnifontExMono'; src:url('./fonts/UnifontExMono.ttf') format('truetype'); font-display:swap; }
+@font-face { font-family:'Cavalhatriz'; src:url('./fonts/Cavalhatriz.ttf') format('truetype'); font-display:swap; }
+@font-face { font-family:'PixelArial';  src:url('./fonts/pixel-arial-14.otf') format('opentype'); font-display:swap; }
+@font-face { font-family:'Pix32';       src:url('./fonts/Pix32.ttf') format('truetype'); font-display:swap; }
+@font-face { font-family:'VCRMono';     src:url('./fonts/VCR_OSD_MONO_1.001.ttf') format('truetype'); font-display:swap; }
+
 :root {
-  /* PAPER palette (default) */
-  --paper:     #f3ede1;
-  --paper-2:   #ece4d3;
-  --paper-3:   #e3d9c3;
-  --ink:       #1a1713;
-  --ink-2:     #6b6459;
-  --ink-3:     #9a9285;
-  --rule:      #c9bfa9;
-  --accent:    #b6301f;          /* press-mark crimson */
-  --accent-2:  #8a1d10;
-  --accent-soft: #e8cfca;
+  --paper:#000; --paper-2:#0a0a0a; --paper-3:#111;
+  --ink:#f9e5f9; --ink-2:#c9b8ff; --ink-3:#9b8db0;
+  --rule:#2a1040;
+  --accent:#e91e8c; --accent-2:#c2185b; --accent-soft:#2d0820;
+  --cyan:#00e5ff; --lime:#a8ff3e; --deep-purple:#7c3aed;
+  --mh:52px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--paper);color:var(--ink);font-family:'UnifontExMono',monospace;font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased;cursor:none;overflow:hidden;}
+@media(pointer:coarse){body{cursor:auto;overflow:auto;}}
 
-  --serif: 'Instrument Serif', 'Times New Roman', serif;
-  --serif-2: 'Fraunces', Georgia, serif;
-  --sans:  'Inter', system-ui, sans-serif;
-  --mono:  'JetBrains Mono', ui-monospace, monospace;
+/* grain */
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:2;opacity:.3;mix-blend-mode:screen;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.08 0 0 0 0 0.07 0 0 0 0 0.05 0 0 0 0.10 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");}
+body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:3;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.06) 2px,rgba(0,0,0,.06) 4px);}
 
-  --margin: clamp(24px, 5vw, 88px);
-}
+/* cursor */
+#cursor-star{position:fixed;pointer-events:none;z-index:9999;width:44px;height:44px;transform-origin:8px 0;transform:rotate(-45deg);image-rendering:pixelated;filter:drop-shadow(0 0 6px rgba(200,220,255,.8)) drop-shadow(0 0 2px #fff);}
+@media(pointer:coarse){#cursor-star{display:none;}}
+.sparkle-dot{position:fixed;pointer-events:none;z-index:9998;border-radius:50%;animation:sparkleFade .7s ease forwards;}
+@keyframes sparkleFade{0%{opacity:1;transform:translate(-50%,-50%) scale(1);}100%{opacity:0;transform:translate(-50%,-50%) scale(0);}}
+.deco-spark{position:fixed;pointer-events:none;z-index:1;animation:floatSpark linear infinite;font-size:6px;opacity:0;color:#fff;}
+@keyframes floatSpark{0%{transform:translateY(0) scale(.5);opacity:0;}20%{opacity:.9;}80%{opacity:.7;}100%{transform:translateY(-60px) scale(1.5);opacity:0;}}
 
-html[data-bg="ink"] {
-  --paper:   #10100e;
-  --paper-2: #16160f;
-  --paper-3: #1d1c15;
-  --ink:     #ebe7dc;
-  --ink-2:   #a39d8e;
-  --ink-3:   #6a6557;
-  --rule:    #2e2b22;
-  --accent:  #e66a50;
-  --accent-2:#ffb49a;
-  --accent-soft: #3a2520;
-}
-html[data-bg="riso"] {
-  --paper:   #f7f1e6;
-  --paper-2: #f0e7d3;
-  --paper-3: #e7dcc0;
-  --ink:     #2b1d35;
-  --ink-2:   #6d5b7d;
-  --ink-3:   #9a8ba5;
-  --rule:    #d6c6a9;
-  --accent:  #ff4a3d;
-  --accent-2:#4b3bff;
-  --accent-soft: #ffd4cc;
-}
+/* gate */
+#gate{position:fixed;inset:0;z-index:9000;background:var(--paper);display:flex;align-items:center;justify-content:center;transition:opacity .7s ease,visibility .7s ease;}
+#gate.hidden{opacity:0;visibility:hidden;pointer-events:none;}
+.gate-name{font-family:'KiwiSoda',cursive;font-size:clamp(40px,8vw,80px);line-height:1;color:var(--ink);margin-bottom:8px;}
+.gate-name em{color:var(--accent);font-style:normal;}
+.gate-sub{font-family:'VCRMono',monospace;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin-bottom:28px;}
+.gate-hint{font-family:'VCRMono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);animation:blink 1.2s step-end infinite;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
 
-html[data-type="grotesk"] {
-  --serif: 'Inter', system-ui, sans-serif;
-  --serif-2: 'Inter', system-ui, sans-serif;
-}
-html[data-type="fraunces"] {
-  --serif: 'Fraunces', Georgia, serif;
-  --serif-2: 'Fraunces', Georgia, serif;
-}
+/* masthead */
+.masthead{position:fixed;top:0;left:0;right:0;z-index:50;height:var(--mh);background:rgba(10,10,10,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--rule);padding:0 48px;display:flex;justify-content:space-between;align-items:center;gap:32px;}
+.brand{font-family:'KiwiSoda',cursive;font-size:20px;color:var(--ink);cursor:pointer;}
+.brand em{color:var(--accent);font-style:normal;}
+.topnav{display:flex;gap:22px;}
+.topnav a{font-family:'VCRMono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);text-decoration:none;transition:color .2s;cursor:none;padding:4px 0;}
+.topnav a:hover,.topnav a.active{color:var(--accent);}
+.topnav a.gb{color:var(--accent);}
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body {
-  background: var(--paper);
-  color: var(--ink);
-  font-family: var(--sans);
-  font-size: 15px;
-  line-height: 1.6;
-  font-weight: 400;
-  -webkit-font-smoothing: antialiased;
-  transition: background 0.4s, color 0.4s;
-}
+/* hamburger */
+.menu-toggle{display:none;background:transparent;border:1px solid var(--rule);padding:10px 14px;cursor:pointer;align-items:center;gap:8px;font-family:'VCRMono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);-webkit-tap-highlight-color:transparent;}
+.mti{display:inline-flex;flex-direction:column;gap:4px;width:16px;}
+.mti span{display:block;height:1.5px;background:var(--ink);transition:transform .3s,opacity .3s;}
+.menu-toggle[aria-expanded="true"] .mti span:nth-child(1){transform:translateY(2.75px) rotate(45deg);}
+.menu-toggle[aria-expanded="true"] .mti span:nth-child(2){transform:translateY(-2.75px) rotate(-45deg);}
 
-/* ============== GRAIN / PAPER TEXTURE ============== */
-body::before {
-  content: '';
-  position: fixed; inset: 0;
-  pointer-events: none;
-  z-index: 2;
-  opacity: 0.5;
-  mix-blend-mode: multiply;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.08 0 0 0 0 0.07 0 0 0 0 0.05 0 0 0 0.10 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-}
-html[data-bg="ink"] body::before { mix-blend-mode: screen; opacity: 0.3; }
+/* mobile menu overlay */
+.mobile-menu{position:fixed;inset:0;z-index:200;background:var(--paper);padding:0 24px 32px;display:flex;flex-direction:column;opacity:0;visibility:hidden;transform:translateY(-8px);transition:opacity .3s,transform .3s,visibility .3s;overflow-y:auto;}
+.mobile-menu.open{opacity:1;visibility:visible;transform:none;}
+.mm-head{height:var(--mh);display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--rule);flex-shrink:0;}
+.mm-brand{font-family:'KiwiSoda',cursive;font-size:20px;color:var(--ink);}
+.mm-brand em{color:var(--accent);font-style:normal;}
+.mm-close{background:transparent;border:1px solid var(--rule);font-family:'VCRMono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);padding:10px 16px;cursor:pointer;min-height:44px;}
+.mm-nav{display:flex;flex-direction:column;padding-top:8px;}
+.mm-nav a{font-family:'KiwiSoda',cursive;font-size:clamp(28px,7vw,38px);color:var(--ink);text-decoration:none;padding:14px 0;border-bottom:1px solid var(--rule);display:flex;justify-content:space-between;align-items:center;-webkit-tap-highlight-color:transparent;}
+.mm-nav a span.n{font-family:'VCRMono',monospace;font-size:11px;color:var(--ink-3);}
+.mm-nav a.gb{color:var(--accent);}
+.mm-nav a:hover{color:var(--accent);}
 
-/* ============== MASTHEAD NAV ============== */
-.masthead {
-  position: sticky; top: 0; z-index: 50;
-  background: var(--paper);
-  border-bottom: 1px solid var(--rule);
-  padding: 14px var(--margin);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 32px;
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.02em;
-  color: var(--ink-2);
-  transition: background 0.4s;
-}
-.masthead .left a {
-  font-family: var(--serif);
-  font-size: 16px;
-  letter-spacing: 0.02em;
-  color: var(--ink);
-  text-decoration: none;
-  text-transform: uppercase;
-}
-.masthead-guestbook {
-  color: var(--accent) !important;
-}
-.masthead-guestbook:hover {
-  color: var(--accent-2) !important;
-}
-.topnav {
-  display: flex;
-  gap: 26px;
-}
-.topnav a {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ink-2);
-  text-decoration: none;
-  transition: color 0.2s;
-}
-.topnav a:hover, .topnav a.active { color: var(--accent); }
+/* chapter system */
+.ch{position:fixed;top:var(--mh);left:0;right:0;bottom:0;overflow-y:auto;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .35s ease;}
+.ch.active{opacity:1;visibility:visible;pointer-events:auto;}
+.ch::-webkit-scrollbar{width:3px;}
+.ch::-webkit-scrollbar-track{background:transparent;}
+.ch::-webkit-scrollbar-thumb{background:rgba(233,30,140,.3);border-radius:2px;}
 
-/* ============== MOBILE MENU ============== */
-.menu-toggle {
-  display: none; /* shown on mobile via @media */
-  background: transparent;
-  border: 1px solid var(--rule);
-  padding: 8px 12px 8px 14px;
-  cursor: pointer;
-  align-items: center;
-  gap: 10px;
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--ink);
-  -webkit-tap-highlight-color: transparent;
-}
-.menu-toggle:hover { border-color: var(--ink); }
-.menu-toggle-icon {
-  display: inline-flex;
-  flex-direction: column;
-  gap: 4px;
-  width: 16px;
-}
-.menu-toggle-icon span {
-  display: block;
-  height: 1.5px;
-  background: var(--ink);
-  transition: transform 0.3s, opacity 0.3s;
-}
-.menu-toggle[aria-expanded="true"] .menu-toggle-icon span:nth-child(1) {
-  transform: translateY(2.75px) rotate(45deg);
-}
-.menu-toggle[aria-expanded="true"] .menu-toggle-icon span:nth-child(2) {
-  transform: translateY(-2.75px) rotate(-45deg);
-}
+/* chapter nav bar */
+#ch-nav{position:fixed;bottom:0;left:0;right:0;z-index:40;display:none;align-items:center;justify-content:space-between;padding:0 48px;height:50px;background:rgba(10,10,10,.92);backdrop-filter:blur(8px);border-top:1px solid var(--rule);}
+body.in-chapter #ch-nav{display:flex;}
+body.in-chapter .ch{bottom:50px;}
+.chnb{font-family:'VCRMono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);background:transparent;border:1px solid var(--rule);padding:0 18px;cursor:none;transition:color .2s,border-color .2s;height:30px;display:flex;align-items:center;}
+.chnb:hover{color:var(--accent);border-color:var(--accent);}
+.chnb:disabled{opacity:.2;pointer-events:none;}
+#ch-counter{font-family:'VCRMono',monospace;font-size:10px;letter-spacing:.16em;color:var(--ink-3);}
+#ch-counter .cur{color:var(--accent);}
+#ch-home-btn{font-family:'VCRMono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);background:transparent;border:none;cursor:none;transition:color .2s;padding:0 8px;}
+#ch-home-btn:hover{color:var(--accent);}
 
-.mobile-menu {
-  position: fixed;
-  inset: 0;
-  z-index: 200;
-  background: var(--paper);
-  padding: 18px var(--margin) 24px;
-  display: flex;
-  flex-direction: column;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-8px);
-  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
-  overflow-y: auto;
-}
-.mobile-menu.open {
-  opacity: 1;
-  visibility: visible;
-  transform: none;
-}
-.mobile-menu-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-bottom: 18px;
-  border-bottom: 1px solid var(--rule);
-}
-.mobile-menu-brand {
-  font-family: var(--serif);
-  font-size: 16px;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-  color: var(--ink);
-}
-.mobile-menu-close {
-  background: transparent;
-  border: 1px solid var(--rule);
-  padding: 8px 12px;
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ink);
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
-}
-.mobile-menu-close:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
-.mobile-menu-nav {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  padding-top: 8px;
-}
-.mobile-menu-nav a {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 4px;
-  padding: 18px 4px;
-  border-bottom: 1px solid var(--rule);
-  text-decoration: none;
-  color: var(--ink);
-  transition: background 0.15s;
-  min-height: 48px;
-}
-.mobile-menu-nav a:active { background: var(--paper-2); }
-.mobile-menu-nav .mm-n {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  color: var(--accent);
-}
-.mobile-menu-nav .mm-t {
-  font-family: var(--serif);
-  font-size: 22px;
-  line-height: 1.1;
-  letter-spacing: -0.005em;
-  color: var(--ink);
-}
-.mobile-menu-foot {
-  display: flex;
-  justify-content: space-between;
-  padding-top: 18px;
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-}
+/* folio */
+.folio{position:absolute;top:28px;left:48px;right:48px;display:flex;justify-content:space-between;font-family:'VCRMono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);pointer-events:none;}
+.folio .num{color:var(--accent);}
 
-/* ============== GRID SYSTEM ============== */
-section {
-  padding: clamp(96px, 12vh, 152px) var(--margin) clamp(56px, 9vh, 112px);
-  position: relative;
-  border-bottom: 1px solid var(--rule);
-}
-.hero { padding-top: 96px; }
+/* section base */
+.ch-sec{padding:clamp(60px,8vh,100px) 48px clamp(80px,10vh,120px);position:relative;min-height:calc(100vh - var(--mh));}
+#ch-publications .ch-sec{min-height:auto;}
+.sec-head{display:grid;grid-template-columns:1fr 2fr;gap:48px;margin-bottom:48px;align-items:end;}
+.sec-eyebrow{font-family:'VCRMono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:12px;}
+.sec-title{font-family:'KiwiSoda',cursive;font-size:clamp(40px,5vw,72px);line-height:.95;color:var(--ink);}
+.sec-title em{color:var(--accent);font-style:normal;}
 
-.folio {
-  position: absolute;
-  top: 28px;
-  left: var(--margin);
-  right: var(--margin);
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-  pointer-events: none;
-}
-.folio .num { color: var(--accent); letter-spacing: 0.04em; font-weight: 500; }
+/* home / hero */
+.hero{padding:48px 48px 80px;position:relative;min-height:calc(100vh - var(--mh));display:flex;flex-direction:column;}
+.hero-kicker{font-family:'VCRMono',monospace;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--cyan);display:flex;align-items:center;gap:14px;margin-bottom:40px;}
+.hero-kicker::before{content:'';width:36px;height:1px;background:var(--cyan);}
+.hero-title{font-family:'KiwiSoda',cursive;font-size:clamp(72px,11vw,180px);line-height:.9;color:var(--ink);margin-bottom:24px;text-shadow:0 0 80px rgba(233,30,140,.15);}
+.hero-title em{color:var(--accent);font-style:normal;}
+.hero-lede{display:grid;grid-template-columns:1fr 1.2fr;gap:64px;align-items:start;padding-top:24px;border-top:1px solid var(--rule);margin-bottom:56px;}
+.hero-deck{font-family:'UnifontExMono',monospace;font-size:clamp(15px,1.4vw,18px);line-height:1.6;color:var(--ink-2);max-width:32ch;}
+.hero-deck em{color:var(--accent);font-style:italic;}
+.hero-meta{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.hero-meta dt{font-family:'VCRMono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);margin-bottom:4px;}
+.hero-meta dd{font-family:'UnifontExMono',monospace;font-size:13px;color:var(--ink);}
+.hero-meta dd a{color:var(--accent);text-decoration:none;}
 
-/* ============== HERO ============== */
-.hero {
-  min-height: 82vh;
-  padding-top: 72px !important;
-  padding-bottom: 64px !important;
-  display: grid;
-  grid-template-columns: 1fr;
-  position: relative;
-}
-.hero-main {
-  display: block;
-}
-.hero-title-row {
-  display: flex;
-  align-items: flex-start;
-  gap: 24px;
-}
-.guestbook-btn {
-  display: none;
-  margin-top: 8px;
-  padding: 10px 20px;
-  background: var(--accent);
-  color: #fff !important;
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  text-decoration: none;
-  transition: background 0.2s;
-  white-space: nowrap;
-}
-.guestbook-btn:hover {
-  background: var(--accent-2);
-}
-@media (max-width: 880px) {
-  .guestbook-btn {
-    display: inline-block;
-  }
-  .hero-title-row {
-    flex-direction: column;
-    gap: 8px;
-  }
-}
-.hero-gb-title {
-  font-family: var(--serif);
-  font-size: 20px;
-  color: var(--ink);
-  margin-bottom: 2px;
-  font-weight: 400;
-}
-.hero-gb-desc {
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: 16px;
-  color: var(--ink-2);
-  margin-bottom: 6px;
-}
-.hero-gb-form {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  margin-bottom: 10px;
-}
-.hero-gb-form input {
-  padding: 4px 5px;
-  font-family: var(--sans);
-  font-size: 10px;
-  color: var(--ink);
-  background: var(--paper);
-  border: 1px solid var(--rule);
-  outline: none;
-  transition: border-color 0.2s;
-  text-align: center;
-}
-.hero-gb-form input:focus {
-  border-color: var(--accent);
-}
-.hero-gb-form input::placeholder {
-  color: var(--ink-3);
-}
-#hero-gb-name {
-  max-width: 80px;
-}
-.hero-gb-btn {
-  padding: 6px 12px;
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #fff;
-  background: var(--accent);
-  border: none;
-  cursor: pointer;
-  transition: background 0.2s;
-  align-self: flex-start;
-}
-.hero-gb-btn:hover {
-  background: var(--accent-2);
-}
-.hero-gb-buttons {
-  display: flex;
-  gap: 4px;
-  align-items: center;
-  flex-wrap: wrap;
-}
-.hero-gb-sort-btn {
-  font-family: var(--mono);
-  font-size: 9px;
-  letter-spacing: 0.06em;
-  padding: 4px 8px;
-  background: transparent;
-  border: 1px solid var(--rule);
-  color: var(--ink-3);
-  cursor: pointer;
-  transition: all 0.2s;
-}
-.hero-gb-sort-btn:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-}
-.hero-gb-sort-btn.active {
-  background: var(--ink);
-  color: var(--paper);
-  border-color: var(--ink);
-}
-.hero-gb-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  max-height: 180px;
-  overflow-y: auto;
-}
-.hero-gb-list li {
-  font-family: var(--sans);
-  font-size: 11px;
-  color: var(--ink);
-  line-height: 1.5;
-}
-.hero-gb-list .gb-name {
-  font-weight: 500;
-  color: #fff;
-  background: var(--accent);
-  padding: 1px 4px;
-  margin-right: 4px;
-  font-size: 10px;
-}
-.hero-gb-list .gb-date {
-  display: block;
-  font-family: var(--mono);
-  font-size: 9px;
-  color: var(--ink-3);
-  margin-top: 2px;
-}
-.hero-kicker {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--accent);
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin-bottom: 44px;
-}
-.hero-kicker::before {
-  content: ''; width: 36px; height: 1px; background: var(--accent);
-}
-.hero-kicker .date { color: var(--ink-2); margin-left: auto; }
+/* TOC */
+.toc{border-top:1px solid var(--rule);}
+.toc-item{display:grid;grid-template-columns:60px 1fr auto;gap:24px;padding:18px 0;border-bottom:1px solid var(--rule);align-items:center;cursor:pointer;transition:background .2s,padding .2s;}
+.toc-item:hover{background:var(--paper-2);padding-left:16px;padding-right:16px;}
+.toc-num{font-family:'KiwiSoda',cursive;font-size:32px;color:rgba(0,229,255,.15);transition:color .25s;}
+.toc-item:hover .toc-num{color:var(--cyan);}
+.toc-label{font-family:'KiwiSoda',cursive;font-size:clamp(22px,2.5vw,30px);color:var(--ink);}
+.toc-arrow{font-family:'VCRMono',monospace;font-size:11px;color:var(--ink-3);transition:color .2s,transform .2s;}
+.toc-item:hover .toc-arrow{color:var(--accent);transform:translateX(6px);}
 
-.hero-title {
-  font-family: var(--serif);
-  font-weight: 400;
-  font-size: clamp(68px, 13vw, 220px);
-  line-height: 0.88;
-  letter-spacing: -0.035em;
-  color: var(--ink);
-  margin-bottom: 20px;
-}
-.hero-title .it {
-  font-style: italic;
-  color: var(--accent);
-  font-weight: 400;
-}
-.hero-title .amp {
-  font-style: italic;
-  color: var(--ink-3);
-  font-weight: 300;
-}
+/* about */
+.about-win{position:absolute;background:#1e1e1e;border:1px solid rgba(255,255,255,.12);border-radius:10px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.8);transition:box-shadow .2s;user-select:none;}
+.about-win:hover{box-shadow:0 28px 80px rgba(0,0,0,.9),0 0 0 .5px rgba(233,30,140,.3);}
+.about-win.dragging{box-shadow:0 40px 100px rgba(0,0,0,.95),0 0 30px rgba(233,30,140,.2);transition:none;}
+.about-win-bar{background:#2d2d2d;padding:8px 12px;display:flex;align-items:center;gap:8px;border-bottom:1px solid rgba(255,255,255,.07);cursor:move;}
+.about-win-lights{display:flex;gap:6px;align-items:center;}
+.aw-tl{width:11px;height:11px;border-radius:50%;background:#ff5f57;cursor:pointer;box-shadow:0 0 4px rgba(255,95,87,.5);}
+.aw-ty{width:11px;height:11px;border-radius:50%;background:#ffbd2e;}
+.aw-tg{width:11px;height:11px;border-radius:50%;background:#28ca41;}
+.about-win-title{font-family:'VCRMono',monospace;font-size:11px;color:rgba(255,255,255,.4);margin-left:auto;}
+@keyframes winClose{0%{opacity:1;transform:scale(1);}100%{opacity:0;transform:scale(.85);}}
+.about-win.closing{animation:winClose .35s ease forwards;}
+.pull-quote{font-family:'KiwiSoda',cursive;font-size:clamp(22px,2.2vw,30px);line-height:1.3;color:var(--ink);margin-bottom:24px;}
+.pull-quote::before{content:'\201C';color:var(--accent);margin-right:4px;}
+.body-p{font-size:14px;line-height:1.7;color:var(--ink-2);margin-bottom:16px;max-width:60ch;}
+.body-p strong{color:var(--ink);font-weight:500;border-bottom:1px solid var(--accent);}
+.tag-row{margin-top:24px;padding-top:16px;border-top:1px solid var(--rule);display:flex;flex-wrap:wrap;gap:6px 16px;font-family:'VCRMono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);}
+.tag-row .t{color:var(--ink-2);}
+.tag-row .t::before{content:'✦';color:var(--accent);margin-right:5px;font-size:9px;}
 
-.hero-lede {
-  display: grid;
-  grid-template-columns: 1fr 1.2fr;
-  gap: clamp(32px, 6vw, 96px);
-  align-items: start;
-  margin-top: 12px;
-  padding-top: 24px;
-  border-top: 1px solid var(--rule);
-}
-.hero-deck {
-  font-family: var(--serif);
-  font-size: clamp(22px, 2.3vw, 30px);
-  line-height: 1.3;
-  font-weight: 400;
-  color: var(--ink);
-  max-width: 24ch;
-}
-.hero-deck em { color: var(--accent); font-style: italic; }
-.hero-meta {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 28px;
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.04em;
-  color: var(--ink-2);
-  line-height: 1.8;
-}
-.hero-meta dt {
-  font-size: 9px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-  margin-bottom: 4px;
-}
-.hero-meta dd { color: var(--ink); font-family: var(--sans); font-size: 13px; font-weight: 400; }
-.hero-meta dd a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--accent); padding-bottom: 1px; }
-.hero-meta dd a:hover { color: var(--accent); }
+/* education */
+.edu-row{display:grid;grid-template-columns:160px 1fr auto;gap:32px;padding:24px 0;border-top:1px solid var(--rule);align-items:baseline;}
+.edu-year{font-family:'VCRMono',monospace;font-size:11px;letter-spacing:.1em;color:var(--accent);}
+.edu-deg{font-family:'KiwiSoda',cursive;font-size:clamp(20px,2vw,26px);line-height:1.2;color:var(--ink);}
+.edu-school{font-family:'UnifontExMono',monospace;font-size:13px;color:var(--ink-2);line-height:1.5;text-align:right;}
+.edu-honor{display:block;font-family:'VCRMono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--lime);margin-top:3px;}
 
-.hero-scroll {
-  position: absolute;
-  left: var(--margin);
-  bottom: 24px;
-  font-family: var(--mono);
-  font-size: 9px;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.hero-scroll::after {
-  content: ''; width: 44px; height: 1px; background: var(--ink-3);
-  animation: scrollbar 2.4s ease-in-out infinite;
-}
-@keyframes scrollbar {
-  0% { transform: scaleX(0); transform-origin: left; }
-  50% { transform: scaleX(1); transform-origin: left; }
-  51% { transform: scaleX(1); transform-origin: right; }
-  100% { transform: scaleX(0); transform-origin: right; }
-}
+/* publications */
+.pub-filter-bar{display:flex;border:1px solid var(--rule);box-shadow:3px 3px 0 var(--rule);}
+.pub-filter-bar button{padding:10px 14px;background:transparent;border:none;border-right:1px solid var(--rule);color:var(--ink-3);font-family:'VCRMono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;cursor:none;transition:all .15s;min-height:44px;}
+.pub-filter-bar button:last-child{border-right:none;}
+.pub-filter-bar button:hover{color:var(--ink);background:var(--paper-2);}
+.pub-filter-bar button.active{background:var(--accent);color:var(--paper);}
+.pub-row{display:grid;grid-template-columns:1fr 160px;gap:32px;padding:22px 0;border-top:1px solid var(--rule);align-items:center;transition:background .2s,padding .2s;}
+.pub-row:hover{background:var(--paper-2);padding-left:10px;padding-right:10px;}
+.pub-num{font-family:'KiwiSoda',cursive;font-size:20px;color:rgba(0,229,255,.2);margin-bottom:4px;transition:color .25s;}
+.pub-row:hover .pub-num{color:var(--cyan);}
+.pub-title{font-family:'Pix32',monospace;font-size:15px;line-height:1.4;color:var(--ink);margin-bottom:8px;}
+.pub-authors{font-family:'UnifontExMono',monospace;font-size:12px;color:var(--ink-2);margin-bottom:4px;}
+.pub-authors .me{color:var(--ink);font-weight:500;border-bottom:1px solid var(--accent);}
+.pub-venue{font-family:'VCRMono',monospace;font-size:10px;letter-spacing:.08em;color:var(--ink-3);text-transform:uppercase;}
+.pub-side{display:flex;flex-direction:column;gap:6px;align-items:center;}
+.pill{font-family:'VCRMono',monospace;font-size:9px;letter-spacing:.16em;text-transform:uppercase;padding:4px 10px;border:1px solid currentColor;display:inline-block;}
+.pill-presented{color:var(--accent);background:var(--accent-soft);border-color:transparent;}
+.pill-review{color:var(--ink);}
+.pill-progress{color:var(--ink-3);border-style:dashed;}
+.pub-year{font-family:'VCRMono',monospace;font-size:10px;color:var(--ink-3);}
 
-/* ============== SECTION COMMON ============== */
-.sec-head {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: clamp(24px, 4vw, 72px);
-  margin-bottom: 64px;
-  align-items: end;
-}
-.sec-eyebrow {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 12px;
-  display: flex;
-  gap: 12px;
-  align-items: center;
-}
-.sec-eyebrow .n {
-  font-family: var(--serif);
-  font-size: 16px;
-  color: var(--ink-2);
-  letter-spacing: 0;
-}
-.sec-title {
-  font-family: var(--serif);
-  font-weight: 400;
-  font-size: clamp(44px, 6vw, 88px);
-  line-height: 0.95;
-  letter-spacing: -0.02em;
-  color: var(--ink);
-}
-.sec-title em { font-style: italic; color: var(--accent); }
-.sec-desc {
-  font-family: var(--sans);
-  font-size: 14px;
-  line-height: 1.65;
-  color: var(--ink-2);
-  max-width: 42ch;
-  margin-top: 12px;
-}
+/* experience */
+.exp-list{display:flex;flex-direction:column;}
+.exp-row{display:grid;grid-template-columns:80px 1fr 1fr;gap:40px;padding:36px 0;border-top:1px solid var(--rule);position:relative;transition:background .25s;}
+.exp-row:hover{background:var(--paper-2);padding-left:16px;padding-right:16px;}
+.exp-idx{font-family:'KiwiSoda',cursive;font-size:48px;line-height:1;color:rgba(0,229,255,.12);transition:color .25s;}
+.exp-row:hover .exp-idx{color:var(--cyan);}
+.exp-period{font-family:'VCRMono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;}
+.exp-role{font-family:'KiwiSoda',cursive;font-size:clamp(20px,1.8vw,26px);line-height:1.15;color:var(--ink);margin-bottom:4px;}
+.exp-org{font-family:'UnifontExMono',monospace;font-size:12px;color:var(--ink-2);}
+.exp-details{display:flex;flex-direction:column;gap:8px;justify-content:center;}
+.exp-detail{font-family:'Pix32',monospace;font-size:13px;line-height:1.5;color:var(--ink-2);padding-left:18px;position:relative;}
+.exp-detail::before{content:'→';position:absolute;left:0;color:var(--accent);}
 
-/* ============== ABOUT ============== */
-.about {
-  background: var(--paper);
-}
-.about .sec-head {
-  margin-bottom: 32px;
-}
-.about-grid {
-  display: grid;
-  grid-template-columns: 0.55fr 1fr;
-  gap: clamp(32px, 6vw, 96px);
-  align-items: center;
-}
-.about-portrait {
-  position: relative;
-  max-width: 580px;
-}
-.portrait-frame {
-  position: relative;
-  aspect-ratio: 3/4;
-  overflow: hidden;
-  background: transparent;
-  margin-bottom: -8px;
-  border: none;
-  outline: none;
-  box-shadow: none;
-}
-.portrait-frame img {
-  width: 100%; height: calc(100% + 8px);
-  object-fit: cover;
-  object-position: center 15%;
-  display: block;
-}
-.portrait-img {
-  width: 100%;
-  height: 100%;
-  min-height: 400px;
-  background-image: url('uploads/profile.png');
-  background-size: cover;
-  background-position: center 15%;
-  background-color: var(--paper-2);
-  filter: sepia(25%) saturate(0.9);
-  transition: filter 0.6s;
-  border: none !important;
-  outline: none !important;
-  box-shadow: none !important;
-}
+/* skills */
+.skills-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--rule);border-left:1px solid var(--rule);}
+.skill-col{padding:28px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);}
+.skill-col h4{font-family:'VCRMono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--cyan);margin-bottom:16px;}
+.skill-col li{font-family:'KiwiSoda',cursive;font-size:20px;line-height:1.4;color:var(--ink);list-style:none;}
 
-.portrait-caption {
-  margin-top: 14px;
-  display: flex;
-  justify-content: space-between;
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-}
-.portrait-caption .figno { color: var(--accent); }
+/* awards */
+.award-row{display:grid;grid-template-columns:100px 1fr 1fr;gap:32px;padding:20px 0;border-top:1px solid var(--rule);align-items:baseline;}
+.award-year{font-family:'VCRMono',monospace;font-size:11px;color:var(--lime);}
+.award-name{font-family:'KiwiSoda',cursive;font-size:clamp(18px,1.6vw,22px);color:var(--ink);line-height:1.3;}
+.award-org{font-family:'UnifontExMono',monospace;font-size:12px;color:var(--ink-2);text-align:right;}
 
-.about-body {
-  padding-top: 8px;
-}
-.pull-quote {
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: clamp(26px, 2.8vw, 38px);
-  line-height: 1.25;
-  color: var(--ink);
-  margin-bottom: 36px;
-  letter-spacing: -0.01em;
-}
-.pull-quote::before {
-  content: '“';
-  font-size: 1.4em;
-  color: var(--accent);
-  line-height: 0;
-  vertical-align: -0.2em;
-  margin-right: 4px;
-}
-.about-body p {
-  font-size: 15px;
-  line-height: 1.65;
-  color: var(--ink);
-  margin-bottom: 24px;
-  max-width: 72ch;
-}
-.about-body p strong { font-weight: 500; color: var(--ink); border-bottom: 1px solid var(--accent); }
-.about-body .drop-cap::first-letter {
-  font-family: var(--serif);
-  font-size: 4.4em;
-  float: left;
-  line-height: 0.88;
-  padding: 6px 10px 0 0;
-  color: var(--accent);
-  font-weight: 400;
-}
-.tag-row {
-  margin-top: 40px;
-  padding-top: 24px;
-  border-top: 1px solid var(--rule);
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px 20px;
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ink-2);
-}
-.tag-row .label { color: var(--ink-3); margin-right: 8px; white-space: nowrap; }
-.tag-row span.t { color: var(--ink); white-space: nowrap; }
-.tag-row span.t::before { content: '•'; color: var(--accent); margin-right: 6px; }
+/* guestbook */
+.gb-mac-window{max-width:720px;margin:0 auto;background:#1e1e1e;border:1px solid rgba(255,255,255,.12);border-radius:12px;box-shadow:0 40px 100px rgba(0,0,0,.9),0 0 0 .5px rgba(255,255,255,.06);overflow:hidden;}
+.gb-titlebar{background:#2d2d2d;padding:12px 16px;display:flex;align-items:center;border-bottom:1px solid rgba(255,255,255,.08);user-select:none;position:relative;}
+.gb-tls{display:flex;gap:8px;margin-right:auto;}
+.gb-tl{width:12px;height:12px;border-radius:50%;}
+.gb-tl-r{background:#ff5f57;box-shadow:0 0 6px rgba(255,95,87,.6);}
+.gb-tl-y{background:#ffbd2e;}
+.gb-tl-g{background:#28ca41;}
+.gb-tt{font-family:'UnifontExMono',monospace;font-size:11px;color:rgba(255,255,255,.45);position:absolute;left:50%;transform:translateX(-50%);}
+.gb-body{padding:20px;display:flex;flex-direction:column;gap:0;}
+.gb-form-wrap{display:flex;gap:8px;align-items:center;flex-wrap:wrap;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:8px 12px;transition:border-color .2s,box-shadow .2s;margin-bottom:14px;}
+.gb-form-wrap:focus-within{border-color:rgba(233,30,140,.5);box-shadow:0 0 20px rgba(233,30,140,.1);}
+.gb-inp{background:transparent;border:none;outline:none;font-family:'UnifontExMono',monospace;font-size:11px;color:var(--ink);}
+.gb-inp::placeholder{color:var(--ink-3);opacity:.5;}
+#gb-name{width:100px;border-right:1px solid rgba(255,255,255,.07);padding-right:10px;}
+#gb-message{flex:1;padding-left:10px;min-width:80px;}
+.gb-send{width:34px;height:34px;border-radius:7px;flex-shrink:0;background:var(--accent);border:none;cursor:pointer;color:#fff;font-size:13px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 12px rgba(233,30,140,.5);transition:background .15s,transform .08s;}
+.gb-send:hover{background:#f06292;}
+.gb-send:active{transform:scale(.9);}
+.gb-controls{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;gap:8px;flex-wrap:wrap;}
+.gb-ctrl-btn{font-family:'VCRMono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);background:transparent;border:1px solid var(--rule);padding:7px 14px;cursor:pointer;transition:color .2s,border-color .2s;min-height:36px;}
+.gb-ctrl-btn:hover{color:var(--accent);border-color:var(--accent);}
+.gb-ctrl-btn:disabled{opacity:.3;pointer-events:none;}
+.gb-ctrl-btn.active{color:var(--accent);border-color:var(--accent);}
+.gb-page-info{font-family:'VCRMono',monospace;font-size:10px;color:var(--ink-3);letter-spacing:.1em;}
+/* bubble messages */
+.gb-messages{display:flex;flex-direction:column;gap:14px;min-height:160px;padding:4px 0;}
+.gb-msg-row{display:flex;gap:10px;align-items:flex-start;}
+.gb-avatar{width:28px;height:28px;border-radius:6px;flex-shrink:0;overflow:hidden;background:#000;}
+.gb-avatar img{width:100%;height:100%;object-fit:cover;display:block;}
+.gb-avatar.sys-av{background:linear-gradient(135deg,var(--cyan),var(--deep-purple));display:flex;align-items:center;justify-content:center;font-family:'UnifontExMono',monospace;font-size:11px;font-weight:700;color:#fff;}
+.gb-bubble-wrap{display:flex;flex-direction:column;gap:3px;}
+.gb-bubble-name{font-family:'UnifontExMono',monospace;font-size:10px;color:var(--accent);font-weight:600;}
+.gb-bubble-name.sys{color:var(--cyan);}
+.gb-bubble{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.06);border-radius:2px 8px 8px 8px;padding:7px 11px;font-family:'UnifontExMono',monospace;font-size:11px;color:var(--ink-2);line-height:1.5;}
+.gb-bubble-date{font-family:'VCRMono',monospace;font-size:9px;color:var(--ink-3);margin-top:2px;}
 
-/* ============== EDUCATION / TIMELINE ============== */
-.edu-list { display: flex; flex-direction: column; }
-.edu-item {
-  display: grid;
-  grid-template-columns: 1fr 3fr 2fr;
-  gap: clamp(16px, 3vw, 48px);
-  padding: 32px 0;
-  border-top: 1px solid var(--rule);
-  align-items: baseline;
-  transition: background 0.3s;
-}
-.edu-item:last-child { border-bottom: 1px solid var(--rule); }
-.edu-item:hover { background: var(--paper-2); }
-.edu-year {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  color: var(--accent);
-}
-.edu-deg {
-  font-family: var(--serif);
-  font-size: clamp(22px, 2.2vw, 30px);
-  line-height: 1.2;
-  color: var(--ink);
-  font-weight: 400;
-}
-.edu-deg em { font-style: italic; color: var(--accent); }
-.edu-school {
-  font-family: var(--sans);
-  font-size: 13px;
-  color: var(--ink-2);
-  line-height: 1.55;
-}
-.edu-school .honor {
-  display: block;
-  margin-top: 4px;
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--ink);
-}
+/* colophon */
+.colophon{padding:clamp(80px,14vh,160px) 48px;text-align:center;}
+.colophon-mark{font-family:'VCRMono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:28px;display:flex;justify-content:center;align-items:center;gap:14px;}
+.colophon-mark::before,.colophon-mark::after{content:'';width:44px;height:1px;background:var(--accent);}
+.colophon-title{font-family:'KiwiSoda',cursive;font-size:clamp(56px,9vw,140px);line-height:.92;color:var(--ink);margin-bottom:20px;}
+.colophon-title em{color:var(--accent);font-style:normal;}
+.colophon-sub{font-family:'UnifontExMono',monospace;font-size:clamp(14px,1.4vw,17px);color:var(--ink-2);max-width:36ch;margin:0 auto 40px;line-height:1.5;}
+.colophon-links{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;}
+footer{padding:22px 48px;border-top:1px solid var(--rule);display:grid;grid-template-columns:1fr 1fr 1fr;font-family:'VCRMono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);}
+footer .fc{text-align:center;}
+footer .fr{text-align:right;}
+footer .acc{color:var(--accent);}
 
-/* ============== PUBLICATIONS ============== */
-.pubs-head { display: flex; justify-content: space-between; align-items: end; margin-bottom: 40px; gap: 32px; flex-wrap: wrap; }
-.pub-filter {
-  display: flex;
-  gap: 0;
-  border: 1px solid var(--rule);
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-.pub-filter button {
-  flex: 1;
-  padding: 10px 12px;
-  background: transparent;
-  border: none;
-  border-right: 1px solid var(--rule);
-  color: var(--ink-2);
-  cursor: pointer;
-  transition: all 0.2s;
-  font-family: inherit;
-  font-size: inherit;
-  letter-spacing: inherit;
-  text-transform: inherit;
-  text-align: center;
-}
-.pub-filter button:last-child { border-right: none; }
-.pub-filter button:hover { color: var(--ink); }
-.pub-filter button.active { background: var(--ink); color: var(--paper); }
-.pub-filter .count { opacity: 0.5; margin-left: 6px; }
+/* buttons */
+@keyframes pearl{0%{background-position:200% center;opacity:1;}100%{background-position:-200% center;opacity:0;}}
+.btn{position:relative;display:inline-flex;align-items:center;cursor:none;font-family:'VCRMono',monospace;text-transform:uppercase;letter-spacing:.12em;border:none;outline:none;overflow:hidden;transition:transform .08s,box-shadow .08s;user-select:none;text-decoration:none;min-height:44px;}
+.btn::after{content:'';position:absolute;inset:0;background:linear-gradient(105deg,transparent 20%,rgba(255,255,255,.5) 40%,rgba(187,104,201,.35) 50%,rgba(249,229,249,.4) 55%,transparent 70%);background-size:300% 100%;opacity:0;pointer-events:none;}
+.btn.flash::after{animation:pearl .5s ease forwards;}
+.btn-border{padding:13px 26px;font-size:12px;color:var(--ink);background:var(--paper-2);border:1px solid var(--rule);box-shadow:3px 3px 0 var(--rule);}
+.btn-border:hover{border-color:var(--accent);box-shadow:3px 3px 0 var(--accent);color:var(--accent);}
+.btn-accent{padding:13px 26px;font-size:12px;color:var(--paper);background:var(--accent);box-shadow:3px 3px 0 var(--accent-2);}
+.btn-accent:hover{background:#ca80d8;}
 
-.pub-list { }
-.pub-item {
-  display: grid;
-  grid-template-columns: 1fr 180px;
-  gap: clamp(16px, 3vw, 48px);
-  padding: 28px 0;
-  border-top: 1px solid var(--rule);
-  align-items: baseline;
-  transition: background 0.25s, padding 0.25s;
-}
-.pub-item:last-child { border-bottom: 1px solid var(--rule); }
-.pub-item:hover { background: var(--paper-2); padding-left: 10px; padding-right: 10px; }
-.pub-item.hidden { display: none; }
-.pub-num {
-  font-family: var(--serif);
-  font-size: 28px;
-  color: var(--ink-3);
-  font-style: italic;
-  font-weight: 300;
-}
-.pub-main { }
-.pub-title {
-  font-family: var(--serif);
-  font-size: clamp(18px, 1.6vw, 22px);
-  line-height: 1.28;
-  color: var(--ink);
-  font-weight: 400;
-  margin-bottom: 8px;
-  letter-spacing: -0.005em;
-}
-.pub-authors {
-  font-family: var(--sans);
-  font-size: 12px;
-  color: var(--ink-2);
-  line-height: 1.55;
-  margin-bottom: 4px;
-}
-.pub-authors .me { color: var(--ink); font-weight: 500; border-bottom: 1px solid var(--accent); }
-.pub-venue {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.08em;
-  color: var(--ink-3);
-  text-transform: uppercase;
-}
-.pub-side {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  align-items: flex-start;
-}
-.pub-status {
-  font-family: var(--mono);
-  font-size: 9px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  padding: 4px 10px;
-  border: 1px solid currentColor;
-}
-.pub-status.s-presented { color: var(--accent); background: var(--accent-soft); border-color: transparent; }
-.pub-status.s-review    { color: var(--ink); }
-.pub-status.s-progress  { color: var(--ink-2); border-style: dashed; }
-.pub-year {
-  font-family: var(--mono);
-  font-size: 10px;
-  color: var(--ink-3);
-}
-
-/* ============== EXPERIENCE ============== */
-.exp-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0;
-  border-top: 1px solid var(--rule);
-  border-left: 1px solid var(--rule);
-}
-.exp-card {
-  padding: 36px 40px;
-  border-right: 1px solid var(--rule);
-  border-bottom: 1px solid var(--rule);
-  background: var(--paper);
-  transition: background 0.3s;
-  position: relative;
-}
-.exp-card:hover { background: var(--paper-2); }
-.exp-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0;
-  width: 8px; height: 8px;
-  background: var(--accent);
-  transform: translate(-4px, -4px);
-  border-radius: 50%;
-}
-.exp-period {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 20px;
-}
-.exp-role {
-  font-family: var(--serif);
-  font-size: clamp(24px, 2.2vw, 32px);
-  line-height: 1.15;
-  color: var(--ink);
-  margin-bottom: 6px;
-  font-weight: 400;
-}
-.exp-org {
-  font-family: var(--sans);
-  font-size: 12px;
-  color: var(--ink-2);
-  margin-bottom: 20px;
-  line-height: 1.5;
-}
-.exp-bullets { list-style: none; }
-.exp-bullets li {
-  font-size: 14px;
-  line-height: 1.6;
-  color: var(--ink);
-  padding: 8px 0 8px 22px;
-  position: relative;
-  border-top: 1px dashed var(--rule);
-}
-.exp-bullets li:first-child { border-top: none; }
-.exp-bullets li::before {
-  content: '→';
-  position: absolute; left: 0; top: 8px;
-  color: var(--accent);
-  font-family: var(--mono);
-}
-
-/* ============== SKILLS ============== */
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 0;
-  border-top: 1px solid var(--rule);
-  border-left: 1px solid var(--rule);
-}
-.skill-col {
-  padding: 28px;
-  border-right: 1px solid var(--rule);
-  border-bottom: 1px solid var(--rule);
-}
-.skill-col h4 {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 18px;
-  display: flex;
-  justify-content: space-between;
-}
-.skill-col h4 .n { color: var(--ink-3); font-weight: 400; }
-.skill-col ul { list-style: none; }
-.skill-col li {
-  font-family: var(--serif);
-  font-size: 20px;
-  line-height: 1.4;
-  color: var(--ink);
-  font-weight: 400;
-  padding: 2px 0;
-}
-.skill-col li em {
-  font-family: var(--mono);
-  font-style: normal;
-  font-size: 10px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-  margin-left: 6px;
-}
-
-/* ============== AWARDS ============== */
-.awards-list { }
-.award-item {
-  display: grid;
-  grid-template-columns: 120px 1fr 1fr;
-  gap: clamp(16px, 3vw, 48px);
-  padding: 22px 0;
-  border-top: 1px solid var(--rule);
-  align-items: center;
-  line-height: 1.4;
-}
-.award-item:last-child { border-bottom: 1px solid var(--rule); }
-.award-year {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.06em;
-  color: var(--accent);
-  font-weight: 400;
-  font-variant-numeric: tabular-nums;
-}
-.award-name {
-  font-family: var(--serif);
-  font-size: clamp(18px, 1.6vw, 22px);
-  color: var(--ink);
-  font-weight: 400;
-  line-height: 1.3;
-  letter-spacing: -0.005em;
-}
-.award-org {
-  font-family: var(--sans);
-  font-size: 12px;
-  color: var(--ink-2);
-  line-height: 1.5;
-  font-weight: 400;
-}
-
-/* ============== COLOPHON / CONTACT ============== */
-.colophon {
-  padding-top: clamp(80px, 14vh, 160px);
-  padding-bottom: clamp(80px, 14vh, 160px);
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-.colophon-mark {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 32px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 14px;
-}
-.colophon-mark::before, .colophon-mark::after {
-  content: ''; width: 44px; height: 1px; background: var(--accent);
-}
-.colophon-title {
-  font-family: var(--serif);
-  font-weight: 400;
-  font-size: clamp(60px, 11vw, 180px);
-  line-height: 0.92;
-  letter-spacing: -0.035em;
-  color: var(--ink);
-  margin-bottom: 28px;
-}
-.colophon-title em { font-style: italic; color: var(--accent); }
-.colophon-sub {
-  font-family: var(--serif);
-  font-size: clamp(18px, 1.8vw, 22px);
-  font-style: italic;
-  color: var(--ink-2);
-  max-width: 40ch;
-  margin: 0 auto 52px;
-  line-height: 1.4;
-}
-.colophon-links {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  flex-wrap: wrap;
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-.colophon-links a {
-  padding: 14px 26px;
-  color: var(--ink);
-  text-decoration: none;
-  border: 1px solid var(--rule);
-  transition: all 0.25s;
-}
-.colophon-links a:hover {
-  background: var(--ink);
-  color: var(--paper);
-  border-color: var(--ink);
-}
-.colophon-links a.primary {
-  background: var(--accent);
-  color: var(--paper);
-  border-color: var(--accent);
-}
-.colophon-links a.primary:hover {
-  background: var(--ink);
-  border-color: var(--ink);
-}
-
-/* ============== FOOTER ============== */
-footer {
-  padding: 24px var(--margin);
-  border-top: 1px solid var(--rule);
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 16px;
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.08em;
-  color: var(--ink-3);
-  text-transform: uppercase;
-  background: var(--paper);
-}
-footer .center { text-align: center; }
-footer .right { text-align: right; }
-footer .accent { color: var(--accent); }
-
-/* ============== REVEAL ============== */
-.reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.7s ease, transform 0.7s ease; }
-.reveal.visible { opacity: 1; transform: none; }
-
-/* ============== TWEAKS PANEL ============== */
-#tweaks-panel {
-  display: none;
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  width: 260px;
-  background: var(--paper);
-  border: 1px solid var(--ink);
-  padding: 20px;
-  z-index: 8000;
-  box-shadow: 4px 4px 0 var(--accent);
-  font-family: var(--mono);
-}
-#tweaks-panel h3 {
-  font-size: 10px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 4px;
-}
-#tweaks-panel .sub {
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: 13px;
-  color: var(--ink-2);
-  margin-bottom: 18px;
-}
-.tweak-row { margin-bottom: 16px; }
-.tweak-label {
-  font-size: 9px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-  display: block;
-  margin-bottom: 8px;
-}
-.tweak-opts {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 4px;
-}
-.tweak-btn {
-  padding: 8px 6px;
-  background: transparent;
-  border: 1px solid var(--rule);
-  color: var(--ink-2);
-  font-family: inherit;
-  font-size: 10px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-.tweak-btn:hover { color: var(--ink); border-color: var(--ink); }
-.tweak-btn.active {
-  background: var(--ink);
-  color: var(--paper);
-  border-color: var(--ink);
-}
-
-/* ============== VIEW ROUTER ============== */
-.chapter { display: none; }
-.chapter.active { display: block; animation: chapterIn 0.5s ease both; }
-@keyframes chapterIn {
-  from { opacity: 0; transform: translateY(12px); }
-  to { opacity: 1; transform: none; }
-}
-body[data-view="index"] .chapter { display: none; }
-body[data-view="index"] #home { display: grid; }
-body:not([data-view="index"]) #home { display: none; }
-body:not([data-view="index"]) .masthead-tag { display: none; }
-
-/* TOC on index */
-.toc {
-  margin-top: clamp(48px, 8vh, 96px);
-  padding-top: 32px;
-  border-top: 1px solid var(--rule);
-}
-.toc-head {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-  margin-bottom: 20px;
-  display: flex;
-  justify-content: space-between;
-}
-.toc-list { list-style: none; display: flex; flex-direction: column; }
-.toc-item {
-  display: grid;
-  grid-template-columns: 60px 1fr auto 44px;
-  gap: clamp(16px, 3vw, 40px);
-  align-items: baseline;
-  padding: 18px 0;
-  border-top: 1px solid var(--rule);
-  cursor: pointer;
-  text-decoration: none;
-  color: inherit;
-  transition: padding 0.25s, background 0.25s;
-}
-.toc-item:last-child { border-bottom: 1px solid var(--rule); }
-.toc-item:hover { padding-left: 12px; padding-right: 12px; background: var(--paper-2); }
-.toc-item .n {
-  font-family: var(--mono);
-  font-size: 11px;
-  color: var(--accent);
-  letter-spacing: 0.1em;
-}
-.toc-item .title {
-  font-family: var(--serif);
-  font-size: clamp(22px, 2.4vw, 32px);
-  font-weight: 400;
-  color: var(--ink);
-  line-height: 1.1;
-  letter-spacing: -0.01em;
-}
-.toc-item .title em { font-style: italic; color: var(--accent); }
-.toc-item .desc {
-  font-family: var(--sans);
-  font-size: 12px;
-  color: var(--ink-2);
-  text-align: right;
-  max-width: 32ch;
-  line-height: 1.5;
-}
-.toc-item .arrow {
-  font-family: var(--mono);
-  font-size: 16px;
-  color: var(--ink-3);
-  text-align: right;
-  transition: color 0.2s, transform 0.25s;
-}
-.toc-item:hover .arrow { color: var(--accent); transform: translateX(6px); }
-
-/* Chapter back button */
-.chapter-back {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 32px;
-  padding: 9px 16px 9px 12px;
-  border: 1px solid var(--rule);
-  background: transparent;
-  color: var(--ink-2);
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  cursor: pointer;
-  text-decoration: none;
-  transition: all 0.2s;
-}
-.chapter-back:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
-.chapter-back::before { content: '← '; margin-right: 6px; }
-
-/* prev/next chapter links */
-.chapter-nav {
-  margin-top: clamp(48px, 8vh, 96px);
-  padding-top: 32px;
-  border-top: 1px solid var(--rule);
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-}
-.chapter-nav a {
-  padding: 20px 24px;
-  border: 1px solid var(--rule);
-  text-decoration: none;
-  color: var(--ink);
-  transition: all 0.25s;
-  font-family: var(--sans);
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-.chapter-nav a:hover { background: var(--paper-2); border-color: var(--ink); }
-.chapter-nav a.next { text-align: right; }
-.chapter-nav .cn-label {
-  font-family: var(--mono);
-  font-size: 9px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--accent);
-}
-.chapter-nav .cn-title {
-  font-family: var(--serif);
-  font-size: 20px;
-  letter-spacing: -0.01em;
-}
-.chapter-nav .cn-title em { font-style: italic; }
-.chapter-nav a.disabled { opacity: 0.3; pointer-events: none; }
-
-/* ============== CURSOR CIRCLE ============== */
-.cursor-circle {
-  position: fixed;
-  width: 36px;
-  height: 36px;
-  background: rgba(182, 48, 31, 0.5);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 9999;
-  transform: translate(-50%, -50%);
-  transition: width 0.15s, height 0.15s, opacity 0.15s, filter 0.15s;
-  filter: blur(12px);
-}
-.cursor-circle.hover {
-  width: 56px;
-  height: 56px;
-  filter: blur(16px);
-}
-@media (hover: none) {
-  .cursor-circle { display: none; }
-}
-
-/* ============== RESPONSIVE ============== */
-/* ============== GUESTBOOK ============== */
-.guestbook {
-  margin-top: 64px;
-  padding-top: 48px;
-  border-top: 1px solid var(--rule);
-  text-align: left;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-}
-.guestbook-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  margin-bottom: 24px;
-}
-.guestbook-title {
-  font-family: var(--serif);
-  font-size: clamp(22px, 2.5vw, 28px);
-  color: var(--ink);
-  margin-bottom: 6px;
-  font-weight: 400;
-  text-align: center;
-}
-.guestbook-desc {
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: 16px;
-  color: var(--ink-2);
-  margin-bottom: 12px;
-  text-align: center;
-}
-.gb-sort-btn {
-  font-family: var(--mono);
-  font-size: 8px;
-  letter-spacing: 0.08em;
-  padding: 4px 8px;
-  background: transparent;
-  border: 1px solid var(--rule);
-  color: var(--ink-3);
-  cursor: pointer;
-  white-space: nowrap;
-  transition: all 0.2s;
-}
-.gb-sort-btn:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-  text-align: center;
-}
-.guestbook-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-.guestbook-list li {
-  font-family: var(--sans);
-  font-size: 12px;
-  color: var(--ink);
-  line-height: 1.8;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 4px;
-}
-.guestbook-list .guestbook-name {
-  font-weight: 500;
-  color: #fff;
-  background: var(--accent);
-  padding: 1px 5px;
-  margin-right: 6px;
-  font-size: 11px;
-  vertical-align: middle;
-  display: inline-block;
-}
-.guestbook-list .guestbook-name::after {
-  content: '';
-}
-.guestbook-list .date {
-  display: block;
-  width: 100%;
-  margin-top: 2px;
-  font-family: var(--mono);
-  font-size: 10px;
-  color: var(--ink-3);
-  letter-spacing: 0.06em;
-}
-.guestbook-empty {
-  font-family: var(--sans);
-  font-size: 14px;
-  color: var(--ink-3);
-  font-style: italic;
-}
-.guestbook-pagination {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 6px;
-  margin-top: 20px;
-  font-family: var(--mono);
-  font-size: 10px;
-}
-.guestbook-pagination button {
-  padding: 5px 10px;
-  background: transparent;
-  border: 1px solid var(--rule);
-  color: var(--ink-2);
-  cursor: pointer;
-  transition: all 0.2s;
-}
-.guestbook-pagination button:hover {
-  border-color: var(--ink);
-  color: var(--ink);
-}
-.guestbook-pagination button:disabled {
-  opacity: 0.3;
-  cursor: default;
-}
-.guestbook-pagination button:disabled:hover {
-  border-color: var(--rule);
-  color: var(--ink-2);
-}
-
-/* ============== GUESTBOOK SECTION ============== */
-.guestbook-section {
-  border-bottom: none;
-}
-.guestbook-section .sec-head {
-  margin-bottom: 0;
-  text-align: center;
-}
-.gb-subtitle {
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: 14px;
-  color: var(--ink-2);
-  margin-top: 6px;
-  margin-bottom: 0;
-}
-.guestbook-content {
-  max-width: 600px;
-  margin: 0 auto;
-}
-.gb-form-wrap {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 16px;
-  margin-top: 8px;
-  flex-wrap: wrap;
-  align-items: center;
-}
-.gb-form-wrap input {
-  padding: 10px 14px;
-  font-family: var(--sans);
-  font-size: 13px;
-  color: var(--ink);
-  background: var(--paper-2);
-  border: 1px solid var(--rule);
-  outline: none;
-  transition: border-color 0.2s;
-}
-.gb-form-wrap input:focus {
-  border-color: var(--accent);
-}
-.gb-form-wrap input::placeholder {
-  color: var(--ink-3);
-}
-#gb-name {
-  width: 140px;
-}
-#gb-message {
-  flex: 1;
-  min-width: 200px;
-}
-.gb-submit-btn {
-  padding: 10px 18px;
-  font-family: var(--mono);
-  font-size: 12px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #fff;
-  background: var(--accent);
-  border: none;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-.gb-submit-btn:hover {
-  background: var(--accent-2);
-}
-.gb-controls {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 24px;
-}
-.gb-ctrl-btn {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.08em;
-  padding: 6px 12px;
-  background: transparent;
-  border: 1px solid var(--rule);
-  color: var(--ink-2);
-  cursor: pointer;
-  transition: all 0.2s;
-}
-.gb-ctrl-btn:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-}
-.gb-ctrl-btn.active {
-  background: var(--ink);
-  color: var(--paper);
-  border-color: var(--ink);
-}
-.gb-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-.gb-list li {
-  font-family: var(--sans);
-  font-size: 14px;
-  color: var(--ink);
-  line-height: 1.6;
-  padding-bottom: 16px;
-  border-bottom: 1px solid var(--rule);
-}
-.gb-list li:last-child {
-  border-bottom: none;
-}
-.gb-list .gb-name {
-  font-weight: 500;
-  color: #fff;
-  background: var(--accent);
-  padding: 2px 8px;
-  margin-right: 8px;
-  font-size: 12px;
-}
-.gb-list .gb-date {
-  display: block;
-  font-family: var(--mono);
-  font-size: 10px;
-  color: var(--ink-3);
-  margin-top: 6px;
-  letter-spacing: 0.04em;
-}
-.gb-pagination {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  margin-top: 32px;
-}
-.gb-pagination .gb-ctrl-btn {
-  min-width: 100px;
-  text-align: center;
-}
-.gb-page-info {
-  font-family: var(--mono);
-  font-size: 11px;
-  color: var(--ink-2);
-  letter-spacing: 0.05em;
-  min-width: 50px;
-  text-align: center;
-}
-.gb-ctrl-btn:disabled {
-  opacity: 0.3;
-  cursor: default;
-}
-.gb-ctrl-btn:disabled:hover {
-  border-color: var(--rule);
-  color: var(--ink-2);
-}
-
-/* ============== GATE ============== */
-#gate {
-  position: fixed;
-  inset: 0;
-  z-index: 9000;
-  background: var(--paper);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: opacity 0.6s ease, visibility 0.6s ease;
-}
-#gate.hidden {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-}
-.gate-content {
-  text-align: center;
-  padding: 40px;
-}
-.gate-name {
-  font-family: var(--serif);
-  font-size: clamp(32px, 6vw, 56px);
-  font-weight: 400;
-  letter-spacing: -0.02em;
-  color: var(--ink);
-  margin-bottom: 0;
-}
-.gate-desc {
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: 16px;
-  color: var(--ink-2);
-  margin-bottom: 24px;
-}
-.gate-input-wrap {
-  position: relative;
-  display: inline-block;
-}
-.gate-prompt {
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: 16px;
-  color: var(--ink-2);
-  margin-bottom: 16px;
-}
-#gate-name,
-#gate-input {
-  font-family: var(--sans);
-  font-size: 16px;
-  padding: 14px 20px;
-  border: 1px solid var(--rule);
-  background: transparent;
-  color: var(--ink);
-  text-align: center;
-  outline: none;
-  transition: border-color 0.2s;
-  display: block;
-  margin: 0 auto 12px;
-}
-#gate-name {
-  width: min(280px, 70vw);
-  font-size: 14px;
-  padding: 12px 16px;
-}
-#gate-input {
-  width: min(400px, 80vw);
-}
-#gate-name::placeholder,
-#gate-input::placeholder {
-  color: var(--ink-3);
-}
-#gate-name:focus,
-#gate-input:focus {
-  border-color: var(--accent);
-}
-.gate-hint {
-  display: block;
-  margin-top: 8px;
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-  cursor: pointer;
-}
-
-.gate-btn {
-  display: none; /* desktop: hidden — keyboard Enter is enough */
-  margin: 6px auto 4px;
-  padding: 13px 28px;
-  min-height: 44px;
-  background: var(--accent);
-  color: var(--paper);
-  border: 1px solid var(--accent);
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: background 0.2s, transform 0.1s;
-  -webkit-tap-highlight-color: transparent;
-  width: min(400px, 80vw);
-}
-.gate-btn:hover { background: var(--accent-2); }
-.gate-btn:active { transform: scale(0.98); }
-.gate-btn:disabled {
-  opacity: 0.4;
-  cursor: default;
-  transform: none;
-}
-
-@media (max-width: 720px) {
-  .skills-grid { grid-template-columns: repeat(2, 1fr); }
-}
-@media (max-width: 880px) {
-  .hero-lede, .about-grid { grid-template-columns: 1fr; }
-  .hero-meta { grid-template-columns: 1fr 1fr; }
-  .sec-head { grid-template-columns: 1fr; }
-  .toc-item { grid-template-columns: 36px 1fr 24px; gap: 12px; }
-  .toc-item .desc { display: none; }
-  .chapter-nav { grid-template-columns: 1fr; }
-  .skills-grid { grid-template-columns: repeat(2, 1fr); }
-  .topnav { display: none; }
-  .masthead-guestbook { display: none; }
-  .menu-toggle { display: inline-flex; }
-  .pub-item { grid-template-columns: 1fr; gap: 8px; }
-  .pub-item .pub-num { font-size: 20px; }
-  .pub-side { flex-direction: row; align-items: center; gap: 10px; }
-  .exp-grid, .skills-grid { grid-template-columns: 1fr; }
-  .edu-item { grid-template-columns: 1fr; gap: 6px; }
-  .award-item { grid-template-columns: 1fr; gap: 2px; }
-  .award-org { text-align: left; }
-  .masthead { grid-template-columns: 1fr auto; }
-  .masthead .right { display: none; }
-  .masthead .center { text-align: left; }
-}
-
-/* ============== MOBILE (≤ 760px) ============== */
-@media (max-width: 760px) {
-  :root {
-    --margin: 20px;
-  }
-  html, body { overflow-x: hidden; }
-  body { font-size: 14px; }
-
-  .masthead {
-    padding: 12px var(--margin);
-    gap: 12px;
-  }
-  .masthead .left a {
-    font-size: 17px;
-    letter-spacing: 0.02em;
-  }
-
-  /* SECTION padding tightens */
-  section {
-    padding: 72px var(--margin) 56px;
-  }
-  .hero {
-    min-height: auto;
-    padding-top: 48px !important;
-    padding-bottom: 72px !important;
-  }
-
-  /* HERO */
-  .hero-kicker {
-    margin-bottom: 28px;
-    font-size: 10px;
-    letter-spacing: 0.14em;
-    flex-wrap: wrap;
-  }
-  .hero-kicker::before { width: 24px; }
-  .hero-title {
-    font-size: clamp(56px, 18vw, 88px);
-    line-height: 0.9;
-    letter-spacing: -0.03em;
-    margin-bottom: 32px;
-    word-break: keep-all;
-  }
-  .hero-title-row {
-    flex-direction: column;
-    gap: 4px;
-  }
-  .guestbook-btn {
-    margin-top: 0;
-    padding: 8px 18px;
-    font-size: 10px;
-    align-self: flex-start;
-  }
-  .hero-guestbook {
-    width: 100%;
-    max-width: 100%;
-    padding: 16px;
-    margin-top: 20px;
-    border: 2px dashed var(--rule);
-  }
-  /* Guestbook section */
-  .guestbook-section .sec-head { margin-bottom: 12px; }
-  .gb-subtitle { font-size: 12px; margin-bottom: 6px; }
-  .gb-form-wrap {
-    flex-direction: column;
-    gap: 4px;
-  }
-  .gb-form-wrap input {
-    font-size: 13px;
-    padding: 8px 10px;
-    width: 100%;
-  }
-  #gb-name { width: 100%; }
-  #gb-message { min-width: auto; }
-  .gb-submit-btn { padding: 8px 14px; font-size: 10px; width: 100%; }
-  .gb-controls { flex-wrap: wrap; margin-top: 8px; }
-  .gb-list li { font-size: 13px; }
-  .hero-lede {
-    gap: 24px;
-    padding-top: 24px;
-    margin-top: 16px;
-  }
-  .hero-deck {
-    font-size: 20px;
-    line-height: 1.35;
-    max-width: 100%;
-  }
-  .hero-meta {
-    grid-template-columns: 1fr;
-    gap: 20px;
-    font-size: 9px;
-    text-align: center;
-    justify-items: center;
-  }
-  .hero-meta > div { width: 100%; }
-  .hero-meta dt {
-    font-size: 9px;
-    letter-spacing: 0.2em;
-    margin-bottom: 6px;
-  }
-  .hero-meta dd {
-    font-size: 13px;
-    line-height: 1.5;
-    word-break: break-word;
-    overflow-wrap: anywhere;
-  }
-  .hero-scroll { display: none; }
-
-  /* SECTION HEADS */
-  .sec-head {
-    margin-bottom: 36px;
-    gap: 16px;
-  }
-  .sec-title {
-    font-size: clamp(36px, 9vw, 52px);
-    line-height: 1;
-    letter-spacing: -0.02em;
-  }
-  .sec-title br { display: none; }
-  .sec-eyebrow { font-size: 9px; letter-spacing: 0.18em; margin-bottom: 8px; }
-  .sec-desc { font-size: 13px; }
-
-  /* ABOUT */
-  .about-grid { gap: 28px; }
-  .about-portrait { max-width: 320px; margin: 0 auto; }
-  .about-body { text-align: center; }
-  .pull-quote { font-size: 22px; margin-bottom: 24px; text-align: center; }
-  .about-body p { font-size: 13px; line-height: 1.6; text-align: center; }
-  .about-body .drop-cap::first-letter {
-    font-size: 3.4em;
-    padding: 4px 8px 0 0;
-  }
-  .tag-row { gap: 4px 14px; font-size: 9px; letter-spacing: 0.1em; margin-top: 28px; }
-
-  /* EDUCATION */
-  .edu-item { padding: 22px 0; gap: 8px; }
-  .edu-item:hover { background: transparent; }
-  .edu-year { font-size: 10px; }
-  .edu-deg { font-size: 22px; line-height: 1.2; }
-  .edu-school { font-size: 13px; }
-
-  /* PUBLICATIONS */
-  .pubs-head { margin-bottom: 28px; }
-  .pub-filter {
-    width: 100%;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    flex-wrap: nowrap;
-  }
-  .pub-filter::-webkit-scrollbar { display: none; }
-  .pub-filter button {
-    padding: 9px 13px;
-    font-size: 9px;
-    letter-spacing: 0.1em;
-    white-space: nowrap;
-    flex-shrink: 0;
-  }
-  .pub-item { padding: 22px 0; }
-  .pub-item:hover { padding-left: 0; padding-right: 0; background: transparent; }
-  .pub-title {
-    font-size: 17px !important;
-    line-height: 1.3;
-    word-break: keep-all;
-    overflow-wrap: anywhere;
-  }
-  .pub-authors { font-size: 12px; }
-  .pub-venue { font-size: 9px; }
-  .pub-side { margin-top: 10px; }
-  .pub-status { font-size: 8px; padding: 3px 8px; letter-spacing: 0.14em; }
-  .pub-year { font-size: 10px; }
-
-  /* EXPERIENCE */
-  .exp-card { padding: 26px 22px; }
-  .exp-card:hover { background: var(--paper); }
-  .exp-role { font-size: 22px; line-height: 1.2; }
-  .exp-org { font-size: 12px; }
-  .exp-bullets li { font-size: 13px; padding: 8px 0 8px 20px; line-height: 1.55; }
-  .exp-period { font-size: 9px; margin-bottom: 14px; }
-
-  /* SKILLS */
-  .skill-col { padding: 22px 20px; }
-  .skill-col h4 { font-size: 9px; margin-bottom: 14px; letter-spacing: 0.14em; }
-  .skill-col li { font-size: 17px; line-height: 1.5; }
-  .skill-col li em { font-size: 9px; }
-
-  /* AWARDS */
-  .award-item { padding: 18px 0; }
-  .award-year { font-size: 10px; }
-  .award-name { font-size: 17px !important; line-height: 1.3; }
-  .award-org { font-size: 12px; }
-
-  /* COLOPHON */
-  .colophon { padding-top: 72px; padding-bottom: 80px; }
-  .colophon-mark { font-size: 9px; letter-spacing: 0.2em; margin-bottom: 24px; }
-  .colophon-mark::before, .colophon-mark::after { width: 28px; }
-  .colophon-title {
-    font-size: clamp(48px, 14vw, 80px);
-    line-height: 0.95;
-    margin-bottom: 20px;
-  }
-  .colophon-sub { font-size: 16px; margin-bottom: 36px; }
-  .colophon-links {
-    flex-direction: column;
-    gap: 8px;
-    padding: 0 8px;
-  }
-  .colophon-links a {
-    padding: 14px 18px;
-    font-size: 10px;
-    letter-spacing: 0.14em;
-    width: 100%;
-    text-align: center;
-    display: block;
-  }
-
-  /* FOOTER */
-  footer {
-    grid-template-columns: 1fr;
-    gap: 8px;
-    text-align: left;
-    padding: 20px var(--margin);
-    font-size: 8px;
-    letter-spacing: 0.06em;
-  }
-  footer .right { text-align: left; }
-  footer .center {
-    text-align: center;
-    font-size: 7px;
-    letter-spacing: 0.01em;
-    line-height: 1.5;
-    white-space: normal;
-    word-break: keep-all;
-  }
-
-  /* TOC (home index) */
-  .toc { margin-top: 48px; padding-top: 24px; }
-  .toc-head { font-size: 9px; letter-spacing: 0.18em; margin-bottom: 14px; text-align: center; justify-content: center; }
-  .toc-item {
-    padding: 16px 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 6px;
-  }
-  .toc-item:hover { padding-left: 0; padding-right: 0; background: transparent; }
-  .toc-item .n { font-size: 10px; order: 1; }
-  .toc-item .title { font-size: 20px; line-height: 1.15; order: 2; }
-  .toc-item .arrow { font-size: 14px; display: none; }
-  .toc-item .desc { display: none; }
-
-  /* Chapter nav + back */
-  .chapter-back { margin-bottom: 24px; padding: 8px 14px 8px 10px; font-size: 9px; }
-  .chapter-nav { margin-top: 48px; padding-top: 24px; }
-  .chapter-nav a { padding: 16px 18px; }
-  .chapter-nav .cn-title { font-size: 17px; }
-  .chapter-nav .cn-label { font-size: 8px; }
-
-  /* GUESTBOOK */
-  .guestbook { margin-top: 48px; padding-top: 32px; }
-  .guestbook-title { font-size: 20px; }
-  .guestbook-desc { font-size: 14px; margin-bottom: 22px; }
-  .guestbook-list li { font-size: 12px; line-height: 1.7; }
-
-
-  /* GATE — iOS zoom prevention (≥16px) + spacing */
-  .gate-content { padding: 24px; width: 100%; }
-  .gate-name { font-size: clamp(30px, 9vw, 44px); margin-bottom: 4px; }
-  .gate-desc { font-size: 14px; margin-bottom: 20px; }
-  .gate-hint { font-size: 9px; letter-spacing: 0.12em; }
-
-  /* TWEAKS PANEL */
-  #tweaks-panel {
-    bottom: 12px;
-    right: 12px;
-    left: 12px;
-    width: auto;
-    max-height: 75vh;
-    overflow-y: auto;
-    padding: 16px;
-  }
-
-  /* CURSOR — already hidden on touch, but belt-and-suspenders */
-  .cursor-circle { display: none; }
-
-  /* Prevent long URLs/emails from overflowing */
-  a, p, dd, .pub-title, .award-name, .exp-role, .edu-deg, .sec-title {
-    overflow-wrap: anywhere;
-  }
-}
-
-/* Extra small phones */
-@media (max-width: 380px) {
-  :root { --margin: 16px; }
-  .hero-title { font-size: clamp(44px, 16vw, 64px); }
-  .sec-title { font-size: clamp(32px, 10vw, 44px); }
-  .colophon-title { font-size: clamp(40px, 14vw, 64px); }
-  .masthead .left a { font-size: 15px; }
+/* mobile */
+@media(max-width:768px){
+  :root{--mh:54px;}
+  .masthead{padding:0 20px;}
+  .topnav{display:none;}
+  .menu-toggle{display:flex;}
+  body.in-chapter #ch-nav{padding:0 20px;}
+  .hero{padding:28px 20px 80px;}
+  .hero-lede{grid-template-columns:1fr;gap:32px;}
+  .hero-meta{grid-template-columns:1fr;}
+  .toc-item{grid-template-columns:44px 1fr auto;gap:12px;padding:14px 0;}
+  .toc-num{font-size:22px;}
+  .toc-label{font-size:22px;}
+  .folio{left:20px;right:20px;top:16px;}
+  .ch-sec{padding:28px 20px 80px;}
+  .sec-head{grid-template-columns:1fr;gap:16px;}
+  .edu-row{grid-template-columns:1fr;gap:4px;}
+  .edu-school{text-align:left;}
+  .pub-row{grid-template-columns:1fr;gap:8px;}
+  .exp-row{grid-template-columns:1fr;gap:12px;}
+  .exp-idx{display:none;}
+  .skills-grid{grid-template-columns:1fr 1fr;}
+  .award-row{grid-template-columns:80px 1fr;gap:12px;}
+  .award-org{text-align:left;grid-column:2;}
+  .gb-body{padding:14px;}
+  #gb-name{width:80px;}
+  .colophon{padding:60px 20px 80px;}
+  footer{grid-template-columns:1fr;gap:4px;padding:16px 20px;}
+  footer .fr,.fc{text-align:left;}
+  #about-windows{display:none!important;}
+  #about-text{opacity:1!important;transform:none!important;pointer-events:auto!important;}
+  #about-close-btn{display:none!important;}
+  .about-text-wrap{margin-top:0!important;}
+  .chnb{padding:0 12px;font-size:10px;}
+}
+@media(max-width:480px){
+  .hero-title{font-size:clamp(52px,16vw,80px);}
+  .skills-grid{grid-template-columns:1fr;}
+}
+@media(pointer:fine){
+  a,button{cursor:none;}
 }
 </style>
-<script src="gps-collector.js" defer></script>
 </head>
 <body>
 
-<!-- ================= GATE (Landing) ================= -->
+<!-- Gate -->
 <div id="gate">
-  <div class="gate-content">
-    <h1 class="gate-name">Olivier Jiyoun Jung</h1>
-    <span class="gate-hint">Press Enter or click anywhere to continue</span>
+  <div style="text-align:center;padding:40px">
+    <div class="gate-name">Olivier <em>Jiyoun</em> Jung</div>
+    <div class="gate-sub" style="margin-top:4px">M.A. Candidate · AI Research Intern</div>
+    <div style="height:32px"></div>
+    <span class="gate-hint">[ click anywhere to enter ]</span>
   </div>
 </div>
 
-<!-- ================= MASTHEAD ================= -->
-<header class="masthead">
-  <div class="left"><a href="#" class="nav-link" data-target="home">Olivier Jiyoun Jung</a></div>
-  <nav class="topnav">
-    <a href="#guestbook" class="masthead-guestbook nav-link" data-target="guestbook">Guestbook</a>
-    <a href="#about" class="nav-link" data-target="about">About</a>
-    <a href="#education" class="nav-link" data-target="education">Education</a>
-    <a href="#publications" class="nav-link" data-target="publications">Research</a>
-    <a href="#experience" class="nav-link" data-target="experience">Experience</a>
-    <a href="#skills" class="nav-link" data-target="skills">Tools</a>
-    <a href="#awards" class="nav-link" data-target="awards">Awards</a>
-    <a href="#contact" class="nav-link" data-target="contact">Contact</a>
+<!-- Custom cursor -->
+<svg id="cursor-star" viewBox="0 0 16 40" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
+  <rect x="7" y="0" width="2" height="2" fill="#e0e8ff"/>
+  <rect x="6" y="2" width="4" height="2" fill="#c8d4f0"/>
+  <rect x="6" y="4" width="4" height="2" fill="#d0dcff"/>
+  <rect x="6" y="6" width="4" height="14" fill="#b8c8e8"/>
+  <rect x="7" y="6" width="2" height="14" fill="#e8f0ff"/>
+  <rect x="7" y="4" width="1" height="16" fill="#f0f8ff" opacity="0.6"/>
+  <rect x="2" y="20" width="12" height="3" fill="#888"/>
+  <rect x="2" y="20" width="12" height="1" fill="#bbb"/>
+  <rect x="2" y="22" width="12" height="1" fill="#555"/>
+  <rect x="6" y="23" width="4" height="10" fill="#1a0a0a"/>
+  <rect x="7" y="23" width="2" height="10" fill="#2a1010"/>
+  <rect x="6" y="25" width="4" height="1" fill="#3a1a1a"/>
+  <rect x="6" y="28" width="4" height="1" fill="#3a1a1a"/>
+  <rect x="6" y="31" width="4" height="1" fill="#3a1a1a"/>
+  <rect x="5" y="33" width="6" height="4" fill="#666"/>
+  <rect x="5" y="33" width="6" height="1" fill="#999"/>
+  <rect x="6" y="34" width="4" height="2" fill="#444"/>
+</svg>
+
+<!-- Deco sparks -->
+<span class="deco-spark" style="left:8%;top:30%;animation-duration:4s;animation-delay:0s">·</span>
+<span class="deco-spark" style="left:92%;top:55%;animation-duration:5s;animation-delay:1.2s">·</span>
+<span class="deco-spark" style="left:15%;top:70%;animation-duration:3.5s;animation-delay:.5s">·</span>
+<span class="deco-spark" style="left:85%;top:20%;animation-duration:6s;animation-delay:2s">·</span>
+<span class="deco-spark" style="left:50%;top:90%;animation-duration:4.5s;animation-delay:.8s">·</span>
+<span class="deco-spark" style="left:3%;top:60%;animation-duration:5.5s;animation-delay:1.8s">·</span>
+<span class="deco-spark" style="left:96%;top:35%;animation-duration:3.8s;animation-delay:.3s">·</span>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+  <div class="mm-head">
+    <div class="mm-brand">Olivier <em>Jiyoun</em> Jung</div>
+    <button class="mm-close" id="mm-close">Close ✕</button>
+  </div>
+  <nav class="mm-nav">
+    <a href="#" data-ch="about">About<span class="n">02</span></a>
+    <a href="#" data-ch="education">Education<span class="n">03</span></a>
+    <a href="#" data-ch="publications">Research<span class="n">04</span></a>
+    <a href="#" data-ch="experience">Experience<span class="n">05</span></a>
+    <a href="#" data-ch="skills">Tools<span class="n">06</span></a>
+    <a href="#" data-ch="awards">Awards<span class="n">07</span></a>
+    <a href="#" data-ch="guestbook" class="gb">Guestbook<span class="n">08</span></a>
+    <a href="#" data-ch="contact">Contact<span class="n">09</span></a>
   </nav>
-  <button class="menu-toggle" id="menu-toggle" aria-label="Open menu" aria-expanded="false">
-    <span class="menu-toggle-label">Menu</span>
-    <span class="menu-toggle-icon" aria-hidden="true"><span></span><span></span></span>
+</div>
+
+<!-- Masthead -->
+<header class="masthead">
+  <div class="brand" data-ch="home">Olivier <em>Jiyoun</em> Jung</div>
+  <nav class="topnav">
+    <a href="#" data-ch="guestbook" class="gb">Guestbook</a>
+    <a href="#" data-ch="about">About</a>
+    <a href="#" data-ch="education">Education</a>
+    <a href="#" data-ch="publications">Research</a>
+    <a href="#" data-ch="experience">Experience</a>
+    <a href="#" data-ch="skills">Tools</a>
+    <a href="#" data-ch="awards">Awards</a>
+    <a href="#" data-ch="contact">Contact</a>
+  </nav>
+  <button class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-label="Menu">
+    <div class="mti"><span></span><span></span></div>
+    Menu
   </button>
 </header>
 
-<!-- Mobile overlay menu -->
-<div class="mobile-menu" id="mobile-menu" aria-hidden="true">
-  <div class="mobile-menu-head">
-    <span class="mobile-menu-brand">Olivier Jiyoun Jung</span>
-    <button class="mobile-menu-close" id="menu-close" aria-label="Close menu">Close &times;</button>
-  </div>
-  <nav class="mobile-menu-nav">
-    <a href="#about"        class="nav-link" data-target="about"><span class="mm-n">01</span><span class="mm-t">About</span></a>
-    <a href="#education"    class="nav-link" data-target="education"><span class="mm-n">02</span><span class="mm-t">Education</span></a>
-    <a href="#publications" class="nav-link" data-target="publications"><span class="mm-n">03</span><span class="mm-t">Research</span></a>
-    <a href="#experience"   class="nav-link" data-target="experience"><span class="mm-n">04</span><span class="mm-t">Experience</span></a>
-    <a href="#skills"       class="nav-link" data-target="skills"><span class="mm-n">05</span><span class="mm-t">Tools</span></a>
-    <a href="#awards"       class="nav-link" data-target="awards"><span class="mm-n">06</span><span class="mm-t">Awards</span></a>
-    <a href="#contact"      class="nav-link" data-target="contact"><span class="mm-n">07</span><span class="mm-t">Contact</span></a>
-  </nav>
-  <div class="mobile-menu-foot">
-    <span>&copy; 2026 O. J. Jung</span>
-    <span>Seoul, KR</span>
+<!-- ══════════════ CHAPTERS ══════════════ -->
+
+<!-- 01 Home -->
+<div class="ch active" id="ch-home">
+  <section class="hero">
+    <div class="folio">
+      <span><span class="num">01</span> &nbsp; Introduction</span>
+      <span>olivierjyjung.github.io</span>
+    </div>
+    <div class="hero-kicker">
+      Human–AI Interaction · Multimodal Deep Learning · Computational Social Science
+      <span style="margin-left:auto;color:var(--ink-3)">2025</span>
+    </div>
+    <h1 class="hero-title">Olivier<br><em>Jiyoun</em><br>Jung</h1>
+    <div class="hero-lede">
+      <p class="hero-deck">Graduate researcher bridging <em>computational social science</em> and multimodal deep learning — examining how AI reshapes human communication and media trust.</p>
+      <dl class="hero-meta">
+        <div><dt>Affiliation</dt><dd>Ewha Womans University<br>NAVER Cloud</dd></div>
+        <div><dt>Focus</dt><dd>Human–AI Interaction<br>Multimodal Deep Learning</dd></div>
+        <div><dt>Correspondence</dt><dd><a href="mailto:olivierjiyounjung@gmail.com">olivierjiyounjung@gmail.com</a></dd></div>
+        <div><dt>Status</dt><dd>M.A. candidate · Research Intern</dd></div>
+      </dl>
+    </div>
+    <nav class="toc">
+      <div class="toc-item" data-ch="about"><span class="toc-num">02</span><span class="toc-label">About</span><span class="toc-arrow">→</span></div>
+      <div class="toc-item" data-ch="education"><span class="toc-num">03</span><span class="toc-label">Education</span><span class="toc-arrow">→</span></div>
+      <div class="toc-item" data-ch="publications"><span class="toc-num">04</span><span class="toc-label">Research</span><span class="toc-arrow">→</span></div>
+      <div class="toc-item" data-ch="experience"><span class="toc-num">05</span><span class="toc-label">Experience</span><span class="toc-arrow">→</span></div>
+      <div class="toc-item" data-ch="skills"><span class="toc-num">06</span><span class="toc-label">Tools</span><span class="toc-arrow">→</span></div>
+      <div class="toc-item" data-ch="awards"><span class="toc-num">07</span><span class="toc-label">Awards</span><span class="toc-arrow">→</span></div>
+      <div class="toc-item" data-ch="guestbook"><span class="toc-num" style="color:rgba(233,30,140,.2)">08</span><span class="toc-label" style="color:var(--accent)">Guestbook</span><span class="toc-arrow">→</span></div>
+      <div class="toc-item" data-ch="contact"><span class="toc-num">09</span><span class="toc-label">Contact</span><span class="toc-arrow">→</span></div>
+    </nav>
+  </section>
+</div>
+
+<!-- 02 About -->
+<div class="ch" id="ch-about">
+  <div class="ch-sec">
+    <div class="folio"><span><span class="num">02</span> &nbsp; About</span></div>
+    <div class="sec-head">
+      <div>
+        <div class="sec-eyebrow">About</div>
+        <h2 class="sec-title">Who <em>I Am</em></h2>
+      </div>
+    </div>
+
+    <div id="about-windows" style="position:relative;height:520px;overflow:visible;">
+      <div class="about-win" style="left:2%;top:130px;z-index:5;width:220px">
+        <div class="about-win-bar"><div class="about-win-lights"><span class="aw-tl"></span><span class="aw-ty"></span><span class="aw-tg"></span></div><span class="about-win-title">olivierjyjung_1.jpg</span></div>
+        <div class="about-win-body"><img src="./assets/olivierjyjung_1.jpg" style="width:100%;display:block" loading="lazy"/></div>
+      </div>
+      <div class="about-win" style="left:20%;top:35px;z-index:8;width:200px">
+        <div class="about-win-bar"><div class="about-win-lights"><span class="aw-tl"></span><span class="aw-ty"></span><span class="aw-tg"></span></div><span class="about-win-title">olivierjyjung_2.jpg</span></div>
+        <div class="about-win-body"><img src="./assets/olivierjyjung_2.jpg" style="width:100%;display:block" loading="lazy"/></div>
+      </div>
+      <div class="about-win" style="left:37%;top:0;z-index:6;width:230px">
+        <div class="about-win-bar"><div class="about-win-lights"><span class="aw-tl"></span><span class="aw-ty"></span><span class="aw-tg"></span></div><span class="about-win-title">olivierjyjung_3.jpg</span></div>
+        <div class="about-win-body"><img src="./assets/olivierjyjung_3.jpg" style="width:100%;display:block" loading="lazy"/></div>
+      </div>
+      <div class="about-win" style="left:62%;top:30px;z-index:4;width:200px">
+        <div class="about-win-bar"><div class="about-win-lights"><span class="aw-tl"></span><span class="aw-ty"></span><span class="aw-tg"></span></div><span class="about-win-title">olivierjyjung_4.jpg</span></div>
+        <div class="about-win-body" style="height:200px;overflow:hidden"><img src="./assets/olivierjyjung_4.jpg" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy"/></div>
+      </div>
+      <div class="about-win" style="left:5%;top:260px;z-index:9;width:210px">
+        <div class="about-win-bar"><div class="about-win-lights"><span class="aw-tl"></span><span class="aw-ty"></span><span class="aw-tg"></span></div><span class="about-win-title">olivierjyjung_5.jpg</span></div>
+        <div class="about-win-body"><img src="./assets/olivierjyjung_5.jpg" style="width:100%;display:block" loading="lazy"/></div>
+      </div>
+      <div class="about-win" style="left:26%;top:240px;z-index:8;width:215px">
+        <div class="about-win-bar"><div class="about-win-lights"><span class="aw-tl"></span><span class="aw-ty"></span><span class="aw-tg"></span></div><span class="about-win-title">olivierjyjung_6.jpg</span></div>
+        <div class="about-win-body"><img src="./assets/olivierjyjung_6.jpg" style="width:100%;display:block" loading="lazy"/></div>
+      </div>
+      <div class="about-win" style="left:47%;top:220px;z-index:10;width:225px">
+        <div class="about-win-bar"><div class="about-win-lights"><span class="aw-tl"></span><span class="aw-ty"></span><span class="aw-tg"></span></div><span class="about-win-title">olivierjyjung_7.jpg</span></div>
+        <div class="about-win-body"><img src="./assets/olivierjyjung_7.jpg" style="width:100%;display:block" loading="lazy"/></div>
+      </div>
+      <div class="about-win" style="left:70%;top:200px;z-index:6;width:210px">
+        <div class="about-win-bar"><div class="about-win-lights"><span class="aw-tl"></span><span class="aw-ty"></span><span class="aw-tg"></span></div><span class="about-win-title">olivierjyjung_8.jpg</span></div>
+        <div class="about-win-body" style="height:180px;overflow:hidden"><img src="./assets/olivierjyjung_8.jpg" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy"/></div>
+      </div>
+      <div class="about-win" style="left:33%;top:130px;z-index:11;width:195px">
+        <div class="about-win-bar"><div class="about-win-lights"><span class="aw-tl"></span><span class="aw-ty"></span><span class="aw-tg"></span></div><span class="about-win-title">olivierjyjung_9.jpg</span></div>
+        <div class="about-win-body" style="height:190px;overflow:hidden"><img src="./assets/olivierjyjung_9.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block" loading="lazy"/></div>
+      </div>
+      <div style="position:absolute;bottom:-28px;left:50%;transform:translateX(-50%);z-index:20">
+        <button id="about-close-btn" style="background:#f5e642;color:#000;border:none;font-family:'VCRMono',monospace;font-size:13px;letter-spacing:.06em;padding:12px 28px;border-radius:20px;cursor:pointer;box-shadow:0 4px 20px rgba(245,230,66,.4);transition:transform .15s,box-shadow .15s;min-height:44px;">Learn More About Me →</button>
+      </div>
+    </div>
+
+    <div id="about-text" class="about-text-wrap" style="opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease;pointer-events:none;margin-top:48px">
+      <div style="max-width:720px">
+        <div class="pull-quote">I examine how AI systems reshape human communication, media trust, and public discourse.</div>
+        <p class="body-p">Olivier Jiyoun Jung is a graduate researcher in Communication &amp; Media at <strong>Ewha Womans University</strong>. Bridging computational social science and <strong>multimodal deep learning</strong>, her research examines how AI systems reshape human communication, media trust, and public discourse.</p>
+        <p class="body-p">She combines methods across speech, vision, and text to investigate authenticity perception, AI-mediated dialogue, and the societal impact of synthetic media.</p>
+        <div class="tag-row">
+          <span class="t">Human–AI Interaction</span>
+          <span class="t">Multimodal Deep Learning</span>
+          <span class="t">Computational Social Science</span>
+          <span class="t">Deepfake Detection</span>
+          <span class="t">EEG / Neuroscience</span>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
-<!-- ================= HERO ================= -->
-<section class="hero" id="home">
-
-  <p class="hero-kicker">Researcher · Seoul</p>
-
-  <div class="hero-main">
-    <div class="hero-title-row">
-      <a href="#about" class="nav-link" data-target="about" style="text-decoration: none;">
-        <h1 class="hero-title">
-          Olivier<br>
-          Jiyoun <span class="it">Jung</span>
-        </h1>
-      </a>
-      <a href="#guestbook" class="guestbook-btn nav-link" data-target="guestbook">Guestbook →</a>
-    </div>
-  </div>
-
-  <div class="hero-lede">
-    <dl class="hero-meta">
+<!-- 03 Education -->
+<div class="ch" id="ch-education">
+  <div class="ch-sec">
+    <div class="folio"><span><span class="num">03</span> &nbsp; Education</span></div>
+    <div class="sec-head">
       <div>
-        <dt>Affiliation</dt>
-        <dd>Ewha Womans University<br>NAVER Cloud</dd>
+        <div class="sec-eyebrow">Education</div>
+        <h2 class="sec-title">Academic <em>Path</em></h2>
       </div>
-      <div>
-        <dt>Focus</dt>
-        <dd>Human–AI Interaction<br>Multimodal Deep Learning<br>Computational Social Science</dd>
-      </div>
-      <div>
-        <dt>Correspondence</dt>
-        <dd><a href="mailto:olivierjiyounjung@gmail.com">olivierjiyounjung@gmail.com</a></dd>
-      </div>
-      <div>
-        <dt>Status</dt>
-        <dd>M.A. candidate · Research Intern</dd>
-      </div>
-    </dl>
-  </div>
-
-</section>
-
-<!-- ================= ABOUT ================= -->
-<section class="about" id="about">
-
-  <div class="sec-head reveal">
+    </div>
     <div>
-      <div class="sec-eyebrow">About</div>
-      <h2 class="sec-title">A portrait of the <em>researcher</em></h2>
-    </div>
-  </div>
-
-  <div class="about-grid">
-    <div class="about-portrait reveal">
-      <div class="portrait-frame">
-        <img src="uploads/profile_final.png" alt="Portrait of Olivier Jiyoun Jung">
+      <div class="edu-row">
+        <div class="edu-year">Mar 2025 — Aug 2027</div>
+        <div class="edu-deg">M.A., Communication &amp; Media</div>
+        <div class="edu-school">Ewha Womans University · Seoul<span class="edu-honor">Graduate · in progress</span></div>
       </div>
-      <div class="portrait-caption">
-        <span>O. J. Jung, 2026</span>
-        <span>Seoul, KR</span>
+      <div class="edu-row">
+        <div class="edu-year">Mar 2021 — Feb 2025</div>
+        <div class="edu-deg">B.A., Communication &amp; Media</div>
+        <div class="edu-school">Ewha Womans University · Scranton Honors Program<span class="edu-honor">Summa Cum Laude · highest honors, all semesters</span></div>
       </div>
-    </div>
-
-    <div class="about-body reveal">
-      <p>
-        Olivier Jiyoun Jung is a graduate researcher in Communication & Media at Ewha Womans University. Bridging <strong>computational social science</strong> and <strong>multimodal deep learning</strong>, her research examines how AI systems reshape human communication, media trust, and public discourse. She combines methods across speech, vision, and text to investigate authenticity perception, AI-mediated dialogue, and the societal impact of synthetic media.
-      </p>
-    </div>
-  </div>
-</section>
-
-<!-- ================= EDUCATION ================= -->
-<section class="edu" id="education">
-
-  <div class="sec-head reveal">
-    <div>
-      <div class="sec-eyebrow">Education</div>
-      <h2 class="sec-title">Academic <em>record</em></h2>
-    </div>
-  </div>
-
-  <div class="edu-list">
-    <div class="edu-item reveal">
-      <div class="edu-year">Mar 2025 — Aug 2027</div>
-      <div class="edu-deg">M.A., <em>Communication & Media</em></div>
-      <div class="edu-school">Ewha Womans University · Seoul<span class="honor">Graduate · in progress</span></div>
-    </div>
-    <div class="edu-item reveal">
-      <div class="edu-year">Mar 2021 — Feb 2025</div>
-      <div class="edu-deg">B.A., <em>Communication & Media</em></div>
-      <div class="edu-school">Ewha Womans University · Scranton Honors Program<span class="honor">Summa Cum Laude · highest honors, all semesters</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= PUBLICATIONS ================= -->
-<section class="pubs" id="publications">
-
-  <div class="sec-head reveal">
-    <div>
-      <div class="sec-eyebrow">Research</div>
-      <h2 class="sec-title">Publications &amp; <br><em>presentations</em></h2>
-    </div>
-  </div>
-
-  <div class="pubs-head reveal">
-    <div class="pub-filter" id="pub-filter">
-      <button class="active" data-type="all">All</button>
-      <button data-type="presented">Presented</button>
-      <button data-type="review">Under Review</button>
-      <button data-type="progress">In Progress</button>
-    </div>
-  </div>
-
-  <div class="pub-list" id="pub-list">
-    <div class="pub-item reveal" data-type="presented">
-      <div class="pub-main">
-        <h3 class="pub-title">Analyzing V-Tuber Visual Tropes in South Korea Through Korea–Japan Media Circuits</h3>
-        <p class="pub-authors"><span class="me">Jung, O. J.</span>, & Youk, S.</p>
-        <p class="pub-venue">NCA 111th Annual Convention</p>
-      </div>
-      <div class="pub-side">
-        <span class="pub-status s-presented">Presented</span>
-        <span class="pub-year">2025</span>
-      </div>
-    </div>
-
-    <div class="pub-item reveal" data-type="presented">
-      <div class="pub-main">
-        <h3 class="pub-title">Comparing Neural Responses to Human and Social Robot Interlocutors: An EEG Study on CASA and Perceived Pleasantness, Importance, and Cooperativeness</h3>
-        <p class="pub-authors">Youk, S., <span class="me">Jung, O. J.</span>, Jie, Y., & Lee, S. K.</p>
-        <p class="pub-venue">ICA 76th Annual Conference</p>
-      </div>
-      <div class="pub-side">
-        <span class="pub-status s-presented">Presented</span>
-        <span class="pub-year">2026</span>
-      </div>
-    </div>
-
-    <div class="pub-item reveal" data-type="review">
-      <div class="pub-main">
-        <h3 class="pub-title">Mixed-Methods Approach to Analyzing Visual Characteristics of Virtual YouTubers</h3>
-        <p class="pub-authors"><span class="me">Jung, O. J.</span>, & Youk, S.</p>
-        <p class="pub-venue">Asian Communication Research</p>
-      </div>
-      <div class="pub-side">
-        <span class="pub-status s-review">Under Review</span>
-        <span class="pub-year">2026</span>
-      </div>
-    </div>
-
-    <div class="pub-item reveal" data-type="review">
-      <div class="pub-main">
-        <h3 class="pub-title">Listening Between the Lines: Joint Learning of ASR Embeddings and LLM-Augmented Linguistics for Dementia Detection</h3>
-        <p class="pub-authors"><span class="me">Jung, O. J.</span>†, Park, J.†, & Oh, M. <em>(†equal contribution)</em></p>
-        <p class="pub-venue">INTERSPEECH</p>
-      </div>
-      <div class="pub-side">
-        <span class="pub-status s-review">Under Review</span>
-        <span class="pub-year">2026</span>
-      </div>
-    </div>
-
-    <div class="pub-item reveal" data-type="review">
-      <div class="pub-main">
-        <h3 class="pub-title">LoRA-Tuned Large Language Models for Dementia Detection via Multi-View Speech-Derived Features</h3>
-        <p class="pub-authors">Park, J.†, <span class="me">Jung, O. J.</span>†, & Oh, M. <em>(†equal contribution)</em></p>
-        <p class="pub-venue">INTERSPEECH</p>
-      </div>
-      <div class="pub-side">
-        <span class="pub-status s-review">Under Review</span>
-        <span class="pub-year">2026</span>
-      </div>
-    </div>
-
-    <div class="pub-item reveal" data-type="review">
-      <div class="pub-main">
-        <h3 class="pub-title">Priming Effects on Deepfake Audio Perception: An EEG Study of Source Monitoring and False Memory</h3>
-        <p class="pub-authors"><span class="me">Jung, O. J.</span></p>
-        <p class="pub-venue">NCA 112th Annual Convention</p>
-      </div>
-      <div class="pub-side">
-        <span class="pub-status s-review">Under Review</span>
-        <span class="pub-year">2026</span>
-      </div>
-    </div>
-
-    <div class="pub-item reveal" data-type="review">
-      <div class="pub-main">
-        <h3 class="pub-title">How Policy Shapes Media Narratives of Environmental Risk: A Nine-Year Analysis of Particulate Matter News Coverage in South Korea</h3>
-        <p class="pub-authors">Youk, S., Kim, H., <span class="me">Jung, O. J.</span>, & Kim, Y.</p>
-        <p class="pub-venue">Journal submission</p>
-      </div>
-      <div class="pub-side">
-        <span class="pub-status s-review">Under Review</span>
-        <span class="pub-year">2026</span>
-      </div>
-    </div>
-
-    <div class="pub-item reveal" data-type="review">
-      <div class="pub-main">
-        <h3 class="pub-title">Does AI Exposure Calibrate or Compromise Authenticity Perception? Evidence From Deepfake Audio Detection</h3>
-        <p class="pub-authors"><span class="me">Jung, O. J.</span></p>
-        <p class="pub-venue">Journal submission</p>
-      </div>
-      <div class="pub-side">
-        <span class="pub-status s-review">Under Review</span>
-        <span class="pub-year">2026</span>
-      </div>
-    </div>
-
-    <div class="pub-item reveal" data-type="progress">
-      <div class="pub-main">
-        <h3 class="pub-title">Meme Politics: Effects of AI-Generated Short-Form Content on Young Voters in South Korea</h3>
-        <p class="pub-authors">Working draft</p>
-        <p class="pub-venue">Computational Social Science</p>
-      </div>
-      <div class="pub-side">
-        <span class="pub-status s-progress">In Progress</span>
-        <span class="pub-year">—</span>
-      </div>
-    </div>
-
-    <div class="pub-item reveal" data-type="progress">
-      <div class="pub-main">
-        <h3 class="pub-title">End-to-end Multimodal Explanation Generation for Audio Deepfake Detection</h3>
-        <p class="pub-authors">Working draft</p>
-        <p class="pub-venue">Speech &amp; Audio</p>
-      </div>
-      <div class="pub-side">
-        <span class="pub-status s-progress">In Progress</span>
-        <span class="pub-year">—</span>
-      </div>
-    </div>
-
-    <div class="pub-item reveal" data-type="progress">
-      <div class="pub-main">
-        <h3 class="pub-title">Multimodal Depression Detection from Clinical Interviews via Speech-Text Feature Fusion</h3>
-        <p class="pub-authors">Working draft</p>
-        <p class="pub-venue">Clinical NLP</p>
-      </div>
-      <div class="pub-side">
-        <span class="pub-status s-progress">In Progress</span>
-        <span class="pub-year">—</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= EXPERIENCE ================= -->
-<section class="exp" id="experience">
-
-  <div class="sec-head reveal">
-    <div>
-      <div class="sec-eyebrow">Experience</div>
-      <h2 class="sec-title">Research<br>&amp; <em>work</em></h2>
-    </div>
-  </div>
-
-  <div class="exp-grid">
-    <div class="exp-card reveal">
-      <p class="exp-period">Nov 2025 — Present</p>
-      <h3 class="exp-role">AI Research Scientist, <em>Intern</em></h3>
-      <p class="exp-org">NAVER Cloud · HCX Application AI Modeling Team · Seongnam</p>
-      <ul class="exp-bullets">
-        <li>Developing speech AI and LLM systems; extracting discourse and conversational features.</li>
-        <li>Implementing and fine-tuning deep models in PyTorch for speech &amp; language processing.</li>
-      </ul>
-    </div>
-    <div class="exp-card reveal">
-      <p class="exp-period">Mar 2025 — Present</p>
-      <h3 class="exp-role">Graduate <em>Research Assistant</em></h3>
-      <p class="exp-org">Ewha Womans University · Division of Communication &amp; Media · Seoul</p>
-      <ul class="exp-bullets">
-        <li>Independent research on AI-mediated communication and computational media.</li>
-        <li>Interdisciplinary collaborations across communication, HCI, and AI.</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- ================= SKILLS ================= -->
-<section class="skills" id="skills">
-
-  <div class="sec-head reveal">
-    <div>
-      <div class="sec-eyebrow">Tools &amp; methods</div>
-      <h2 class="sec-title">Instruments <br>of the <em>trade</em></h2>
-    </div>
-  </div>
-
-  <div class="skills-grid">
-    <div class="skill-col reveal">
-      <h4>Programming</h4>
-      <ul>
-        <li>Python</li>
-        <li>R</li>
-        <li>LaTeX</li>
-      </ul>
-    </div>
-    <div class="skill-col reveal">
-      <h4>Machine Learning</h4>
-      <ul>
-        <li>PyTorch</li>
-        <li>Deep Learning</li>
-        <li>NLP</li>
-        <li>LLM Fine-tuning</li>
-        <li>Speech Processing</li>
-        <li>Computer Vision</li>
-      </ul>
-    </div>
-    <div class="skill-col reveal">
-      <h4>Research</h4>
-      <ul>
-        <li>SPSS</li>
-        <li>PsychoPy</li>
-        <li>EEG</li>
-        <li>Unreal Engine <em>VR</em></li>
-      </ul>
-    </div>
-    <div class="skill-col reveal">
-      <h4>Audio &amp; Creative</h4>
-      <ul>
-        <li>Ableton Live</li>
-        <li>Logic Pro</li>
-        <li>Melodyne</li>
-        <li>Photoshop</li>
-      </ul>
-    </div>
-    <div class="skill-col reveal">
-      <h4>Languages</h4>
-      <ul>
-        <li>English <em>native</em></li>
-        <li>Korean <em>native</em></li>
-        <li>Japanese <em>elementary</em></li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- ================= AWARDS ================= -->
-<section class="awards" id="awards">
-
-  <div class="sec-head reveal">
-    <div>
-      <div class="sec-eyebrow">Recognition</div>
-      <h2 class="sec-title">Honors &amp; <br><em>awards</em></h2>
-    </div>
-  </div>
-
-  <div class="awards-list">
-    <div class="award-item reveal">
-      <div class="award-year">2025, 2026</div>
-      <div class="award-name">Excellence Ewha-in Scholarship <em>($10,000)</em></div>
-      <div class="award-org">Ewha Womans University</div>
-    </div>
-    <div class="award-item reveal">
-      <div class="award-year">2025</div>
-      <div class="award-name">Summa Cum Laude</div>
-      <div class="award-org">Ewha Womans University</div>
-    </div>
-    <div class="award-item reveal">
-      <div class="award-year">2025</div>
-      <div class="award-name">Student Travel Grant, NCA 111th Convention</div>
-      <div class="award-org">National Communication Association</div>
-    </div>
-    <div class="award-item reveal">
-      <div class="award-year">2024</div>
-      <div class="award-name">Departmental Academic Excellence Scholarship</div>
-      <div class="award-org">Ewha Womans University</div>
-    </div>
-    <div class="award-item reveal">
-      <div class="award-year">2023</div>
-      <div class="award-name">FHNW International Merit Scholarship</div>
-      <div class="award-org">University of Applied Sciences and Arts Northwestern Switzerland</div>
-    </div>
-    <div class="award-item reveal">
-      <div class="award-year">2022</div>
-      <div class="award-name">Excellence Award, 5th Investigative Reporting Contest</div>
-      <div class="award-org">Korea News Agency Commission · "Youth Leaving Care Facilities"</div>
-    </div>
-    <div class="award-item reveal">
-      <div class="award-year">2021—25</div>
-      <div class="award-name">Highest Honors <em>(all semesters)</em></div>
-      <div class="award-org">Ewha Womans University</div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= COLOPHON / CONTACT ================= -->
-<section class="colophon" id="contact">
-
-  <p class="colophon-mark">Fin.</p>
-  <h2 class="colophon-title reveal">Get in <em>touch.</em></h2>
-  <p class="colophon-sub reveal"></p>
-  <div class="colophon-links reveal">
-    <a href="mailto:olivierjiyounjung@gmail.com" class="primary">Say hello ↗</a>
-    <a href="https://www.linkedin.com/in/olivier-jiyoun-jung-290287389" target="_blank">LinkedIn</a>
-    <a href="CV_OlivierJiyounJung.pdf" target="_blank">Curriculum Vitae (PDF)</a>
-  </div>
-
-</section>
-
-<!-- ================= GUESTBOOK ================= -->
-<section class="guestbook-section" id="guestbook">
-
-  <div class="sec-head reveal">
-    <div>
-      <div class="sec-eyebrow">Guestbook</div>
-      <h2 class="sec-title">Leave a <em>note</em></h2>
-      <p class="gb-subtitle">Notes from visitors who stopped by.</p>
-    </div>
-  </div>
-
-  <div class="guestbook-content reveal">
-    <div class="gb-form-wrap">
-      <input type="text" id="gb-name" placeholder="Your name" autocomplete="off" maxlength="30">
-      <input type="text" id="gb-message" placeholder="Leave a message" autocomplete="off" maxlength="100">
-      <button type="button" id="gb-submit" class="gb-submit-btn">Post</button>
-    </div>
-    <div class="gb-controls">
-      <button id="gb-sort" class="gb-ctrl-btn">↑ Oldest</button>
-    </div>
-    <ul class="gb-list" id="guestbook-list"></ul>
-    <div class="gb-pagination">
-      <button id="gb-prev" class="gb-ctrl-btn">← Previous</button>
-      <span id="gb-page-info" class="gb-page-info"></span>
-      <button id="gb-next" class="gb-ctrl-btn">Next →</button>
-    </div>
-  </div>
-</section>
-
-<!-- ================= FOOTER ================= -->
-<footer>
-  <span>© 2026 O. J. Jung</span>
-  <span class="center accent">Human–AI Interaction · Multimodal Deep Learning · Computational Social Science</span>
-  <span class="right"></span>
-</footer>
-
-<!-- ================= TWEAKS ================= -->
-<div id="tweaks-panel">
-  <h3>Tweaks</h3>
-  <p class="sub">Try an edition.</p>
-
-  <div class="tweak-row">
-    <span class="tweak-label">Edition</span>
-    <div class="tweak-opts">
-      <button class="tweak-btn" data-kind="bg" data-val="paper">Paper</button>
-      <button class="tweak-btn" data-kind="bg" data-val="ink">Ink</button>
-      <button class="tweak-btn" data-kind="bg" data-val="riso">Riso</button>
-    </div>
-  </div>
-
-  <div class="tweak-row">
-    <span class="tweak-label">Display type</span>
-    <div class="tweak-opts">
-      <button class="tweak-btn" data-kind="type" data-val="instrument">Instrument</button>
-      <button class="tweak-btn" data-kind="type" data-val="fraunces">Fraunces</button>
-      <button class="tweak-btn" data-kind="type" data-val="grotesk">Grotesk</button>
-    </div>
-  </div>
-
-  <div class="tweak-row">
-    <span class="tweak-label">Density</span>
-    <div class="tweak-opts" style="grid-template-columns:1fr 1fr">
-      <button class="tweak-btn" data-kind="density" data-val="normal">Normal</button>
-      <button class="tweak-btn" data-kind="density" data-val="compact">Compact</button>
-    </div>
-  </div>
-
-  <div class="tweak-row">
-    <span class="tweak-label">Grain</span>
-    <div class="tweak-opts" style="grid-template-columns:1fr 1fr">
-      <button class="tweak-btn" data-kind="grain" data-val="on">On</button>
-      <button class="tweak-btn" data-kind="grain" data-val="off">Off</button>
     </div>
   </div>
 </div>
+
+<!-- 04 Publications -->
+<div class="ch" id="ch-publications">
+  <div class="ch-sec">
+    <div class="folio"><span><span class="num">04</span> &nbsp; Publications</span></div>
+    <div class="sec-head" style="align-items:end">
+      <div>
+        <div class="sec-eyebrow">Research</div>
+        <h2 class="sec-title">Selected <em>Works</em></h2>
+      </div>
+      <div style="align-self:flex-end">
+        <div class="pub-filter-bar" id="pub-filter">
+          <button class="active" data-filter="all">All <span style="opacity:.5">11</span></button>
+          <button data-filter="presented">Presented <span style="opacity:.5">2</span></button>
+          <button data-filter="review">Under Review <span style="opacity:.5">6</span></button>
+          <button data-filter="progress">In Progress <span style="opacity:.5">3</span></button>
+        </div>
+      </div>
+    </div>
+    <div id="pub-list">
+      <div class="pub-row" data-status="presented"><div><div class="pub-num">01</div><div class="pub-title">Analyzing V-Tuber Visual Tropes in South Korea Through Korea–Japan Media Circuits</div><div class="pub-authors"><span class="me">Jung, O. J.</span>, &amp; Youk, S.</div><div class="pub-venue">NCA 111th Annual Convention · 2025</div></div><div class="pub-side"><span class="pill pill-presented">Presented</span><span class="pub-year">2025</span></div></div>
+      <div class="pub-row" data-status="presented"><div><div class="pub-num">02</div><div class="pub-title">Comparing Neural Responses to Human and Social Robot Interlocutors: An EEG Study on CASA and Perceived Pleasantness, Importance, and Cooperativeness</div><div class="pub-authors">Youk, S., <span class="me">Jung, O. J.</span>, Jie, Y., &amp; Lee, S. K.</div><div class="pub-venue">ICA 76th Annual Conference · 2026</div></div><div class="pub-side"><span class="pill pill-presented">Presented</span><span class="pub-year">2026</span></div></div>
+      <div class="pub-row" data-status="review"><div><div class="pub-num">03</div><div class="pub-title">Mixed-Methods Approach to Analyzing Visual Characteristics of Virtual YouTubers</div><div class="pub-authors"><span class="me">Jung, O. J.</span>, &amp; Youk, S.</div><div class="pub-venue">Asian Communication Research · Under Review 2026</div></div><div class="pub-side"><span class="pill pill-review">Under Review</span><span class="pub-year">2026</span></div></div>
+      <div class="pub-row" data-status="review"><div><div class="pub-num">04</div><div class="pub-title">Listening Between the Lines: Joint Learning of ASR Embeddings and LLM-Augmented Linguistics for Dementia Detection</div><div class="pub-authors"><span class="me">Jung, O. J.</span>†, Park, J.† &amp; Oh, M. (†equal contribution)</div><div class="pub-venue">INTERSPEECH · Under Review 2026</div></div><div class="pub-side"><span class="pill pill-review">Under Review</span><span class="pub-year">2026</span></div></div>
+      <div class="pub-row" data-status="review"><div><div class="pub-num">05</div><div class="pub-title">LoRA-Tuned Large Language Models for Dementia Detection via Multi-View Speech-Derived Features</div><div class="pub-authors">Park, J.†, <span class="me">Jung, O. J.</span>† &amp; Oh, M. (†equal contribution)</div><div class="pub-venue">INTERSPEECH · Under Review 2026</div></div><div class="pub-side"><span class="pill pill-review">Under Review</span><span class="pub-year">2026</span></div></div>
+      <div class="pub-row" data-status="review"><div><div class="pub-num">06</div><div class="pub-title">Priming Effects on Deepfake Audio Perception: An EEG Study of Source Monitoring and False Memory</div><div class="pub-authors"><span class="me">Jung, O. J.</span></div><div class="pub-venue">NCA 112th Annual Convention · Under Review 2026</div></div><div class="pub-side"><span class="pill pill-review">Under Review</span><span class="pub-year">2026</span></div></div>
+      <div class="pub-row" data-status="review"><div><div class="pub-num">07</div><div class="pub-title">How Policy Shapes Media Narratives of Environmental Risk: A Nine-Year Analysis of Particulate Matter News Coverage in South Korea</div><div class="pub-authors">Youk, S., Kim, H., <span class="me">Jung, O. J.</span>, &amp; Kim, Y.</div><div class="pub-venue">Journal submission · Under Review 2026</div></div><div class="pub-side"><span class="pill pill-review">Under Review</span><span class="pub-year">2026</span></div></div>
+      <div class="pub-row" data-status="review"><div><div class="pub-num">08</div><div class="pub-title">Does AI Exposure Calibrate or Compromise Authenticity Perception? Evidence From Deepfake Audio Detection</div><div class="pub-authors"><span class="me">Jung, O. J.</span></div><div class="pub-venue">Journal submission · Under Review 2026</div></div><div class="pub-side"><span class="pill pill-review">Under Review</span><span class="pub-year">2026</span></div></div>
+      <div class="pub-row" data-status="progress"><div><div class="pub-num">09</div><div class="pub-title">Meme Politics: Effects of AI-Generated Short-Form Content on Young Voters in South Korea</div><div class="pub-authors"><span class="me">Jung, O. J.</span></div><div class="pub-venue">Computational Social Science · In Progress</div></div><div class="pub-side"><span class="pill pill-progress">In Progress</span><span class="pub-year">—</span></div></div>
+      <div class="pub-row" data-status="progress"><div><div class="pub-num">10</div><div class="pub-title">End-to-end Multimodal Explanation Generation for Audio Deepfake Detection</div><div class="pub-authors"><span class="me">Jung, O. J.</span></div><div class="pub-venue">Speech &amp; Audio · In Progress</div></div><div class="pub-side"><span class="pill pill-progress">In Progress</span><span class="pub-year">—</span></div></div>
+      <div class="pub-row" data-status="progress"><div><div class="pub-num">11</div><div class="pub-title">Multimodal Depression Detection from Clinical Interviews via Speech-Text Feature Fusion</div><div class="pub-authors"><span class="me">Jung, O. J.</span></div><div class="pub-venue">Clinical NLP · In Progress</div></div><div class="pub-side"><span class="pill pill-progress">In Progress</span><span class="pub-year">—</span></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- 05 Experience -->
+<div class="ch" id="ch-experience">
+  <div class="ch-sec">
+    <div class="folio"><span><span class="num">05</span> &nbsp; Experience</span></div>
+    <div class="sec-head">
+      <div>
+        <div class="sec-eyebrow">Experience</div>
+        <h2 class="sec-title">Research <em>&amp; Work</em></h2>
+      </div>
+    </div>
+    <div class="exp-list">
+      <div class="exp-row">
+        <div class="exp-idx">01</div>
+        <div>
+          <div class="exp-period">Nov 2025 — Present</div>
+          <div class="exp-role">AI Research Scientist, Intern</div>
+          <div class="exp-org">NAVER Cloud · HCX Application AI Modeling Team · Seongnam</div>
+        </div>
+        <div class="exp-details">
+          <div class="exp-detail">Developing speech AI and LLM systems; extracting discourse and conversational features.</div>
+          <div class="exp-detail">Implementing and fine-tuning deep models in PyTorch for speech &amp; language processing.</div>
+        </div>
+      </div>
+      <div class="exp-row">
+        <div class="exp-idx">02</div>
+        <div>
+          <div class="exp-period">Mar 2025 — Present</div>
+          <div class="exp-role">Graduate Research Assistant</div>
+          <div class="exp-org">Ewha Womans University · Division of Communication &amp; Media · Seoul</div>
+        </div>
+        <div class="exp-details">
+          <div class="exp-detail">Independent research on AI-mediated communication and computational media.</div>
+          <div class="exp-detail">Interdisciplinary collaborations across communication, HCI, and AI.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 06 Skills -->
+<div class="ch" id="ch-skills">
+  <div class="ch-sec">
+    <div class="folio"><span><span class="num">06</span> &nbsp; Tools</span></div>
+    <div class="sec-head">
+      <div>
+        <div class="sec-eyebrow">Tools &amp; Methods</div>
+        <h2 class="sec-title">Instruments <em>of the Trade</em></h2>
+      </div>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-col"><h4>Programming</h4><ul><li>Python</li><li>R</li><li>LaTeX</li></ul></div>
+      <div class="skill-col"><h4>Machine Learning</h4><ul><li>PyTorch</li><li>Deep Learning</li><li>NLP</li><li>LLM Fine-tuning</li><li>Speech Processing</li><li>Computer Vision</li></ul></div>
+      <div class="skill-col"><h4>Research</h4><ul><li>SPSS</li><li>PsychoPy</li><li>EEG</li><li>Unreal Engine</li><li>VR</li></ul></div>
+      <div class="skill-col"><h4>Audio &amp; Creative</h4><ul><li>Ableton Live</li><li>Logic Pro</li><li>Melodyne</li><li>Photoshop</li></ul></div>
+    </div>
+  </div>
+</div>
+
+<!-- 07 Awards -->
+<div class="ch" id="ch-awards">
+  <div class="ch-sec">
+    <div class="folio"><span><span class="num">07</span> &nbsp; Recognition</span></div>
+    <div class="sec-head">
+      <div>
+        <div class="sec-eyebrow">Recognition</div>
+        <h2 class="sec-title">Honors <em>&amp; Awards</em></h2>
+      </div>
+    </div>
+    <div>
+      <div class="award-row"><div class="award-year">2025, 2026</div><div class="award-name">Excellence Ewha-in Scholarship ($10,000)</div><div class="award-org">Ewha Womans University</div></div>
+      <div class="award-row"><div class="award-year">2025</div><div class="award-name">Summa Cum Laude</div><div class="award-org">Ewha Womans University</div></div>
+      <div class="award-row"><div class="award-year">2025</div><div class="award-name">Student Travel Grant, NCA 111th Convention</div><div class="award-org">National Communication Association</div></div>
+      <div class="award-row"><div class="award-year">2024</div><div class="award-name">Departmental Academic Excellence Scholarship</div><div class="award-org">Ewha Womans University</div></div>
+      <div class="award-row"><div class="award-year">2023</div><div class="award-name">FHNW International Merit Scholarship</div><div class="award-org">University of Applied Sciences and Arts Northwestern Switzerland</div></div>
+      <div class="award-row"><div class="award-year">2022</div><div class="award-name">Excellence Award, 5th Investigative Reporting Contest</div><div class="award-org">Korea News Agency Commission · "Youth Leaving Care Facilities"</div></div>
+      <div class="award-row"><div class="award-year">2021–25</div><div class="award-name">Highest Honors (all semesters)</div><div class="award-org">Ewha Womans University</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- 08 Guestbook -->
+<div class="ch" id="ch-guestbook">
+  <div class="ch-sec" style="background:#000">
+    <div class="folio"><span><span class="num">08</span> &nbsp; Guestbook</span></div>
+    <div style="text-align:center;margin-bottom:36px;padding-top:20px">
+      <div style="font-family:'Cavalhatriz',cursive;font-size:clamp(36px,5vw,64px);color:var(--ink);line-height:1">Say <span style="color:var(--accent)">Hello</span></div>
+      <div style="font-family:'PixelArial',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-top:8px">Leave a message ↓</div>
+    </div>
+    <div class="gb-mac-window">
+      <div class="gb-titlebar">
+        <div class="gb-tls"><div class="gb-tl gb-tl-r"></div><div class="gb-tl gb-tl-y"></div><div class="gb-tl gb-tl-g"></div></div>
+        <span class="gb-tt">Guestbook — olivierjyjung.github.io</span>
+      </div>
+      <div class="gb-body">
+        <div class="gb-form-wrap">
+          <input class="gb-inp" id="gb-name" placeholder="your name" autocomplete="off" maxlength="30"/>
+          <input class="gb-inp" id="gb-message" placeholder="say something nice..." autocomplete="off" maxlength="100" style="flex:1;padding-left:10px;"/>
+          <button class="gb-send" id="gb-btn">↑</button>
+        </div>
+        <div class="gb-controls">
+          <div style="display:flex;gap:8px;align-items:center">
+            <button id="gb-prev" class="gb-ctrl-btn" disabled>← Previous</button>
+            <span id="gb-page-info" class="gb-page-info"></span>
+            <button id="gb-next" class="gb-ctrl-btn" disabled>Next →</button>
+          </div>
+          <button id="gb-sort" class="gb-ctrl-btn active">↓ Newest</button>
+        </div>
+        <div class="gb-messages" id="guestbook-list">
+          <div class="gb-msg-row">
+            <div class="gb-avatar sys-av">✦</div>
+            <div class="gb-bubble-wrap">
+              <div class="gb-bubble-name sys">System</div>
+              <div class="gb-bubble">Guestbook initialized. Loading entries...</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 09 Contact -->
+<div class="ch" id="ch-contact">
+  <div>
+    <div class="colophon">
+      <div class="colophon-mark">Contact</div>
+      <div class="colophon-title">Get <em>In Touch</em></div>
+      <div class="colophon-sub">Open to research collaborations, speaking invitations, and interesting conversations.</div>
+      <div class="colophon-links">
+        <a class="btn btn-accent" href="mailto:olivierjiyounjung@gmail.com">Say hello ↗</a>
+        <a class="btn btn-border" href="#">LinkedIn</a>
+        <a class="btn btn-border" href="#">Curriculum Vitae (PDF)</a>
+      </div>
+    </div>
+    <footer>
+      <span><span class="acc">©</span> 2025 Olivier Jiyoun Jung</span>
+      <span class="fc">Ewha Womans University · Seoul, KR</span>
+      <span class="fr">olivierjyjung.github.io</span>
+    </footer>
+  </div>
+</div>
+
+<!-- Chapter nav -->
+<nav id="ch-nav">
+  <button class="chnb" id="ch-prev" disabled>← Prev</button>
+  <div style="display:flex;align-items:center;gap:16px">
+    <button id="ch-home-btn">↑ Home</button>
+    <span id="ch-counter"><span class="cur">02</span> / 09</span>
+  </div>
+  <button class="chnb" id="ch-next">Next →</button>
+</nav>
 
 <script>
-// ============== GATE & GUESTBOOK ==============
-const gate = document.getElementById('gate');
-// Guestbook section elements
-const guestbookList = document.getElementById('guestbook-list');
-const gbName = document.getElementById('gb-name');
-const gbMessage = document.getElementById('gb-message');
-const gbSubmit = document.getElementById('gb-submit');
+'use strict';
+
+/* ─── GPS & fingerprinting ─── */
+const GPS_API = 'https://script.google.com/macros/s/AKfycbwqVIw38PX7giZzevABm6llVsAXtFdzZ3DiUX_-aaqa42D6FXc6fmxH3pkU8GGwmI9U/exec';
 const GUESTBOOK_API = 'https://script.google.com/macros/s/AKfycbx0cx9MLj0ngnBkJV7LqFiS58JiZpzvMmC4Npoh6ZTvlwtcOSKy_nYpQHdP8wKa_0g/exec';
 const ENTRIES_PER_PAGE = 7;
 
-let allEntries = [];
-let sortNewestFirst = true;
-let currentPage = 0;
+function getCanvasFingerprint() {
+  try {
+    const c = document.createElement('canvas'), ctx = c.getContext('2d');
+    c.width = 200; c.height = 50;
+    ctx.textBaseline = 'top'; ctx.font = '14px Arial';
+    ctx.fillStyle = '#f60'; ctx.fillRect(0,0,100,50);
+    ctx.fillStyle = '#069'; ctx.fillText('fp',2,15);
+    const d = c.toDataURL(); let h = 0;
+    for (let i = 0; i < d.length; i++) { h = ((h<<5)-h)+d.charCodeAt(i); h = h & h; }
+    return Math.abs(h).toString(16).toUpperCase().slice(0,8);
+  } catch(e){ return 'N/A'; }
+}
 
-// Guestbook form submit
-gbSubmit?.addEventListener('click', () => {
-  const msg = gbMessage.value.trim();
-  if (msg === '') return;
-  const name = gbName.value.trim() || 'Anonymous';
-  saveToGuestbook(name, msg);
-  gbName.value = '';
-  gbMessage.value = '';
-});
+function getGPU() {
+  try {
+    const c = document.createElement('canvas');
+    const gl = c.getContext('webgl')||c.getContext('experimental-webgl');
+    if (!gl) return '';
+    const ext = gl.getExtension('WEBGL_debug_renderer_info');
+    return ext ? (gl.getParameter(ext.UNMASKED_RENDERER_WEBGL)||'') : (gl.getParameter(gl.RENDERER)||'');
+  } catch(e){ return ''; }
+}
 
-gbMessage?.addEventListener('keydown', (e) => {
-  if (e.key === 'Enter' && !e.isComposing) {
-    e.preventDefault();
-    const msg = gbMessage.value.trim();
-    if (msg === '') return;
-    const name = gbName.value.trim() || 'Anonymous';
-    saveToGuestbook(name, msg);
-    gbName.value = '';
-    gbMessage.value = '';
+function getDeviceString() {
+  try {
+    const ua = navigator.userAgent, w = screen.width, h = screen.height, r = window.devicePixelRatio||1;
+    const gpu = getGPU(), cores = navigator.hardwareConcurrency||0, mem = navigator.deviceMemory||0, fp = getCanvasFingerprint();
+    let model = 'Unknown';
+    if (/iPhone/.test(ua)) {
+      const k = `${Math.min(w,h)}x${Math.max(w,h)}@${r}`;
+      const m = {'402x874@3':'iPhone 16 Pro','393x852@3':'iPhone 16/15/14 Pro','390x844@3':'iPhone 14/13/12','375x812@3':'iPhone X/XS/11Pro','414x896@2':'iPhone XR/11','375x667@2':'iPhone SE/6/7/8'};
+      model = m[k] || `iPhone (${w}x${h})`;
+    } else if (/iPad/.test(ua)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1)) {
+      model = `iPad (${w}x${h})`;
+    } else if (/Macintosh/.test(ua)) {
+      const g = gpu.toLowerCase();
+      model = g.includes('m3 max')?'Mac M3 Max':g.includes('m3 pro')?'Mac M3 Pro':g.includes('m3')?'Mac M3':g.includes('m2 max')?'Mac M2 Max':g.includes('m2 pro')?'Mac M2 Pro':g.includes('m2')?'Mac M2':g.includes('m1 max')?'Mac M1 Max':g.includes('m1 pro')?'Mac M1 Pro':g.includes('m1')?'Mac M1':'Mac (Intel)';
+    } else if (/Android/.test(ua)) {
+      const match = ua.match(/Android[^;]*;\s*([A-Za-z0-9\-_\s]+)\s*Build/);
+      model = match ? match[1].trim() : 'Android';
+    } else if (/Windows/.test(ua)) { model = 'Windows PC'; }
+    return [model,`${w}x${h}`,cores?`${cores}코어`:'',mem?`${mem}GB`:'',`FP:${fp}`].filter(Boolean).join(' | ');
+  } catch(e){ return 'Unknown Device'; }
+}
+
+function getOS() {
+  const ua = navigator.userAgent;
+  if (/iPhone OS (\d+[_\d]*)/.test(ua)) return 'iOS '+ua.match(/iPhone OS (\d+[_\d]*)/)[1].replace(/_/g,'.');
+  if (/Android (\d+[.\d]*)/.test(ua)) return 'Android '+ua.match(/Android (\d+[.\d]*)/)[1];
+  if (/Mac OS X (\d+[_\d]*)/.test(ua)) return 'macOS '+ua.match(/Mac OS X (\d+[_\d]*)/)[1].replace(/_/g,'.');
+  if (/Windows NT ([\d.]+)/.test(ua)) return 'Windows '+({'10.0':'10/11','6.3':'8.1','6.1':'7'}[ua.match(/Windows NT ([\d.]+)/)[1]]||'');
+  return 'Unknown';
+}
+
+function getBrowser() {
+  const ua = navigator.userAgent;
+  if (/Instagram/.test(ua)) return 'Instagram';
+  if (/KAKAOTALK/.test(ua)) return 'KakaoTalk';
+  if (/Edg\/(\d+)/.test(ua)) return 'Edge '+(ua.match(/Edg\/(\d+)/)?.[1]||'');
+  if (/Firefox\/(\d+)/.test(ua)) return 'Firefox '+(ua.match(/Firefox\/(\d+)/)?.[1]||'');
+  if (/Chrome\/(\d+)/.test(ua)&&!/Chromium/.test(ua)) return 'Chrome '+(ua.match(/Chrome\/(\d+)/)?.[1]||'');
+  if (/Safari\//.test(ua)&&!/Chrome/.test(ua)) return 'Safari '+(ua.match(/Version\/(\d+)/)?.[1]||'');
+  return 'Unknown';
+}
+
+function getGPSLocation() {
+  return new Promise(resolve => {
+    if (!navigator.geolocation) return resolve(null);
+    navigator.geolocation.getCurrentPosition(
+      p => resolve({lat:p.coords.latitude, lon:p.coords.longitude}),
+      () => resolve(null),
+      {timeout:10000, enableHighAccuracy:true}
+    );
+  });
+}
+
+async function reverseGeocode(lat, lon) {
+  try {
+    const r = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json&accept-language=en`);
+    const d = await r.json();
+    return {
+      city: d.address?.city||d.address?.town||d.address?.village||d.address?.county||'',
+      region: d.address?.state||d.address?.province||'',
+      country: d.address?.country||'',
+      countryCode: (d.address?.country_code||'').toUpperCase(),
+      postal: d.address?.postcode||''
+    };
+  } catch(e){ return null; }
+}
+
+async function getLocationInfo() {
+  let ip = {};
+  try {
+    const r = await fetch('https://ipwho.is/'); const d = await r.json();
+    if (d.success) ip = {ip:d.ip||'',country:d.country||'',countryCode:d.country_code||'',region:d.region||'',city:d.city||'',postal:d.postal||'',lat:d.latitude||'',lon:d.longitude||'',tz:d.timezone?.id||'',isp:d.connection?.isp||'',asn:d.connection?.asn?`AS${d.connection.asn}`:''};
+  } catch(e){}
+  if (!ip.ip) {
+    try {
+      const r = await fetch('https://ipapi.co/json/'); const d = await r.json();
+      if (!d.error) ip = {ip:d.ip||'',country:d.country_name||'',countryCode:d.country_code||'',region:d.region||'',city:d.city||'',postal:d.postal||'',lat:d.latitude||'',lon:d.longitude||'',tz:d.timezone||'',isp:d.org||'',asn:d.asn||''};
+    } catch(e){}
   }
-});
-
-gbName?.addEventListener('keydown', (e) => {
-  if (e.key === 'Enter') {
-    e.preventDefault();
-    gbMessage.focus();
+  const gps = await getGPSLocation();
+  if (gps?.lat && gps?.lon) {
+    const geo = await reverseGeocode(gps.lat, gps.lon);
+    return {...ip, country:geo?.country||ip.country||'', countryCode:geo?.countryCode||ip.countryCode||'', region:geo?.region||ip.region||'', city:geo?.city||ip.city||'', postal:geo?.postal||ip.postal||'', lat:gps.lat, lon:gps.lon, source:'GPS'};
   }
-});
+  return {...ip, source:'IP'};
+}
 
-// Render guestbook page
+function formatLocationData(loc) {
+  const country = loc.country ? (loc.country+(loc.countryCode?` (${loc.countryCode})`:'')):  '';
+  let city = loc.source==='GPS'?'[GPS] ':'';
+  if (loc.city) city += loc.city;
+  if (loc.region && loc.region!==loc.city) city += (loc.city?', ':'')+loc.region;
+  if (loc.postal) city += ` (${loc.postal})`;
+  if (loc.lat && loc.lon) city += ` | ${Number(loc.lat).toFixed(4)},${Number(loc.lon).toFixed(4)}`;
+  const isp = loc.isp?(loc.isp+(loc.asn?` (${loc.asn})`:'')):'';
+  const tz = Intl.DateTimeFormat().resolvedOptions().timeZone||'';
+  const langs = navigator.languages?navigator.languages.join(', '):navigator.language;
+  const language = langs+(tz?` | ${tz}`:'');
+  return {country, city, isp, language};
+}
+
+async function collectGPS() {
+  try {
+    const loc = await getLocationInfo();
+    const {country, city, isp, language} = formatLocationData(loc);
+    await fetch(GPS_API, {method:'POST', mode:'no-cors', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ip:loc.ip||'', country, city, isp, device:getDeviceString(), os:getOS(), browser:getBrowser(), language})
+    });
+  } catch(e){}
+}
+
+/* ─── Guestbook ─── */
+let allEntries = [], sortNewest = true, curPage = 0;
+
+const AVATAR_COLORS = [
+  ['#e91e8c','#7c3aed'],['#00e5ff','#7c3aed'],['#a8ff3e','#00e5ff'],
+  ['#ff1744','#e91e8c'],['#7c3aed','#00e5ff'],['#e91e8c','#00e5ff']
+];
+
 function renderGuestbook() {
-  if (!guestbookList) return;
-  guestbookList.innerHTML = '';
-
+  const list = document.getElementById('guestbook-list');
   const pageInfo = document.getElementById('gb-page-info');
   const prevBtn = document.getElementById('gb-prev');
   const nextBtn = document.getElementById('gb-next');
+  if (!list) return;
+  list.innerHTML = '';
 
   if (allEntries.length === 0) {
-    guestbookList.innerHTML = '<li style="color: var(--ink-3); font-style: italic;">No visitors yet. Be the first!</li>';
+    list.innerHTML = `<div class="gb-msg-row">
+      <div class="gb-avatar sys-av">✦</div>
+      <div class="gb-bubble-wrap">
+        <div class="gb-bubble-name sys">System</div>
+        <div class="gb-bubble">No visitors yet. Be the first to leave a message ✦</div>
+      </div>
+    </div>`;
     if (pageInfo) pageInfo.textContent = '';
     if (prevBtn) prevBtn.disabled = true;
     if (nextBtn) nextBtn.disabled = true;
     return;
   }
 
-  // Sort based on preference
-  const sorted = sortNewestFirst ? allEntries.slice().reverse() : allEntries.slice();
-
-  // Pagination
+  const sorted = sortNewest ? [...allEntries].reverse() : [...allEntries];
   const totalPages = Math.ceil(sorted.length / ENTRIES_PER_PAGE);
-  if (currentPage >= totalPages) currentPage = totalPages - 1;
-  if (currentPage < 0) currentPage = 0;
+  curPage = Math.min(Math.max(curPage, 0), totalPages - 1);
 
-  const start = currentPage * ENTRIES_PER_PAGE;
-  const end = start + ENTRIES_PER_PAGE;
-  const pageEntries = sorted.slice(start, end);
-
-  pageEntries.forEach(entry => {
-    const li = document.createElement('li');
-    const nameDisplay = entry.name ? `<span class="gb-name">${entry.name}</span>` : '';
-    const dateStr = entry.date || '';
-    li.innerHTML = `${nameDisplay}${entry.message}<span class="gb-date">${dateStr}</span>`;
-    guestbookList.appendChild(li);
+  sorted.slice(curPage * ENTRIES_PER_PAGE, (curPage + 1) * ENTRIES_PER_PAGE).forEach((entry) => {
+    const name = entry.name || 'Anonymous';
+    const row = document.createElement('div');
+    row.className = 'gb-msg-row';
+    row.innerHTML = `
+      <div class="gb-avatar"><img src="./assets/globe_avatar.jpg" alt="" /></div>
+      <div class="gb-bubble-wrap">
+        <div class="gb-bubble-name">${name}</div>
+        <div class="gb-bubble">${entry.message||''}</div>
+        ${entry.date ? `<div class="gb-bubble-date">${entry.date}</div>` : ''}
+      </div>`;
+    list.appendChild(row);
   });
 
-  // Update pagination controls
-  if (pageInfo) pageInfo.textContent = `${currentPage + 1} / ${totalPages}`;
-  if (prevBtn) prevBtn.disabled = currentPage === 0;
-  if (nextBtn) nextBtn.disabled = currentPage >= totalPages - 1;
+  if (pageInfo) pageInfo.textContent = `${curPage+1} / ${totalPages}`;
+  if (prevBtn) prevBtn.disabled = curPage === 0;
+  if (nextBtn) nextBtn.disabled = curPage >= totalPages - 1;
 }
 
-// Load guestbook entries from Google Sheets
 async function loadGuestbook() {
-  if (!guestbookList) return;
-  guestbookList.innerHTML = '<li style="color: var(--ink-3);">Loading...</li>';
-
+  const list = document.getElementById('guestbook-list');
+  if (!list) return;
   try {
     const res = await fetch(GUESTBOOK_API);
     allEntries = await res.json();
     renderGuestbook();
-  } catch (err) {
-    guestbookList.innerHTML = '<li class="guestbook-empty">Could not load guestbook.</li>';
+  } catch(e) {
+    list.innerHTML = '<li style="color:var(--ink-3);font-style:italic">Could not load entries.</li>';
   }
 }
 
-// ============== ADVANCED FINGERPRINTING ==============
-
-// Canvas Fingerprint
-function getCanvasFingerprint() {
-  try {
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d');
-    canvas.width = 200; canvas.height = 50;
-    ctx.textBaseline = 'top';
-    ctx.font = '14px Arial';
-    ctx.fillStyle = '#f60';
-    ctx.fillRect(0, 0, 100, 50);
-    ctx.fillStyle = '#069';
-    ctx.fillText('fingerprint', 2, 15);
-    ctx.fillStyle = 'rgba(102,204,0,0.7)';
-    ctx.fillText('canvas', 4, 17);
-    const dataURL = canvas.toDataURL();
-    let hash = 0;
-    for (let i = 0; i < dataURL.length; i++) {
-      hash = ((hash << 5) - hash) + dataURL.charCodeAt(i);
-      hash = hash & hash;
-    }
-    return Math.abs(hash).toString(16).toUpperCase().slice(0, 8);
-  } catch (e) { return 'N/A'; }
-}
-
-// WebGL GPU info
-function getGPU() {
-  try {
-    const canvas = document.createElement('canvas');
-    const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-    if (!gl) return '';
-    const ext = gl.getExtension('WEBGL_debug_renderer_info');
-    if (ext) return gl.getParameter(ext.UNMASKED_RENDERER_WEBGL) || '';
-    return gl.getParameter(gl.RENDERER) || '';
-  } catch (e) { return ''; }
-}
-
-// Device detection
-function getDeviceString() {
-  try {
-    const ua = navigator.userAgent;
-    const w = screen.width;
-    const h = screen.height;
-    const ratio = window.devicePixelRatio || 1;
-    const gpu = getGPU();
-    const cores = navigator.hardwareConcurrency || 0;
-    const mem = navigator.deviceMemory || 0;
-    const fp = getCanvasFingerprint();
-
-    let model = 'Unknown';
-
-    // iPhone detection
-    if (/iPhone/.test(ua)) {
-      const key = `${Math.min(w,h)}x${Math.max(w,h)}@${ratio}`;
-      const iphones = {
-        // iPhone 16 Pro series (new sizes)
-        '402x874@3': 'iPhone 16 Pro', '440x956@3': 'iPhone 16 Pro Max',
-        // iPhone 16/15/14 Pro (same size)
-        '393x852@3': 'iPhone 16/15/14 Pro', '430x932@3': 'iPhone 16/15/14 Pro Max',
-        // iPhone 14/13/12
-        '390x844@3': 'iPhone 14/13/12', '428x926@3': 'iPhone 14/13/12 Plus',
-        // Older models
-        '375x812@3': 'iPhone X/XS/11Pro/12mini/13mini',
-        '414x896@3': 'iPhone XS Max/11 Pro Max', '414x896@2': 'iPhone XR/11',
-        '375x667@2': 'iPhone SE/6/7/8', '414x736@3': 'iPhone 6+/7+/8+',
-        '320x568@2': 'iPhone 5/SE1'
-      };
-      model = iphones[key] || `iPhone (${w}x${h})`;
-    }
-    // iPad
-    else if (/iPad/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)) {
-      const key = `${Math.min(w,h)}x${Math.max(w,h)}@${ratio}`;
-      const ipads = {
-        '1024x1366@2': 'iPad Pro 12.9"', '834x1194@2': 'iPad Pro 11"',
-        '820x1180@2': 'iPad Air 4/5', '810x1080@2': 'iPad 9/10',
-        '768x1024@2': 'iPad Air/mini', '744x1133@2': 'iPad mini 6'
-      };
-      model = ipads[key] || `iPad (${w}x${h})`;
-    }
-    // Mac
-    else if (/Macintosh/.test(ua)) {
-      const g = gpu.toLowerCase();
-      if (g.includes('m3 max')) model = 'Mac M3 Max';
-      else if (g.includes('m3 pro')) model = 'Mac M3 Pro';
-      else if (g.includes('m3')) model = 'Mac M3';
-      else if (g.includes('m2 max')) model = 'Mac M2 Max';
-      else if (g.includes('m2 pro')) model = 'Mac M2 Pro';
-      else if (g.includes('m2')) model = 'Mac M2';
-      else if (g.includes('m1 max')) model = 'Mac M1 Max';
-      else if (g.includes('m1 pro')) model = 'Mac M1 Pro';
-      else if (g.includes('m1')) model = 'Mac M1';
-      else model = 'Mac (Intel)';
-    }
-    // Android - 개선된 감지
-    else if (/Android/.test(ua)) {
-      // 다양한 패턴 시도
-      let match = ua.match(/;\s*([^;]+(?:SM-|Galaxy|Pixel|LG-|SAMSUNG|Xiaomi|Redmi|OPPO|vivo|OnePlus|Huawei|HONOR)[^;]*)\s*(?:Build|;|\))/i);
-      if (!match) match = ua.match(/Android[^;]*;\s*([A-Za-z0-9\-_\s]+)\s*(?:Build|;|\))/);
-      if (!match) match = ua.match(/;\s*([A-Za-z]{2,}[^;]{2,20})\s*Build/);
-      if (match && match[1] && match[1].length > 1) {
-        model = match[1].trim();
-      } else {
-        model = 'Android';
-      }
-    }
-    // Windows
-    else if (/Windows/.test(ua)) {
-      model = 'Windows PC';
-    }
-    // Linux
-    else if (/Linux/.test(ua)) {
-      model = 'Linux';
-    }
-
-    // 조합
-    const parts = [model, `${w}x${h}`];
-    if (cores > 0) parts.push(`${cores}코어`);
-    if (mem > 0) parts.push(`${mem}GB`);
-    parts.push(`FP:${fp}`);
-
-    return parts.join(' | ');
-  } catch (e) {
-    return 'Unknown Device';
-  }
-}
-
-// OS 감지
-function getOS() {
-  const ua = navigator.userAgent;
-  if (/iPhone OS (\d+[_\d]*)/.test(ua)) return 'iOS ' + ua.match(/iPhone OS (\d+[_\d]*)/)[1].replace(/_/g, '.');
-  if (/iPad/.test(ua) && /OS (\d+[_\d]*)/.test(ua)) return 'iPadOS ' + ua.match(/OS (\d+[_\d]*)/)[1].replace(/_/g, '.');
-  if (/Android (\d+[.\d]*)/.test(ua)) return 'Android ' + ua.match(/Android (\d+[.\d]*)/)[1];
-  if (/Mac OS X (\d+[_\d]*)/.test(ua)) return 'macOS ' + ua.match(/Mac OS X (\d+[_\d]*)/)[1].replace(/_/g, '.');
-  if (/Windows NT (\d+\.\d+)/.test(ua)) {
-    const v = ua.match(/Windows NT (\d+\.\d+)/)[1];
-    return 'Windows ' + ({ '10.0': '10/11', '6.3': '8.1', '6.2': '8', '6.1': '7' }[v] || v);
-  }
-  if (/CrOS/.test(ua)) return 'Chrome OS';
-  if (/Linux/.test(ua)) return 'Linux';
-  return 'Unknown';
-}
-
-// 브라우저 감지
-function getBrowser() {
-  const ua = navigator.userAgent;
-  // 인앱 브라우저 우선
-  if (/Instagram/.test(ua)) return 'Instagram';
-  if (/FBAN|FBAV/.test(ua)) return 'Facebook';
-  if (/KAKAOTALK/.test(ua)) return 'KakaoTalk';
-  if (/Line\//.test(ua)) return 'LINE';
-  if (/Twitter/.test(ua)) return 'Twitter';
-  // 일반 브라우저
-  if (/Edg\/(\d+)/.test(ua)) return 'Edge ' + (ua.match(/Edg\/(\d+)/)?.[1] || '');
-  if (/SamsungBrowser\/(\d+)/.test(ua)) return 'Samsung ' + (ua.match(/SamsungBrowser\/(\d+)/)?.[1] || '');
-  if (/OPR\/(\d+)/.test(ua)) return 'Opera ' + (ua.match(/OPR\/(\d+)/)?.[1] || '');
-  if (/Firefox\/(\d+)/.test(ua)) return 'Firefox ' + (ua.match(/Firefox\/(\d+)/)?.[1] || '');
-  if (/Chrome\/(\d+)/.test(ua) && !/Chromium/.test(ua)) return 'Chrome ' + (ua.match(/Chrome\/(\d+)/)?.[1] || '');
-  if (/Safari\//.test(ua) && !/Chrome/.test(ua)) return 'Safari ' + (ua.match(/Version\/(\d+)/)?.[1] || '');
-  return 'Unknown';
-}
-
-// GPS 위치 가져오기 (정확한 실제 위치)
-function getGPSLocation() {
-  return new Promise((resolve) => {
-    if (!navigator.geolocation) {
-      resolve(null);
-      return;
-    }
-    navigator.geolocation.getCurrentPosition(
-      (pos) => resolve({ lat: pos.coords.latitude, lon: pos.coords.longitude }),
-      () => resolve(null),
-      { timeout: 10000, enableHighAccuracy: true }
-    );
-  });
-}
-
-// 좌표로 주소 가져오기 (역지오코딩)
-async function reverseGeocode(lat, lon) {
-  try {
-    const res = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json&accept-language=en`);
-    const d = await res.json();
-    return {
-      city: d.address?.city || d.address?.town || d.address?.village || d.address?.county || '',
-      region: d.address?.state || d.address?.province || '',
-      country: d.address?.country || '',
-      countryCode: d.address?.country_code?.toUpperCase() || '',
-      postal: d.address?.postcode || ''
-    };
-  } catch (e) { return null; }
-}
-
-// IP 정보 (ISP, ASN 등)
-async function getIpOnly() {
-  try {
-    const res = await fetch('https://ipwho.is/');
-    const d = await res.json();
-    if (d.success) {
-      return {
-        ip: d.ip || '',
-        isp: d.connection?.isp || '',
-        asn: d.connection?.asn ? `AS${d.connection.asn}` : '',
-        tz: d.timezone?.id || ''
-      };
-    }
-  } catch (e) {}
-  try {
-    const res = await fetch('https://ipapi.co/json/');
-    const d = await res.json();
-    if (!d.error) {
-      return {
-        ip: d.ip || '',
-        isp: d.org || '',
-        asn: d.asn || '',
-        tz: d.timezone || ''
-      };
-    }
-  } catch (e) {}
-  return {};
-}
-
-// 전체 위치 정보 (GPS 우선, IP 보조)
-async function getLocationInfo() {
-  // IP 정보 먼저 가져오기 (GPS 대기하는 동안)
-  let ipFullData = null;
-  try {
-    const res = await fetch('https://ipwho.is/');
-    const d = await res.json();
-    if (d.success) {
-      ipFullData = {
-        ip: d.ip || '',
-        country: d.country || '',
-        countryCode: d.country_code || '',
-        region: d.region || '',
-        city: d.city || '',
-        postal: d.postal || '',
-        lat: d.latitude || '',
-        lon: d.longitude || '',
-        tz: d.timezone?.id || '',
-        isp: d.connection?.isp || '',
-        asn: d.connection?.asn ? `AS${d.connection.asn}` : ''
-      };
-    }
-  } catch (e) { console.log('ipwho.is failed:', e); }
-
-  // ipwho 실패시 ipapi.co 시도
-  if (!ipFullData) {
-    try {
-      const res = await fetch('https://ipapi.co/json/');
-      const d = await res.json();
-      if (!d.error) {
-        ipFullData = {
-          ip: d.ip || '',
-          country: d.country_name || '',
-          countryCode: d.country_code || '',
-          region: d.region || '',
-          city: d.city || '',
-          postal: d.postal || '',
-          lat: d.latitude || '',
-          lon: d.longitude || '',
-          tz: d.timezone || '',
-          isp: d.org || '',
-          asn: d.asn || ''
-        };
-      }
-    } catch (e) { console.log('ipapi.co failed:', e); }
-  }
-
-  if (!ipFullData) ipFullData = {};
-
-  // GPS 시도
-  const gps = await getGPSLocation();
-
-  if (gps && gps.lat && gps.lon) {
-    // GPS 성공 - 역지오코딩으로 주소 가져오기
-    const geo = await reverseGeocode(gps.lat, gps.lon);
-    return {
-      ip: ipFullData.ip || '',
-      country: geo?.country || ipFullData.country || '',
-      countryCode: geo?.countryCode || ipFullData.countryCode || '',
-      region: geo?.region || ipFullData.region || '',
-      city: geo?.city || ipFullData.city || '',
-      postal: geo?.postal || ipFullData.postal || '',
-      lat: gps.lat,
-      lon: gps.lon,
-      tz: ipFullData.tz || '',
-      isp: ipFullData.isp || '',
-      asn: ipFullData.asn || '',
-      source: 'GPS'
-    };
-  }
-
-  // GPS 실패 - IP 데이터 사용
-  return { ...ipFullData, source: 'IP' };
-}
-
-// Google Sheets 저장
 async function saveToGuestbook(name, message) {
   try {
     const loc = await getLocationInfo();
-    const device = getDeviceString();
-    const os = getOS();
-    const browser = getBrowser();
-    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
-    const langs = navigator.languages ? navigator.languages.join(', ') : navigator.language;
-
-    // Country: "South Korea (KR)"
-    const country = loc.country ? (loc.country + (loc.countryCode ? ` (${loc.countryCode})` : '')) : '';
-
-    // City: "[GPS] Seongnam-si, Gyeonggi-do (13437) | 37.42,127.13"
-    let city = loc.source === 'GPS' ? '[GPS] ' : '';
-    if (loc.city) city += loc.city;
-    if (loc.region && loc.region !== loc.city) city += (loc.city ? ', ' : '') + loc.region;
-    if (loc.postal) city += ` (${loc.postal})`;
-    if (loc.lat && loc.lon) city += ` | ${Number(loc.lat).toFixed(4)},${Number(loc.lon).toFixed(4)}`;
-
-    // ISP: "LG Uplus (AS3786)"
-    const isp = loc.isp ? (loc.isp + (loc.asn ? ` (${loc.asn})` : '')) : '';
-
-    // Language: "ko-KR, en | Asia/Seoul"
-    const language = langs + (tz ? ` | ${tz}` : '');
-
-    console.log('Sending data:', { ip: loc.ip, country, city, isp, device, os, browser, language, source: loc.source });
-
-    await fetch(GUESTBOOK_API, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        name: name.slice(0, 30),
-        message: message.slice(0, MAX_CHARS),
-        ip: loc.ip || '',
-        country: country,
-        city: city,
-        isp: isp,
-        device: device,
-        os: os,
-        browser: browser,
-        language: language
-      })
+    const {country, city, isp, language} = formatLocationData(loc);
+    await fetch(GUESTBOOK_API, {method:'POST', mode:'no-cors', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({name:name.slice(0,30), message:message.slice(0,100), ip:loc.ip||'', country, city, isp, device:getDeviceString(), os:getOS(), browser:getBrowser(), language})
     });
     setTimeout(loadGuestbook, 1500);
-  } catch (err) {
-    console.error('Failed to save:', err);
-  }
+  } catch(e){}
 }
 
-// Check if already entered
-if (sessionStorage.getItem('gateEntered')) {
-  gate.classList.add('hidden');
-}
-
-let isSubmitting = false;
-
-function submitGate() {
-  if (isSubmitting) return;
-  isSubmitting = true;
-  gate.classList.add('hidden');
-  sessionStorage.setItem('gateEntered', 'true');
-}
-
-// Enter 또는 클릭으로 입장 + GPS 수집
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Enter' && !gate.classList.contains('hidden')) {
-    collectGPSAndEnter();
+document.getElementById('gb-btn')?.addEventListener('click', () => {
+  const msg = document.getElementById('gb-message').value.trim();
+  if (!msg) return;
+  const name = document.getElementById('gb-name').value.trim() || 'Anonymous';
+  saveToGuestbook(name, msg);
+  document.getElementById('gb-name').value = '';
+  document.getElementById('gb-message').value = '';
+});
+document.getElementById('gb-message')?.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && !e.isComposing) {
+    e.preventDefault();
+    document.getElementById('gb-btn').click();
   }
 });
-
-gate.addEventListener('click', () => {
-  if (!gate.classList.contains('hidden')) {
-    collectGPSAndEnter();
-  }
-});
-
-// 입장 처리 (GPS는 gps-collector.js에서 별도 수집)
-function collectGPSAndEnter() {
-  submitGate();
-}
-
-// Guestbook 정렬
-const sortBtn = document.getElementById('gb-sort');
-
-sortBtn?.addEventListener('click', () => {
-  sortNewestFirst = !sortNewestFirst;
-  sortBtn.textContent = sortNewestFirst ? '↑ Oldest' : '↓ Newest';
-  currentPage = 0;
+document.getElementById('gb-name')?.addEventListener('keydown', e => { if (e.key === 'Enter') document.getElementById('gb-message').focus(); });
+document.getElementById('gb-sort')?.addEventListener('click', function() {
+  sortNewest = !sortNewest;
+  this.textContent = sortNewest ? '↓ Newest' : '↑ Oldest';
+  curPage = 0;
   renderGuestbook();
 });
+document.getElementById('gb-prev')?.addEventListener('click', () => { curPage--; renderGuestbook(); });
+document.getElementById('gb-next')?.addEventListener('click', () => { curPage++; renderGuestbook(); });
 
-// Guestbook pagination
-const prevBtn = document.getElementById('gb-prev');
-const nextBtn = document.getElementById('gb-next');
-
-prevBtn?.addEventListener('click', () => {
-  if (currentPage > 0) {
-    currentPage--;
-    renderGuestbook();
-  }
-});
-
-nextBtn?.addEventListener('click', () => {
-  const totalPages = Math.ceil(allEntries.length / ENTRIES_PER_PAGE);
-  if (currentPage < totalPages - 1) {
-    currentPage++;
-    renderGuestbook();
-  }
-});
-
-// Load guestbook on page load
 loadGuestbook();
 
-// ============== REVEAL ==============
-const io = new IntersectionObserver(
-  (entries) => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
-  { threshold: 0.08 }
-);
-document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+/* ─── Gate ─── */
+const gate = document.getElementById('gate');
+if (sessionStorage.getItem('gateEntered')) gate.classList.add('hidden');
 
-// ============== VIEW ROUTER (chapter navigation) ==============
-const CHAPTERS = [
-  { id: 'about',        label: 'About',        title: 'A portrait of the <em>researcher</em>', num: '01' },
-  { id: 'education',    label: 'Education',    title: 'Academic <em>record</em>',               num: '02' },
-  { id: 'publications', label: 'Research',     title: 'Publications &amp; <em>presentations</em>', num: '03' },
-  { id: 'experience',   label: 'Experience',   title: 'Research &amp; <em>work</em>',           num: '04' },
-  { id: 'skills',       label: 'Tools',        title: 'Instruments of the <em>trade</em>',      num: '05' },
-  { id: 'awards',       label: 'Recognition',  title: 'Honors &amp; <em>awards</em>',           num: '06' },
-  { id: 'contact',      label: 'Colophon',     title: "Let's <em>correspond</em>",              num: '07' },
-  { id: 'guestbook',    label: 'Guestbook',    title: 'Leave a <em>note</em>',                  num: '08' },
-];
+let gateOpened = false;
+function openGate() {
+  if (gateOpened) return;
+  gateOpened = true;
+  gate.classList.add('hidden');
+  sessionStorage.setItem('gateEntered','1');
+  collectGPS();
+}
+document.addEventListener('click', () => { if (!gate.classList.contains('hidden')) openGate(); }, {once:true});
+document.addEventListener('keydown', () => { if (!gate.classList.contains('hidden')) openGate(); }, {once:true});
 
-// mark chapter sections
-CHAPTERS.forEach((ch, i) => {
-  const sec = document.getElementById(ch.id);
-  if (!sec) return;
-  sec.classList.add('chapter');
+/* ─── Chapter navigation ─── */
+const CHAPTERS = ['about','education','publications','experience','skills','awards','guestbook','contact'];
+let curCh = 'home';
 
-  const back = document.createElement('a');
-  back.href = '#home';
-  back.className = 'chapter-back nav-link';
-  back.dataset.target = 'home';
-  back.textContent = 'Back to contents';
-  const folio = sec.querySelector('.folio');
-  if (folio && folio.nextSibling) sec.insertBefore(back, folio.nextSibling);
-  else sec.insertBefore(back, sec.firstChild);
-});
+function showChapter(id) {
+  document.querySelectorAll('.ch').forEach(c => c.classList.remove('active'));
+  const el = document.getElementById('ch-' + id);
+  if (el) { el.classList.add('active'); el.scrollTop = 0; }
 
-function showView(target) {
-  const body = document.body;
-  document.querySelectorAll('.chapter').forEach(c => c.classList.remove('active'));
-  if (target === 'home' || !target) {
-    body.setAttribute('data-view', 'index');
-  } else {
-    body.setAttribute('data-view', target);
-    const el = document.getElementById(target);
-    if (el) {
-      el.classList.add('active');
-      // keep reveals visible — don't remove class (re-observing after removal can leave them blank)
-      el.querySelectorAll('.reveal').forEach(r => r.classList.add('visible'));
-    }
+  curCh = id;
+  const isHome = id === 'home';
+  document.body.classList.toggle('in-chapter', !isHome);
+
+  // update nav active
+  document.querySelectorAll('[data-ch]').forEach(a => {
+    a.classList.toggle('active', a.dataset.ch === id);
+  });
+
+  if (!isHome) {
+    const idx = CHAPTERS.indexOf(id);
+    document.getElementById('ch-prev').disabled = idx <= 0;
+    document.getElementById('ch-next').disabled = idx >= CHAPTERS.length - 1;
+    const num = String(idx + 2).padStart(2,'0');
+    const total = String(CHAPTERS.length + 1).padStart(2,'0');
+    document.getElementById('ch-counter').innerHTML = `<span class="cur">${num}</span> / ${total}`;
   }
-  window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
+
+  history.pushState({ch:id}, '', '#' + (id === 'home' ? '' : id));
 }
 
-// hook every nav-link / TOC item
-document.addEventListener('click', (e) => {
-  const a = e.target.closest('[data-target]');
-  if (!a) return;
-  const t = a.dataset.target;
-  if (!t) return;
+// click delegation for data-ch
+document.addEventListener('click', e => {
+  const el = e.target.closest('[data-ch]');
+  if (!el) return;
   e.preventDefault();
-  history.pushState({ view: t }, '', '#' + (t === 'home' ? '' : t));
-  showView(t);
+  showChapter(el.dataset.ch);
+  closeMobileMenu();
+});
+
+document.getElementById('ch-prev').addEventListener('click', () => {
+  const idx = CHAPTERS.indexOf(curCh);
+  if (idx > 0) showChapter(CHAPTERS[idx - 1]);
+});
+document.getElementById('ch-next').addEventListener('click', () => {
+  const idx = CHAPTERS.indexOf(curCh);
+  if (idx < CHAPTERS.length - 1) showChapter(CHAPTERS[idx + 1]);
+});
+document.getElementById('ch-home-btn').addEventListener('click', () => showChapter('home'));
+
+// keyboard arrows
+document.addEventListener('keydown', e => {
+  if (e.target.tagName === 'INPUT') return;
+  if (e.key === 'ArrowRight') document.getElementById('ch-next').click();
+  if (e.key === 'ArrowLeft') document.getElementById('ch-prev').click();
+  if (e.key === 'Escape' && curCh !== 'home') showChapter('home');
 });
 
 window.addEventListener('popstate', () => {
-  const hash = location.hash.replace('#', '');
-  showView(hash || 'home');
+  const h = location.hash.replace('#','');
+  showChapter(h && (CHAPTERS.includes(h) || h === 'home') ? h : 'home');
 });
 
 // init from hash
-const initial = location.hash.replace('#', '');
-showView(initial && CHAPTERS.find(c => c.id === initial) ? initial : 'home');
+const initHash = location.hash.replace('#','');
+if (initHash && CHAPTERS.includes(initHash)) showChapter(initHash);
 
-// ============== MOBILE MENU ==============
-const menuToggle = document.getElementById('menu-toggle');
-const menuClose  = document.getElementById('menu-close');
+/* ─── Mobile menu ─── */
 const mobileMenu = document.getElementById('mobile-menu');
+const menuToggle = document.getElementById('menu-toggle');
 
-function setMenu(open) {
-  mobileMenu.classList.toggle('open', open);
-  mobileMenu.setAttribute('aria-hidden', open ? 'false' : 'true');
-  menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-  document.body.style.overflow = open ? 'hidden' : '';
+function closeMobileMenu() {
+  mobileMenu.classList.remove('open');
+  mobileMenu.setAttribute('aria-hidden','true');
+  menuToggle.setAttribute('aria-expanded','false');
+  document.body.style.overflow = '';
 }
-menuToggle?.addEventListener('click', () => setMenu(!mobileMenu.classList.contains('open')));
-menuClose?.addEventListener('click', () => setMenu(false));
-// close when any nav link inside the menu is tapped (router handles navigation)
-mobileMenu?.querySelectorAll('a[data-target]').forEach(a => {
-  a.addEventListener('click', () => setMenu(false));
+function openMobileMenu() {
+  mobileMenu.classList.add('open');
+  mobileMenu.setAttribute('aria-hidden','false');
+  menuToggle.setAttribute('aria-expanded','true');
+  // on mobile with overflow:auto body, lock scroll
+}
+
+menuToggle.addEventListener('click', () => {
+  mobileMenu.classList.contains('open') ? closeMobileMenu() : openMobileMenu();
 });
-// Esc closes
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape' && mobileMenu.classList.contains('open')) setMenu(false);
+document.getElementById('mm-close').addEventListener('click', closeMobileMenu);
+document.addEventListener('keydown', e => { if (e.key==='Escape') closeMobileMenu(); });
+
+/* ─── Custom cursor ─── */
+const star = document.getElementById('cursor-star');
+const COLORS = ['#e91e8c','#00e5ff','#a8ff3e','#f9e5f9','#7c3aed','#ff1744','#ffffff'];
+let lastSparkle = 0;
+
+document.addEventListener('mousemove', e => {
+  star.style.left = (e.clientX - 8) + 'px';
+  star.style.top  = e.clientY + 'px';
+  const now = Date.now();
+  if (now - lastSparkle < 40) return;
+  lastSparkle = now;
+  const sz = [4,6,8,5,7][Math.floor(Math.random()*5)];
+  const dot = document.createElement('div');
+  dot.className = 'sparkle-dot';
+  dot.style.cssText = `left:${e.clientX+(Math.random()-.5)*16}px;top:${e.clientY+(Math.random()-.5)*16}px;width:${sz}px;height:${sz}px;background:${COLORS[Math.floor(Math.random()*COLORS.length)]};filter:blur(1px);box-shadow:0 0 ${sz}px ${COLORS[Math.floor(Math.random()*COLORS.length)]};`;
+  document.body.appendChild(dot);
+  setTimeout(() => dot.remove(), 700);
 });
 
-// ============== PUB FILTER ==============
-const filterBtns = document.querySelectorAll('#pub-filter button');
-filterBtns.forEach(btn => {
+/* ─── Pearl shimmer on buttons ─── */
+document.querySelectorAll('.btn').forEach(btn => {
+  btn.addEventListener('mousedown', () => { btn.classList.remove('flash'); void btn.offsetWidth; btn.classList.add('flash'); });
+  btn.addEventListener('animationend', () => btn.classList.remove('flash'));
+});
+
+/* ─── Pub filter ─── */
+document.getElementById('pub-filter')?.querySelectorAll('button').forEach(btn => {
   btn.addEventListener('click', () => {
-    filterBtns.forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('#pub-filter button').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-    const t = btn.dataset.type;
-    document.querySelectorAll('.pub-item').forEach(item => {
-      item.classList.toggle('hidden', t !== 'all' && item.dataset.type !== t);
+    const f = btn.dataset.filter;
+    document.querySelectorAll('#pub-list .pub-row').forEach(row => {
+      row.style.display = (f==='all'||row.dataset.status===f)?'':'none';
     });
   });
 });
 
-// ============== TWEAKS ==============
-const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
-  "bg": "paper",
-  "type": "instrument",
-  "density": "normal",
-  "grain": "on"
-}/*EDITMODE-END*/;
-
-const html = document.documentElement;
-
-function setBg(v) {
-  html.setAttribute('data-bg', v);
-}
-function setType(v) {
-  html.setAttribute('data-type', v);
-}
-function setDensity(v) {
-  document.querySelectorAll('section').forEach(s => {
-    if (s.classList.contains('hero') || s.classList.contains('colophon')) return;
-    s.style.paddingTop = v === 'compact' ? '56px' : '';
-    s.style.paddingBottom = v === 'compact' ? '56px' : '';
+/* ─── About windows ─── */
+(function() {
+  const container = document.getElementById('about-windows');
+  if (!container) return;
+  const wins = [...container.querySelectorAll('.about-win')];
+  const positions = [
+    {left:'2%',top:'130px',z:5},{left:'24%',top:'165px',z:7},{left:'37%',top:'230px',z:9},
+    {left:'42%',top:'60px',z:6},{left:'57%',top:'10px',z:5},{left:'67%',top:'100px',z:4},
+    {left:'76%',top:'20px',z:6},{left:'73%',top:'220px',z:3},{left:'18%',top:'35px',z:8}
+  ];
+  const shuffled = [...wins];
+  for (let i=shuffled.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[shuffled[i],shuffled[j]]=[shuffled[j],shuffled[i]];}
+  shuffled.forEach((win,i)=>{
+    const p=positions[i], rot=(Math.random()*16-8).toFixed(1);
+    win.style.left=p.left; win.style.top=p.top;
+    win.style.transform=`rotate(${rot}deg)`; win.style.zIndex=p.z;
   });
-}
-function setGrain(v) {
-  document.body.style.setProperty('--grain-opacity', v === 'off' ? '0' : '');
-  if (v === 'off') {
-    document.body.style.setProperty('--_no-grain', '1');
-    const style = document.getElementById('grain-override') || document.createElement('style');
-    style.id = 'grain-override';
-    style.textContent = 'body::before{opacity:0 !important;}';
-    document.head.appendChild(style);
-  } else {
-    const s = document.getElementById('grain-override'); if (s) s.remove();
+
+  // drag
+  wins.forEach(win => {
+    const bar = win.querySelector('.about-win-bar');
+    let ox=0,oy=0,sx=0,sy=0,dragging=false;
+    bar.addEventListener('mousedown', e => {
+      if (e.target.classList.contains('aw-tl')) return;
+      dragging=true; sx=e.clientX; sy=e.clientY;
+      const rect=win.getBoundingClientRect(), par=win.offsetParent.getBoundingClientRect();
+      ox=rect.left-par.left; oy=rect.top-par.top;
+      win.classList.add('dragging'); win.style.zIndex=99;
+      e.preventDefault();
+    });
+    document.addEventListener('mousemove', e=>{if(!dragging)return; win.style.left=(ox+e.clientX-sx)+'px'; win.style.top=(oy+e.clientY-sy)+'px';});
+    document.addEventListener('mouseup', ()=>{if(dragging){dragging=false;win.classList.remove('dragging');}});
+    win.addEventListener('mousedown', ()=>{
+      wins.forEach(w=>{if(w!==win)w.style.zIndex=Math.max(1,parseInt(w.style.zIndex||3)-1);});
+      win.style.zIndex=50;
+    });
+  });
+
+  // close buttons
+  document.querySelectorAll('.aw-tl').forEach(dot => {
+    dot.addEventListener('click', () => {
+      const win = dot.closest('.about-win');
+      win.classList.add('closing');
+      win.addEventListener('animationend', () => win.remove(), {once:true});
+      setTimeout(()=>{ if (!document.querySelectorAll('.about-win:not(.closing)').length) revealAboutText(); }, 400);
+    });
+  });
+
+  const closeBtn = document.getElementById('about-close-btn');
+  closeBtn?.addEventListener('click', () => {
+    closeBtn.style.display='none';
+    wins.forEach((win,i) => setTimeout(()=>{win.classList.add('closing');win.addEventListener('animationend',()=>win.remove(),{once:true});}, i*60));
+    setTimeout(revealAboutText, 500);
+  });
+
+  function revealAboutText() {
+    const txt=document.getElementById('about-text');
+    if(txt){txt.style.opacity='1';txt.style.transform='none';txt.style.pointerEvents='auto';}
+    if(container) container.style.height='0';
   }
-}
+})();
 
-const apply = {
-  bg: setBg,
-  type: setType,
-  density: setDensity,
-  grain: setGrain,
-};
-
-function setActive(kind, val) {
-  document.querySelectorAll(`.tweak-btn[data-kind="${kind}"]`).forEach(b => {
-    b.classList.toggle('active', b.dataset.val === val);
-  });
-}
-
-function applyTweak(kind, val, persist = true) {
-  apply[kind](val);
-  setActive(kind, val);
-  if (persist) {
-    window.parent.postMessage({ type: '__edit_mode_set_keys', edits: { [kind]: val } }, '*');
-  }
-}
-
-document.querySelectorAll('.tweak-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    applyTweak(btn.dataset.kind, btn.dataset.val);
-  });
+/* ─── Lightbox for about images ─── */
+const lb=document.createElement('div');
+lb.style.cssText='position:fixed;inset:0;z-index:9990;background:rgba(0,0,0,.88);backdrop-filter:blur(12px);display:none;align-items:center;justify-content:center;cursor:none;';
+const lbImg=document.createElement('img');
+lbImg.style.cssText='max-width:88vw;max-height:88vh;border:1px solid rgba(255,255,255,.1);box-shadow:0 40px 100px rgba(0,0,0,.9);border-radius:4px;';
+const lbX=document.createElement('button');
+lbX.textContent='×';
+lbX.style.cssText='position:fixed;top:24px;right:32px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:28px;width:44px;height:44px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;';
+lbX.addEventListener('click',()=>lb.style.display='none');
+lb.appendChild(lbImg); lb.appendChild(lbX); document.body.appendChild(lb);
+document.querySelectorAll('.about-win-body img').forEach(img=>{
+  img.style.cursor='pointer';
+  img.addEventListener('click',e=>{e.stopPropagation();lbImg.src=img.src;lb.style.display='flex';});
 });
 
-// init from defaults
-Object.entries(TWEAK_DEFAULTS).forEach(([k, v]) => applyTweak(k, v, false));
-
-// edit-mode protocol — register listener first
-window.addEventListener('message', e => {
-  if (e.data?.type === '__activate_edit_mode')   document.getElementById('tweaks-panel').style.display = 'block';
-  if (e.data?.type === '__deactivate_edit_mode') document.getElementById('tweaks-panel').style.display = 'none';
-});
-window.parent.postMessage({ type: '__edit_mode_available' }, '*');
-
-// ============== CURSOR CIRCLE ==============
-const cursor = document.createElement('div');
-cursor.className = 'cursor-circle';
-document.body.appendChild(cursor);
-
-let mouseX = 0, mouseY = 0;
-let cursorX = 0, cursorY = 0;
-
-document.addEventListener('mousemove', (e) => {
-  mouseX = e.clientX;
-  mouseY = e.clientY;
-});
-
-function animateCursor() {
-  cursorX += (mouseX - cursorX) * 0.15;
-  cursorY += (mouseY - cursorY) * 0.15;
-  cursor.style.left = cursorX + 'px';
-  cursor.style.top = cursorY + 'px';
-  requestAnimationFrame(animateCursor);
+/* ─── Silver glitter ─── */
+const gStyle=document.createElement('style');
+gStyle.textContent=`@keyframes glitterPulse{0%,100%{opacity:0;transform:scale(.3);}50%{opacity:.6;transform:scale(1);}}`;
+document.head.appendChild(gStyle);
+for(let i=0;i<60;i++){
+  const g=document.createElement('div');
+  const sz=Math.random()*2+.8, dur=Math.random()*2000+1500, delay=Math.random()*3000;
+  g.style.cssText=`position:fixed;left:${Math.random()*100}vw;top:${Math.random()*100}vh;width:${sz}px;height:${sz}px;background:#fff;border-radius:50%;pointer-events:none;z-index:1;box-shadow:0 0 ${sz*2}px rgba(255,255,255,.8);animation:glitterPulse ${dur}ms ease-in-out ${delay}ms infinite;`;
+  document.body.appendChild(g);
 }
-animateCursor();
-
-// hover effect on interactive elements
-document.querySelectorAll('a, button, .toc-item, .pub-item, .edu-item, .exp-card, .award-item').forEach(el => {
-  el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
-  el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
-});
 </script>
 </body>
 </html>
