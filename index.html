@@ -40,7 +40,7 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:3;back
 /* gate */
 #gate{position:fixed;inset:0;z-index:9000;background:var(--paper);display:flex;align-items:center;justify-content:center;transition:opacity .7s ease,visibility .7s ease;}
 #gate.hidden{opacity:0;visibility:hidden;pointer-events:none;}
-.gate-name{font-family:'KiwiSoda',cursive;font-size:clamp(40px,8vw,80px);line-height:1;color:var(--ink);margin-bottom:8px;}
+.gate-name{font-family:'KiwiSoda',cursive;font-size:clamp(20px,5.5vw,80px);line-height:1;color:var(--ink);margin-bottom:8px;white-space:nowrap;}
 .gate-name em{color:var(--accent);font-style:normal;}
 .gate-sub{font-family:'VCRMono',monospace;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin-bottom:28px;}
 .gate-hint{font-family:'VCRMono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);animation:blink 1.2s step-end infinite;}
@@ -110,7 +110,7 @@ body.in-chapter .ch{bottom:50px;}
 .hero{padding:48px 48px 80px;position:relative;min-height:calc(100vh - var(--mh));display:flex;flex-direction:column;}
 .hero-kicker{font-family:'VCRMono',monospace;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--cyan);display:flex;align-items:center;gap:14px;margin-bottom:40px;}
 .hero-kicker::before{content:'';width:36px;height:1px;background:var(--cyan);}
-.hero-title{font-family:'KiwiSoda',cursive;font-size:clamp(72px,11vw,180px);line-height:.9;color:var(--ink);margin-bottom:24px;text-shadow:0 0 80px rgba(233,30,140,.15);}
+.hero-title{font-family:'KiwiSoda',cursive;font-size:clamp(22px,5.8vw,90px);line-height:1;color:var(--ink);margin-bottom:24px;text-shadow:0 0 80px rgba(233,30,140,.15);text-align:center;white-space:nowrap;}
 .hero-title em{color:var(--accent);font-style:normal;}
 .hero-lede{display:grid;grid-template-columns:1fr 1.2fr;gap:64px;align-items:start;padding-top:24px;border-top:1px solid var(--rule);margin-bottom:56px;}
 .hero-deck{font-family:'UnifontExMono',monospace;font-size:clamp(15px,1.4vw,18px);line-height:1.6;color:var(--ink-2);max-width:32ch;}
@@ -293,16 +293,11 @@ footer .acc{color:var(--accent);}
   .colophon{padding:60px 20px 80px;}
   footer{grid-template-columns:1fr;gap:4px;padding:16px 20px;}
   footer .fr,.fc{text-align:left;}
-  #about-windows{position:static!important;display:grid!important;grid-template-columns:repeat(3,1fr);gap:6px;height:auto!important;margin-bottom:24px;}
-  .about-win{position:static!important;transform:none!important;width:100%!important;z-index:auto!important;}
-  .about-win-bar{display:none;}
-  #about-text{opacity:1!important;transform:none!important;pointer-events:auto!important;}
-  #about-close-btn{display:none!important;}
-  .about-text-wrap{margin-top:0!important;}
+  #about-windows{height:380px;}
+  .about-win{max-width:140px!important;}
   .chnb{padding:0 12px;font-size:10px;}
 }
 @media(max-width:480px){
-  .hero-title{font-size:clamp(52px,16vw,80px);}
   .skills-grid{grid-template-columns:1fr;}
 }
 @media(pointer:fine){
@@ -316,7 +311,6 @@ footer .acc{color:var(--accent);}
 <div id="gate">
   <div style="text-align:center;padding:40px">
     <div class="gate-name">Olivier <em>Jiyoun</em> Jung</div>
-    <div class="gate-sub" style="margin-top:4px">M.A. Candidate · AI Research Intern</div>
     <div style="height:32px"></div>
     <span class="gate-hint">[ click anywhere to enter ]</span>
   </div>
@@ -395,10 +389,10 @@ footer .acc{color:var(--accent);}
 <div class="ch active" id="ch-home">
   <section class="hero">
     <div class="folio">
-      <span><span class="num">01</span> &nbsp; Introduction</span>
+      <span><span class="num">01</span></span>
       <span>olivierjyjung.github.io</span>
     </div>
-    <h1 class="hero-title">Olivier<br><em>Jiyoun</em><br>Jung</h1>
+    <h1 class="hero-title">Olivier <em>Jiyoun</em> Jung</h1>
     <div class="hero-lede">
       <p class="hero-deck">Graduate researcher bridging <em>computational social science</em> and multimodal deep learning — examining how AI reshapes human communication and media trust.</p>
       <dl class="hero-meta">
@@ -424,7 +418,7 @@ footer .acc{color:var(--accent);}
 <!-- 02 About -->
 <div class="ch" id="ch-about">
   <div class="ch-sec">
-    <div class="folio"><span><span class="num">02</span> &nbsp; About</span></div>
+    <div class="folio"><span><span class="num">02</span></span></div>
     <div class="sec-head">
       <div>
         <div class="sec-eyebrow">About</div>
@@ -494,7 +488,7 @@ footer .acc{color:var(--accent);}
 <!-- 03 Education -->
 <div class="ch" id="ch-education">
   <div class="ch-sec">
-    <div class="folio"><span><span class="num">03</span> &nbsp; Education</span></div>
+    <div class="folio"><span><span class="num">03</span></span></div>
     <div class="sec-head">
       <div>
         <div class="sec-eyebrow">Education</div>
@@ -519,18 +513,16 @@ footer .acc{color:var(--accent);}
 <!-- 04 Publications -->
 <div class="ch" id="ch-publications">
   <div class="ch-sec">
-    <div class="folio"><span><span class="num">04</span> &nbsp; Publications</span></div>
-    <div class="sec-head" style="align-items:end">
+    <div class="folio"><span><span class="num">04</span></span></div>
+    <div class="sec-head" style="align-items:start">
       <div>
         <div class="sec-eyebrow">Research</div>
         <h2 class="sec-title">Selected <em>Works</em></h2>
-      </div>
-      <div style="align-self:flex-end">
-        <div class="pub-filter-bar" id="pub-filter">
-          <button class="active" data-filter="all">All <span style="opacity:.5">11</span></button>
-          <button data-filter="presented">Presented <span style="opacity:.5">2</span></button>
-          <button data-filter="review">Under Review <span style="opacity:.5">6</span></button>
-          <button data-filter="progress">In Progress <span style="opacity:.5">3</span></button>
+        <div class="pub-filter-bar" id="pub-filter" style="margin-top:20px;display:inline-flex">
+          <button class="active" data-filter="all">All</button>
+          <button data-filter="presented">Presented</button>
+          <button data-filter="review">Under Review</button>
+          <button data-filter="progress">In Progress</button>
         </div>
       </div>
     </div>
@@ -553,7 +545,7 @@ footer .acc{color:var(--accent);}
 <!-- 05 Experience -->
 <div class="ch" id="ch-experience">
   <div class="ch-sec">
-    <div class="folio"><span><span class="num">05</span> &nbsp; Experience</span></div>
+    <div class="folio"><span><span class="num">05</span></span></div>
     <div class="sec-head">
       <div>
         <div class="sec-eyebrow">Experience</div>
@@ -592,7 +584,7 @@ footer .acc{color:var(--accent);}
 <!-- 06 Skills -->
 <div class="ch" id="ch-skills">
   <div class="ch-sec">
-    <div class="folio"><span><span class="num">06</span> &nbsp; Tools</span></div>
+    <div class="folio"><span><span class="num">06</span></span></div>
     <div class="sec-head">
       <div>
         <div class="sec-eyebrow">Tools &amp; Methods</div>
@@ -611,7 +603,7 @@ footer .acc{color:var(--accent);}
 <!-- 07 Awards -->
 <div class="ch" id="ch-awards">
   <div class="ch-sec">
-    <div class="folio"><span><span class="num">07</span> &nbsp; Recognition</span></div>
+    <div class="folio"><span><span class="num">07</span></span></div>
     <div class="sec-head">
       <div>
         <div class="sec-eyebrow">Recognition</div>
@@ -633,7 +625,7 @@ footer .acc{color:var(--accent);}
 <!-- 08 Guestbook -->
 <div class="ch" id="ch-guestbook">
   <div class="ch-sec" style="background:#000">
-    <div class="folio"><span><span class="num">08</span> &nbsp; Guestbook</span></div>
+    <div class="folio"><span><span class="num">08</span></span></div>
     <div style="text-align:center;margin-bottom:36px;padding-top:20px">
       <div style="font-family:'Cavalhatriz',cursive;font-size:clamp(36px,5vw,64px);color:var(--ink);line-height:1">Say <span style="color:var(--accent)">Hello</span></div>
       <div style="font-family:'PixelArial',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-top:8px">Leave a message ↓</div>
@@ -1106,24 +1098,32 @@ document.getElementById('pub-filter')?.querySelectorAll('button').forEach(btn =>
     win.style.transform=`rotate(${rot}deg)`; win.style.zIndex=p.z;
   });
 
-  // drag
+  // drag (mouse + touch)
   wins.forEach(win => {
     const bar = win.querySelector('.about-win-bar');
     let ox=0,oy=0,sx=0,sy=0,dragging=false;
-    bar.addEventListener('mousedown', e => {
-      if (e.target.classList.contains('aw-tl')) return;
-      dragging=true; sx=e.clientX; sy=e.clientY;
+    function startDrag(cx,cy) {
+      dragging=true; sx=cx; sy=cy;
       const rect=win.getBoundingClientRect(), par=win.offsetParent.getBoundingClientRect();
       ox=rect.left-par.left; oy=rect.top-par.top;
       win.classList.add('dragging'); win.style.zIndex=99;
-      e.preventDefault();
-    });
-    document.addEventListener('mousemove', e=>{if(!dragging)return; win.style.left=(ox+e.clientX-sx)+'px'; win.style.top=(oy+e.clientY-sy)+'px';});
-    document.addEventListener('mouseup', ()=>{if(dragging){dragging=false;win.classList.remove('dragging');}});
+    }
+    function moveDrag(cx,cy) { if(!dragging)return; win.style.left=(ox+cx-sx)+'px'; win.style.top=(oy+cy-sy)+'px'; }
+    function endDrag() { if(dragging){dragging=false;win.classList.remove('dragging');} }
+    bar.addEventListener('mousedown', e => { if(e.target.classList.contains('aw-tl'))return; startDrag(e.clientX,e.clientY); e.preventDefault(); });
+    document.addEventListener('mousemove', e=>{moveDrag(e.clientX,e.clientY);});
+    document.addEventListener('mouseup', endDrag);
+    bar.addEventListener('touchstart', e => { if(e.target.classList.contains('aw-tl'))return; const t=e.touches[0]; startDrag(t.clientX,t.clientY); e.preventDefault(); },{passive:false});
+    document.addEventListener('touchmove', e=>{if(!dragging)return; const t=e.touches[0]; moveDrag(t.clientX,t.clientY); e.preventDefault();},{passive:false});
+    document.addEventListener('touchend', endDrag);
     win.addEventListener('mousedown', ()=>{
       wins.forEach(w=>{if(w!==win)w.style.zIndex=Math.max(1,parseInt(w.style.zIndex||3)-1);});
       win.style.zIndex=50;
     });
+    win.addEventListener('touchstart', ()=>{
+      wins.forEach(w=>{if(w!==win)w.style.zIndex=Math.max(1,parseInt(w.style.zIndex||3)-1);});
+      win.style.zIndex=50;
+    },{passive:true});
   });
 
   // close buttons
