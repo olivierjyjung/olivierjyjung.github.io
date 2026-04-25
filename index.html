@@ -305,7 +305,7 @@ footer .acc{color:var(--accent);}
   #ch-about .ch-sec{padding:16px 20px 20px!important;}
   #ch-about .sec-head{margin-bottom:16px!important;}
   #about-text{display:none!important;}
-  #about-text.revealed{display:block!important;}
+  #about-text.revealed{display:block!important;margin-top:16px!important;}
   .toc{display:none!important;}
   .chnb{padding:0 12px;font-size:10px;}
 }
@@ -398,7 +398,7 @@ footer .acc{color:var(--accent);}
     </div>
     <h1 class="hero-title">Olivier <em>Jiyoun</em> Jung</h1>
     <div class="hero-lede">
-      <p class="hero-deck">Graduate researcher bridging <em>computational social science</em> and multimodal deep learning — examining how AI reshapes human communication and media trust.</p>
+      <p class="hero-deck">Graduate researcher bridging <em>computational social science</em> and <em>multimodal deep learning</em> — examining how AI reshapes human communication and media trust.</p>
       <dl class="hero-meta">
         <div><dt>Affiliation</dt><dd>Ewha Womans University<br>NAVER Cloud</dd></div>
         <div><dt>Focus</dt><dd>Human–AI Interaction<br>Multimodal Deep Learning</dd></div>
@@ -475,7 +475,7 @@ footer .acc{color:var(--accent);}
     <div id="about-text" class="about-text-wrap" style="opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease;pointer-events:none;margin-top:48px">
       <div style="max-width:720px">
         <div class="pull-quote">I examine how AI systems reshape human communication, media trust, and public discourse.</div>
-        <p class="body-p">Olivier Jiyoun Jung is a graduate researcher in Communication &amp; Media at <strong>Ewha Womans University</strong>. Bridging computational social science and <strong>multimodal deep learning</strong>, her research examines how AI systems reshape human communication, media trust, and public discourse.</p>
+        <p class="body-p">Olivier Jiyoun Jung is a graduate researcher in Communication &amp; Media at Ewha Womans University. Bridging <strong>computational social science</strong> and <strong>multimodal deep learning</strong>, her research examines how AI systems reshape human communication, media trust, and public discourse.</p>
         <p class="body-p">She combines methods across speech, vision, and text to investigate authenticity perception, AI-mediated dialogue, and the societal impact of synthetic media.</p>
         <div class="tag-row">
           <span class="t">Human–AI Interaction</span>
@@ -1159,7 +1159,9 @@ document.getElementById('pub-filter')?.querySelectorAll('button').forEach(btn =>
       txt.style.display='block';
       requestAnimationFrame(()=>{txt.style.opacity='1';txt.style.transform='none';txt.style.pointerEvents='auto';});
     }
-    if(container) container.style.height='0';
+    if(container){container.style.height='0';container.style.paddingTop='0';container.style.overflow='hidden';}
+    const btn=document.getElementById('about-btn-wrap');
+    if(btn) btn.style.display='none';
   }
 })();
 
