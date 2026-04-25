@@ -110,7 +110,7 @@ body.in-chapter .ch{bottom:50px;}
 .hero{padding:48px 48px 80px;position:relative;min-height:calc(100vh - var(--mh));display:flex;flex-direction:column;}
 .hero-kicker{font-family:'VCRMono',monospace;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--cyan);display:flex;align-items:center;gap:14px;margin-bottom:40px;}
 .hero-kicker::before{content:'';width:36px;height:1px;background:var(--cyan);}
-.hero-title{font-family:'KiwiSoda',cursive;font-size:clamp(22px,5.8vw,90px);line-height:1;color:var(--ink);margin-bottom:24px;text-shadow:0 0 80px rgba(233,30,140,.15);text-align:center;white-space:nowrap;}
+.hero-title{font-family:'KiwiSoda',cursive;font-size:clamp(22px,5.8vw,90px);line-height:1;color:var(--ink);margin:clamp(60px,12vh,140px) 0 clamp(60px,12vh,140px);text-shadow:0 0 80px rgba(233,30,140,.15);text-align:center;white-space:nowrap;}
 .hero-title em{color:var(--accent);font-style:normal;}
 .hero-lede{display:grid;grid-template-columns:1fr 1.2fr;gap:64px;align-items:start;padding-top:24px;border-top:1px solid var(--rule);margin-bottom:56px;}
 .hero-deck{font-family:'UnifontExMono',monospace;font-size:clamp(15px,1.4vw,18px);line-height:1.6;color:var(--ink-2);max-width:32ch;}
@@ -369,13 +369,6 @@ footer .acc{color:var(--accent);}
   <div class="brand" data-ch="home">Olivier <em>Jiyoun</em> Jung</div>
   <nav class="topnav">
     <a href="#" data-ch="guestbook" class="gb">Guestbook</a>
-    <a href="#" data-ch="about">About</a>
-    <a href="#" data-ch="education">Education</a>
-    <a href="#" data-ch="publications">Research</a>
-    <a href="#" data-ch="experience">Experience</a>
-    <a href="#" data-ch="skills">Tools</a>
-    <a href="#" data-ch="awards">Awards</a>
-    <a href="#" data-ch="contact">Contact</a>
   </nav>
   <button class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-label="Menu">
     <div class="mti"><span></span><span></span></div>
@@ -390,7 +383,6 @@ footer .acc{color:var(--accent);}
   <section class="hero">
     <div class="folio">
       <span><span class="num">01</span></span>
-      <span>olivierjyjung.github.io</span>
     </div>
     <h1 class="hero-title">Olivier <em>Jiyoun</em> Jung</h1>
     <div class="hero-lede">
@@ -633,7 +625,7 @@ footer .acc{color:var(--accent);}
     <div class="gb-mac-window">
       <div class="gb-titlebar">
         <div class="gb-tls"><div class="gb-tl gb-tl-r"></div><div class="gb-tl gb-tl-y"></div><div class="gb-tl gb-tl-g"></div></div>
-        <span class="gb-tt">Guestbook — olivierjyjung.github.io</span>
+        <span class="gb-tt">Guestbook</span>
       </div>
       <div class="gb-body">
         <div class="gb-form-wrap">
@@ -679,7 +671,7 @@ footer .acc{color:var(--accent);}
     <footer>
       <span><span class="acc">©</span> 2025 Olivier Jiyoun Jung</span>
       <span class="fc">Ewha Womans University · Seoul, KR</span>
-      <span class="fr">olivierjyjung.github.io</span>
+      <span class="fr"></span>
       <span class="footer-kicker">Human–AI Interaction · Multimodal Deep Learning · Computational Social Science</span>
     </footer>
   </div>
