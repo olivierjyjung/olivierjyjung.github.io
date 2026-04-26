@@ -1173,19 +1173,35 @@ document.getElementById('pub-filter')?.querySelectorAll('button').forEach(btn =>
 })();
 
 /* ─── Lightbox for about images ─── */
-const lb=document.createElement('div');
-lb.style.cssText='position:fixed;inset:0;z-index:9990;background:rgba(0,0,0,.88);backdrop-filter:blur(12px);display:none;align-items:center;justify-content:center;cursor:none;';
-const lbImg=document.createElement('img');
-lbImg.style.cssText='max-width:88vw;max-height:88vh;border:1px solid rgba(255,255,255,.1);box-shadow:0 40px 100px rgba(0,0,0,.9);border-radius:4px;';
-const lbX=document.createElement('button');
-lbX.textContent='×';
-lbX.style.cssText='position:fixed;top:24px;right:32px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:28px;width:44px;height:44px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;';
-lbX.addEventListener('click',()=>lb.style.display='none');
-lb.appendChild(lbImg); lb.appendChild(lbX); document.body.appendChild(lb);
-document.querySelectorAll('.about-win-body img').forEach(img=>{
-  img.style.cursor='pointer';
-  img.addEventListener('click',e=>{e.stopPropagation();lbImg.src=img.src;lb.style.display='flex';});
-});
+(function(){
+  const style=document.createElement('style');
+  style.textContent=`
+    #lb-overlay{position:fixed;inset:0;z-index:9990;background:rgba(0,0,0,.92);backdrop-filter:blur(16px);display:none;align-items:center;justify-content:center;}
+    #lb-overlay.open{display:flex;}
+    @keyframes lbIn{from{opacity:0;transform:scale(.82)}to{opacity:1;transform:scale(1)}}
+    #lb-img{max-width:90vw;max-height:90vh;border-radius:6px;animation:lbIn .28s cubic-bezier(.22,1,.36,1) forwards;
+      box-shadow:0 0 0 1px rgba(255,255,255,.15),0 0 40px rgba(255,255,255,.25),0 0 100px rgba(233,30,140,.35),0 60px 120px rgba(0,0,0,.95);}
+    #lb-close{position:fixed;top:20px;right:24px;background:rgba(30,30,30,.8);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:22px;line-height:1;width:44px;height:44px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s;}
+    #lb-close:hover{background:var(--accent);}
+  `;
+  document.head.appendChild(style);
+
+  const lb=document.createElement('div'); lb.id='lb-overlay';
+  const img=document.createElement('img'); img.id='lb-img';
+  const btn=document.createElement('button'); btn.id='lb-close'; btn.textContent='×';
+  lb.appendChild(img); lb.appendChild(btn); document.body.appendChild(lb);
+
+  function open(src){img.src=src;lb.classList.add('open');img.style.animation='none';requestAnimationFrame(()=>{img.style.animation='';});}
+  function close(){lb.classList.remove('open');}
+  btn.addEventListener('click',close);
+  lb.addEventListener('click',e=>{if(e.target===lb)close();});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')close();});
+
+  document.querySelectorAll('.about-win-body img').forEach(i=>{
+    i.style.cursor='zoom-in';
+    i.addEventListener('click',e=>{e.stopPropagation();open(i.src);});
+  });
+})();
 
 /* ─── Silver glitter ─── */
 const gStyle=document.createElement('style');
