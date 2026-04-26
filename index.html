@@ -295,7 +295,6 @@ footer .acc{color:var(--accent);}
   footer{grid-template-columns:1fr;gap:4px;padding:16px 20px;}
   footer .fr,.fc{text-align:left;}
   #about-windows{height:auto!important;padding-top:200px!important;overflow:visible!important;}
-  .about-win:nth-child(n+10){display:none!important;}
   .about-win{width:86px!important;max-width:86px!important;}
   .about-win-body{height:auto!important;overflow:hidden!important;}
   .about-win-body img{width:100%!important;display:block!important;}
@@ -433,7 +432,7 @@ footer .acc{color:var(--accent);}
       </div>
     </div>
 
-    <div id="about-windows" style="position:relative;height:480px;overflow:visible;">
+    <div id="about-windows" style="position:relative;height:320px;overflow:visible;">
       <div class="about-win"><div class="about-win-bar"><div class="about-win-lights"><span class="aw-tl"></span><span class="aw-ty"></span><span class="aw-tg"></span></div><span class="about-win-title">photo_1</span></div><div class="about-win-body"><img src="./assets/olivierjyjung_1.jpg" loading="lazy"/></div></div>
       <div class="about-win"><div class="about-win-bar"><div class="about-win-lights"><span class="aw-tl"></span><span class="aw-ty"></span><span class="aw-tg"></span></div><span class="about-win-title">photo_2</span></div><div class="about-win-body"><img src="./assets/olivierjyjung_2.jpg" loading="lazy"/></div></div>
       <div class="about-win"><div class="about-win-bar"><div class="about-win-lights"><span class="aw-tl"></span><span class="aw-ty"></span><span class="aw-tg"></span></div><span class="about-win-title">photo_3</span></div><div class="about-win-body"><img src="./assets/olivierjyjung_3.jpg" loading="lazy"/></div></div>
@@ -1079,23 +1078,26 @@ document.getElementById('pub-filter')?.querySelectorAll('button').forEach(btn =>
 (function() {
   const container = document.getElementById('about-windows');
   if (!container) return;
-  const wins = [...container.querySelectorAll('.about-win')];
+  const allWins = [...container.querySelectorAll('.about-win')];
   const isMobile = window.innerWidth <= 768;
+  const showCount = isMobile ? 9 : 10;
   const positions = isMobile ? [
     {left:'2%',top:'40px',z:5},{left:'24%',top:'62px',z:7},{left:'46%',top:'85px',z:9},
     {left:'44%',top:'4px',z:6},{left:'62%',top:'0px',z:5},{left:'66%',top:'60px',z:4},
     {left:'74%',top:'10px',z:6},{left:'60%',top:'92px',z:3},{left:'10%',top:'4px',z:8}
   ] : [
-    {left:'1%',top:'0px',z:6},{left:'15%',top:'22px',z:9},{left:'30%',top:'6px',z:7},{left:'46%',top:'18px',z:5},{left:'62%',top:'2px',z:8},{left:'76%',top:'28px',z:4},
-    {left:'6%',top:'108px',z:11},{left:'22%',top:'120px',z:8},{left:'38%',top:'100px',z:10},{left:'54%',top:'112px',z:6},{left:'70%',top:'124px',z:9},
-    {left:'0%',top:'210px',z:7},{left:'16%',top:'228px',z:5},{left:'32%',top:'196px',z:12},{left:'48%',top:'218px',z:8},{left:'64%',top:'232px',z:6},{left:'79%',top:'204px',z:10},
-    {left:'4%',top:'316px',z:9},{left:'20%',top:'332px',z:7},{left:'36%',top:'304px',z:11},{left:'52%',top:'320px',z:5},{left:'68%',top:'336px',z:8},
-    {left:'2%',top:'416px',z:6},{left:'18%',top:'432px',z:10},{left:'34%',top:'404px',z:8},{left:'50%',top:'420px',z:12}
+    {left:'1%',top:'0px',z:6},{left:'17%',top:'22px',z:9},{left:'34%',top:'6px',z:7},{left:'52%',top:'18px',z:5},{left:'70%',top:'2px',z:8},
+    {left:'6%',top:'130px',z:11},{left:'24%',top:'148px',z:8},{left:'42%',top:'124px',z:10},{left:'60%',top:'140px',z:6},{left:'78%',top:'130px',z:9},
   ];
-  const shuffled = [...wins];
-  for (let i=shuffled.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[shuffled[i],shuffled[j]]=[shuffled[j],shuffled[i]];}
-  shuffled.forEach((win,i)=>{
-    const p=positions[i], rot=(Math.random()*16-8).toFixed(1);
+
+  // 랜덤으로 showCount개 선택
+  const shuffledAll = [...allWins];
+  for (let i=shuffledAll.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[shuffledAll[i],shuffledAll[j]]=[shuffledAll[j],shuffledAll[i]];}
+  const wins = shuffledAll.slice(0, showCount);
+  shuffledAll.slice(showCount).forEach(w => w.style.display='none');
+
+  wins.forEach((win,i)=>{
+    const p=positions[i], rot=(Math.random()*18-9).toFixed(1);
     win.style.left=p.left; win.style.top=p.top;
     win.style.transform=`rotate(${rot}deg)`; win.style.zIndex=p.z;
   });
