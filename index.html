@@ -131,8 +131,8 @@ body.in-chapter .ch{bottom:50px;}
 .toc-item:hover .toc-arrow{color:var(--accent);transform:translateX(6px);}
 
 /* about */
-.about-win{position:absolute;width:110px;background:#1e1e1e;border:1px solid rgba(255,255,255,.12);border-radius:10px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.8);transition:box-shadow .2s;user-select:none;}
-.about-win-body img{width:100%;display:block;max-height:76px;object-fit:cover;}
+.about-win{position:absolute;width:130px;background:#1e1e1e;border:1px solid rgba(255,255,255,.12);border-radius:10px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.8);transition:box-shadow .2s;user-select:none;}
+.about-win-body img{width:100%;display:block;}
 .about-win:hover{box-shadow:0 28px 80px rgba(0,0,0,.9),0 0 0 .5px rgba(233,30,140,.3);}
 .about-win.dragging{box-shadow:0 40px 100px rgba(0,0,0,.95),0 0 30px rgba(233,30,140,.2);transition:none;}
 .about-win-bar{background:#2d2d2d;padding:8px 12px;display:flex;align-items:center;gap:8px;border-bottom:1px solid rgba(255,255,255,.07);cursor:move;}
@@ -294,14 +294,14 @@ footer .acc{color:var(--accent);}
   .colophon{padding:60px 20px 80px;}
   footer{grid-template-columns:1fr;gap:4px;padding:16px 20px;}
   footer .fr,.fc{text-align:left;}
-  #about-windows{height:auto!important;padding-top:185px!important;overflow:visible!important;}
+  #about-windows{height:auto!important;padding-top:200px!important;overflow:visible!important;}
   .about-win:nth-child(n+10){display:none!important;}
-  .about-win{width:80px!important;max-width:80px!important;}
+  .about-win{width:86px!important;max-width:86px!important;}
   .about-win-body{height:auto!important;overflow:hidden!important;}
-  .about-win-body img{max-height:60px!important;object-fit:cover!important;width:100%!important;}
+  .about-win-body img{width:100%!important;display:block!important;}
   .about-win-bar{padding:3px 5px!important;}
   .about-win-title{display:none!important;}
-  .aw-tl,.aw-ty,.aw-tg{width:5px!important;height:5px!important;gap:3px!important;}
+  .aw-tl,.aw-ty,.aw-tg{width:5px!important;height:5px!important;}
   .about-win-lights{gap:3px!important;}
   #about-btn-wrap{position:static!important;transform:none!important;text-align:center;display:block;margin-top:14px;}
   #about-close-btn{font-size:10px!important;padding:7px 18px!important;min-height:36px!important;border-radius:100px!important;}
@@ -433,7 +433,33 @@ footer .acc{color:var(--accent);}
       </div>
     </div>
 
-    <div id="about-windows" style="position:relative;height:540px;overflow:visible;">
+    <div id="about-windows" style="position:relative;height:480px;overflow:visible;">
+      <div class="about-win"><div class="about-win-bar"><div class="about-win-lights"><span class="aw-tl"></span><span class="aw-ty"></span><span class="aw-tg"></span></div><span class="about-win-title">photo_1</span></div><div class="about-win-body"><img src="./assets/olivierjyjung_1.jpg" loading="lazy"/></div></div>
+      <div class="about-win"><div class="about-win-bar"><div class="about-win-lights"><span class="aw-tl"></span><span class="aw-ty"></span><span class="aw-tg"></span></div><span class="about-win-title">photo_2</span></div><div class="about-win-body"><img src="./assets/olivierjyjung_2.jpg" loading="lazy"/></div></div>
+      <div class="about-win"><div class="about-win-bar"><div class="about-win-lights"><span class="aw-tl"></span><span class="aw-ty"></span><span class="aw-tg"></span></div><span class="about-win-title">photo_3</span></div><div class="about-win-body"><img src="./assets/olivierjyjung_3.jpg" loading="lazy"/></div></div>
+      <div class="about-win"><div class="about-win-bar"><div class="about-win-lights"><span class="aw-tl"></span><span class="aw-ty"></span><span class="aw-tg"></span></div><span class="about-win-title">photo_4</span></div><div class="about-win-body"><img src="./assets/olivierjyjung_4.jpg" loading="lazy"/></div></div>
+      <div class="about-win"><div class="about-win-bar"><div class="about-win-lights"><span class="aw-tl"></span><span class="aw-ty"></span><span class="aw-tg"></span></div><span class="about-win-title">photo_5</span></div><div class="about-win-body"><img src="./assets/olivierjyjung_5.jpg" loading="lazy"/></div></div>
+      <div class="about-win"><div class="about-win-bar"><div class="about-win-lights"><span class="aw-tl"></span><span class="aw-ty"></span><span class="aw-tg"></span></div><span class="about-win-title">photo_6</span></div><div class="about-win-body"><img src="./assets/olivierjyjung_6.jpg" loading="lazy"/></div></div>
+      <div class="about-win"><div class="about-win-bar"><div class="about-win-lights"><span class="aw-tl"></span><span class="aw-ty"></span><span class="aw-tg"></span></div><span class="about-win-title">photo_7</span></div><div class="about-win-body"><img src="./assets/olivierjyjung_7.jpg" loading="lazy"/></div></div>
+      <div class="about-win"><div class="about-win-bar"><div class="about-win-lights"><span class="aw-tl"></span><span class="aw-ty"></span><span class="aw-tg"></span></div><span class="about-win-title">photo_8</span></div><div class="about-win-body"><img src="./assets/olivierjyjung_8.jpg" loading="lazy"/></div></div>
+      <div class="about-win"><div class="about-win-bar"><div class="about-win-lights"><span class="aw-tl"></span><span class="aw-ty"></span><span class="aw-tg"></span></div><span class="about-win-title">photo_9</span></div><div class="about-win-body"><img src="./assets/olivierjyjung_9.jpg" loading="lazy"/></div></div>
+      <div class="about-win"><div class="about-win-bar"><div class="about-win-lights"><span class="aw-tl"></span><span class="aw-ty"></span><span class="aw-tg"></span></div><span class="about-win-title">photo_10</span></div><div class="about-win-body"><img src="./assets/olivierjyjung_10.jpg" loading="lazy"/></div></div>
+      <div class="about-win"><div class="about-win-bar"><div class="about-win-lights"><span class="aw-tl"></span><span class="aw-ty"></span><span class="aw-tg"></span></div><span class="about-win-title">photo_11</span></div><div class="about-win-body"><img src="./assets/olivierjyjung_11.jpg" loading="lazy"/></div></div>
+      <div class="about-win"><div class="about-win-bar"><div class="about-win-lights"><span class="aw-tl"></span><span class="aw-ty"></span><span class="aw-tg"></span></div><span class="about-win-title">photo_12</span></div><div class="about-win-body"><img src="./assets/olivierjyjung_12.jpg" loading="lazy"/></div></div>
+      <div class="about-win"><div class="about-win-bar"><div class="about-win-lights"><span class="aw-tl"></span><span class="aw-ty"></span><span class="aw-tg"></span></div><span class="about-win-title">photo_13</span></div><div class="about-win-body"><img src="./assets/olivierjyjung_13.jpg" loading="lazy"/></div></div>
+      <div class="about-win"><div class="about-win-bar"><div class="about-win-lights"><span class="aw-tl"></span><span class="aw-ty"></span><span class="aw-tg"></span></div><span class="about-win-title">photo_14</span></div><div class="about-win-body"><img src="./assets/olivierjyjung_14.jpg" loading="lazy"/></div></div>
+      <div class="about-win"><div class="about-win-bar"><div class="about-win-lights"><span class="aw-tl"></span><span class="aw-ty"></span><span class="aw-tg"></span></div><span class="about-win-title">photo_15</span></div><div class="about-win-body"><img src="./assets/olivierjyjung_15.jpg" loading="lazy"/></div></div>
+      <div class="about-win"><div class="about-win-bar"><div class="about-win-lights"><span class="aw-tl"></span><span class="aw-ty"></span><span class="aw-tg"></span></div><span class="about-win-title">photo_16</span></div><div class="about-win-body"><img src="./assets/olivierjyjung_16.jpg" loading="lazy"/></div></div>
+      <div class="about-win"><div class="about-win-bar"><div class="about-win-lights"><span class="aw-tl"></span><span class="aw-ty"></span><span class="aw-tg"></span></div><span class="about-win-title">photo_17</span></div><div class="about-win-body"><img src="./assets/olivierjyjung_17.jpg" loading="lazy"/></div></div>
+      <div class="about-win"><div class="about-win-bar"><div class="about-win-lights"><span class="aw-tl"></span><span class="aw-ty"></span><span class="aw-tg"></span></div><span class="about-win-title">photo_18</span></div><div class="about-win-body"><img src="./assets/olivierjyjung_18.jpg" loading="lazy"/></div></div>
+      <div class="about-win"><div class="about-win-bar"><div class="about-win-lights"><span class="aw-tl"></span><span class="aw-ty"></span><span class="aw-tg"></span></div><span class="about-win-title">photo_19</span></div><div class="about-win-body"><img src="./assets/olivierjyjung_19.jpg" loading="lazy"/></div></div>
+      <div class="about-win"><div class="about-win-bar"><div class="about-win-lights"><span class="aw-tl"></span><span class="aw-ty"></span><span class="aw-tg"></span></div><span class="about-win-title">photo_20</span></div><div class="about-win-body"><img src="./assets/olivierjyjung_20.jpg" loading="lazy"/></div></div>
+      <div class="about-win"><div class="about-win-bar"><div class="about-win-lights"><span class="aw-tl"></span><span class="aw-ty"></span><span class="aw-tg"></span></div><span class="about-win-title">photo_21</span></div><div class="about-win-body"><img src="./assets/olivierjyjung_21.jpg" loading="lazy"/></div></div>
+      <div class="about-win"><div class="about-win-bar"><div class="about-win-lights"><span class="aw-tl"></span><span class="aw-ty"></span><span class="aw-tg"></span></div><span class="about-win-title">photo_22</span></div><div class="about-win-body"><img src="./assets/olivierjyjung_22.jpg" loading="lazy"/></div></div>
+      <div class="about-win"><div class="about-win-bar"><div class="about-win-lights"><span class="aw-tl"></span><span class="aw-ty"></span><span class="aw-tg"></span></div><span class="about-win-title">photo_23</span></div><div class="about-win-body"><img src="./assets/olivierjyjung_23.jpg" loading="lazy"/></div></div>
+      <div class="about-win"><div class="about-win-bar"><div class="about-win-lights"><span class="aw-tl"></span><span class="aw-ty"></span><span class="aw-tg"></span></div><span class="about-win-title">photo_24</span></div><div class="about-win-body"><img src="./assets/olivierjyjung_24.jpg" loading="lazy"/></div></div>
+      <div class="about-win"><div class="about-win-bar"><div class="about-win-lights"><span class="aw-tl"></span><span class="aw-ty"></span><span class="aw-tg"></span></div><span class="about-win-title">photo_25</span></div><div class="about-win-body"><img src="./assets/olivierjyjung_25.jpg" loading="lazy"/></div></div>
+      <div class="about-win"><div class="about-win-bar"><div class="about-win-lights"><span class="aw-tl"></span><span class="aw-ty"></span><span class="aw-tg"></span></div><span class="about-win-title">photo_26</span></div><div class="about-win-body"><img src="./assets/olivierjyjung_26.jpg" loading="lazy"/></div></div>
       <div id="about-btn-wrap" style="position:absolute;bottom:-28px;left:50%;transform:translateX(-50%);z-index:20">
         <button id="about-close-btn" style="background:linear-gradient(160deg,#ffe84a 0%,#f5c800 60%,#e8b800 100%);color:#1a1a1a;border:none;font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:13px;font-weight:600;letter-spacing:.01em;padding:11px 26px;border-radius:100px;cursor:pointer;box-shadow:0 2px 18px rgba(245,200,0,.45),inset 0 1px 0 rgba(255,255,255,.55),inset 0 -1px 0 rgba(0,0,0,.12);transition:transform .15s,box-shadow .15s,filter .15s;min-height:40px;">Learn More About Me →</button>
       </div>
@@ -1056,17 +1082,15 @@ document.getElementById('pub-filter')?.querySelectorAll('button').forEach(btn =>
   const wins = [...container.querySelectorAll('.about-win')];
   const isMobile = window.innerWidth <= 768;
   const positions = isMobile ? [
-    {left:'2%',top:'45px',z:5},{left:'22%',top:'65px',z:7},{left:'38%',top:'90px',z:9},
-    {left:'42%',top:'5px',z:6},{left:'57%',top:'0px',z:5},{left:'64%',top:'50px',z:4},
-    {left:'72%',top:'8px',z:6},{left:'60%',top:'95px',z:3},{left:'12%',top:'5px',z:8}
+    {left:'2%',top:'40px',z:5},{left:'24%',top:'62px',z:7},{left:'46%',top:'85px',z:9},
+    {left:'44%',top:'4px',z:6},{left:'62%',top:'0px',z:5},{left:'66%',top:'60px',z:4},
+    {left:'74%',top:'10px',z:6},{left:'60%',top:'92px',z:3},{left:'10%',top:'4px',z:8}
   ] : [
-    {left:'2%',top:'0px',z:6},{left:'16%',top:'18px',z:9},{left:'31%',top:'4px',z:7},{left:'47%',top:'14px',z:5},{left:'62%',top:'0px',z:8},{left:'76%',top:'22px',z:4},
-    {left:'7%',top:'80px',z:11},{left:'23%',top:'94px',z:8},{left:'39%',top:'75px',z:10},{left:'55%',top:'84px',z:6},{left:'70%',top:'98px',z:9},
-    {left:'1%',top:'155px',z:7},{left:'15%',top:'168px',z:5},{left:'30%',top:'145px',z:12},{left:'46%',top:'160px',z:8},{left:'61%',top:'172px',z:6},{left:'76%',top:'150px',z:10},
-    {left:'5%',top:'230px',z:9},{left:'20%',top:'244px',z:7},{left:'36%',top:'220px',z:11},{left:'51%',top:'232px',z:5},{left:'67%',top:'248px',z:8},
-    {left:'2%',top:'305px',z:6},{left:'17%',top:'318px',z:10},{left:'33%',top:'295px',z:8},{left:'49%',top:'308px',z:12},{left:'64%',top:'322px',z:7},{left:'79%',top:'300px',z:5},
-    {left:'6%',top:'378px',z:11},{left:'22%',top:'392px',z:7},{left:'38%',top:'368px',z:9},{left:'54%',top:'380px',z:6},{left:'70%',top:'396px',z:10},
-    {left:'1%',top:'450px',z:8},{left:'17%',top:'464px',z:5},{left:'34%',top:'440px',z:12},{left:'50%',top:'455px',z:9},{left:'66%',top:'468px',z:7},{left:'81%',top:'445px',z:11}
+    {left:'1%',top:'0px',z:6},{left:'15%',top:'22px',z:9},{left:'30%',top:'6px',z:7},{left:'46%',top:'18px',z:5},{left:'62%',top:'2px',z:8},{left:'76%',top:'28px',z:4},
+    {left:'6%',top:'108px',z:11},{left:'22%',top:'120px',z:8},{left:'38%',top:'100px',z:10},{left:'54%',top:'112px',z:6},{left:'70%',top:'124px',z:9},
+    {left:'0%',top:'210px',z:7},{left:'16%',top:'228px',z:5},{left:'32%',top:'196px',z:12},{left:'48%',top:'218px',z:8},{left:'64%',top:'232px',z:6},{left:'79%',top:'204px',z:10},
+    {left:'4%',top:'316px',z:9},{left:'20%',top:'332px',z:7},{left:'36%',top:'304px',z:11},{left:'52%',top:'320px',z:5},{left:'68%',top:'336px',z:8},
+    {left:'2%',top:'416px',z:6},{left:'18%',top:'432px',z:10},{left:'34%',top:'404px',z:8},{left:'50%',top:'420px',z:12}
   ];
   const shuffled = [...wins];
   for (let i=shuffled.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[shuffled[i],shuffled[j]]=[shuffled[j],shuffled[i]];}
