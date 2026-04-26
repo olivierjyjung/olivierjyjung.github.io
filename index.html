@@ -132,7 +132,7 @@ body.in-chapter .ch{bottom:50px;}
 
 /* about */
 .about-win{position:absolute;width:210px;background:#1e1e1e;border:1px solid rgba(255,255,255,.12);border-radius:10px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.8);transition:box-shadow .2s;user-select:none;}
-.about-win-body img{width:100%;display:block;max-height:170px;object-fit:cover;}
+.about-win-body img{width:100%;display:block;max-height:195px;object-fit:cover;}
 .about-win:hover{box-shadow:0 28px 80px rgba(0,0,0,.9),0 0 0 .5px rgba(233,30,140,.3);}
 .about-win.dragging{box-shadow:0 40px 100px rgba(0,0,0,.95),0 0 30px rgba(233,30,140,.2);transition:none;}
 .about-win-bar{background:#2d2d2d;padding:8px 12px;display:flex;align-items:center;gap:8px;border-bottom:1px solid rgba(255,255,255,.07);cursor:move;}
@@ -434,7 +434,7 @@ footer .acc{color:var(--accent);}
       </div>
     </div>
 
-    <div id="about-windows" style="position:relative;height:440px;overflow:visible;">
+    <div id="about-windows" style="position:relative;height:570px;overflow:visible;">
       <div class="about-win"><div class="about-win-bar"><div class="about-win-lights"><span class="aw-tl"></span><span class="aw-ty"></span><span class="aw-tg"></span></div><span class="about-win-title">photo_1</span></div><div class="about-win-body"><img src="./assets/olivierjyjung_1.jpg" loading="lazy"/></div></div>
       <div class="about-win"><div class="about-win-bar"><div class="about-win-lights"><span class="aw-tl"></span><span class="aw-ty"></span><span class="aw-tg"></span></div><span class="about-win-title">photo_2</span></div><div class="about-win-body"><img src="./assets/olivierjyjung_2.jpg" loading="lazy"/></div></div>
       <div class="about-win"><div class="about-win-bar"><div class="about-win-lights"><span class="aw-tl"></span><span class="aw-ty"></span><span class="aw-tg"></span></div><span class="about-win-title">photo_3</span></div><div class="about-win-body"><img src="./assets/olivierjyjung_3.jpg" loading="lazy"/></div></div>
@@ -461,7 +461,7 @@ footer .acc{color:var(--accent);}
       <div class="about-win"><div class="about-win-bar"><div class="about-win-lights"><span class="aw-tl"></span><span class="aw-ty"></span><span class="aw-tg"></span></div><span class="about-win-title">photo_24</span></div><div class="about-win-body"><img src="./assets/olivierjyjung_24.jpg" loading="lazy"/></div></div>
       <div class="about-win"><div class="about-win-bar"><div class="about-win-lights"><span class="aw-tl"></span><span class="aw-ty"></span><span class="aw-tg"></span></div><span class="about-win-title">photo_25</span></div><div class="about-win-body"><img src="./assets/olivierjyjung_25.jpg" loading="lazy"/></div></div>
       <div class="about-win"><div class="about-win-bar"><div class="about-win-lights"><span class="aw-tl"></span><span class="aw-ty"></span><span class="aw-tg"></span></div><span class="about-win-title">photo_26</span></div><div class="about-win-body"><img src="./assets/olivierjyjung_26.jpg" loading="lazy"/></div></div>
-      <div id="about-btn-wrap" style="position:absolute;bottom:-56px;left:50%;transform:translateX(-50%);z-index:20;white-space:nowrap;">
+      <div id="about-btn-wrap" style="position:absolute;bottom:-80px;left:50%;transform:translateX(-50%);z-index:20;white-space:nowrap;">
         <button id="about-close-btn" style="background:linear-gradient(180deg,#fff176 0%,#ffd600 28%,#f5c200 65%,#dba800 100%);color:#1a1a1a;border:none;font-family:'VCRMono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;padding:13px 32px;border-radius:100px;cursor:pointer;box-shadow:0 6px 28px rgba(245,200,0,.6),inset 0 1px 0 rgba(255,255,255,.8),inset 0 -2px 0 rgba(0,0,0,.14);transition:transform .15s,box-shadow .15s;min-height:42px;">Learn More About Me</button>
       </div>
     </div>
@@ -1088,8 +1088,18 @@ document.getElementById('pub-filter')?.querySelectorAll('button').forEach(btn =>
     {left:'44%',top:'4px',z:6},{left:'62%',top:'0px',z:5},{left:'66%',top:'60px',z:4},
     {left:'74%',top:'10px',z:6},{left:'60%',top:'92px',z:3},{left:'10%',top:'4px',z:8}
   ] : [
-    {left:'-1%',top:'0px',z:6},{left:'13%',top:'28px',z:9},{left:'28%',top:'8px',z:7},{left:'43%',top:'22px',z:5},{left:'58%',top:'4px',z:8},{left:'73%',top:'30px',z:10},
-    {left:'5%',top:'220px',z:11},{left:'19%',top:'248px',z:8},{left:'34%',top:'210px',z:10},{left:'49%',top:'238px',z:6},{left:'64%',top:'216px',z:9},{left:'79%',top:'244px',z:7},
+    {left:'63%',top:'258px',z:7, w:195},
+    {left:'58%',top:'352px',z:4, w:162},
+    {left:'46%',top:'420px',z:9, w:248},
+    {left:'32%',top:'442px',z:6, w:178},
+    {left:'18%',top:'416px',z:11,w:228},
+    {left:'8%', top:'348px',z:8, w:158},
+    {left:'5%', top:'254px',z:5, w:242},
+    {left:'9%', top:'158px',z:10,w:188},
+    {left:'20%',top:'90px', z:7, w:260},
+    {left:'35%',top:'62px', z:3, w:198},
+    {left:'50%',top:'92px', z:9, w:168},
+    {left:'59%',top:'162px',z:12,w:218},
   ];
 
   // 랜덤으로 showCount개 선택
@@ -1099,9 +1109,10 @@ document.getElementById('pub-filter')?.querySelectorAll('button').forEach(btn =>
   shuffledAll.slice(showCount).forEach(w => w.style.display='none');
 
   wins.forEach((win,i)=>{
-    const p=positions[i], rot=(Math.random()*18-9).toFixed(1);
+    const p=positions[i], rot=(Math.random()*26-13).toFixed(1);
     win.style.left=p.left; win.style.top=p.top;
     win.style.transform=`rotate(${rot}deg)`; win.style.zIndex=p.z;
+    if(p.w) win.style.width=p.w+'px';
   });
 
   // drag (mouse + touch)
