@@ -306,7 +306,7 @@ footer .acc{color:var(--accent);}
   .about-win-lights{gap:3px!important;}
   #about-btn-wrap{position:static!important;transform:none!important;text-align:center;display:block;margin-top:14px;}
   #about-close-btn{font-size:10px!important;letter-spacing:.08em!important;padding:8px 20px!important;min-height:36px!important;border-radius:100px!important;}
-  #ch-about .ch-sec{display:flex!important;flex-direction:column!important;justify-content:flex-start!important;min-height:calc(100dvh - 104px)!important;padding:20px 20px 0!important;gap:16px!important;}
+  #ch-about .ch-sec{display:flex!important;flex-direction:column!important;justify-content:flex-start!important;min-height:calc(100dvh - 104px)!important;padding:46px 20px 0!important;gap:16px!important;}
   #ch-about .sec-head{margin-bottom:0!important;}
   #about-text{display:none!important;}
   #about-text.revealed{display:block!important;margin-top:16px!important;}
@@ -1136,8 +1136,8 @@ document.getElementById('pub-filter')?.querySelectorAll('button').forEach(btn =>
   const aboutCh=document.getElementById('ch-about');
   if(aboutCh){
     new MutationObserver(()=>{
-      if(aboutCh.style.visibility==='visible') setTimeout(runPopup,360);
-    }).observe(aboutCh,{attributes:true,attributeFilter:['style']});
+      if(aboutCh.classList.contains('active')) setTimeout(runPopup,360);
+    }).observe(aboutCh,{attributes:true,attributeFilter:['class']});
   }
 
   // drag (mouse + touch)
