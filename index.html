@@ -131,16 +131,16 @@ body.in-chapter .ch{bottom:50px;}
 .toc-item:hover .toc-arrow{color:var(--accent);transform:translateX(6px);}
 
 /* about */
-.about-win{position:absolute;width:210px;background:#1e1e1e;border:1px solid rgba(255,255,255,.12);border-radius:10px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.8);transition:box-shadow .2s;user-select:none;}
-.about-win-body img{width:100%;display:block;max-height:195px;object-fit:cover;}
-.about-win:hover{box-shadow:0 28px 80px rgba(0,0,0,.9),0 0 0 .5px rgba(233,30,140,.3);}
+.about-win{position:absolute;width:290px;background:#1e1e1e;border:1px solid rgba(255,255,255,.1);border-radius:8px;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,.85);transition:box-shadow .2s;user-select:none;}
+.about-win-body img{width:100%;display:block;max-height:280px;object-fit:cover;}
+.about-win:hover{box-shadow:0 32px 80px rgba(0,0,0,.9),0 0 0 .5px rgba(233,30,140,.3);}
 .about-win.dragging{box-shadow:0 40px 100px rgba(0,0,0,.95),0 0 30px rgba(233,30,140,.2);transition:none;}
-.about-win-bar{background:#2d2d2d;padding:8px 12px;display:flex;align-items:center;gap:8px;border-bottom:1px solid rgba(255,255,255,.07);cursor:move;}
-.about-win-lights{display:flex;gap:6px;align-items:center;}
-.aw-tl{width:11px;height:11px;border-radius:50%;background:#ff5f57;cursor:pointer;box-shadow:0 0 4px rgba(255,95,87,.5);}
-.aw-ty{width:11px;height:11px;border-radius:50%;background:#ffbd2e;}
-.aw-tg{width:11px;height:11px;border-radius:50%;background:#28ca41;}
-.about-win-title{font-family:'VCRMono',monospace;font-size:11px;color:rgba(255,255,255,.4);margin-left:auto;}
+.about-win-bar{background:#efefef;padding:5px 8px;display:flex;align-items:center;gap:6px;border-bottom:1px solid rgba(0,0,0,.08);cursor:move;}
+.about-win-lights{display:flex;gap:4px;align-items:center;}
+.aw-tl{width:8px;height:8px;border-radius:50%;background:#ff5f57;cursor:pointer;}
+.aw-ty{width:8px;height:8px;border-radius:50%;background:#ffbd2e;}
+.aw-tg{width:8px;height:8px;border-radius:50%;background:#28ca41;}
+.about-win-title{font-family:'VCRMono',monospace;font-size:10px;color:rgba(0,0,0,.45);margin-left:auto;}
 @keyframes winClose{0%{opacity:1;transform:scale(1);}100%{opacity:0;transform:scale(.85);}}
 .d-br{display:block;}
 @media(max-width:768px){.d-br{display:none!important;}}
@@ -300,7 +300,7 @@ footer .acc{color:var(--accent);}
   .about-win{width:100px!important;max-width:100px!important;}
   .about-win-body{height:auto!important;overflow:hidden!important;}
   .about-win-body img{width:100%!important;display:block!important;max-height:80px!important;object-fit:cover!important;}
-  .about-win-bar{padding:3px 5px!important;}
+  .about-win-bar{padding:3px 5px!important;background:#efefef!important;}
   .about-win-title{display:none!important;}
   .aw-tl,.aw-ty,.aw-tg{width:5px!important;height:5px!important;}
   .about-win-lights{gap:3px!important;}
@@ -434,7 +434,7 @@ footer .acc{color:var(--accent);}
       </div>
     </div>
 
-    <div id="about-windows" style="position:relative;height:660px;overflow:visible;">
+    <div id="about-windows" style="position:relative;height:520px;overflow:visible;">
       <div class="about-win"><div class="about-win-bar"><div class="about-win-lights"><span class="aw-tl"></span><span class="aw-ty"></span><span class="aw-tg"></span></div><span class="about-win-title">photo_1</span></div><div class="about-win-body"><img src="./assets/olivierjyjung_1.jpg" loading="lazy"/></div></div>
       <div class="about-win"><div class="about-win-bar"><div class="about-win-lights"><span class="aw-tl"></span><span class="aw-ty"></span><span class="aw-tg"></span></div><span class="about-win-title">photo_2</span></div><div class="about-win-body"><img src="./assets/olivierjyjung_2.jpg" loading="lazy"/></div></div>
       <div class="about-win"><div class="about-win-bar"><div class="about-win-lights"><span class="aw-tl"></span><span class="aw-ty"></span><span class="aw-tg"></span></div><span class="about-win-title">photo_3</span></div><div class="about-win-body"><img src="./assets/olivierjyjung_3.jpg" loading="lazy"/></div></div>
@@ -462,7 +462,7 @@ footer .acc{color:var(--accent);}
       <div class="about-win"><div class="about-win-bar"><div class="about-win-lights"><span class="aw-tl"></span><span class="aw-ty"></span><span class="aw-tg"></span></div><span class="about-win-title">photo_25</span></div><div class="about-win-body"><img src="./assets/olivierjyjung_25.jpg" loading="lazy"/></div></div>
       <div class="about-win"><div class="about-win-bar"><div class="about-win-lights"><span class="aw-tl"></span><span class="aw-ty"></span><span class="aw-tg"></span></div><span class="about-win-title">photo_26</span></div><div class="about-win-body"><img src="./assets/olivierjyjung_26.jpg" loading="lazy"/></div></div>
       <div id="about-btn-wrap" style="position:absolute;bottom:-72px;left:50%;transform:translateX(-50%);z-index:20;white-space:nowrap;">
-        <button id="about-close-btn" style="background:linear-gradient(180deg,#fff176 0%,#ffd600 28%,#f5c200 65%,#dba800 100%);color:#1a1a1a;border:none;font-family:'VCRMono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;padding:13px 32px;border-radius:100px;cursor:pointer;box-shadow:0 6px 28px rgba(245,200,0,.6),inset 0 1px 0 rgba(255,255,255,.8),inset 0 -2px 0 rgba(0,0,0,.14);transition:transform .15s,box-shadow .15s;min-height:42px;">Learn More About Me</button>
+        <button id="about-close-btn" style="background:linear-gradient(180deg,#fff176 0%,#ffd600 28%,#f5c200 65%,#dba800 100%);color:#1a1a1a;border:none;font-family:'VCRMono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:9px 22px;border-radius:100px;cursor:pointer;box-shadow:0 4px 20px rgba(245,200,0,.55),inset 0 1px 0 rgba(255,255,255,.8),inset 0 -2px 0 rgba(0,0,0,.14);transition:transform .15s,box-shadow .15s;min-height:34px;">Learn More About Me</button>
       </div>
     </div>
 
@@ -1088,19 +1088,19 @@ document.getElementById('pub-filter')?.querySelectorAll('button').forEach(btn =>
     {left:'44%',top:'4px',z:6},{left:'62%',top:'0px',z:5},{left:'66%',top:'60px',z:4},
     {left:'74%',top:'10px',z:6},{left:'60%',top:'92px',z:3},{left:'10%',top:'4px',z:8}
   ] : [
-    // 타원: 중심(38%,310px), 수평r=25%, 수직r=250px → 더 원형
-    {left:'62%',top:'308px',z:7, w:192},   // 3시
-    {left:'57%',top:'433px',z:4, w:164},   // 4시
-    {left:'44%',top:'526px',z:9, w:246},   // 5시
-    {left:'30%',top:'552px',z:6, w:176},   // 6시
-    {left:'16%',top:'524px',z:11,w:226},   // 7시
-    {left:'6%', top:'430px',z:8, w:156},   // 8시
-    {left:'3%', top:'306px',z:5, w:240},   // 9시
-    {left:'7%', top:'180px',z:10,w:186},   // 10시
-    {left:'19%',top:'88px', z:7, w:256},   // 11시
-    {left:'34%',top:'58px', z:3, w:196},   // 12시
-    {left:'49%',top:'90px', z:9, w:166},   // 1시
-    {left:'58%',top:'182px',z:12,w:214},   // 2시
+    // 레퍼런스처럼 중앙에 겹쳐서 쌓이는 배치
+    {left:'-2%', top:'58px', z:5, w:285},
+    {left:'11%',  top:'32px', z:8, w:320},
+    {left:'22%',  top:'162px',z:6, w:265},
+    {left:'26%',  top:'46px', z:10,w:288},
+    {left:'38%',  top:'190px',z:7, w:272},
+    {left:'41%',  top:'22px', z:4, w:262},
+    {left:'51%',  top:'68px', z:9, w:292},
+    {left:'53%',  top:'255px',z:11,w:345},
+    {left:'63%',  top:'30px', z:6, w:300},
+    {left:'70%',  top:'162px',z:8, w:252},
+    {left:'76%',  top:'415px',z:5, w:230},
+    {left:'80%',  top:'48px', z:7, w:275},
   ];
 
   // 랜덤으로 showCount개 선택
@@ -1110,7 +1110,7 @@ document.getElementById('pub-filter')?.querySelectorAll('button').forEach(btn =>
   shuffledAll.slice(showCount).forEach(w => w.style.display='none');
 
   wins.forEach((win,i)=>{
-    const p=positions[i], rot=(Math.random()*26-13).toFixed(1);
+    const p=positions[i], rot=(Math.random()*14-7).toFixed(1);
     win.style.left=p.left; win.style.top=p.top;
     win.style.transform=`rotate(${rot}deg)`; win.style.zIndex=p.z;
     if(p.w) win.style.width=p.w+'px';
