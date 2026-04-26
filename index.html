@@ -434,7 +434,7 @@ footer .acc{color:var(--accent);}
       </div>
     </div>
 
-    <div id="about-windows" style="position:relative;height:460px;overflow:visible;">
+    <div id="about-windows" style="position:relative;height:580px;overflow:visible;">
       <div class="about-win"><div class="about-win-bar"><div class="about-win-lights"><span class="aw-tl"></span><span class="aw-ty"></span><span class="aw-tg"></span></div><span class="about-win-title">photo_1</span></div><div class="about-win-body"><img src="./assets/olivierjyjung_1.jpg" loading="lazy"/></div></div>
       <div class="about-win"><div class="about-win-bar"><div class="about-win-lights"><span class="aw-tl"></span><span class="aw-ty"></span><span class="aw-tg"></span></div><span class="about-win-title">photo_2</span></div><div class="about-win-body"><img src="./assets/olivierjyjung_2.jpg" loading="lazy"/></div></div>
       <div class="about-win"><div class="about-win-bar"><div class="about-win-lights"><span class="aw-tl"></span><span class="aw-ty"></span><span class="aw-tg"></span></div><span class="about-win-title">photo_3</span></div><div class="about-win-body"><img src="./assets/olivierjyjung_3.jpg" loading="lazy"/></div></div>
@@ -461,7 +461,7 @@ footer .acc{color:var(--accent);}
       <div class="about-win"><div class="about-win-bar"><div class="about-win-lights"><span class="aw-tl"></span><span class="aw-ty"></span><span class="aw-tg"></span></div><span class="about-win-title">photo_24</span></div><div class="about-win-body"><img src="./assets/olivierjyjung_24.jpg" loading="lazy"/></div></div>
       <div class="about-win"><div class="about-win-bar"><div class="about-win-lights"><span class="aw-tl"></span><span class="aw-ty"></span><span class="aw-tg"></span></div><span class="about-win-title">photo_25</span></div><div class="about-win-body"><img src="./assets/olivierjyjung_25.jpg" loading="lazy"/></div></div>
       <div class="about-win"><div class="about-win-bar"><div class="about-win-lights"><span class="aw-tl"></span><span class="aw-ty"></span><span class="aw-tg"></span></div><span class="about-win-title">photo_26</span></div><div class="about-win-body"><img src="./assets/olivierjyjung_26.jpg" loading="lazy"/></div></div>
-      <div id="about-btn-wrap" style="position:absolute;bottom:-72px;left:50%;transform:translateX(-50%);z-index:20;white-space:nowrap;">
+      <div id="about-btn-wrap" style="position:absolute;bottom:-60px;left:50%;transform:translateX(-50%);z-index:20;white-space:nowrap;">
         <button id="about-close-btn" style="background:linear-gradient(180deg,#fff176 0%,#ffd600 28%,#f5c200 65%,#dba800 100%);color:#1a1a1a;border:none;font-family:'VCRMono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:9px 22px;border-radius:100px;cursor:pointer;box-shadow:0 4px 20px rgba(245,200,0,.55),inset 0 1px 0 rgba(255,255,255,.8),inset 0 -2px 0 rgba(0,0,0,.14);transition:transform .15s,box-shadow .15s;min-height:34px;">Learn More About Me</button>
       </div>
     </div>
@@ -1084,32 +1084,22 @@ document.getElementById('pub-filter')?.querySelectorAll('button').forEach(btn =>
   const isMobile = window.innerWidth <= 768;
   const showCount = isMobile ? 12 : 16;
   const positions = isMobile ? [
-    // 상단 행
-    {left:'2%', top:'6px',  z:7},{left:'26%',top:'0px',  z:5},
-    {left:'50%',top:'10px', z:9},{left:'68%',top:'2px',  z:6},
-    // 중간 행
-    {left:'6%', top:'152px',z:8},{left:'30%',top:'142px',z:10},
-    {left:'54%',top:'156px',z:6},{left:'72%',top:'146px',z:4},
-    // 하단 행
-    {left:'2%', top:'298px',z:9},{left:'28%',top:'288px',z:7},
-    {left:'52%',top:'304px',z:5},{left:'70%',top:'292px',z:8},
+    {left:'2%', top:'6px',  z:7},{left:'30%',top:'0px',  z:5},
+    {left:'56%',top:'10px', z:9},{left:'68%',top:'2px',  z:6},
+    {left:'8%', top:'152px',z:8},{left:'32%',top:'142px',z:10},
+    {left:'56%',top:'156px',z:6},{left:'70%',top:'146px',z:4},
+    {left:'4%', top:'300px',z:9},{left:'30%',top:'290px',z:7},
+    {left:'54%',top:'306px',z:5},{left:'70%',top:'294px',z:8},
   ] : [
-    {left:'0%',  top:'48px', z:3,  w:308},
-    {left:'8%',  top:'108px',z:6,  w:292},
-    {left:'12%', top:'22px', z:8,  w:318},
-    {left:'22%', top:'142px',z:5,  w:282},
-    {left:'25%', top:'38px', z:10, w:298},
-    {left:'32%', top:'215px',z:4,  w:272},
-    {left:'35%', top:'52px', z:7,  w:292},
-    {left:'40%', top:'165px',z:9,  w:318},
-    {left:'44%', top:'18px', z:6,  w:282},
-    {left:'50%', top:'125px',z:11, w:338},
-    {left:'52%', top:'265px',z:5,  w:262},
-    {left:'55%', top:'42px', z:8,  w:292},
-    {left:'62%', top:'175px',z:4,  w:278},
-    {left:'65%', top:'62px', z:12, w:302},
-    {left:'70%', top:'292px',z:7,  w:252},
-    {left:'74%', top:'125px',z:9,  w:288},
+    // 중앙 밀집 3단 배치 (left 10~60%, 겹침 극대화)
+    {left:'10%',top:'10px', z:4,  w:308},{left:'20%',top:'2px',  z:8,  w:322},
+    {left:'32%',top:'18px', z:6,  w:298},{left:'42%',top:'6px',  z:10, w:312},
+    {left:'52%',top:'22px', z:5,  w:295},{left:'60%',top:'10px', z:9,  w:285},
+    {left:'14%',top:'148px',z:7,  w:315},{left:'25%',top:'135px',z:3,  w:298},
+    {left:'36%',top:'152px',z:11, w:328},{left:'47%',top:'140px',z:6,  w:305},
+    {left:'57%',top:'155px',z:8,  w:290},{left:'14%',top:'272px',z:5,  w:310},
+    {left:'26%',top:'260px',z:9,  w:292},{left:'38%',top:'276px',z:4,  w:320},
+    {left:'50%',top:'264px',z:7,  w:298},{left:'60%',top:'278px',z:12, w:282},
   ];
 
   // 랜덤으로 showCount개 선택
@@ -1118,22 +1108,37 @@ document.getElementById('pub-filter')?.querySelectorAll('button').forEach(btn =>
   const wins = shuffledAll.slice(0, showCount);
   shuffledAll.slice(showCount).forEach(w => w.style.display='none');
 
+  // 위치·크기 먼저 세팅, 초기 숨김
   wins.forEach((win,i)=>{
     const p=positions[i], rot=(Math.random()*14-7).toFixed(1);
-    win.style.left=p.left; win.style.top=p.top;
-    win.style.zIndex=p.z;
+    win.style.left=p.left; win.style.top=p.top; win.style.zIndex=p.z;
     if(p.w) win.style.width=p.w+'px';
-    // 팝업북 애니메이션: 처음엔 숨김+축소, 순서대로 튀어나옴
+    win.dataset.rot=rot;
     win.style.opacity='0';
     win.style.transform=`rotate(${rot}deg) scale(0.15)`;
-    win.style.transition='none';
-    setTimeout(()=>{
-      win.style.transition='transform 0.22s cubic-bezier(.34,1.56,.64,1), opacity 0.1s ease';
-      win.style.opacity='1';
-      win.style.transform=`rotate(${rot}deg) scale(1)`;
-      setTimeout(()=>{ win.style.transition='box-shadow .2s'; }, 250);
-    }, 60 + i * 65);
   });
+
+  // about 섹션이 실제로 보일 때 팝업 애니메이션 실행
+  let animated=false;
+  function runPopup(){
+    if(animated) return; animated=true;
+    wins.forEach((win,i)=>{
+      setTimeout(()=>{
+        requestAnimationFrame(()=>{
+          win.style.transition='transform 0.28s cubic-bezier(.34,1.56,.64,1),opacity 0.12s ease';
+          win.style.opacity='1';
+          win.style.transform=`rotate(${win.dataset.rot}deg) scale(1)`;
+          setTimeout(()=>{ win.style.transition='box-shadow .2s'; },320);
+        });
+      }, i*68);
+    });
+  }
+  const aboutCh=document.getElementById('ch-about');
+  if(aboutCh){
+    new MutationObserver(()=>{
+      if(aboutCh.style.visibility==='visible') setTimeout(runPopup,360);
+    }).observe(aboutCh,{attributes:true,attributeFilter:['style']});
+  }
 
   // drag (mouse + touch)
   wins.forEach(win => {
