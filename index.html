@@ -296,10 +296,10 @@ footer .acc{color:var(--accent);}
   .colophon{padding:60px 20px 80px;}
   footer{grid-template-columns:1fr;gap:4px;padding:16px 20px;}
   footer .fr,.fc{text-align:left;}
-  #about-windows{height:auto!important;padding-top:calc(100dvh - 278px)!important;overflow:visible!important;}
-  .about-win{width:100px!important;max-width:100px!important;}
+  #about-windows{height:auto!important;padding-top:calc(100dvh - 358px)!important;overflow:visible!important;}
+  .about-win{width:140px!important;max-width:140px!important;}
   .about-win-body{height:auto!important;overflow:hidden!important;}
-  .about-win-body img{width:100%!important;display:block!important;max-height:80px!important;object-fit:cover!important;}
+  .about-win-body img{width:100%!important;display:block!important;max-height:115px!important;object-fit:cover!important;}
   .about-win-bar{padding:3px 5px!important;background:#efefef!important;}
   .about-win-title{display:none!important;}
   .aw-tl,.aw-ty,.aw-tg{width:5px!important;height:5px!important;}
@@ -1082,11 +1082,17 @@ document.getElementById('pub-filter')?.querySelectorAll('button').forEach(btn =>
   if (!container) return;
   const allWins = [...container.querySelectorAll('.about-win')];
   const isMobile = window.innerWidth <= 768;
-  const showCount = isMobile ? 9 : 16;
+  const showCount = isMobile ? 12 : 16;
   const positions = isMobile ? [
-    {left:'2%',top:'40px',z:5},{left:'24%',top:'62px',z:7},{left:'46%',top:'85px',z:9},
-    {left:'44%',top:'4px',z:6},{left:'62%',top:'0px',z:5},{left:'66%',top:'60px',z:4},
-    {left:'74%',top:'10px',z:6},{left:'60%',top:'92px',z:3},{left:'10%',top:'4px',z:8}
+    // 상단 행
+    {left:'2%', top:'6px',  z:7},{left:'26%',top:'0px',  z:5},
+    {left:'50%',top:'10px', z:9},{left:'68%',top:'2px',  z:6},
+    // 중간 행
+    {left:'6%', top:'152px',z:8},{left:'30%',top:'142px',z:10},
+    {left:'54%',top:'156px',z:6},{left:'72%',top:'146px',z:4},
+    // 하단 행
+    {left:'2%', top:'298px',z:9},{left:'28%',top:'288px',z:7},
+    {left:'52%',top:'304px',z:5},{left:'70%',top:'292px',z:8},
   ] : [
     {left:'0%',  top:'48px', z:3,  w:308},
     {left:'8%',  top:'108px',z:6,  w:292},
