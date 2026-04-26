@@ -22,7 +22,7 @@
   --mh:52px;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-body{background:var(--paper);color:var(--ink);font-family:'UnifontExMono',monospace;font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased;cursor:none;overflow:hidden;}
+body{background:var(--paper);color:var(--ink);font-family:'VCRMono',monospace;font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased;cursor:none;overflow:hidden;}
 @media(pointer:coarse){body{cursor:auto;overflow:auto;}}
 
 /* grain */
@@ -294,7 +294,7 @@ footer .acc{color:var(--accent);}
   .colophon{padding:60px 20px 80px;}
   footer{grid-template-columns:1fr;gap:4px;padding:16px 20px;}
   footer .fr,.fc{text-align:left;}
-  #about-windows{height:auto!important;padding-top:200px!important;overflow:visible!important;}
+  #about-windows{height:auto!important;padding-top:240px!important;overflow:visible!important;}
   .about-win{width:86px!important;max-width:86px!important;}
   .about-win-body{height:auto!important;overflow:hidden!important;}
   .about-win-body img{width:100%!important;display:block!important;}
@@ -432,7 +432,7 @@ footer .acc{color:var(--accent);}
       </div>
     </div>
 
-    <div id="about-windows" style="position:relative;height:320px;overflow:visible;">
+    <div id="about-windows" style="position:relative;height:340px;overflow:visible;">
       <div class="about-win"><div class="about-win-bar"><div class="about-win-lights"><span class="aw-tl"></span><span class="aw-ty"></span><span class="aw-tg"></span></div><span class="about-win-title">photo_1</span></div><div class="about-win-body"><img src="./assets/olivierjyjung_1.jpg" loading="lazy"/></div></div>
       <div class="about-win"><div class="about-win-bar"><div class="about-win-lights"><span class="aw-tl"></span><span class="aw-ty"></span><span class="aw-tg"></span></div><span class="about-win-title">photo_2</span></div><div class="about-win-body"><img src="./assets/olivierjyjung_2.jpg" loading="lazy"/></div></div>
       <div class="about-win"><div class="about-win-bar"><div class="about-win-lights"><span class="aw-tl"></span><span class="aw-ty"></span><span class="aw-tg"></span></div><span class="about-win-title">photo_3</span></div><div class="about-win-body"><img src="./assets/olivierjyjung_3.jpg" loading="lazy"/></div></div>
@@ -1080,14 +1080,14 @@ document.getElementById('pub-filter')?.querySelectorAll('button').forEach(btn =>
   if (!container) return;
   const allWins = [...container.querySelectorAll('.about-win')];
   const isMobile = window.innerWidth <= 768;
-  const showCount = isMobile ? 9 : 10;
+  const showCount = isMobile ? 9 : 12;
   const positions = isMobile ? [
     {left:'2%',top:'40px',z:5},{left:'24%',top:'62px',z:7},{left:'46%',top:'85px',z:9},
     {left:'44%',top:'4px',z:6},{left:'62%',top:'0px',z:5},{left:'66%',top:'60px',z:4},
     {left:'74%',top:'10px',z:6},{left:'60%',top:'92px',z:3},{left:'10%',top:'4px',z:8}
   ] : [
-    {left:'1%',top:'0px',z:6},{left:'17%',top:'22px',z:9},{left:'34%',top:'6px',z:7},{left:'52%',top:'18px',z:5},{left:'70%',top:'2px',z:8},
-    {left:'6%',top:'130px',z:11},{left:'24%',top:'148px',z:8},{left:'42%',top:'124px',z:10},{left:'60%',top:'140px',z:6},{left:'78%',top:'130px',z:9},
+    {left:'1%',top:'0px',z:6},{left:'17%',top:'22px',z:9},{left:'34%',top:'6px',z:7},{left:'52%',top:'18px',z:5},{left:'70%',top:'2px',z:8},{left:'83%',top:'24px',z:7},
+    {left:'5%',top:'140px',z:11},{left:'22%',top:'158px',z:8},{left:'40%',top:'132px',z:10},{left:'57%',top:'148px',z:6},{left:'74%',top:'138px',z:9},{left:'87%',top:'155px',z:7},
   ];
 
   // 랜덤으로 showCount개 선택
