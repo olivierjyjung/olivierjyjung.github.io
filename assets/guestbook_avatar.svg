@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" role="img" aria-label="Guestbook avatar">
+  <rect width="1200" height="1200" fill="#ff347d"/>
+  <circle cx="600" cy="550" r="222" fill="#f58db3"/>
+  <ellipse cx="600" cy="1220" rx="400" ry="385" fill="#f58db3"/>
+</svg>
