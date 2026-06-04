@@ -160,6 +160,7 @@ body.in-chapter .ch{bottom:50px;}
 .pub-venue{font-family:'VCRMono',monospace;font-size:10px;letter-spacing:.08em;color:var(--ink-3);text-transform:uppercase;}
 .pub-side{display:flex;flex-direction:column;gap:6px;align-items:center;}
 .pill{font-family:'VCRMono',monospace;font-size:9px;letter-spacing:.16em;text-transform:uppercase;padding:4px 10px;border:1px solid currentColor;display:inline-block;}
+.pill-accepted{color:var(--cyan);background:rgba(0,229,255,.08);border-color:transparent;}
 .pill-presented{color:var(--accent);background:var(--accent-soft);border-color:transparent;}
 .pill-review{color:var(--ink);}
 .pill-progress{color:var(--ink-3);border-style:dashed;}
@@ -357,12 +358,12 @@ footer .acc{color:var(--accent);}
     </div>
     <h1 class="hero-title">Olivier <em>Jiyoun</em> Jung</h1>
     <div class="hero-lede">
-      <p class="hero-deck">Graduate researcher bridging <em>computational social science</em> and <em>multimodal deep learning</em> — examining how AI reshapes human communication and media trust.</p>
+      <p class="hero-deck">Graduate researcher bridging <em>Human–AI Interaction</em> and <em>computational social science</em> — studying how AI-mediated technologies shape trust, perception, and dialogue.</p>
       <dl class="hero-meta">
-        <div><dt>Affiliation</dt><dd>Ewha Womans University<br>NAVER Cloud</dd></div>
-        <div><dt>Focus</dt><dd>Human–AI Interaction<br>Multimodal Deep Learning</dd></div>
+        <div><dt>Affiliation</dt><dd>Ewha Womans University<br>Division of Communication &amp; Media</dd></div>
+        <div><dt>Focus</dt><dd>Human–AI Interaction<br>Computational Social Science</dd></div>
         <div><dt>Correspondence</dt><dd><a href="mailto:olivierjiyounjung@gmail.com">olivierjiyounjung@gmail.com</a></dd></div>
-        <div><dt>Status</dt><dd>M.A. candidate · Research Intern</dd></div>
+        <div><dt>Status</dt><dd>M.A. candidate · Graduate Research Assistant</dd></div>
       </dl>
     </div>
     <nav class="toc">
@@ -392,7 +393,7 @@ footer .acc{color:var(--accent);}
     <div id="about-text" class="about-text-wrap">
       <div style="max-width:720px">
         <div class="pull-quote">I examine how AI systems reshape human communication, media trust, and public discourse.</div>
-        <p class="body-p">Olivier Jiyoun Jung is a graduate researcher in Communication &amp; Media at Ewha Womans University.<br class="d-br"> Bridging <strong>computational social science</strong> and <strong>multimodal deep learning</strong>, her research examines how AI systems reshape human communication, media trust, and public discourse.</p>
+        <p class="body-p">Olivier Jiyoun Jung is a graduate researcher in Communication &amp; Media at Ewha Womans University.<br class="d-br"> Working at the intersection of <strong>Human–AI Interaction</strong> and <strong>computational social science</strong>, she combines speech modeling, natural language processing, and computational methods to study AI-mediated trust, perception, and dialogue.</p>
         <p class="body-p">She combines methods across speech, vision, and text to investigate authenticity perception, AI-mediated dialogue, and the societal impact of synthetic media.</p>
         <div class="tag-row">
           <span class="t">Human–AI Interaction</span>
@@ -418,12 +419,17 @@ footer .acc{color:var(--accent);}
       <div class="edu-row">
         <div class="edu-year">Mar 2025 — Aug 2027</div>
         <div class="edu-deg">M.A., Communication &amp; Media</div>
-        <div class="edu-school">Ewha Womans University · Seoul<span class="edu-honor">Graduate · in progress</span></div>
+        <div class="edu-school">Ewha Womans University · Seoul<span class="edu-honor">GPA 4.44/4.5 · expected Aug 2027</span></div>
+      </div>
+      <div class="edu-row">
+        <div class="edu-year">Aug 2023 — Feb 2024</div>
+        <div class="edu-deg">Exchange Student, Applied Science</div>
+        <div class="edu-school">University of Applied Sciences and Arts Northwestern Switzerland · Basel</div>
       </div>
       <div class="edu-row">
         <div class="edu-year">Mar 2021 — Feb 2025</div>
         <div class="edu-deg">B.A., Communication &amp; Media</div>
-        <div class="edu-school">Ewha Womans University · Scranton Honors Program<span class="edu-honor">Summa Cum Laude · highest honors, all semesters</span></div>
+        <div class="edu-school">Ewha Womans University · Scranton Honors Program<span class="edu-honor">GPA 4.32/4.5 · Summa Cum Laude</span></div>
       </div>
     </div>
   </div>
@@ -439,6 +445,7 @@ footer .acc{color:var(--accent);}
         <h2 class="sec-title">Selected <em>Works</em></h2>
         <div class="pub-filter-bar" id="pub-filter" style="margin-top:20px;display:inline-flex">
           <button class="active" data-filter="all">All</button>
+          <button data-filter="accepted">Accepted</button>
           <button data-filter="presented">Presented</button>
           <button data-filter="review">Under Review</button>
           <button data-filter="progress">In Progress</button>
@@ -446,14 +453,14 @@ footer .acc{color:var(--accent);}
       </div>
     </div>
     <div id="pub-list">
-      <div class="pub-row" data-status="presented"><div><div class="pub-num">01</div><div class="pub-title">Analyzing V-Tuber Visual Tropes in South Korea Through Korea–Japan Media Circuits</div><div class="pub-authors"><span class="me">Jung, O. J.</span>, &amp; Youk, S.</div><div class="pub-venue">NCA 111th Annual Convention · 2025</div></div><div class="pub-side"><span class="pill pill-presented">Presented</span><span class="pub-year">2025</span></div></div>
-      <div class="pub-row" data-status="presented"><div><div class="pub-num">02</div><div class="pub-title">Comparing Neural Responses to Human and Social Robot Interlocutors: An EEG Study on CASA and Perceived Pleasantness, Importance, and Cooperativeness</div><div class="pub-authors">Youk, S., <span class="me">Jung, O. J.</span>, Jie, Y., &amp; Lee, S. K.</div><div class="pub-venue">ICA 76th Annual Conference · 2026</div></div><div class="pub-side"><span class="pill pill-presented">Presented</span><span class="pub-year">2026</span></div></div>
-      <div class="pub-row" data-status="review"><div><div class="pub-num">03</div><div class="pub-title">Mixed-Methods Approach to Analyzing Visual Characteristics of Virtual YouTubers</div><div class="pub-authors"><span class="me">Jung, O. J.</span>, &amp; Youk, S.</div><div class="pub-venue">Asian Communication Research · Under Review 2026</div></div><div class="pub-side"><span class="pill pill-review">Under Review</span><span class="pub-year">2026</span></div></div>
-      <div class="pub-row" data-status="review"><div><div class="pub-num">04</div><div class="pub-title">Listening Between the Lines: Joint Learning of ASR Embeddings and LLM-Augmented Linguistics for Dementia Detection</div><div class="pub-authors"><span class="me">Jung, O. J.</span>†, Park, J.† &amp; Oh, M. (†equal contribution)</div><div class="pub-venue">INTERSPEECH · Under Review 2026</div></div><div class="pub-side"><span class="pill pill-review">Under Review</span><span class="pub-year">2026</span></div></div>
-      <div class="pub-row" data-status="review"><div><div class="pub-num">05</div><div class="pub-title">LoRA-Tuned Large Language Models for Dementia Detection via Multi-View Speech-Derived Features</div><div class="pub-authors">Park, J.†, <span class="me">Jung, O. J.</span>† &amp; Oh, M. (†equal contribution)</div><div class="pub-venue">INTERSPEECH · Under Review 2026</div></div><div class="pub-side"><span class="pill pill-review">Under Review</span><span class="pub-year">2026</span></div></div>
-      <div class="pub-row" data-status="review"><div><div class="pub-num">06</div><div class="pub-title">Priming Effects on Deepfake Audio Perception: An EEG Study of Source Monitoring and False Memory</div><div class="pub-authors"><span class="me">Jung, O. J.</span></div><div class="pub-venue">NCA 112th Annual Convention · Under Review 2026</div></div><div class="pub-side"><span class="pill pill-review">Under Review</span><span class="pub-year">2026</span></div></div>
-      <div class="pub-row" data-status="review"><div><div class="pub-num">07</div><div class="pub-title">How Policy Shapes Media Narratives of Environmental Risk: A Nine-Year Analysis of Particulate Matter News Coverage in South Korea</div><div class="pub-authors">Youk, S., Kim, H., <span class="me">Jung, O. J.</span>, &amp; Kim, Y.</div><div class="pub-venue">Journal submission · Under Review 2026</div></div><div class="pub-side"><span class="pill pill-review">Under Review</span><span class="pub-year">2026</span></div></div>
-      <div class="pub-row" data-status="review"><div><div class="pub-num">08</div><div class="pub-title">Does AI Exposure Calibrate or Compromise Authenticity Perception? Evidence From Deepfake Audio Detection</div><div class="pub-authors"><span class="me">Jung, O. J.</span></div><div class="pub-venue">Journal submission · Under Review 2026</div></div><div class="pub-side"><span class="pill pill-review">Under Review</span><span class="pub-year">2026</span></div></div>
+      <div class="pub-row" data-status="accepted"><div><div class="pub-num">01</div><div class="pub-title">Listening Between the Lines: Joint Learning of ASR Embeddings and LLM-Augmented Linguistics for Dementia Detection</div><div class="pub-authors"><span class="me">Jung, O. J.</span>†, Park, J.† &amp; Oh, M. (†equal contribution)</div><div class="pub-venue">INTERSPEECH · Accepted 2026</div></div><div class="pub-side"><span class="pill pill-accepted">Accepted</span><span class="pub-year">2026</span></div></div>
+      <div class="pub-row" data-status="accepted"><div><div class="pub-num">02</div><div class="pub-title">LoRA-Tuned Large Language Models for Dementia Detection via Multi-View Speech-Derived Features</div><div class="pub-authors">Park, J.†, <span class="me">Jung, O. J.</span>† &amp; Oh, M. (†equal contribution)</div><div class="pub-venue">INTERSPEECH · Accepted 2026</div></div><div class="pub-side"><span class="pill pill-accepted">Accepted</span><span class="pub-year">2026</span></div></div>
+      <div class="pub-row" data-status="presented"><div><div class="pub-num">03</div><div class="pub-title">Comparing Neural Responses to Human and Social Robot Interlocutors: An EEG Study on CASA and Perceived Pleasantness, Importance, and Cooperativeness</div><div class="pub-authors">Youk, S., <span class="me">Jung, O. J.</span>, Jie, Y., &amp; Lee, S. K.</div><div class="pub-venue">ICA 76th Annual Conference · 2026</div></div><div class="pub-side"><span class="pill pill-presented">Presented</span><span class="pub-year">2026</span></div></div>
+      <div class="pub-row" data-status="presented"><div><div class="pub-num">04</div><div class="pub-title">Analyzing V-Tuber Visual Tropes in South Korea Through Korea–Japan Media Circuits</div><div class="pub-authors"><span class="me">Jung, O. J.</span>, &amp; Youk, S.</div><div class="pub-venue">NCA 111th Annual Convention · 2025</div></div><div class="pub-side"><span class="pill pill-presented">Presented</span><span class="pub-year">2025</span></div></div>
+      <div class="pub-row" data-status="review"><div><div class="pub-num">05</div><div class="pub-title">Priming Effects on Deepfake Audio Perception: An EEG Study of Source Monitoring and False Memory</div><div class="pub-authors"><span class="me">Jung, O. J.</span></div><div class="pub-venue">NCA 112th Annual Convention · Under Review 2026</div></div><div class="pub-side"><span class="pill pill-review">Under Review</span><span class="pub-year">2026</span></div></div>
+      <div class="pub-row" data-status="review"><div><div class="pub-num">06</div><div class="pub-title">How Policy Shapes Media Narratives of Environmental Risk: A Nine-Year Analysis of Particulate Matter News Coverage in South Korea</div><div class="pub-authors">Youk, S., Kim, H., <span class="me">Jung, O. J.</span>, &amp; Kim, Y.</div><div class="pub-venue">Journal submission · Under Review 2026</div></div><div class="pub-side"><span class="pill pill-review">Under Review</span><span class="pub-year">2026</span></div></div>
+      <div class="pub-row" data-status="review"><div><div class="pub-num">07</div><div class="pub-title">Does AI Exposure Calibrate or Compromise Authenticity Perception? Evidence From Deepfake Audio Detection</div><div class="pub-authors"><span class="me">Jung, O. J.</span></div><div class="pub-venue">Journal submission · Under Review 2026</div></div><div class="pub-side"><span class="pill pill-review">Under Review</span><span class="pub-year">2026</span></div></div>
+      <div class="pub-row" data-status="review"><div><div class="pub-num">08</div><div class="pub-title">Mixed-Methods Approach to Analyzing Visual Characteristics of Virtual YouTubers</div><div class="pub-authors"><span class="me">Jung, O. J.</span>, &amp; Youk, S.</div><div class="pub-venue">Asian Communication Research · Under Review 2025</div></div><div class="pub-side"><span class="pill pill-review">Under Review</span><span class="pub-year">2025</span></div></div>
       <div class="pub-row" data-status="progress"><div><div class="pub-num">09</div><div class="pub-title">Meme Politics: Effects of AI-Generated Short-Form Content on Young Voters in South Korea</div><div class="pub-authors"><span class="me">Jung, O. J.</span></div><div class="pub-venue">Computational Social Science · In Progress</div></div><div class="pub-side"><span class="pill pill-progress">In Progress</span><span class="pub-year">—</span></div></div>
       <div class="pub-row" data-status="progress"><div><div class="pub-num">10</div><div class="pub-title">End-to-end Multimodal Explanation Generation for Audio Deepfake Detection</div><div class="pub-authors"><span class="me">Jung, O. J.</span></div><div class="pub-venue">Speech &amp; Audio · In Progress</div></div><div class="pub-side"><span class="pill pill-progress">In Progress</span><span class="pub-year">—</span></div></div>
       <div class="pub-row" data-status="progress"><div><div class="pub-num">11</div><div class="pub-title">Multimodal Depression Detection from Clinical Interviews via Speech-Text Feature Fusion</div><div class="pub-authors"><span class="me">Jung, O. J.</span></div><div class="pub-venue">Clinical NLP · In Progress</div></div><div class="pub-side"><span class="pill pill-progress">In Progress</span><span class="pub-year">—</span></div></div>
@@ -475,13 +482,13 @@ footer .acc{color:var(--accent);}
       <div class="exp-row">
         <div class="exp-idx">01</div>
         <div>
-          <div class="exp-period">Nov 2025 — Present</div>
-          <div class="exp-role">AI Research Scientist, Intern</div>
+          <div class="exp-period">Nov 2025 — May 2026</div>
+          <div class="exp-role">AI Research Scientist Intern</div>
           <div class="exp-org">NAVER Cloud · HCX Application AI Modeling Team · Seongnam</div>
         </div>
         <div class="exp-details">
-          <div class="exp-detail">Developing speech AI and LLM systems; extracting discourse and conversational features.</div>
-          <div class="exp-detail">Implementing and fine-tuning deep models in PyTorch for speech &amp; language processing.</div>
+          <div class="exp-detail">Developed speech AI and LLM systems; extracted discourse and conversational features.</div>
+          <div class="exp-detail">Implemented and fine-tuned deep models in PyTorch for speech &amp; language processing.</div>
         </div>
       </div>
       <div class="exp-row">
@@ -494,6 +501,17 @@ footer .acc{color:var(--accent);}
         <div class="exp-details">
           <div class="exp-detail">Independent research on AI-mediated communication and computational media.</div>
           <div class="exp-detail">Interdisciplinary collaborations across communication, HCI, and AI.</div>
+        </div>
+      </div>
+      <div class="exp-row">
+        <div class="exp-idx">03</div>
+        <div>
+          <div class="exp-period">2025</div>
+          <div class="exp-role">Teaching Assistant</div>
+          <div class="exp-org">Ewha Womans University · Communication and Society · Seoul</div>
+        </div>
+        <div class="exp-details">
+          <div class="exp-detail">Supported instruction for Communication and Society.</div>
         </div>
       </div>
     </div>
@@ -513,8 +531,8 @@ footer .acc{color:var(--accent);}
     <div class="skills-grid">
       <div class="skill-col"><h4>Programming</h4><ul><li>Python</li><li>R</li><li>LaTeX</li></ul></div>
       <div class="skill-col"><h4>Machine Learning</h4><ul><li>PyTorch</li><li>Deep Learning</li><li>NLP</li><li>LLM Fine-tuning</li><li>Speech Processing</li><li>Computer Vision</li></ul></div>
-      <div class="skill-col"><h4>Research</h4><ul><li>SPSS</li><li>PsychoPy</li><li>EEG</li><li>Unreal Engine</li></ul></div>
-      <div class="skill-col"><h4>Audio &amp; Creative</h4><ul><li>Ableton Live</li><li>Logic Pro</li><li>Melodyne</li><li>Photoshop</li></ul></div>
+      <div class="skill-col"><h4>Research</h4><ul><li>SPSS</li><li>PsychoPy</li><li>EEG</li><li>Unreal Engine (VR)</li></ul></div>
+      <div class="skill-col"><h4>Audio &amp; Creative</h4><ul><li>Ableton Live</li><li>Logic Pro</li><li>Melodyne</li><li>Adobe Photoshop</li><li>Microsoft Office</li></ul></div>
     </div>
   </div>
 </div>
@@ -530,13 +548,13 @@ footer .acc{color:var(--accent);}
       </div>
     </div>
     <div>
-      <div class="award-row"><div class="award-year">2025, 2026</div><div class="award-name">Excellence Ewha-in Scholarship ($10,000)</div><div class="award-org">Ewha Womans University</div></div>
+      <div class="award-row"><div class="award-year">2025–2026</div><div class="award-name">Excellence Ewha-in Scholarship ($10,000)</div><div class="award-org">Ewha Womans University</div></div>
       <div class="award-row"><div class="award-year">2025</div><div class="award-name">Summa Cum Laude</div><div class="award-org">Ewha Womans University</div></div>
       <div class="award-row"><div class="award-year">2025</div><div class="award-name">Student Travel Grant, NCA 111th Convention</div><div class="award-org">National Communication Association</div></div>
       <div class="award-row"><div class="award-year">2024</div><div class="award-name">Departmental Academic Excellence Scholarship</div><div class="award-org">Ewha Womans University</div></div>
       <div class="award-row"><div class="award-year">2023</div><div class="award-name">FHNW International Merit Scholarship</div><div class="award-org">University of Applied Sciences and Arts Northwestern Switzerland</div></div>
-      <div class="award-row"><div class="award-year">2022</div><div class="award-name">Excellence Award, 5th Investigative Reporting Contest</div><div class="award-org">Korea News Agency Commission · "Youth Leaving Care Facilities"</div></div>
-      <div class="award-row"><div class="award-year">2021–25</div><div class="award-name">Highest Honors (all semesters)</div><div class="award-org">Ewha Womans University</div></div>
+      <div class="award-row"><div class="award-year">2022</div><div class="award-name">Excellence Award, 5th Investigative Reporting Contest</div><div class="award-org">Korea News Agency Commission</div></div>
+      <div class="award-row"><div class="award-year">2021–2025</div><div class="award-name">Highest Honors (all semesters)</div><div class="award-org">Ewha Womans University</div></div>
     </div>
   </div>
 </div>
@@ -599,7 +617,7 @@ footer .acc{color:var(--accent);}
       <span><span class="acc">©</span> 2025 Olivier Jiyoun Jung</span>
       <span class="fc">Ewha Womans University · Seoul, KR</span>
       <span class="fr"></span>
-      <span class="footer-kicker">Human–AI Interaction · Multimodal Deep Learning · Computational Social Science</span>
+      <span class="footer-kicker">Human–AI Interaction · Computational Social Science · Speech &amp; NLP</span>
     </footer>
   </div>
 </div>
