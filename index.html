@@ -29,10 +29,8 @@ body{background:var(--paper);color:var(--ink);font-family:'UnifontExMono',monosp
 body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:2;opacity:.3;mix-blend-mode:screen;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.08 0 0 0 0 0.07 0 0 0 0 0.05 0 0 0 0.10 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");}
 
 /* cursor */
-#cursor-star{position:fixed;pointer-events:none;z-index:9999;width:44px;height:44px;transform-origin:8px 0;transform:rotate(-45deg);image-rendering:pixelated;filter:drop-shadow(0 0 6px rgba(200,220,255,.8)) drop-shadow(0 0 2px #fff);}
+#cursor-star{position:fixed;pointer-events:none;z-index:9999;width:18px;height:18px;transform:translate(-50%,-50%);background:rgba(249,229,249,.08);border:1px solid rgba(249,229,249,.75);box-shadow:0 0 0 1px rgba(233,30,140,.18),0 0 12px rgba(249,229,249,.16);}
 @media(pointer:coarse){#cursor-star{display:none;}}
-.sparkle-dot{position:fixed;pointer-events:none;z-index:9998;border-radius:50%;animation:sparkleFade .7s ease forwards;}
-@keyframes sparkleFade{0%{opacity:1;transform:translate(-50%,-50%) scale(1);}100%{opacity:0;transform:translate(-50%,-50%) scale(0);}}
 .deco-spark{position:fixed;pointer-events:none;z-index:1;animation:floatSpark linear infinite;font-size:6px;opacity:0;color:#fff;}
 @keyframes floatSpark{0%{transform:translateY(0) scale(.5);opacity:0;}20%{opacity:.9;}80%{opacity:.7;}100%{transform:translateY(-60px) scale(1.5);opacity:0;}}
 
@@ -129,21 +127,8 @@ body.in-chapter .ch{bottom:50px;}
 .toc-arrow{font-family:'VCRMono',monospace;font-size:11px;color:var(--ink-3);transition:color .2s,transform .2s;}
 .toc-item:hover .toc-arrow{color:var(--accent);transform:translateX(6px);}
 
-/* about */
-.about-win{position:absolute;width:290px;background:#1e1e1e;border:1px solid rgba(255,255,255,.1);border-radius:8px;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,.85);transition:box-shadow .2s;user-select:none;}
-.about-win-body img{width:100%;display:block;max-height:280px;object-fit:cover;}
-.about-win:hover{box-shadow:0 32px 80px rgba(0,0,0,.9),0 0 0 .5px rgba(233,30,140,.3);}
-.about-win.dragging{box-shadow:0 40px 100px rgba(0,0,0,.95),0 0 30px rgba(233,30,140,.2);transition:none;}
-.about-win-bar{background:#efefef;padding:5px 8px;display:flex;align-items:center;gap:6px;border-bottom:1px solid rgba(0,0,0,.08);cursor:move;}
-.about-win-lights{display:flex;gap:4px;align-items:center;}
-.aw-tl{width:8px;height:8px;border-radius:50%;background:#ff5f57;cursor:pointer;}
-.aw-ty{width:8px;height:8px;border-radius:50%;background:#ffbd2e;}
-.aw-tg{width:8px;height:8px;border-radius:50%;background:#28ca41;}
-.about-win-title{font-family:'VCRMono',monospace;font-size:10px;color:rgba(0,0,0,.45);margin-left:auto;}
-@keyframes winClose{0%{opacity:1;transform:scale(1);}100%{opacity:0;transform:scale(.85);}}
 .d-br{display:block;}
 @media(max-width:768px){.d-br{display:none!important;}}
-.about-win.closing{animation:winClose .35s ease forwards;}
 .pull-quote{font-family:'KiwiSoda',cursive;font-size:clamp(22px,2.2vw,30px);line-height:1.3;color:var(--ink);margin-bottom:24px;}
 .pull-quote::before{content:'\201C';color:var(--accent);margin-right:4px;}
 .body-p{font-size:14px;line-height:1.7;color:var(--ink-2);margin-bottom:16px;max-width:60ch;}
@@ -295,20 +280,9 @@ footer .acc{color:var(--accent);}
   .colophon{padding:60px 20px 80px;}
   footer{grid-template-columns:1fr;gap:4px;padding:16px 20px;}
   footer .fr,.fc{text-align:left;}
-  #about-windows{height:auto!important;padding-top:max(440px,calc(100dvh - 358px))!important;overflow:visible!important;}
-  .about-win{width:140px!important;max-width:140px!important;}
-  .about-win-body{height:auto!important;overflow:hidden!important;}
-  .about-win-body img{width:100%!important;display:block!important;max-height:115px!important;object-fit:cover!important;}
-  .about-win-bar{padding:3px 5px!important;background:#efefef!important;}
-  .about-win-title{display:none!important;}
-  .aw-tl,.aw-ty,.aw-tg{width:5px!important;height:5px!important;}
-  .about-win-lights{gap:3px!important;}
-  #about-btn-wrap{position:relative!important;left:auto!important;bottom:auto!important;z-index:30!important;transform:none!important;text-align:center;display:block;margin-top:14px;white-space:normal!important;width:100%!important;}
-  #about-close-btn{font-size:9px!important;letter-spacing:.06em!important;padding:5px 16px!important;min-height:28px!important;border-radius:100px!important;max-width:calc(100vw - 64px)!important;box-shadow:0 3px 14px rgba(245,200,0,.42),inset 0 1px 0 rgba(255,255,255,.65)!important;}
   #ch-about .ch-sec{display:flex!important;flex-direction:column!important;justify-content:flex-start!important;min-height:calc(100dvh - 104px)!important;padding:58px 20px 0!important;gap:14px!important;}
   #ch-about .sec-head{margin-bottom:0!important;}
-  #about-text{display:none!important;}
-  #about-text.revealed{display:block!important;margin-top:16px!important;}
+  #about-text{margin-top:16px!important;}
   .toc{display:none!important;}
   .chnb{padding:0 12px;font-size:10px;}
 }
@@ -332,25 +306,7 @@ footer .acc{color:var(--accent);}
 </div>
 
 <!-- Custom cursor -->
-<svg id="cursor-star" viewBox="0 0 16 40" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
-  <rect x="7" y="0" width="2" height="2" fill="#e0e8ff"/>
-  <rect x="6" y="2" width="4" height="2" fill="#c8d4f0"/>
-  <rect x="6" y="4" width="4" height="2" fill="#d0dcff"/>
-  <rect x="6" y="6" width="4" height="14" fill="#b8c8e8"/>
-  <rect x="7" y="6" width="2" height="14" fill="#e8f0ff"/>
-  <rect x="7" y="4" width="1" height="16" fill="#f0f8ff" opacity="0.6"/>
-  <rect x="2" y="20" width="12" height="3" fill="#888"/>
-  <rect x="2" y="20" width="12" height="1" fill="#bbb"/>
-  <rect x="2" y="22" width="12" height="1" fill="#555"/>
-  <rect x="6" y="23" width="4" height="10" fill="#1a0a0a"/>
-  <rect x="7" y="23" width="2" height="10" fill="#2a1010"/>
-  <rect x="6" y="25" width="4" height="1" fill="#3a1a1a"/>
-  <rect x="6" y="28" width="4" height="1" fill="#3a1a1a"/>
-  <rect x="6" y="31" width="4" height="1" fill="#3a1a1a"/>
-  <rect x="5" y="33" width="6" height="4" fill="#666"/>
-  <rect x="5" y="33" width="6" height="1" fill="#999"/>
-  <rect x="6" y="34" width="4" height="2" fill="#444"/>
-</svg>
+<div id="cursor-star" aria-hidden="true"></div>
 
 <!-- Deco sparks -->
 <span class="deco-spark" style="left:8%;top:30%;animation-duration:4s;animation-delay:0s">·</span>
@@ -433,19 +389,7 @@ footer .acc{color:var(--accent);}
       </div>
     </div>
 
-    <div id="about-windows" style="position:relative;height:520px;overflow:visible;">
-      <div class="about-win"><div class="about-win-bar"><div class="about-win-lights"><span class="aw-tl"></span><span class="aw-ty"></span><span class="aw-tg"></span></div><span class="about-win-title">photo_1</span></div><div class="about-win-body"><img src="./assets/olivierjyjung_2.jpg" loading="lazy"/></div></div>
-      <div class="about-win"><div class="about-win-bar"><div class="about-win-lights"><span class="aw-tl"></span><span class="aw-ty"></span><span class="aw-tg"></span></div><span class="about-win-title">photo_2</span></div><div class="about-win-body"><img src="./assets/olivierjyjung_4.jpg" loading="lazy"/></div></div>
-      <div class="about-win"><div class="about-win-bar"><div class="about-win-lights"><span class="aw-tl"></span><span class="aw-ty"></span><span class="aw-tg"></span></div><span class="about-win-title">photo_3</span></div><div class="about-win-body"><img src="./assets/olivierjyjung_5.jpg" loading="lazy"/></div></div>
-      <div class="about-win"><div class="about-win-bar"><div class="about-win-lights"><span class="aw-tl"></span><span class="aw-ty"></span><span class="aw-tg"></span></div><span class="about-win-title">photo_4</span></div><div class="about-win-body"><img src="./assets/olivierjyjung_6.jpg" loading="lazy"/></div></div>
-      <div class="about-win"><div class="about-win-bar"><div class="about-win-lights"><span class="aw-tl"></span><span class="aw-ty"></span><span class="aw-tg"></span></div><span class="about-win-title">photo_5</span></div><div class="about-win-body"><img src="./assets/olivierjyjung_13.jpg" loading="lazy"/></div></div>
-      <div class="about-win"><div class="about-win-bar"><div class="about-win-lights"><span class="aw-tl"></span><span class="aw-ty"></span><span class="aw-tg"></span></div><span class="about-win-title">photo_6</span></div><div class="about-win-body"><img src="./assets/olivierjyjung_16.jpg" loading="lazy"/></div></div>
-      <div id="about-btn-wrap" style="position:absolute;bottom:0;left:50%;transform:translateX(-50%);z-index:20;white-space:nowrap;">
-        <button id="about-close-btn" style="background:linear-gradient(180deg,#ffe76a 0%,#ffd51d 48%,#e6b900 100%);color:#1a1a1a;border:none;font-family:'VCRMono',monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;padding:6px 18px;border-radius:100px;cursor:pointer;box-shadow:0 3px 14px rgba(245,200,0,.42),inset 0 1px 0 rgba(255,255,255,.65);transition:transform .15s,box-shadow .15s;min-height:28px;">Learn More About Me</button>
-      </div>
-    </div>
-
-    <div id="about-text" class="about-text-wrap" style="opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease;pointer-events:none;margin-top:48px">
+    <div id="about-text" class="about-text-wrap">
       <div style="max-width:720px">
         <div class="pull-quote">I examine how AI systems reshape human communication, media trust, and public discourse.</div>
         <p class="body-p">Olivier Jiyoun Jung is a graduate researcher in Communication &amp; Media at Ewha Womans University.<br class="d-br"> Bridging <strong>computational social science</strong> and <strong>multimodal deep learning</strong>, her research examines how AI systems reshape human communication, media trust, and public discourse.</p>
@@ -1020,21 +964,10 @@ document.addEventListener('keydown', e => { if (e.key==='Escape') closeMobileMen
 
 /* ─── Custom cursor ─── */
 const star = document.getElementById('cursor-star');
-const COLORS = ['#e91e8c','#00e5ff','#a8ff3e','#f9e5f9','#7c3aed','#ff1744','#ffffff'];
-let lastSparkle = 0;
 
 document.addEventListener('mousemove', e => {
-  star.style.left = (e.clientX - 8) + 'px';
+  star.style.left = e.clientX + 'px';
   star.style.top  = e.clientY + 'px';
-  const now = Date.now();
-  if (now - lastSparkle < 40) return;
-  lastSparkle = now;
-  const sz = [4,6,8,5,7][Math.floor(Math.random()*5)];
-  const dot = document.createElement('div');
-  dot.className = 'sparkle-dot';
-  dot.style.cssText = `left:${e.clientX+(Math.random()-.5)*16}px;top:${e.clientY+(Math.random()-.5)*16}px;width:${sz}px;height:${sz}px;background:${COLORS[Math.floor(Math.random()*COLORS.length)]};filter:blur(1px);box-shadow:0 0 ${sz}px ${COLORS[Math.floor(Math.random()*COLORS.length)]};`;
-  document.body.appendChild(dot);
-  setTimeout(() => dot.remove(), 700);
 });
 
 /* ─── Pearl shimmer on buttons ─── */
@@ -1054,154 +987,6 @@ document.getElementById('pub-filter')?.querySelectorAll('button').forEach(btn =>
     });
   });
 });
-
-/* ─── About windows ─── */
-(function() {
-  const container = document.getElementById('about-windows');
-  if (!container) return;
-  const allWins = [...container.querySelectorAll('.about-win')];
-  const isMobile = window.innerWidth <= 768;
-  const showCount = Math.min(allWins.length, isMobile ? 12 : 16);
-  const positions = isMobile ? [
-    {left:'4%', top:'5px',  z:7},{left:'26%',top:'0px',  z:5},
-    {left:'45%',top:'8px',  z:9},{left:'57%',top:'2px',  z:6},
-    {left:'8%', top:'148px',z:8},{left:'28%',top:'140px',z:10},
-    {left:'46%',top:'152px',z:6},{left:'57%',top:'144px',z:4},
-    {left:'5%', top:'298px',z:9},{left:'27%',top:'288px',z:7},
-    {left:'46%',top:'302px',z:5},{left:'57%',top:'290px',z:8},
-  ] : [
-    {left:'26%',top:'24px', z:6,  w:306},{left:'39%',top:'2px',  z:10, w:318},
-    {left:'52%',top:'24px', z:8,  w:300},{left:'30%',top:'184px',z:9,  w:320},
-    {left:'44%',top:'160px',z:7,  w:306},{left:'58%',top:'188px',z:5,  w:294},
-  ];
-
-  // 랜덤으로 showCount개 선택
-  const shuffledAll = [...allWins];
-  for (let i=shuffledAll.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[shuffledAll[i],shuffledAll[j]]=[shuffledAll[j],shuffledAll[i]];}
-  const wins = shuffledAll.slice(0, showCount);
-  shuffledAll.slice(showCount).forEach(w => w.style.display='none');
-
-  // 위치·크기 먼저 세팅, 초기 숨김
-  wins.forEach((win,i)=>{
-    const p=positions[i], rot=(Math.random()*14-7).toFixed(1);
-    win.style.left=p.left; win.style.top=p.top; win.style.zIndex=p.z;
-    if(p.w) win.style.width=p.w+'px';
-    win.dataset.rot=rot;
-    win.style.opacity='0';
-    win.style.transform=`rotate(${rot}deg) scale(0.15)`;
-  });
-
-  // about 섹션이 실제로 보일 때 팝업 애니메이션 실행
-  let animated=false;
-  function runPopup(){
-    if(animated) return; animated=true;
-    wins.forEach((win,i)=>{
-      setTimeout(()=>{
-        requestAnimationFrame(()=>{
-          win.style.transition='transform 0.28s cubic-bezier(.34,1.56,.64,1),opacity 0.12s ease';
-          win.style.opacity='1';
-          win.style.transform=`rotate(${win.dataset.rot}deg) scale(1)`;
-          setTimeout(()=>{ win.style.transition='box-shadow .2s'; },320);
-        });
-      }, i*68);
-    });
-  }
-  const aboutCh=document.getElementById('ch-about');
-  if(aboutCh){
-    new MutationObserver(()=>{
-      if(aboutCh.classList.contains('active')) setTimeout(runPopup,360);
-    }).observe(aboutCh,{attributes:true,attributeFilter:['class']});
-    if(aboutCh.classList.contains('active')) setTimeout(runPopup,400);
-  }
-
-  // drag (mouse + touch)
-  wins.forEach(win => {
-    const bar = win.querySelector('.about-win-bar');
-    let ox=0,oy=0,sx=0,sy=0,dragging=false;
-    function startDrag(cx,cy) {
-      dragging=true; sx=cx; sy=cy;
-      const rect=win.getBoundingClientRect(), par=win.offsetParent.getBoundingClientRect();
-      ox=rect.left-par.left; oy=rect.top-par.top;
-      win.classList.add('dragging'); win.style.zIndex=99;
-    }
-    function moveDrag(cx,cy) { if(!dragging)return; win.style.left=(ox+cx-sx)+'px'; win.style.top=(oy+cy-sy)+'px'; }
-    function endDrag() { if(dragging){dragging=false;win.classList.remove('dragging');} }
-    bar.addEventListener('mousedown', e => { if(e.target.classList.contains('aw-tl'))return; startDrag(e.clientX,e.clientY); e.preventDefault(); });
-    document.addEventListener('mousemove', e=>{moveDrag(e.clientX,e.clientY);});
-    document.addEventListener('mouseup', endDrag);
-    bar.addEventListener('touchstart', e => { if(e.target.classList.contains('aw-tl'))return; const t=e.touches[0]; startDrag(t.clientX,t.clientY); e.preventDefault(); },{passive:false});
-    document.addEventListener('touchmove', e=>{if(!dragging)return; const t=e.touches[0]; moveDrag(t.clientX,t.clientY); e.preventDefault();},{passive:false});
-    document.addEventListener('touchend', endDrag);
-    win.addEventListener('mousedown', ()=>{
-      wins.forEach(w=>{if(w!==win)w.style.zIndex=Math.max(1,parseInt(w.style.zIndex||3)-1);});
-      win.style.zIndex=50;
-    });
-    win.addEventListener('touchstart', ()=>{
-      wins.forEach(w=>{if(w!==win)w.style.zIndex=Math.max(1,parseInt(w.style.zIndex||3)-1);});
-      win.style.zIndex=50;
-    },{passive:true});
-  });
-
-  // close buttons
-  document.querySelectorAll('.aw-tl').forEach(dot => {
-    dot.addEventListener('click', () => {
-      const win = dot.closest('.about-win');
-      win.classList.add('closing');
-      win.addEventListener('animationend', () => win.remove(), {once:true});
-      setTimeout(()=>{ if (!document.querySelectorAll('.about-win:not(.closing)').length) revealAboutText(); }, 400);
-    });
-  });
-
-  const closeBtn = document.getElementById('about-close-btn');
-  closeBtn?.addEventListener('click', () => {
-    closeBtn.style.display='none';
-    wins.forEach((win,i) => setTimeout(()=>{win.classList.add('closing');win.addEventListener('animationend',()=>win.remove(),{once:true});}, i*60));
-    setTimeout(revealAboutText, 500);
-  });
-
-  function revealAboutText() {
-    const txt=document.getElementById('about-text');
-    if(txt){
-      txt.classList.add('revealed');
-      txt.style.display='block';
-      requestAnimationFrame(()=>{txt.style.opacity='1';txt.style.transform='none';txt.style.pointerEvents='auto';});
-    }
-    if(container){container.style.setProperty('height','0','important');container.style.setProperty('padding-top','0','important');container.style.setProperty('overflow','hidden','important');container.style.setProperty('margin','0','important');}
-    const btn=document.getElementById('about-btn-wrap');
-    if(btn) btn.style.display='none';
-  }
-})();
-
-/* ─── Lightbox for about images ─── */
-(function(){
-  const style=document.createElement('style');
-  style.textContent=`
-    #lb-overlay{position:fixed;inset:0;z-index:9990;background:rgba(0,0,0,.92);backdrop-filter:blur(16px);display:none;align-items:center;justify-content:center;}
-    #lb-overlay.open{display:flex;}
-    @keyframes lbIn{from{opacity:0;transform:scale(.82)}to{opacity:1;transform:scale(1)}}
-    #lb-img{max-width:90vw;max-height:90vh;border-radius:6px;animation:lbIn .28s cubic-bezier(.22,1,.36,1) forwards;
-      box-shadow:0 0 0 1px rgba(255,255,255,.15),0 0 40px rgba(255,255,255,.25),0 0 100px rgba(233,30,140,.35),0 60px 120px rgba(0,0,0,.95);}
-    #lb-close{position:fixed;top:20px;right:24px;background:rgba(30,30,30,.8);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:22px;line-height:1;width:44px;height:44px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s;}
-    #lb-close:hover{background:var(--accent);}
-  `;
-  document.head.appendChild(style);
-
-  const lb=document.createElement('div'); lb.id='lb-overlay';
-  const img=document.createElement('img'); img.id='lb-img';
-  const btn=document.createElement('button'); btn.id='lb-close'; btn.textContent='×';
-  lb.appendChild(img); lb.appendChild(btn); document.body.appendChild(lb);
-
-  function open(src){img.src=src;lb.classList.add('open');img.style.animation='none';requestAnimationFrame(()=>{img.style.animation='';});}
-  function close(){lb.classList.remove('open');}
-  btn.addEventListener('click',close);
-  lb.addEventListener('click',e=>{if(e.target===lb)close();});
-  document.addEventListener('keydown',e=>{if(e.key==='Escape')close();});
-
-  document.querySelectorAll('.about-win-body img').forEach(i=>{
-    i.style.cursor='zoom-in';
-    i.addEventListener('click',e=>{e.stopPropagation();open(i.src);});
-  });
-})();
 
 /* ─── Silver glitter ─── */
 const gStyle=document.createElement('style');
