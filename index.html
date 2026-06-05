@@ -118,8 +118,8 @@ body.in-chapter .ch{bottom:50px;}
 .hero-kicker::before{content:'';width:36px;height:1px;background:var(--cyan);}
 .hero-title{font-family:'KiwiSoda',cursive;font-size:clamp(34px,8.8vw,90px);line-height:1;color:var(--ink);margin:clamp(60px,12vh,140px) 0 clamp(60px,12vh,140px);text-shadow:0 0 80px rgba(233,30,140,.15);text-align:center;white-space:nowrap;}
 .hero-title em{color:var(--accent);font-style:normal;}
-.hero-lede{display:grid;grid-template-columns:1fr 1.2fr;gap:64px;align-items:start;padding-top:24px;border-top:1px solid var(--rule);margin-bottom:56px;}
-.hero-deck{font-family:'UnifontExMono',monospace;font-size:clamp(15px,1.4vw,18px);line-height:1.6;color:var(--ink-2);max-width:32ch;}
+.hero-lede{display:grid;grid-template-columns:1.48fr 1fr;gap:52px;align-items:start;padding-top:24px;border-top:1px solid var(--rule);margin-bottom:56px;}
+.hero-deck{font-family:'UnifontExMono',monospace;font-size:clamp(15px,1.4vw,18px);line-height:1.55;color:var(--ink-2);max-width:min(720px,100%);}
 .hero-deck em{color:var(--accent);font-style:italic;}
 .hero-meta{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
 .hero-meta dt{font-family:'VCRMono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);margin-bottom:4px;}
@@ -140,7 +140,8 @@ body.in-chapter .ch{bottom:50px;}
 @media(max-width:768px){.d-br{display:none!important;}}
 .pull-quote{font-family:'KiwiSoda',cursive;font-size:clamp(22px,2.2vw,30px);line-height:1.3;color:var(--ink);margin-bottom:24px;}
 .pull-quote::before{content:'\201C';color:var(--accent);margin-right:4px;}
-.body-p{font-size:14px;line-height:1.7;color:var(--ink-2);margin-bottom:16px;max-width:60ch;}
+.pull-quote::after{content:'\201D';color:var(--accent);margin-left:4px;}
+.body-p{font-size:14px;line-height:1.7;color:var(--ink-2);margin-bottom:14px;max-width:min(860px,100%);}
 .body-p strong{color:var(--ink);font-weight:500;border-bottom:1px solid var(--accent);}
 .tag-row{margin-top:24px;padding-top:16px;border-top:1px solid var(--rule);display:flex;flex-wrap:wrap;gap:6px 16px;font-family:'VCRMono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);}
 .tag-row .t{color:var(--ink-2);}
@@ -280,6 +281,7 @@ footer .acc{color:var(--accent);}
   body.in-chapter #ch-nav{padding:0 20px;}
   .hero{padding:28px 20px 80px;}
   .hero-lede{grid-template-columns:1fr;gap:32px;}
+  .hero-deck{font-size:14px;line-height:1.5;}
   .hero-meta{grid-template-columns:1fr;}
   .toc-item{grid-template-columns:44px 1fr auto;gap:12px;padding:14px 0;}
   .toc-num{font-size:22px;}
@@ -410,9 +412,9 @@ footer .acc{color:var(--accent);}
     </div>
 
     <div id="about-text" class="about-text-wrap">
-      <div style="max-width:720px">
+      <div style="max-width:860px">
         <div class="pull-quote">I examine how AI systems reshape human communication, media trust, and public discourse.</div>
-        <p class="body-p">Olivier Jiyoun Jung is a graduate researcher in Communication &amp; Media at Ewha Womans University.<br class="d-br"> Working at the intersection of <strong>Human–AI Interaction</strong> and <strong>computational social science</strong>, she combines speech modeling, natural language processing, and computational methods to study AI-mediated trust, perception, and dialogue.</p>
+        <p class="body-p">Olivier Jiyoun Jung is a graduate researcher in Communication &amp; Media at Ewha Womans University. Working at the intersection of <strong>Human–AI Interaction</strong> and <strong>computational social science</strong>, she combines speech modeling, natural language processing, and computational methods to study AI-mediated trust, perception, and dialogue.</p>
         <p class="body-p">She combines methods across speech, vision, and text to investigate authenticity perception, AI-mediated dialogue, and the societal impact of synthetic media.</p>
         <div class="tag-row">
           <span class="t">Human–AI Interaction</span>
