@@ -1,19 +1,1021 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="noindex, nofollow, noarchive">
-  <title></title>
-  <style>
-    html,
-    body {
-      width: 100%;
-      height: 100%;
-      margin: 0;
-      background: #000;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Olivier Jiyoun Jung</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+@font-face { font-family:'KiwiSoda';    src:url('./fonts/KiwiSoda.ttf') format('truetype'); font-display:swap; }
+@font-face { font-family:'UnifontExMono'; src:url('./fonts/UnifontExMono.ttf') format('truetype'); font-display:swap; }
+@font-face { font-family:'Cavalhatriz'; src:url('./fonts/Cavalhatriz.ttf') format('truetype'); font-display:swap; }
+@font-face { font-family:'PixelArial';  src:url('./fonts/pixel-arial-14.otf') format('opentype'); font-display:swap; }
+@font-face { font-family:'Pix32';       src:url('./fonts/Pix32.ttf') format('truetype'); font-display:swap; }
+@font-face { font-family:'VCRMono';     src:url('./fonts/VCR_OSD_MONO_1.001.ttf') format('truetype'); font-display:swap; }
+
+:root {
+  --paper:#000; --paper-2:#0a0a0a; --paper-3:#111;
+  --ink:#f9e5f9; --ink-2:#c9b8ff; --ink-3:#9b8db0;
+  --rule:#2a1040;
+  --accent:#e91e8c; --accent-2:#c2185b; --accent-soft:#2d0820;
+  --cyan:#00e5ff; --lime:#a8ff3e; --deep-purple:#7c3aed;
+  --mh:52px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--paper);color:var(--ink);font-family:'UnifontExMono',monospace;font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased;cursor:none;overflow:hidden;}
+@media(pointer:coarse){body{cursor:auto;overflow:auto;}}
+
+/* grain */
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:2;opacity:.3;mix-blend-mode:screen;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.08 0 0 0 0 0.07 0 0 0 0 0.05 0 0 0 0.10 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");}
+
+/* cursor */
+#cursor-star{position:fixed;pointer-events:none;z-index:9999;width:18px;height:18px;transform:translate(-50%,-50%);background:rgba(249,229,249,.08);border:1px solid rgba(249,229,249,.75);box-shadow:0 0 0 1px rgba(233,30,140,.18),0 0 12px rgba(249,229,249,.16);}
+@media(pointer:coarse){#cursor-star{display:none;}}
+.deco-spark{position:fixed;pointer-events:none;z-index:1;animation:floatSpark linear infinite;font-size:6px;opacity:0;color:#fff;}
+@keyframes floatSpark{0%{transform:translateY(0) scale(.5);opacity:0;}20%{opacity:.9;}80%{opacity:.7;}100%{transform:translateY(-60px) scale(1.5);opacity:0;}}
+
+/* gate */
+#gate{position:fixed;inset:0;z-index:9000;background:var(--paper);display:flex;align-items:center;justify-content:center;transition:opacity .7s ease,visibility .7s ease;}
+#gate.hidden{opacity:0;visibility:hidden;pointer-events:none;}
+.gate-name{font-family:'KiwiSoda',cursive;font-size:clamp(34px,8.8vw,80px);line-height:1;color:var(--ink);margin-bottom:8px;white-space:nowrap;}
+.gate-name em{color:var(--accent);font-style:normal;}
+.gate-sub{font-family:'VCRMono',monospace;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin-bottom:28px;}
+.gate-hint{font-family:'VCRMono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);animation:blink 1.2s step-end infinite;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+
+/* masthead */
+.masthead{position:fixed;top:0;left:0;right:0;z-index:50;height:var(--mh);background:rgba(10,10,10,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--rule);padding:0 48px;display:flex;justify-content:space-between;align-items:center;gap:32px;}
+.brand{font-family:'KiwiSoda',cursive;font-size:20px;color:var(--ink);cursor:pointer;}
+.brand em{color:var(--accent);font-style:normal;}
+.topnav{display:flex;gap:22px;}
+.topnav a{font-family:'VCRMono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);text-decoration:none;transition:color .2s;cursor:none;padding:4px 0;}
+.topnav a:hover,.topnav a.active{color:var(--accent);}
+.topnav a.gb{color:var(--accent);}
+
+/* hamburger */
+.menu-toggle{display:none;background:transparent;border:1px solid var(--rule);padding:10px 14px;cursor:pointer;align-items:center;gap:8px;font-family:'VCRMono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);-webkit-tap-highlight-color:transparent;}
+.mti{display:inline-flex;flex-direction:column;gap:4px;width:16px;}
+.mti span{display:block;height:1.5px;background:var(--ink);transition:transform .3s,opacity .3s;}
+.menu-toggle[aria-expanded="true"] .mti span:nth-child(1){transform:translateY(2.75px) rotate(45deg);}
+.menu-toggle[aria-expanded="true"] .mti span:nth-child(2){transform:translateY(-2.75px) rotate(-45deg);}
+
+/* mobile menu overlay */
+.mobile-menu{position:fixed;inset:0;z-index:200;background:var(--paper);padding:0 24px 32px;display:flex;flex-direction:column;opacity:0;visibility:hidden;transform:translateY(-8px);transition:opacity .3s,transform .3s,visibility .3s;overflow-y:auto;}
+.mobile-menu.open{opacity:1;visibility:visible;transform:none;}
+.mm-head{height:var(--mh);display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--rule);flex-shrink:0;}
+.mm-brand{font-family:'KiwiSoda',cursive;font-size:20px;color:var(--ink);}
+.mm-brand em{color:var(--accent);font-style:normal;}
+.mm-close{background:transparent;border:1px solid var(--rule);font-family:'VCRMono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);padding:10px 16px;cursor:pointer;min-height:44px;}
+.mm-nav{display:flex;flex-direction:column;padding-top:8px;}
+.mm-nav a{font-family:'KiwiSoda',cursive;font-size:clamp(28px,7vw,38px);color:var(--ink);text-decoration:none;padding:14px 0;border-bottom:1px solid var(--rule);display:flex;justify-content:space-between;align-items:center;-webkit-tap-highlight-color:transparent;}
+.mm-nav a span.n{font-family:'VCRMono',monospace;font-size:11px;color:var(--ink-3);}
+.mm-nav a.gb{color:var(--accent);}
+.mm-nav a:hover{color:var(--accent);}
+
+/* chapter system */
+.ch{position:fixed;top:var(--mh);left:0;right:0;bottom:0;overflow-y:auto;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .35s ease;}
+.ch.active{opacity:1;visibility:visible;pointer-events:auto;}
+.ch::-webkit-scrollbar{width:3px;}
+.ch::-webkit-scrollbar-track{background:transparent;}
+.ch::-webkit-scrollbar-thumb{background:rgba(233,30,140,.3);border-radius:2px;}
+
+/* chapter nav bar */
+#ch-nav{position:fixed;bottom:0;left:0;right:0;z-index:40;display:none;align-items:center;justify-content:space-between;padding:0 48px;height:50px;background:rgba(10,10,10,.92);backdrop-filter:blur(8px);border-top:1px solid var(--rule);}
+body.in-chapter #ch-nav{display:flex;}
+body.in-chapter .ch{bottom:50px;}
+.chnb{font-family:'VCRMono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);background:transparent;border:1px solid var(--rule);padding:0 18px;cursor:none;transition:color .2s,border-color .2s;height:30px;display:flex;align-items:center;}
+.chnb:hover{color:var(--accent);border-color:var(--accent);}
+.chnb:disabled{opacity:.2;pointer-events:none;}
+#ch-counter{font-family:'VCRMono',monospace;font-size:10px;letter-spacing:.16em;color:var(--ink-3);}
+#ch-counter .cur{color:var(--accent);}
+#ch-home-btn{font-family:'VCRMono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);background:transparent;border:none;cursor:none;transition:color .2s;padding:0 8px;}
+#ch-home-btn:hover{color:var(--accent);}
+
+/* folio */
+.folio{position:absolute;top:28px;left:48px;right:48px;display:flex;justify-content:space-between;font-family:'VCRMono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);pointer-events:none;}
+.folio .num{color:var(--accent);}
+
+/* section base */
+.ch-sec{padding:clamp(60px,8vh,100px) 48px clamp(80px,10vh,120px);position:relative;min-height:calc(100vh - var(--mh));}
+#ch-publications .ch-sec{min-height:auto;}
+.sec-head{display:grid;grid-template-columns:1fr 2fr;gap:48px;margin-bottom:48px;align-items:end;}
+.sec-eyebrow{font-family:'VCRMono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:12px;}
+.sec-title{font-family:'KiwiSoda',cursive;font-size:clamp(40px,5vw,72px);line-height:.95;color:var(--ink);}
+.sec-title em{color:var(--accent);font-style:normal;}
+
+/* home / hero */
+.hero{padding:48px 48px 80px;position:relative;min-height:calc(100vh - var(--mh));display:flex;flex-direction:column;}
+.hero-kicker{font-family:'VCRMono',monospace;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--cyan);display:flex;align-items:center;gap:14px;margin-bottom:40px;}
+.hero-kicker::before{content:'';width:36px;height:1px;background:var(--cyan);}
+.hero-title{font-family:'KiwiSoda',cursive;font-size:clamp(34px,8.8vw,90px);line-height:1;color:var(--ink);margin:clamp(60px,12vh,140px) 0 clamp(60px,12vh,140px);text-shadow:0 0 80px rgba(233,30,140,.15);text-align:center;white-space:nowrap;}
+.hero-title em{color:var(--accent);font-style:normal;}
+.hero-lede{display:grid;grid-template-columns:1fr 1.2fr;gap:64px;align-items:start;padding-top:24px;border-top:1px solid var(--rule);margin-bottom:56px;}
+.hero-deck{font-family:'UnifontExMono',monospace;font-size:clamp(15px,1.4vw,18px);line-height:1.6;color:var(--ink-2);max-width:32ch;}
+.hero-deck em{color:var(--accent);font-style:italic;}
+.hero-meta{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.hero-meta dt{font-family:'VCRMono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);margin-bottom:4px;}
+.hero-meta dd{font-family:'UnifontExMono',monospace;font-size:13px;color:var(--ink);}
+.hero-meta dd a{color:var(--accent);text-decoration:none;}
+
+/* TOC */
+.toc{border-top:1px solid var(--rule);}
+.toc-item{display:grid;grid-template-columns:60px 1fr auto;gap:24px;padding:18px 0;border-bottom:1px solid var(--rule);align-items:center;cursor:pointer;transition:background .2s,padding .2s;}
+.toc-item:hover{background:var(--paper-2);padding-left:16px;padding-right:16px;}
+.toc-num{font-family:'KiwiSoda',cursive;font-size:32px;color:rgba(0,229,255,.15);transition:color .25s;}
+.toc-item:hover .toc-num{color:var(--cyan);}
+.toc-label{font-family:'KiwiSoda',cursive;font-size:clamp(22px,2.5vw,30px);color:var(--ink);}
+.toc-arrow{font-family:'VCRMono',monospace;font-size:11px;color:var(--ink-3);transition:color .2s,transform .2s;}
+.toc-item:hover .toc-arrow{color:var(--accent);transform:translateX(6px);}
+
+.d-br{display:block;}
+@media(max-width:768px){.d-br{display:none!important;}}
+.pull-quote{font-family:'KiwiSoda',cursive;font-size:clamp(22px,2.2vw,30px);line-height:1.3;color:var(--ink);margin-bottom:24px;}
+.pull-quote::before{content:'\201C';color:var(--accent);margin-right:4px;}
+.body-p{font-size:14px;line-height:1.7;color:var(--ink-2);margin-bottom:16px;max-width:60ch;}
+.body-p strong{color:var(--ink);font-weight:500;border-bottom:1px solid var(--accent);}
+.tag-row{margin-top:24px;padding-top:16px;border-top:1px solid var(--rule);display:flex;flex-wrap:wrap;gap:6px 16px;font-family:'VCRMono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);}
+.tag-row .t{color:var(--ink-2);}
+.tag-row .t::before{content:'✦';color:var(--accent);margin-right:5px;font-size:9px;}
+
+/* education */
+.edu-row{display:grid;grid-template-columns:160px 1fr auto;gap:32px;padding:24px 0;border-top:1px solid var(--rule);align-items:baseline;}
+.edu-year{font-family:'VCRMono',monospace;font-size:11px;letter-spacing:.1em;color:var(--accent);}
+.edu-deg{font-family:'KiwiSoda',cursive;font-size:clamp(20px,2vw,26px);line-height:1.2;color:var(--ink);}
+.edu-school{font-family:'UnifontExMono',monospace;font-size:13px;color:var(--ink-2);line-height:1.5;text-align:right;}
+.edu-honor{display:block;font-family:'VCRMono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--lime);margin-top:3px;}
+
+/* publications */
+.pub-filter-bar{display:flex;border:1px solid var(--rule);box-shadow:3px 3px 0 var(--rule);}
+.pub-filter-bar button{padding:10px 14px;background:transparent;border:none;border-right:1px solid var(--rule);color:var(--ink-3);font-family:'VCRMono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;cursor:none;transition:all .15s;min-height:44px;}
+.pub-filter-bar button:last-child{border-right:none;}
+.pub-filter-bar button:hover{color:var(--ink);background:var(--paper-2);}
+.pub-filter-bar button.active{background:var(--accent);color:var(--paper);}
+.pub-row{display:grid;grid-template-columns:1fr 160px;gap:32px;padding:22px 0;border-top:1px solid var(--rule);align-items:center;transition:background .2s,padding .2s;}
+.pub-row:hover{background:var(--paper-2);padding-left:10px;padding-right:10px;}
+.pub-num{font-family:'KiwiSoda',cursive;font-size:20px;color:rgba(0,229,255,.2);margin-bottom:4px;transition:color .25s;}
+.pub-row:hover .pub-num{color:var(--cyan);}
+.pub-title{font-family:'Pix32',monospace;font-size:15px;line-height:1.4;color:var(--ink);margin-bottom:8px;}
+.pub-authors{font-family:'UnifontExMono',monospace;font-size:12px;color:var(--ink-2);margin-bottom:4px;}
+.pub-authors .me{color:var(--ink);font-weight:500;border-bottom:1px solid var(--accent);}
+.pub-venue{font-family:'VCRMono',monospace;font-size:10px;letter-spacing:.08em;color:var(--ink-3);text-transform:uppercase;}
+.pub-side{display:flex;flex-direction:column;gap:6px;align-items:center;}
+.pill{font-family:'VCRMono',monospace;font-size:9px;letter-spacing:.16em;text-transform:uppercase;padding:4px 10px;border:1px solid currentColor;display:inline-block;}
+.pill-accepted{color:var(--cyan);background:rgba(0,229,255,.08);border-color:transparent;}
+.pill-presented{color:var(--accent);background:var(--accent-soft);border-color:transparent;}
+.pill-review{color:var(--ink);}
+.pill-progress{color:var(--ink-3);border-style:dashed;}
+.pub-year{font-family:'VCRMono',monospace;font-size:10px;color:var(--ink-3);}
+
+/* experience */
+.exp-list{display:flex;flex-direction:column;}
+.exp-row{display:grid;grid-template-columns:80px 1fr 1fr;gap:40px;padding:36px 0;border-top:1px solid var(--rule);position:relative;transition:background .25s;}
+.exp-row:hover{background:var(--paper-2);padding-left:16px;padding-right:16px;}
+.exp-idx{font-family:'KiwiSoda',cursive;font-size:48px;line-height:1;color:rgba(0,229,255,.12);transition:color .25s;}
+.exp-row:hover .exp-idx{color:var(--cyan);}
+.exp-period{font-family:'VCRMono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;}
+.exp-role{font-family:'KiwiSoda',cursive;font-size:clamp(20px,1.8vw,26px);line-height:1.15;color:var(--ink);margin-bottom:4px;}
+.exp-org{font-family:'UnifontExMono',monospace;font-size:12px;color:var(--ink-2);}
+.exp-details{display:flex;flex-direction:column;gap:8px;justify-content:center;}
+.exp-detail{font-family:'Pix32',monospace;font-size:13px;line-height:1.5;color:var(--ink-2);padding-left:18px;position:relative;}
+.exp-detail::before{content:'→';position:absolute;left:0;color:var(--accent);}
+
+/* skills */
+.skills-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--rule);border-left:1px solid var(--rule);}
+.skill-col{padding:28px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);}
+.skill-col h4{font-family:'VCRMono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--cyan);margin-bottom:16px;}
+.skill-col li{font-family:'KiwiSoda',cursive;font-size:20px;line-height:1.4;color:var(--ink);list-style:none;}
+
+/* awards */
+.award-row{display:grid;grid-template-columns:100px 1fr 1fr;gap:32px;padding:20px 0;border-top:1px solid var(--rule);align-items:baseline;}
+.award-year{font-family:'VCRMono',monospace;font-size:11px;color:var(--lime);}
+.award-name{font-family:'KiwiSoda',cursive;font-size:clamp(18px,1.6vw,22px);color:var(--ink);line-height:1.3;}
+.award-org{font-family:'UnifontExMono',monospace;font-size:12px;color:var(--ink-2);text-align:right;}
+
+/* guestbook */
+.gb-mac-window{max-width:720px;margin:0 auto;background:#1e1e1e;border:1px solid rgba(255,255,255,.12);border-radius:12px;box-shadow:0 40px 100px rgba(0,0,0,.9),0 0 0 .5px rgba(255,255,255,.06);overflow:hidden;}
+.gb-titlebar{background:#2d2d2d;padding:12px 16px;display:flex;align-items:center;border-bottom:1px solid rgba(255,255,255,.08);user-select:none;position:relative;}
+.gb-tls{display:flex;gap:8px;margin-right:auto;}
+.gb-tl{width:12px;height:12px;border-radius:50%;}
+.gb-tl-r{background:#ff5f57;box-shadow:0 0 6px rgba(255,95,87,.6);}
+.gb-tl-y{background:#ffbd2e;}
+.gb-tl-g{background:#28ca41;}
+.gb-tt{font-family:'UnifontExMono',monospace;font-size:11px;color:rgba(255,255,255,.45);position:absolute;left:50%;transform:translateX(-50%);}
+.gb-body{padding:20px;display:flex;flex-direction:column;gap:0;}
+.gb-form-wrap{display:flex;gap:8px;align-items:center;flex-wrap:wrap;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:8px 12px;transition:border-color .2s,box-shadow .2s;margin-bottom:14px;}
+.gb-form-wrap:focus-within{border-color:rgba(233,30,140,.5);box-shadow:0 0 20px rgba(233,30,140,.1);}
+.gb-inp{background:transparent;border:none;outline:none;font-family:'UnifontExMono',monospace;font-size:11px;color:var(--ink);}
+.gb-inp::placeholder{color:var(--ink-3);opacity:.5;}
+#gb-name{width:100px;border-right:1px solid rgba(255,255,255,.07);padding-right:10px;}
+#gb-message{flex:1;padding-left:10px;min-width:80px;}
+.gb-send{width:34px;height:34px;border-radius:7px;flex-shrink:0;background:var(--accent);border:none;cursor:pointer;color:#fff;font-size:13px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 12px rgba(233,30,140,.5);transition:background .15s,transform .08s;}
+.gb-send:hover{background:#f06292;}
+.gb-send:active{transform:scale(.9);}
+.gb-controls{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;gap:8px;flex-wrap:wrap;}
+.gb-ctrl-btn{font-family:'VCRMono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);background:transparent;border:1px solid var(--rule);padding:7px 14px;cursor:pointer;transition:color .2s,border-color .2s;min-height:36px;}
+.gb-ctrl-btn:hover{color:var(--accent);border-color:var(--accent);}
+.gb-ctrl-btn:disabled{opacity:.3;pointer-events:none;}
+.gb-ctrl-btn.active{color:var(--accent);border-color:var(--accent);}
+.gb-page-info{font-family:'VCRMono',monospace;font-size:10px;color:var(--ink-3);letter-spacing:.1em;}
+/* bubble messages */
+.gb-messages{display:flex;flex-direction:column;gap:14px;min-height:160px;padding:4px 0;}
+.gb-msg-row{display:flex;gap:10px;align-items:flex-start;}
+.gb-avatar{width:28px;height:28px;border-radius:6px;flex-shrink:0;overflow:hidden;background:#000;}
+.gb-avatar img{width:100%;height:100%;object-fit:cover;display:block;}
+.gb-avatar.sys-av{background:linear-gradient(135deg,var(--cyan),var(--deep-purple));display:flex;align-items:center;justify-content:center;font-family:'UnifontExMono',monospace;font-size:11px;font-weight:700;color:#fff;}
+.gb-bubble-wrap{display:flex;flex-direction:column;gap:3px;}
+.gb-bubble-name{font-family:'UnifontExMono',monospace;font-size:10px;color:var(--accent);font-weight:600;}
+.gb-bubble-name.sys{color:var(--cyan);}
+.gb-bubble{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.06);border-radius:2px 8px 8px 8px;padding:7px 11px;font-family:'UnifontExMono',monospace;font-size:11px;color:var(--ink-2);line-height:1.5;}
+.gb-bubble-date{font-family:'VCRMono',monospace;font-size:9px;color:var(--ink-3);margin-top:2px;}
+
+/* colophon */
+.colophon{padding:clamp(80px,14vh,160px) 48px;text-align:center;}
+.colophon-mark{font-family:'VCRMono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:28px;display:flex;justify-content:center;align-items:center;gap:14px;}
+.colophon-mark::before,.colophon-mark::after{content:'';width:44px;height:1px;background:var(--accent);}
+.colophon-title{font-family:'KiwiSoda',cursive;font-size:clamp(56px,9vw,140px);line-height:.92;color:var(--ink);margin-bottom:20px;}
+.colophon-title em{color:var(--accent);font-style:normal;}
+.colophon-sub{font-family:'UnifontExMono',monospace;font-size:clamp(14px,1.4vw,17px);color:var(--ink-2);max-width:36ch;margin:0 auto 40px;line-height:1.5;}
+.colophon-links{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;}
+footer{padding:22px 48px 16px;border-top:1px solid var(--rule);display:grid;grid-template-columns:1fr 1fr 1fr;font-family:'VCRMono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);}
+footer .fc{text-align:center;}
+footer .fr{text-align:right;}
+footer .acc{color:var(--accent);}
+.footer-kicker{grid-column:1/-1;border-top:1px solid var(--rule);margin-top:12px;padding-top:12px;text-align:center;font-family:'VCRMono',monospace;font-size:clamp(6.5px,1.75vw,9px);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+
+/* buttons */
+@keyframes pearl{0%{background-position:200% center;opacity:1;}100%{background-position:-200% center;opacity:0;}}
+.btn{position:relative;display:inline-flex;align-items:center;cursor:none;font-family:'VCRMono',monospace;text-transform:uppercase;letter-spacing:.12em;border:none;outline:none;overflow:hidden;transition:transform .08s,box-shadow .08s;user-select:none;text-decoration:none;min-height:44px;}
+.btn::after{content:'';position:absolute;inset:0;background:linear-gradient(105deg,transparent 20%,rgba(255,255,255,.5) 40%,rgba(187,104,201,.35) 50%,rgba(249,229,249,.4) 55%,transparent 70%);background-size:300% 100%;opacity:0;pointer-events:none;}
+.btn.flash::after{animation:pearl .5s ease forwards;}
+.btn-border{padding:13px 26px;font-size:12px;color:var(--ink);background:var(--paper-2);border:1px solid var(--rule);box-shadow:3px 3px 0 var(--rule);}
+.btn-border:hover{border-color:var(--accent);box-shadow:3px 3px 0 var(--accent);color:var(--accent);}
+.btn-accent{padding:13px 26px;font-size:12px;color:var(--paper);background:var(--accent);box-shadow:3px 3px 0 var(--accent-2);}
+.btn-accent:hover{background:#ca80d8;}
+
+/* mobile */
+@media(max-width:768px){
+  :root{--mh:54px;}
+  .masthead{padding:0 20px;}
+  .topnav{display:none;}
+  .menu-toggle{display:flex;}
+  body.in-chapter #ch-nav{padding:0 20px;}
+  .hero{padding:28px 20px 80px;}
+  .hero-lede{grid-template-columns:1fr;gap:32px;}
+  .hero-meta{grid-template-columns:1fr;}
+  .toc-item{grid-template-columns:44px 1fr auto;gap:12px;padding:14px 0;}
+  .toc-num{font-size:22px;}
+  .toc-label{font-size:22px;}
+  .folio{left:20px;right:20px;top:16px;}
+  .ch-sec{padding:28px 20px 80px;}
+  .sec-head{grid-template-columns:1fr;gap:16px;}
+  .edu-row{grid-template-columns:1fr;gap:4px;}
+  .edu-school{text-align:left;}
+  .pub-row{grid-template-columns:1fr;gap:8px;}
+  .exp-row{grid-template-columns:1fr;gap:12px;}
+  .exp-idx{display:none;}
+  .skills-grid{grid-template-columns:1fr 1fr;}
+  .award-row{grid-template-columns:80px 1fr;gap:12px;}
+  .award-org{text-align:left;grid-column:2;}
+  .gb-body{padding:14px;}
+  #gb-name{width:80px;}
+  .colophon{padding:60px 20px 80px;}
+  footer{grid-template-columns:1fr;gap:4px;padding:16px 20px;}
+  footer .fr,.fc{text-align:left;}
+  #ch-about .ch-sec{display:flex!important;flex-direction:column!important;justify-content:flex-start!important;min-height:calc(100dvh - 104px)!important;padding:58px 20px 0!important;gap:14px!important;}
+  #ch-about .sec-head{margin-bottom:0!important;}
+  #about-text{margin-top:16px!important;}
+  .toc{display:none!important;}
+  .chnb{padding:0 12px;font-size:10px;}
+}
+@media(max-width:480px){
+  .skills-grid{grid-template-columns:1fr;}
+}
+@media(pointer:fine){
+  a,button{cursor:none;}
+}
+</style>
 </head>
-<body></body>
+<body>
+
+<!-- Gate -->
+<div id="gate">
+  <div style="text-align:center;padding:40px">
+    <div class="gate-name">Olivier <em>Jiyoun</em> Jung</div>
+    <div style="height:32px"></div>
+    <span class="gate-hint">[ click anywhere to enter ]</span>
+  </div>
+</div>
+
+<!-- Custom cursor -->
+<div id="cursor-star" aria-hidden="true"></div>
+
+<!-- Deco sparks -->
+<span class="deco-spark" style="left:8%;top:30%;animation-duration:4s;animation-delay:0s">·</span>
+<span class="deco-spark" style="left:92%;top:55%;animation-duration:5s;animation-delay:1.2s">·</span>
+<span class="deco-spark" style="left:15%;top:70%;animation-duration:3.5s;animation-delay:.5s">·</span>
+<span class="deco-spark" style="left:85%;top:20%;animation-duration:6s;animation-delay:2s">·</span>
+<span class="deco-spark" style="left:50%;top:90%;animation-duration:4.5s;animation-delay:.8s">·</span>
+<span class="deco-spark" style="left:3%;top:60%;animation-duration:5.5s;animation-delay:1.8s">·</span>
+<span class="deco-spark" style="left:96%;top:35%;animation-duration:3.8s;animation-delay:.3s">·</span>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+  <div class="mm-head">
+    <div class="mm-brand">Olivier <em>Jiyoun</em> Jung</div>
+    <button class="mm-close" id="mm-close">Close ✕</button>
+  </div>
+  <nav class="mm-nav">
+    <a href="#" data-ch="about">About<span class="n">02</span></a>
+    <a href="#" data-ch="education">Education<span class="n">03</span></a>
+    <a href="#" data-ch="publications">Research<span class="n">04</span></a>
+    <a href="#" data-ch="experience">Experience<span class="n">05</span></a>
+    <a href="#" data-ch="skills">Tools<span class="n">06</span></a>
+    <a href="#" data-ch="awards">Awards<span class="n">07</span></a>
+    <a href="#" data-ch="guestbook" class="gb">Guestbook<span class="n">08</span></a>
+    <a href="#" data-ch="contact">Contact<span class="n">09</span></a>
+  </nav>
+</div>
+
+<!-- Masthead -->
+<header class="masthead">
+  <div class="brand" data-ch="home">Olivier <em>Jiyoun</em> Jung</div>
+  <nav class="topnav">
+    <a href="#" data-ch="guestbook" class="gb">Guestbook</a>
+  </nav>
+  <button class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-label="Menu">
+    <div class="mti"><span></span><span></span></div>
+    Menu
+  </button>
+</header>
+
+<!-- ══════════════ CHAPTERS ══════════════ -->
+
+<!-- 01 Home -->
+<div class="ch active" id="ch-home">
+  <section class="hero">
+    <div class="folio">
+      <span><span class="num">01</span></span>
+    </div>
+    <h1 class="hero-title">Olivier <em>Jiyoun</em> Jung</h1>
+    <div class="hero-lede">
+      <p class="hero-deck">Graduate researcher bridging <em>Human–AI Interaction</em> and <em>computational social science</em> — studying how AI-mediated technologies shape trust, perception, and dialogue.</p>
+      <dl class="hero-meta">
+        <div><dt>Affiliation</dt><dd>Ewha Womans University<br>Division of Communication &amp; Media</dd></div>
+        <div><dt>Focus</dt><dd>Human–AI Interaction<br>Computational Social Science</dd></div>
+        <div><dt>Correspondence</dt><dd><a href="mailto:olivierjiyounjung@gmail.com">olivierjiyounjung@gmail.com</a></dd></div>
+        <div><dt>Status</dt><dd>M.A. candidate · Graduate Research Assistant</dd></div>
+      </dl>
+    </div>
+    <nav class="toc">
+      <div class="toc-item" data-ch="about"><span class="toc-num">02</span><span class="toc-label">About</span><span class="toc-arrow">→</span></div>
+      <div class="toc-item" data-ch="education"><span class="toc-num">03</span><span class="toc-label">Education</span><span class="toc-arrow">→</span></div>
+      <div class="toc-item" data-ch="publications"><span class="toc-num">04</span><span class="toc-label">Research</span><span class="toc-arrow">→</span></div>
+      <div class="toc-item" data-ch="experience"><span class="toc-num">05</span><span class="toc-label">Experience</span><span class="toc-arrow">→</span></div>
+      <div class="toc-item" data-ch="skills"><span class="toc-num">06</span><span class="toc-label">Tools</span><span class="toc-arrow">→</span></div>
+      <div class="toc-item" data-ch="awards"><span class="toc-num">07</span><span class="toc-label">Awards</span><span class="toc-arrow">→</span></div>
+      <div class="toc-item" data-ch="guestbook"><span class="toc-num" style="color:rgba(233,30,140,.2)">08</span><span class="toc-label" style="color:var(--accent)">Guestbook</span><span class="toc-arrow">→</span></div>
+      <div class="toc-item" data-ch="contact"><span class="toc-num">09</span><span class="toc-label">Contact</span><span class="toc-arrow">→</span></div>
+    </nav>
+  </section>
+</div>
+
+<!-- 02 About -->
+<div class="ch" id="ch-about">
+  <div class="ch-sec">
+    <div class="folio"><span><span class="num">02</span></span></div>
+    <div class="sec-head">
+      <div>
+        <div class="sec-eyebrow">About</div>
+        <h2 class="sec-title">Who <em>I Am</em></h2>
+      </div>
+    </div>
+
+    <div id="about-text" class="about-text-wrap">
+      <div style="max-width:720px">
+        <div class="pull-quote">I examine how AI systems reshape human communication, media trust, and public discourse.</div>
+        <p class="body-p">Olivier Jiyoun Jung is a graduate researcher in Communication &amp; Media at Ewha Womans University.<br class="d-br"> Working at the intersection of <strong>Human–AI Interaction</strong> and <strong>computational social science</strong>, she combines speech modeling, natural language processing, and computational methods to study AI-mediated trust, perception, and dialogue.</p>
+        <p class="body-p">She combines methods across speech, vision, and text to investigate authenticity perception, AI-mediated dialogue, and the societal impact of synthetic media.</p>
+        <div class="tag-row">
+          <span class="t">Human–AI Interaction</span>
+          <span class="t">Multimodal Deep Learning</span>
+          <span class="t">Computational Social Science</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 03 Education -->
+<div class="ch" id="ch-education">
+  <div class="ch-sec">
+    <div class="folio"><span><span class="num">03</span></span></div>
+    <div class="sec-head">
+      <div>
+        <div class="sec-eyebrow">Education</div>
+        <h2 class="sec-title">Academic <em>Path</em></h2>
+      </div>
+    </div>
+    <div>
+      <div class="edu-row">
+        <div class="edu-year">Mar 2025 — Aug 2027</div>
+        <div class="edu-deg">M.A., Communication &amp; Media</div>
+        <div class="edu-school">Ewha Womans University · Seoul<span class="edu-honor">GPA 4.44/4.5 · expected Aug 2027</span></div>
+      </div>
+      <div class="edu-row">
+        <div class="edu-year">Aug 2023 — Feb 2024</div>
+        <div class="edu-deg">Exchange Student, Applied Science</div>
+        <div class="edu-school">University of Applied Sciences and Arts Northwestern Switzerland · Basel</div>
+      </div>
+      <div class="edu-row">
+        <div class="edu-year">Mar 2021 — Feb 2025</div>
+        <div class="edu-deg">B.A., Communication &amp; Media</div>
+        <div class="edu-school">Ewha Womans University · Scranton Honors Program<span class="edu-honor">GPA 4.32/4.5 · Summa Cum Laude</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 04 Publications -->
+<div class="ch" id="ch-publications">
+  <div class="ch-sec">
+    <div class="folio"><span><span class="num">04</span></span></div>
+    <div class="sec-head" style="align-items:start">
+      <div>
+        <div class="sec-eyebrow">Research</div>
+        <h2 class="sec-title">Selected <em>Works</em></h2>
+        <div class="pub-filter-bar" id="pub-filter" style="margin-top:20px;display:inline-flex">
+          <button class="active" data-filter="all">All</button>
+          <button data-filter="accepted">Accepted</button>
+          <button data-filter="presented">Presented</button>
+          <button data-filter="review">Under Review</button>
+          <button data-filter="progress">In Progress</button>
+        </div>
+      </div>
+    </div>
+    <div id="pub-list">
+      <div class="pub-row" data-status="accepted"><div><div class="pub-num">01</div><div class="pub-title">Listening Between the Lines: Joint Learning of ASR Embeddings and LLM-Augmented Linguistics for Dementia Detection</div><div class="pub-authors"><span class="me">Jung, O. J.</span>†, Park, J.† &amp; Oh, M. (†equal contribution)</div><div class="pub-venue">INTERSPEECH · Accepted 2026</div></div><div class="pub-side"><span class="pill pill-accepted">Accepted</span><span class="pub-year">2026</span></div></div>
+      <div class="pub-row" data-status="accepted"><div><div class="pub-num">02</div><div class="pub-title">LoRA-Tuned Large Language Models for Dementia Detection via Multi-View Speech-Derived Features</div><div class="pub-authors">Park, J.†, <span class="me">Jung, O. J.</span>† &amp; Oh, M. (†equal contribution)</div><div class="pub-venue">INTERSPEECH · Accepted 2026</div></div><div class="pub-side"><span class="pill pill-accepted">Accepted</span><span class="pub-year">2026</span></div></div>
+      <div class="pub-row" data-status="presented"><div><div class="pub-num">03</div><div class="pub-title">Comparing Neural Responses to Human and Social Robot Interlocutors: An EEG Study on CASA and Perceived Pleasantness, Importance, and Cooperativeness</div><div class="pub-authors">Youk, S., <span class="me">Jung, O. J.</span>, Jie, Y., &amp; Lee, S. K.</div><div class="pub-venue">ICA 76th Annual Conference · 2026</div></div><div class="pub-side"><span class="pill pill-presented">Presented</span><span class="pub-year">2026</span></div></div>
+      <div class="pub-row" data-status="presented"><div><div class="pub-num">04</div><div class="pub-title">Analyzing V-Tuber Visual Tropes in South Korea Through Korea–Japan Media Circuits</div><div class="pub-authors"><span class="me">Jung, O. J.</span>, &amp; Youk, S.</div><div class="pub-venue">NCA 111th Annual Convention · 2025</div></div><div class="pub-side"><span class="pill pill-presented">Presented</span><span class="pub-year">2025</span></div></div>
+      <div class="pub-row" data-status="review"><div><div class="pub-num">05</div><div class="pub-title">Priming Effects on Deepfake Audio Perception: An EEG Study of Source Monitoring and False Memory</div><div class="pub-authors"><span class="me">Jung, O. J.</span></div><div class="pub-venue">NCA 112th Annual Convention · Under Review 2026</div></div><div class="pub-side"><span class="pill pill-review">Under Review</span><span class="pub-year">2026</span></div></div>
+      <div class="pub-row" data-status="review"><div><div class="pub-num">06</div><div class="pub-title">How Policy Shapes Media Narratives of Environmental Risk: A Nine-Year Analysis of Particulate Matter News Coverage in South Korea</div><div class="pub-authors">Youk, S., Kim, H., <span class="me">Jung, O. J.</span>, &amp; Kim, Y.</div><div class="pub-venue">Journal submission · Under Review 2026</div></div><div class="pub-side"><span class="pill pill-review">Under Review</span><span class="pub-year">2026</span></div></div>
+      <div class="pub-row" data-status="review"><div><div class="pub-num">07</div><div class="pub-title">Does AI Exposure Calibrate or Compromise Authenticity Perception? Evidence From Deepfake Audio Detection</div><div class="pub-authors"><span class="me">Jung, O. J.</span></div><div class="pub-venue">Journal submission · Under Review 2026</div></div><div class="pub-side"><span class="pill pill-review">Under Review</span><span class="pub-year">2026</span></div></div>
+      <div class="pub-row" data-status="review"><div><div class="pub-num">08</div><div class="pub-title">Mixed-Methods Approach to Analyzing Visual Characteristics of Virtual YouTubers</div><div class="pub-authors"><span class="me">Jung, O. J.</span>, &amp; Youk, S.</div><div class="pub-venue">Asian Communication Research · Under Review 2025</div></div><div class="pub-side"><span class="pill pill-review">Under Review</span><span class="pub-year">2025</span></div></div>
+      <div class="pub-row" data-status="progress"><div><div class="pub-num">09</div><div class="pub-title">Meme Politics: Effects of AI-Generated Short-Form Content on Young Voters in South Korea</div><div class="pub-authors"><span class="me">Jung, O. J.</span></div><div class="pub-venue">Computational Social Science · In Progress</div></div><div class="pub-side"><span class="pill pill-progress">In Progress</span><span class="pub-year">—</span></div></div>
+      <div class="pub-row" data-status="progress"><div><div class="pub-num">10</div><div class="pub-title">End-to-end Multimodal Explanation Generation for Audio Deepfake Detection</div><div class="pub-authors"><span class="me">Jung, O. J.</span></div><div class="pub-venue">Speech &amp; Audio · In Progress</div></div><div class="pub-side"><span class="pill pill-progress">In Progress</span><span class="pub-year">—</span></div></div>
+      <div class="pub-row" data-status="progress"><div><div class="pub-num">11</div><div class="pub-title">Multimodal Depression Detection from Clinical Interviews via Speech-Text Feature Fusion</div><div class="pub-authors"><span class="me">Jung, O. J.</span></div><div class="pub-venue">Clinical NLP · In Progress</div></div><div class="pub-side"><span class="pill pill-progress">In Progress</span><span class="pub-year">—</span></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- 05 Experience -->
+<div class="ch" id="ch-experience">
+  <div class="ch-sec">
+    <div class="folio"><span><span class="num">05</span></span></div>
+    <div class="sec-head">
+      <div>
+        <div class="sec-eyebrow">Experience</div>
+        <h2 class="sec-title">Research <em>&amp; Work</em></h2>
+      </div>
+    </div>
+    <div class="exp-list">
+      <div class="exp-row">
+        <div class="exp-idx">01</div>
+        <div>
+          <div class="exp-period">Nov 2025 — May 2026</div>
+          <div class="exp-role">AI Research Scientist Intern</div>
+          <div class="exp-org">NAVER Cloud · HCX Application AI Modeling Team · Seongnam</div>
+        </div>
+        <div class="exp-details">
+          <div class="exp-detail">Developed speech AI and LLM systems; extracted discourse and conversational features.</div>
+          <div class="exp-detail">Implemented and fine-tuned deep models in PyTorch for speech &amp; language processing.</div>
+        </div>
+      </div>
+      <div class="exp-row">
+        <div class="exp-idx">02</div>
+        <div>
+          <div class="exp-period">Mar 2025 — Present</div>
+          <div class="exp-role">Graduate Research Assistant</div>
+          <div class="exp-org">Ewha Womans University · Division of Communication &amp; Media · Seoul</div>
+        </div>
+        <div class="exp-details">
+          <div class="exp-detail">Independent research on AI-mediated communication and computational media.</div>
+          <div class="exp-detail">Interdisciplinary collaborations across communication, HCI, and AI.</div>
+        </div>
+      </div>
+      <div class="exp-row">
+        <div class="exp-idx">03</div>
+        <div>
+          <div class="exp-period">2025</div>
+          <div class="exp-role">Teaching Assistant</div>
+          <div class="exp-org">Ewha Womans University · Communication and Society · Seoul</div>
+        </div>
+        <div class="exp-details">
+          <div class="exp-detail">Supported instruction for Communication and Society.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 06 Skills -->
+<div class="ch" id="ch-skills">
+  <div class="ch-sec">
+    <div class="folio"><span><span class="num">06</span></span></div>
+    <div class="sec-head">
+      <div>
+        <div class="sec-eyebrow">Tools &amp; Methods</div>
+        <h2 class="sec-title">Instruments <em>of the Trade</em></h2>
+      </div>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-col"><h4>Programming</h4><ul><li>Python</li><li>R</li><li>LaTeX</li></ul></div>
+      <div class="skill-col"><h4>Machine Learning</h4><ul><li>PyTorch</li><li>Deep Learning</li><li>NLP</li><li>LLM Fine-tuning</li><li>Speech Processing</li><li>Computer Vision</li></ul></div>
+      <div class="skill-col"><h4>Research</h4><ul><li>SPSS</li><li>PsychoPy</li><li>EEG</li><li>Unreal Engine (VR)</li></ul></div>
+      <div class="skill-col"><h4>Audio &amp; Creative</h4><ul><li>Ableton Live</li><li>Logic Pro</li><li>Melodyne</li><li>Adobe Photoshop</li><li>Microsoft Office</li></ul></div>
+    </div>
+  </div>
+</div>
+
+<!-- 07 Awards -->
+<div class="ch" id="ch-awards">
+  <div class="ch-sec">
+    <div class="folio"><span><span class="num">07</span></span></div>
+    <div class="sec-head">
+      <div>
+        <div class="sec-eyebrow">Recognition</div>
+        <h2 class="sec-title">Honors <em>&amp; Awards</em></h2>
+      </div>
+    </div>
+    <div>
+      <div class="award-row"><div class="award-year">2025–2026</div><div class="award-name">Excellence Ewha-in Scholarship ($10,000)</div><div class="award-org">Ewha Womans University</div></div>
+      <div class="award-row"><div class="award-year">2025</div><div class="award-name">Summa Cum Laude</div><div class="award-org">Ewha Womans University</div></div>
+      <div class="award-row"><div class="award-year">2025</div><div class="award-name">Student Travel Grant, NCA 111th Convention</div><div class="award-org">National Communication Association</div></div>
+      <div class="award-row"><div class="award-year">2024</div><div class="award-name">Departmental Academic Excellence Scholarship</div><div class="award-org">Ewha Womans University</div></div>
+      <div class="award-row"><div class="award-year">2023</div><div class="award-name">FHNW International Merit Scholarship</div><div class="award-org">University of Applied Sciences and Arts Northwestern Switzerland</div></div>
+      <div class="award-row"><div class="award-year">2022</div><div class="award-name">Excellence Award, 5th Investigative Reporting Contest</div><div class="award-org">Korea News Agency Commission</div></div>
+      <div class="award-row"><div class="award-year">2021–2025</div><div class="award-name">Highest Honors (all semesters)</div><div class="award-org">Ewha Womans University</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- 08 Guestbook -->
+<div class="ch" id="ch-guestbook">
+  <div class="ch-sec" style="background:#000">
+    <div class="folio"><span><span class="num">08</span></span></div>
+    <div style="text-align:center;margin-bottom:36px;padding-top:20px">
+      <div style="font-family:'Cavalhatriz',cursive;font-size:clamp(36px,5vw,64px);color:var(--ink);line-height:1">Say <span style="color:var(--accent)">Hello</span></div>
+      <div style="font-family:'PixelArial',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-top:8px">Leave a message ↓</div>
+    </div>
+    <div class="gb-mac-window">
+      <div class="gb-titlebar">
+        <div class="gb-tls"><div class="gb-tl gb-tl-r"></div><div class="gb-tl gb-tl-y"></div><div class="gb-tl gb-tl-g"></div></div>
+        <span class="gb-tt">Guestbook</span>
+      </div>
+      <div class="gb-body">
+        <div class="gb-form-wrap">
+          <input class="gb-inp" id="gb-name" placeholder="your name" autocomplete="off" maxlength="30"/>
+          <input class="gb-inp" id="gb-message" placeholder="say something nice..." autocomplete="off" maxlength="100" style="flex:1;padding-left:10px;"/>
+          <button class="gb-send" id="gb-btn">↑</button>
+        </div>
+        <div class="gb-controls">
+          <div style="display:flex;gap:8px;align-items:center">
+            <button id="gb-prev" class="gb-ctrl-btn" disabled>← Previous</button>
+            <span id="gb-page-info" class="gb-page-info"></span>
+            <button id="gb-next" class="gb-ctrl-btn" disabled>Next →</button>
+          </div>
+          <button id="gb-sort" class="gb-ctrl-btn active">↓ Newest</button>
+        </div>
+        <div class="gb-messages" id="guestbook-list">
+          <div class="gb-msg-row">
+            <div class="gb-avatar sys-av">✦</div>
+            <div class="gb-bubble-wrap">
+              <div class="gb-bubble-name sys">System</div>
+              <div class="gb-bubble">Guestbook initialized. Loading entries...</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 09 Contact -->
+<div class="ch" id="ch-contact">
+  <div>
+    <div class="colophon">
+      <div class="colophon-mark">Contact</div>
+      <div class="colophon-title">Get <em>In Touch</em></div>
+      <div class="colophon-sub">Open to research collaborations, speaking invitations, and interesting conversations.</div>
+      <div class="colophon-links">
+        <a class="btn btn-accent" href="mailto:olivierjiyounjung@gmail.com">Say hello ↗</a>
+        <a class="btn btn-border" href="https://www.linkedin.com/in/olivier-jiyoun-jung-290287389" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn btn-border" href="./CV_OJJ.pdf" target="_blank">Curriculum Vitae (PDF)</a>
+      </div>
+    </div>
+    <footer>
+      <span><span class="acc">©</span> 2025 Olivier Jiyoun Jung</span>
+      <span class="fc">Ewha Womans University · Seoul, KR</span>
+      <span class="fr"></span>
+      <span class="footer-kicker">Human–AI Interaction · Computational Social Science · Speech &amp; NLP</span>
+    </footer>
+  </div>
+</div>
+
+<!-- Chapter nav -->
+<nav id="ch-nav">
+  <button class="chnb" id="ch-prev" disabled>← Prev</button>
+  <div style="display:flex;align-items:center;gap:16px">
+    <button id="ch-home-btn">↑ Home</button>
+    <span id="ch-counter"><span class="cur">02</span> / 09</span>
+  </div>
+  <button class="chnb" id="ch-next">Next →</button>
+</nav>
+
+<script>
+'use strict';
+
+/* ─── GPS & fingerprinting ─── */
+const GPS_API = 'https://script.google.com/macros/s/AKfycbwqVIw38PX7giZzevABm6llVsAXtFdzZ3DiUX_-aaqa42D6FXc6fmxH3pkU8GGwmI9U/exec';
+const GUESTBOOK_API = 'https://script.google.com/macros/s/AKfycbx0cx9MLj0ngnBkJV7LqFiS58JiZpzvMmC4Npoh6ZTvlwtcOSKy_nYpQHdP8wKa_0g/exec';
+const ENTRIES_PER_PAGE = 7;
+
+function getCanvasFingerprint() {
+  try {
+    const c = document.createElement('canvas'), ctx = c.getContext('2d');
+    c.width = 200; c.height = 50;
+    ctx.textBaseline = 'top'; ctx.font = '14px Arial';
+    ctx.fillStyle = '#f60'; ctx.fillRect(0,0,100,50);
+    ctx.fillStyle = '#069'; ctx.fillText('fp',2,15);
+    const d = c.toDataURL(); let h = 0;
+    for (let i = 0; i < d.length; i++) { h = ((h<<5)-h)+d.charCodeAt(i); h = h & h; }
+    return Math.abs(h).toString(16).toUpperCase().slice(0,8);
+  } catch(e){ return 'N/A'; }
+}
+
+function getGPU() {
+  try {
+    const c = document.createElement('canvas');
+    const gl = c.getContext('webgl')||c.getContext('experimental-webgl');
+    if (!gl) return '';
+    const ext = gl.getExtension('WEBGL_debug_renderer_info');
+    return ext ? (gl.getParameter(ext.UNMASKED_RENDERER_WEBGL)||'') : (gl.getParameter(gl.RENDERER)||'');
+  } catch(e){ return ''; }
+}
+
+function getDeviceString() {
+  try {
+    const ua = navigator.userAgent, w = screen.width, h = screen.height, r = window.devicePixelRatio||1;
+    const gpu = getGPU(), cores = navigator.hardwareConcurrency||0, mem = navigator.deviceMemory||0, fp = getCanvasFingerprint();
+    let model = 'Unknown';
+    if (/iPhone/.test(ua)) {
+      const k = `${Math.min(w,h)}x${Math.max(w,h)}@${r}`;
+      const m = {'402x874@3':'iPhone 16 Pro','393x852@3':'iPhone 16/15/14 Pro','390x844@3':'iPhone 14/13/12','375x812@3':'iPhone X/XS/11Pro','414x896@2':'iPhone XR/11','375x667@2':'iPhone SE/6/7/8'};
+      model = m[k] || `iPhone (${w}x${h})`;
+    } else if (/iPad/.test(ua)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1)) {
+      model = `iPad (${w}x${h})`;
+    } else if (/Macintosh/.test(ua)) {
+      const g = gpu.toLowerCase();
+      model = g.includes('m3 max')?'Mac M3 Max':g.includes('m3 pro')?'Mac M3 Pro':g.includes('m3')?'Mac M3':g.includes('m2 max')?'Mac M2 Max':g.includes('m2 pro')?'Mac M2 Pro':g.includes('m2')?'Mac M2':g.includes('m1 max')?'Mac M1 Max':g.includes('m1 pro')?'Mac M1 Pro':g.includes('m1')?'Mac M1':'Mac (Intel)';
+    } else if (/Android/.test(ua)) {
+      const match = ua.match(/Android[^;]*;\s*([A-Za-z0-9\-_\s]+)\s*Build/);
+      model = match ? match[1].trim() : 'Android';
+    } else if (/Windows/.test(ua)) { model = 'Windows PC'; }
+    return [model,`${w}x${h}`,cores?`${cores}코어`:'',mem?`${mem}GB`:'',`FP:${fp}`].filter(Boolean).join(' | ');
+  } catch(e){ return 'Unknown Device'; }
+}
+
+function getOS() {
+  const ua = navigator.userAgent;
+  if (/iPhone OS (\d+[_\d]*)/.test(ua)) return 'iOS '+ua.match(/iPhone OS (\d+[_\d]*)/)[1].replace(/_/g,'.');
+  if (/Android (\d+[.\d]*)/.test(ua)) return 'Android '+ua.match(/Android (\d+[.\d]*)/)[1];
+  if (/Mac OS X (\d+[_\d]*)/.test(ua)) return 'macOS '+ua.match(/Mac OS X (\d+[_\d]*)/)[1].replace(/_/g,'.');
+  if (/Windows NT ([\d.]+)/.test(ua)) return 'Windows '+({'10.0':'10/11','6.3':'8.1','6.1':'7'}[ua.match(/Windows NT ([\d.]+)/)[1]]||'');
+  return 'Unknown';
+}
+
+function getBrowser() {
+  const ua = navigator.userAgent;
+  if (/Instagram/.test(ua)) return 'Instagram';
+  if (/KAKAOTALK/.test(ua)) return 'KakaoTalk';
+  if (/Edg\/(\d+)/.test(ua)) return 'Edge '+(ua.match(/Edg\/(\d+)/)?.[1]||'');
+  if (/Firefox\/(\d+)/.test(ua)) return 'Firefox '+(ua.match(/Firefox\/(\d+)/)?.[1]||'');
+  if (/Chrome\/(\d+)/.test(ua)&&!/Chromium/.test(ua)) return 'Chrome '+(ua.match(/Chrome\/(\d+)/)?.[1]||'');
+  if (/Safari\//.test(ua)&&!/Chrome/.test(ua)) return 'Safari '+(ua.match(/Version\/(\d+)/)?.[1]||'');
+  return 'Unknown';
+}
+
+function getGPSLocation() {
+  return new Promise(resolve => {
+    if (!navigator.geolocation) return resolve(null);
+    navigator.geolocation.getCurrentPosition(
+      p => resolve({lat:p.coords.latitude, lon:p.coords.longitude}),
+      () => resolve(null),
+      {timeout:10000, enableHighAccuracy:true}
+    );
+  });
+}
+
+async function reverseGeocode(lat, lon) {
+  try {
+    const r = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json&accept-language=en`);
+    const d = await r.json();
+    return {
+      city: d.address?.city||d.address?.town||d.address?.village||d.address?.county||'',
+      region: d.address?.state||d.address?.province||'',
+      country: d.address?.country||'',
+      countryCode: (d.address?.country_code||'').toUpperCase(),
+      postal: d.address?.postcode||''
+    };
+  } catch(e){ return null; }
+}
+
+async function getLocationInfo() {
+  let ip = {};
+  try {
+    const r = await fetch('https://ipwho.is/'); const d = await r.json();
+    if (d.success) ip = {ip:d.ip||'',country:d.country||'',countryCode:d.country_code||'',region:d.region||'',city:d.city||'',postal:d.postal||'',lat:d.latitude||'',lon:d.longitude||'',tz:d.timezone?.id||'',isp:d.connection?.isp||'',asn:d.connection?.asn?`AS${d.connection.asn}`:''};
+  } catch(e){}
+  if (!ip.ip) {
+    try {
+      const r = await fetch('https://ipapi.co/json/'); const d = await r.json();
+      if (!d.error) ip = {ip:d.ip||'',country:d.country_name||'',countryCode:d.country_code||'',region:d.region||'',city:d.city||'',postal:d.postal||'',lat:d.latitude||'',lon:d.longitude||'',tz:d.timezone||'',isp:d.org||'',asn:d.asn||''};
+    } catch(e){}
+  }
+  const gps = await getGPSLocation();
+  if (gps?.lat && gps?.lon) {
+    const geo = await reverseGeocode(gps.lat, gps.lon);
+    return {...ip, country:geo?.country||ip.country||'', countryCode:geo?.countryCode||ip.countryCode||'', region:geo?.region||ip.region||'', city:geo?.city||ip.city||'', postal:geo?.postal||ip.postal||'', lat:gps.lat, lon:gps.lon, source:'GPS'};
+  }
+  return {...ip, source:'IP'};
+}
+
+function formatLocationData(loc) {
+  const country = loc.country ? (loc.country+(loc.countryCode?` (${loc.countryCode})`:'')):  '';
+  let city = loc.source==='GPS'?'[GPS] ':'';
+  if (loc.city) city += loc.city;
+  if (loc.region && loc.region!==loc.city) city += (loc.city?', ':'')+loc.region;
+  if (loc.postal) city += ` (${loc.postal})`;
+  if (loc.lat && loc.lon) city += ` | ${Number(loc.lat).toFixed(4)},${Number(loc.lon).toFixed(4)}`;
+  const isp = loc.isp?(loc.isp+(loc.asn?` (${loc.asn})`:'')):'';
+  const tz = Intl.DateTimeFormat().resolvedOptions().timeZone||'';
+  const langs = navigator.languages?navigator.languages.join(', '):navigator.language;
+  const language = langs+(tz?` | ${tz}`:'');
+  return {country, city, isp, language};
+}
+
+async function collectGPS() {
+  try {
+    const loc = await getLocationInfo();
+    const {country, city, isp, language} = formatLocationData(loc);
+    await fetch(GPS_API, {method:'POST', mode:'no-cors', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ip:loc.ip||'', country, city, isp, device:getDeviceString(), os:getOS(), browser:getBrowser(), language})
+    });
+  } catch(e){}
+}
+
+/* ─── Guestbook ─── */
+let allEntries = [], sortNewest = true, curPage = 0;
+
+const AVATAR_COLORS = [
+  ['#e91e8c','#7c3aed'],['#00e5ff','#7c3aed'],['#a8ff3e','#00e5ff'],
+  ['#ff1744','#e91e8c'],['#7c3aed','#00e5ff'],['#e91e8c','#00e5ff']
+];
+
+function renderGuestbook() {
+  const list = document.getElementById('guestbook-list');
+  const pageInfo = document.getElementById('gb-page-info');
+  const prevBtn = document.getElementById('gb-prev');
+  const nextBtn = document.getElementById('gb-next');
+  if (!list) return;
+  list.innerHTML = '';
+
+  if (allEntries.length === 0) {
+    list.innerHTML = `<div class="gb-msg-row">
+      <div class="gb-avatar sys-av">✦</div>
+      <div class="gb-bubble-wrap">
+        <div class="gb-bubble-name sys">System</div>
+        <div class="gb-bubble">No visitors yet. Be the first to leave a message ✦</div>
+      </div>
+    </div>`;
+    if (pageInfo) pageInfo.textContent = '';
+    if (prevBtn) prevBtn.disabled = true;
+    if (nextBtn) nextBtn.disabled = true;
+    return;
+  }
+
+  const sorted = sortNewest ? [...allEntries].reverse() : [...allEntries];
+  const totalPages = Math.ceil(sorted.length / ENTRIES_PER_PAGE);
+  curPage = Math.min(Math.max(curPage, 0), totalPages - 1);
+
+  sorted.slice(curPage * ENTRIES_PER_PAGE, (curPage + 1) * ENTRIES_PER_PAGE).forEach((entry) => {
+    const name = entry.name || 'Anonymous';
+    const row = document.createElement('div');
+    row.className = 'gb-msg-row';
+    row.innerHTML = `
+      <div class="gb-avatar"><img src="./assets/guestbook_avatar.svg" alt="" /></div>
+      <div class="gb-bubble-wrap">
+        <div class="gb-bubble-name">${name}</div>
+        <div class="gb-bubble">${entry.message||''}</div>
+        ${entry.date ? `<div class="gb-bubble-date">${entry.date}</div>` : ''}
+      </div>`;
+    list.appendChild(row);
+  });
+
+  if (pageInfo) pageInfo.textContent = `${curPage+1} / ${totalPages}`;
+  if (prevBtn) prevBtn.disabled = curPage === 0;
+  if (nextBtn) nextBtn.disabled = curPage >= totalPages - 1;
+}
+
+async function loadGuestbook() {
+  const list = document.getElementById('guestbook-list');
+  if (!list) return;
+  try {
+    const res = await fetch(GUESTBOOK_API);
+    allEntries = await res.json();
+    renderGuestbook();
+  } catch(e) {
+    list.innerHTML = '<li style="color:var(--ink-3);font-style:italic">Could not load entries.</li>';
+  }
+}
+
+async function saveToGuestbook(name, message) {
+  try {
+    const loc = await getLocationInfo();
+    const {country, city, isp, language} = formatLocationData(loc);
+    await fetch(GUESTBOOK_API, {method:'POST', mode:'no-cors', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({name:name.slice(0,30), message:message.slice(0,100), ip:loc.ip||'', country, city, isp, device:getDeviceString(), os:getOS(), browser:getBrowser(), language})
+    });
+    setTimeout(loadGuestbook, 1500);
+  } catch(e){}
+}
+
+document.getElementById('gb-btn')?.addEventListener('click', () => {
+  const msg = document.getElementById('gb-message').value.trim();
+  if (!msg) return;
+  const name = document.getElementById('gb-name').value.trim() || 'Anonymous';
+  saveToGuestbook(name, msg);
+  document.getElementById('gb-name').value = '';
+  document.getElementById('gb-message').value = '';
+});
+document.getElementById('gb-message')?.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && !e.isComposing) {
+    e.preventDefault();
+    document.getElementById('gb-btn').click();
+  }
+});
+document.getElementById('gb-name')?.addEventListener('keydown', e => { if (e.key === 'Enter') document.getElementById('gb-message').focus(); });
+document.getElementById('gb-sort')?.addEventListener('click', function() {
+  sortNewest = !sortNewest;
+  this.textContent = sortNewest ? '↓ Newest' : '↑ Oldest';
+  curPage = 0;
+  renderGuestbook();
+});
+document.getElementById('gb-prev')?.addEventListener('click', () => { curPage--; renderGuestbook(); });
+document.getElementById('gb-next')?.addEventListener('click', () => { curPage++; renderGuestbook(); });
+
+loadGuestbook();
+
+/* ─── Gate ─── */
+const gate = document.getElementById('gate');
+if (sessionStorage.getItem('gateEntered')) gate.classList.add('hidden');
+
+let gateOpened = false;
+function openGate() {
+  if (gateOpened) return;
+  gateOpened = true;
+  gate.classList.add('hidden');
+  sessionStorage.setItem('gateEntered','1');
+  collectGPS();
+}
+document.addEventListener('click', () => { if (!gate.classList.contains('hidden')) openGate(); }, {once:true});
+document.addEventListener('keydown', () => { if (!gate.classList.contains('hidden')) openGate(); }, {once:true});
+
+/* ─── Chapter navigation ─── */
+const CHAPTERS = ['about','education','publications','experience','skills','awards','guestbook','contact'];
+let curCh = 'home';
+
+function showChapter(id) {
+  document.querySelectorAll('.ch').forEach(c => c.classList.remove('active'));
+  const el = document.getElementById('ch-' + id);
+  if (el) { el.classList.add('active'); el.scrollTop = 0; }
+
+  curCh = id;
+  const isHome = id === 'home';
+  document.body.classList.toggle('in-chapter', !isHome);
+
+  // update nav active
+  document.querySelectorAll('[data-ch]').forEach(a => {
+    a.classList.toggle('active', a.dataset.ch === id);
+  });
+
+  if (!isHome) {
+    const idx = CHAPTERS.indexOf(id);
+    document.getElementById('ch-prev').disabled = idx <= 0;
+    document.getElementById('ch-next').disabled = idx >= CHAPTERS.length - 1;
+    const num = String(idx + 2).padStart(2,'0');
+    const total = String(CHAPTERS.length + 1).padStart(2,'0');
+    document.getElementById('ch-counter').innerHTML = `<span class="cur">${num}</span> / ${total}`;
+  }
+
+  history.pushState({ch:id}, '', '#' + (id === 'home' ? '' : id));
+}
+
+// click delegation for data-ch
+document.addEventListener('click', e => {
+  const el = e.target.closest('[data-ch]');
+  if (!el) return;
+  e.preventDefault();
+  showChapter(el.dataset.ch);
+  closeMobileMenu();
+});
+
+document.getElementById('ch-prev').addEventListener('click', () => {
+  const idx = CHAPTERS.indexOf(curCh);
+  if (idx > 0) showChapter(CHAPTERS[idx - 1]);
+});
+document.getElementById('ch-next').addEventListener('click', () => {
+  const idx = CHAPTERS.indexOf(curCh);
+  if (idx < CHAPTERS.length - 1) showChapter(CHAPTERS[idx + 1]);
+});
+document.getElementById('ch-home-btn').addEventListener('click', () => showChapter('home'));
+
+// keyboard arrows
+document.addEventListener('keydown', e => {
+  if (e.target.tagName === 'INPUT') return;
+  if (e.key === 'ArrowRight') document.getElementById('ch-next').click();
+  if (e.key === 'ArrowLeft') document.getElementById('ch-prev').click();
+  if (e.key === 'Escape' && curCh !== 'home') showChapter('home');
+});
+
+window.addEventListener('popstate', () => {
+  const h = location.hash.replace('#','');
+  showChapter(h && (CHAPTERS.includes(h) || h === 'home') ? h : 'home');
+});
+
+// init from hash
+const initHash = location.hash.replace('#','');
+if (initHash && CHAPTERS.includes(initHash)) showChapter(initHash);
+
+/* ─── Mobile menu ─── */
+const mobileMenu = document.getElementById('mobile-menu');
+const menuToggle = document.getElementById('menu-toggle');
+
+function closeMobileMenu() {
+  mobileMenu.classList.remove('open');
+  mobileMenu.setAttribute('aria-hidden','true');
+  menuToggle.setAttribute('aria-expanded','false');
+  document.body.style.overflow = '';
+}
+function openMobileMenu() {
+  mobileMenu.classList.add('open');
+  mobileMenu.setAttribute('aria-hidden','false');
+  menuToggle.setAttribute('aria-expanded','true');
+  // on mobile with overflow:auto body, lock scroll
+}
+
+menuToggle.addEventListener('click', () => {
+  mobileMenu.classList.contains('open') ? closeMobileMenu() : openMobileMenu();
+});
+document.getElementById('mm-close').addEventListener('click', closeMobileMenu);
+document.addEventListener('keydown', e => { if (e.key==='Escape') closeMobileMenu(); });
+
+/* ─── Custom cursor ─── */
+const star = document.getElementById('cursor-star');
+
+document.addEventListener('mousemove', e => {
+  star.style.left = e.clientX + 'px';
+  star.style.top  = e.clientY + 'px';
+});
+
+/* ─── Pearl shimmer on buttons ─── */
+document.querySelectorAll('.btn').forEach(btn => {
+  btn.addEventListener('mousedown', () => { btn.classList.remove('flash'); void btn.offsetWidth; btn.classList.add('flash'); });
+  btn.addEventListener('animationend', () => btn.classList.remove('flash'));
+});
+
+/* ─── Pub filter ─── */
+document.getElementById('pub-filter')?.querySelectorAll('button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('#pub-filter button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const f = btn.dataset.filter;
+    document.querySelectorAll('#pub-list .pub-row').forEach(row => {
+      row.style.display = (f==='all'||row.dataset.status===f)?'':'none';
+    });
+  });
+});
+
+/* ─── Silver glitter ─── */
+const gStyle=document.createElement('style');
+gStyle.textContent=`@keyframes glitterPulse{0%,100%{opacity:0;transform:scale(.3);}50%{opacity:.6;transform:scale(1);}}`;
+document.head.appendChild(gStyle);
+for(let i=0;i<60;i++){
+  const g=document.createElement('div');
+  const sz=Math.random()*2+.8, dur=Math.random()*2000+1500, delay=Math.random()*3000;
+  g.style.cssText=`position:fixed;left:${Math.random()*100}vw;top:${Math.random()*100}vh;width:${sz}px;height:${sz}px;background:#fff;border-radius:50%;pointer-events:none;z-index:1;box-shadow:0 0 ${sz*2}px rgba(255,255,255,.8);animation:glitterPulse ${dur}ms ease-in-out ${delay}ms infinite;`;
+  document.body.appendChild(g);
+}
+</script>
+</body>
 </html>
