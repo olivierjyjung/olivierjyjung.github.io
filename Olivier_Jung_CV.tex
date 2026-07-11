@@ -1,0 +1,212 @@
+\documentclass[11pt,a4paper]{article}
+
+% Packages
+\usepackage[margin=0.75in]{geometry}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage{fontawesome5}
+\usepackage{xcolor}
+\usepackage{tabularx}
+\usepackage{setspace}
+\usepackage[T1]{fontenc}
+\usepackage{microtype}[tracking=true]
+\SetTracking{encoding=*}{-20}  % Tighter letter spacing
+
+% Line spacing
+\setstretch{1.3}
+
+% Remove paragraph indentation
+\setlength{\parindent}{0pt}
+
+% Color definitions
+\definecolor{linkblue}{RGB}{0,51,102}
+\definecolor{navyblue}{RGB}{0,51,153}
+
+% Hyperref setup
+\hypersetup{
+    colorlinks=true,
+    linkcolor=linkblue,
+    urlcolor=linkblue
+}
+
+% Section formatting
+\titleformat{\section}{\large\bfseries\color{navyblue}}{}{0em}{\MakeUppercase}[\vspace{-8pt}\textcolor{navyblue}{\titlerule}]
+\titlespacing{\section}{0pt}{16pt}{8pt}
+
+% Subsection formatting
+\titlespacing{\subsection}{0pt}{10pt}{6pt}
+
+% Remove page numbers
+\pagestyle{empty}
+
+% Custom commands
+\newcommand{\cventry}[4]{
+    \noindent\textbf{#1} \hfill #2 \\[3pt]
+    \textit{#3} \hfill \textit{#4}
+}
+\begin{document}
+
+\begin{center}
+    {\LARGE\textbf{Olivier Jiyoun Jung}}\\[6pt]
+    \faEnvelope\ \href{mailto:olivierjiyounjung@gmail.com}{olivierjiyounjung@gmail.com} \quad
+    \faLinkedin\ \href{https://www.linkedin.com/in/olivier-jiyoun-jung-290287389/}{LinkedIn}
+\end{center}
+
+
+
+%====================
+% RESEARCH INTERESTS
+%====================
+\section{Research Interests}
+My research explores how AI systems reshape human communication and public discourse. Working at the intersection of \textbf{Human-AI Interaction} and \textbf{Computational Social Science}, I combine speech modeling, natural language processing, and computational methods to study how AI-mediated technologies influence trust, perception, and dialogue. I am particularly interested in designing human-AI systems that support more constructive and inclusive forms of communication.
+
+%====================
+% EDUCATION
+%====================
+\section{Education}
+
+\cventry{Ewha Womans University}{Seoul, South Korea}{M.A. in Communication \& Media}{Mar 2025 -- Aug 2027 (Expected)}\\
+GPA: 4.44/4.5
+\vspace{16pt}
+
+\cventry{University of Applied Sciences and Arts Northwestern Switzerland}{Basel, Switzerland}{Exchange Student, Applied Science}{Aug 2023 -- Feb 2024}
+\vspace{16pt}
+
+\cventry{Ewha Womans University}{Seoul, South Korea}{B.A. in Communication \& Media, Scranton Honors Program}{Mar 2021 -- Feb 2025}\\
+GPA: 4.32/4.5 $\cdot$ \textit{Summa Cum Laude}
+
+%====================
+% RESEARCH EXPERIENCE
+%====================
+\section{Research Experience}
+
+\cventry{NAVER Cloud}{Seongnam, South Korea}{AI Research Scientist Intern, HCX Application AI Modeling Team}{Nov 2025 -- May 2026}
+\begin{itemize}[leftmargin=*, itemsep=3pt, topsep=6pt]
+    \item Developed speech AI and LLM systems, with focus on extracting discourse and conversational features to improve model performance
+    \item Implemented and fine-tuned deep learning models in PyTorch for speech and language processing
+\end{itemize}
+\vspace{16pt}
+
+\cventry{Ewha Womans University}{Seoul, South Korea}{Graduate Research Assistant, Division of Communication \& Media}{Mar 2025 -- Present}
+\begin{itemize}[leftmargin=*, itemsep=3pt, topsep=6pt]
+    \item Conducting independent research on AI-mediated communication and computational media analysis
+    \item Collaborating on interdisciplinary research at the intersection of communication studies and AI
+\end{itemize}
+
+%====================
+% PUBLICATIONS
+%====================
+\section{Publications}
+{\small $^{\dagger}$Equal contribution \quad $^{*}$Corresponding author}
+
+\begin{enumerate}[leftmargin=*, label={[\arabic*]}, itemsep=8pt]
+    \item \textbf{Jung, O. J.}$^{\dagger}$, Park, J.$^{\dagger}$, \& Oh, M.$^{*}$ (2026). Listening Between the Lines: Joint Learning of ASR Embeddings and LLM-Augmented Linguistics for Dementia Detection. Accepted at \textit{INTERSPEECH 2026}. \href{https://arxiv.org/abs/2606.30675}{[arXiv]}
+
+    \item Park, J.$^{\dagger}$, \textbf{Jung, O. J.}$^{\dagger}$, \& Oh, M.$^{*}$ (2026). LoRA-Tuned Large Language Models for Dementia Detection via Multi-View Speech-Derived Features. Accepted at \textit{INTERSPEECH 2026}. \href{https://arxiv.org/abs/2606.28445}{[arXiv]}
+
+    \item Youk, S., \textbf{Jung, O. J.}, Jie, Y., \& Lee, S. K.$^{*}$ (2026). Comparing Neural Responses to Human and Social Robot Interlocutors: An EEG Study on CASA and Perceived Pleasantness, Importance, and Cooperativeness. Paper presented at \textit{International Communication Association (ICA) 76th Annual Conference}.
+
+    \item \textbf{Jung, O. J.}, \& Youk, S.$^{*}$ (2025). Analyzing V-Tuber Visual Tropes in South Korea Through Korea–Japan Media Circuits. Paper presented at \textit{National Communication Association (NCA) 111th Annual Convention}.
+\end{enumerate}
+
+\subsection*{Under Review}
+
+\begin{enumerate}[leftmargin=*, label={[\arabic*]}, resume, itemsep=8pt]
+    \item \textbf{Jung, O. J.} (2026). Priming Effects on Deepfake Audio Perception: An EEG Study of Source Monitoring and False Memory. \textit{National Communication Association (NCA) 112th Annual Convention}.
+
+    \item Youk, S., Kim, H., \textbf{Jung, O. J.}, \& Kim, Y.$^{*}$ (2026). How Policy Shapes Media Narratives of Environmental Risk: A Nine-Year Analysis of Particulate Matter News Coverage in South Korea.
+    
+    \item \textbf{Jung, O. J.} (2026). Does AI Exposure Calibrate or Compromise Authenticity Perception? Evidence From Deepfake Audio Detection. \textit{Manuscript under review}.
+
+    \item \textbf{Jung, O. J.}, \& Youk, S.$^{*}$ (2025). Mixed-Methods Approach to Analyzing Visual Characteristics of Virtual YouTubers. \textit{Asian Communication Research (ACR)}.
+\end{enumerate}
+
+\subsection*{Work in Progress}
+
+\begin{enumerate}[leftmargin=*, label={[\arabic*]}, resume, itemsep=8pt]
+    \item Meme Politics: Effects of AI-Generated Short-Form Content on Young Voters in South Korea. \textit{Manuscript in preparation}.
+
+    \item End-to-end Multimodal Explanation Generation for Audio Deepfake Detection. \textit{Manuscript in preparation}.
+
+    \item Multimodal Depression Detection from Clinical Interviews via Speech-Text Feature Fusion. \textit{Manuscript in preparation}.
+\end{enumerate}
+
+%====================
+% TEACHING EXPERIENCE
+%====================
+\section{Teaching Experience}
+
+\cventry{Ewha Womans University}{Seoul, South Korea}{Teaching Assistant, ``Communication and Society''}{2025}
+
+%====================
+% HONORS & AWARDS
+%====================
+\section{Honors \& Awards}
+
+\begin{tabularx}{\textwidth}{@{}p{1.8cm} X r@{}}
+2025--2026 & Excellence Ewha-in Scholarship (\$10,000) & Ewha Womans University \\[4pt]
+2025 & \textit{Summa Cum Laude} & Ewha Womans University \\[4pt]
+2025 & Student Travel Grant, NCA 111th Annual Convention & National Communication Association \\[4pt]
+2024 & Departmental Academic Excellence Scholarship & Ewha Womans University \\[4pt]
+2023 & FHNW International Merit Scholarship & FHNW Switzerland \\[4pt]
+2022 & Excellence Award, 5th Investigative Reporting Contest & Korea News Agency Commission \\[4pt]
+2021--2025 & Highest Honors (all semesters) & Ewha Womans University \\
+\end{tabularx}
+
+%====================
+% LEADERSHIP
+%====================
+\section{Leadership \& Activities}
+
+\cventry{ALSA (Asian Law Students' Association)}{}{Local Chapter President, Ewha Womans University}{2022 -- 2023}
+\begin{itemize}[leftmargin=*, itemsep=2pt, topsep=4pt]
+    \item Organized a special seminar on AI and technology law reform
+    \item Coordinated cross-national collaboration among Asian chapters
+    \item Led chapter recognized as Best Chapter during tenure
+\end{itemize}
+\vspace{16pt}
+
+\cventry{YJS Journalism School}{}{Student Reporter}{2022 -- 2023}
+\vspace{16pt}
+
+\cventry{Scranton College Student Council, Ewha Womans University}{}{PR Team Member}{2022}
+\vspace{16pt}
+
+%====================
+% VOLUNTEERING
+%====================
+\section{Volunteering}
+
+\cventry{Korea Association for Ethical Organ Transplants}{}{Translator}{2022 -- 2024}
+
+%====================
+% HOBBIES
+%====================
+\section{Hobbies}
+
+Music (Vocalist, Bassist, Producer) $\cdot$ Skiing (Korea Ski Instructor Level 1)
+
+%====================
+% SKILLS
+%====================
+\section{Technical Skills}
+
+\textbf{Programming:} Python, R, LaTeX\\
+\textbf{Machine Learning:} PyTorch, Deep Learning, NLP, Computer Vision, LLM Fine-tuning, Speech Processing\\
+\textbf{Research Tools:} SPSS, PsychoPy, EEG, Unreal Engine (VR)\\
+\textbf{Other:} Ableton Live, Melodyne, Logic Pro, Adobe Photoshop, Microsoft Office
+
+%====================
+% LANGUAGES
+%====================
+\section{Languages}
+
+English (Native/Bilingual) $\cdot$ Korean (Native/Bilingual) $\cdot$ Japanese (Elementary)
+
+\vfill
+\begin{center}
+    \small\textit{Last updated: \today}
+\end{center}
+
+\end{document}
