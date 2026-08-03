@@ -25,6 +25,7 @@
   --accent:#e91e8c; --accent-2:#c2185b; --accent-soft:#2d0820;
   --cyan:#00e5ff; --lime:#a8ff3e; --deep-purple:#7c3aed;
   --mh:52px;
+  --rail:132px;   /* one shared left rail width across every section */
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 body{background:var(--paper);color:var(--ink);font-family:'UnifontExMono',monospace;font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased;cursor:none;overflow:hidden;}
@@ -62,8 +63,9 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:2;opa
 .menu-toggle:hover,.menu-toggle[aria-expanded="true"]{color:var(--accent);}
 .mti{display:inline-flex;flex-direction:column;gap:4px;width:16px;}
 .mti span{display:block;height:1.5px;background:var(--ink);transition:transform .3s,opacity .3s;}
-.menu-toggle[aria-expanded="true"] .mti span:nth-child(1){transform:translateY(2.75px) rotate(45deg);}
-.menu-toggle[aria-expanded="true"] .mti span:nth-child(2){transform:translateY(-2.75px) rotate(-45deg);}
+.menu-toggle[aria-expanded="true"] .mti span:nth-child(1){transform:translateY(5.5px) rotate(45deg);}
+.menu-toggle[aria-expanded="true"] .mti span:nth-child(2){opacity:0;}
+.menu-toggle[aria-expanded="true"] .mti span:nth-child(3){transform:translateY(-5.5px) rotate(-45deg);}
 
 /* mobile menu overlay */
 .mobile-menu{position:fixed;inset:0;z-index:200;background:var(--paper);padding:0 24px 32px;display:flex;flex-direction:column;opacity:0;visibility:hidden;transform:translateY(-8px);transition:opacity .3s,transform .3s,visibility .3s;overflow-y:auto;}
@@ -87,7 +89,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:2;opa
 .ch::-webkit-scrollbar-thumb{background:rgba(233,30,140,.3);border-radius:2px;}
 
 /* chapter nav bar */
-#ch-nav{position:fixed;bottom:0;left:0;right:0;z-index:40;display:none;align-items:center;justify-content:space-between;padding:0 48px;height:50px;background:rgba(10,10,10,.92);backdrop-filter:blur(8px);border-top:1px solid var(--rule);}
+#ch-nav{position:fixed;bottom:0;left:0;right:0;z-index:40;display:none;align-items:center;justify-content:space-between;padding:0 48px;height:50px;background:rgba(10,10,10,.92);backdrop-filter:blur(8px);border-top:1px solid rgba(255,255,255,.1);}
 body.in-chapter #ch-nav{display:flex;}
 body.in-chapter .ch{bottom:50px;}
 .chnb{font-family:'VCRMono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);background:transparent;border:0;padding:0 4px;cursor:none;transition:color .2s,transform .2s,height .2s;height:30px;display:flex;align-items:center;position:relative;}
@@ -99,25 +101,44 @@ body.in-chapter .ch{bottom:50px;}
 #ch-home-btn:hover{color:var(--cyan);}
 
 /* folio */
-.folio{position:absolute;top:28px;left:48px;right:48px;display:flex;justify-content:space-between;font-family:'VCRMono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);pointer-events:none;}
+.folio{display:none;position:absolute;top:28px;left:48px;right:48px;justify-content:space-between;font-family:'VCRMono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);pointer-events:none;}
 .folio .num{color:var(--accent);}
 
 /* section base */
-.ch-sec{padding:clamp(60px,8vh,100px) 48px clamp(80px,10vh,120px);position:relative;min-height:calc(100vh - var(--mh));}
+.ch-sec{padding:clamp(48px,6vh,76px) 24px clamp(80px,10vh,120px);position:relative;min-height:calc(100vh - var(--mh));max-width:1000px;margin:0 auto;}
 #ch-publications .ch-sec{min-height:auto;}
-.sec-head{display:grid;grid-template-columns:1fr 2fr;gap:48px;margin-bottom:48px;align-items:end;}
-.sec-eyebrow{font-family:'VCRMono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:12px;}
-.sec-title{font-family:'KiwiSoda',cursive;font-size:clamp(40px,5vw,72px);line-height:.95;color:var(--ink);}
+.sec-head{margin-bottom:26px;text-align:center;}
+.sec-eyebrow{font-family:'VCRMono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;}
+.sec-title{font-family:'KiwiSoda',cursive;font-size:clamp(36px,4.4vw,62px);line-height:.95;color:var(--ink);}
 .sec-title em{color:var(--accent);font-style:normal;}
+
+/* ---- Y2K panel system ---- */
+/* same window chrome as the guestbook */
+.panel{background:#1e1e1e;border:1px solid rgba(255,255,255,.12);border-radius:12px;box-shadow:0 40px 100px rgba(0,0,0,.9),0 0 0 .5px rgba(255,255,255,.06);overflow:hidden;position:relative;}
+.pnl-bar{background:#2d2d2d;border-bottom:1px solid rgba(255,255,255,.08);padding:12px 16px;display:flex;align-items:center;user-select:none;position:relative;}
+.pnl-tls{display:flex;gap:8px;margin-right:auto;}
+.pnl-tl{width:12px;height:12px;border-radius:50%;border:0;padding:0;}
+.pnl-tl.r{background:#ff5f57;box-shadow:0 0 6px rgba(255,95,87,.6);cursor:pointer;}
+.pnl-tl.r:hover{filter:brightness(1.35);}
+.pnl-tl.y{background:#ffbd2e;}
+.pnl-tl.g{background:#28ca41;}
+.pnl-tt{font-family:'UnifontExMono',monospace;font-size:11px;color:rgba(255,255,255,.45);position:absolute;left:50%;transform:translateX(-50%);}
+.panel.closed{display:none;}
+.pnl-reopen{display:none;margin:0 auto;font-family:'VCRMono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);background:transparent;border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:9px 16px;cursor:pointer;}
+.pnl-reopen:hover{color:var(--accent);border-color:rgba(233,30,140,.5);}
+.pnl-reopen.show{display:block;}
+.pnl-body{padding:12px;}
+/* zebra rows replace hairlines */
+.row-z{padding:14px 6px;}
 
 /* home / hero */
 .hero{padding:48px 48px 80px;position:relative;min-height:calc(100vh - var(--mh));display:flex;flex-direction:column;}
 .hero-kicker{font-family:'VCRMono',monospace;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--cyan);display:flex;align-items:center;gap:14px;margin-bottom:40px;}
-.hero-kicker::before{content:'';width:36px;height:1px;background:var(--cyan);}
+.hero-kicker::before{content:'\25A0';color:var(--cyan);font-size:9px;}
 .hero-title{font-family:'KiwiSoda',cursive;font-size:clamp(34px,8.8vw,90px);line-height:1;color:var(--ink);margin:clamp(60px,12vh,140px) 0 clamp(60px,12vh,140px);text-shadow:0 0 80px rgba(233,30,140,.15);text-align:center;white-space:nowrap;}
 .hero-title em{color:var(--accent);font-style:normal;}
-.hero-lede{display:grid;grid-template-columns:1.48fr 1fr;gap:52px;align-items:start;padding-top:24px;border-top:1px solid var(--rule);margin-bottom:56px;}
-.hero-deck{font-family:'UnifontExMono',monospace;font-size:clamp(15px,1.4vw,18px);line-height:1.55;color:var(--ink-2);max-width:min(720px,100%);}
+.hero-lede{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;padding:0;margin-bottom:40px;}
+.hero-deck{font-family:'UnifontExMono',monospace;font-size:clamp(14px,1.2vw,16px);line-height:1.6;color:var(--ink-2);max-width:38ch;}
 .hero-deck em{color:var(--accent);font-style:italic;}
 .hero-meta{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
 .hero-meta dt{font-family:'VCRMono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);margin-bottom:4px;}
@@ -125,10 +146,10 @@ body.in-chapter .ch{bottom:50px;}
 .hero-meta dd a{color:var(--accent);text-decoration:none;}
 
 /* TOC */
-.toc{border-top:1px solid var(--rule);}
-.toc-item{display:grid;grid-template-columns:60px 1fr auto;gap:24px;padding:18px 0;border-bottom:1px solid var(--rule);align-items:center;cursor:pointer;transition:background .2s,padding .2s;}
-.toc-item:hover{background:var(--paper-2);padding-left:16px;padding-right:16px;}
-.toc-num{font-family:'KiwiSoda',cursive;font-size:32px;color:rgba(0,229,255,.15);transition:color .25s;}
+.toc{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;}
+.toc-item{display:grid;grid-template-columns:1fr auto;gap:14px;padding:12px 14px;align-items:center;cursor:pointer;padding:12px 4px;transition:color .2s;}
+.toc-item:hover .toc-label{color:var(--accent);}
+.toc-num{display:none;}
 .toc-item:hover .toc-num{color:var(--cyan);}
 .toc-label{font-family:'KiwiSoda',cursive;font-size:clamp(22px,2.5vw,30px);color:var(--ink);}
 .toc-arrow{font-family:'VCRMono',monospace;font-size:11px;color:var(--ink-3);transition:color .2s,transform .2s;}
@@ -141,15 +162,15 @@ body.in-chapter .ch{bottom:50px;}
 .pull-quote::after{content:'\201D';color:var(--accent);margin-left:4px;}
 .body-p{font-size:14px;line-height:1.7;color:var(--ink-2);margin-bottom:14px;max-width:min(860px,100%);}
 .body-p strong{color:var(--ink);font-weight:500;}
-.tag-row{margin-top:24px;padding-top:16px;border-top:1px solid var(--rule);display:flex;flex-wrap:wrap;gap:6px 16px;font-family:'VCRMono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);}
+.tag-row{margin-top:20px;padding-top:0;display:flex;flex-wrap:wrap;gap:6px 16px;font-family:'VCRMono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);}
 .tag-row .t{color:var(--ink-2);}
 .tag-row .t::before{content:'✦';color:var(--accent);margin-right:5px;font-size:9px;}
 
 /* education */
-.edu-row{display:grid;grid-template-columns:160px 1fr auto;gap:32px;padding:24px 0;border-top:1px solid var(--rule);align-items:baseline;}
-.edu-year{font-family:'VCRMono',monospace;font-size:11px;letter-spacing:.1em;color:var(--accent);}
+.edu-row{display:grid;grid-template-columns:var(--rail) 1fr;gap:6px 20px;align-items:start;}
+.edu-year{grid-row:1/3;align-self:center;font-family:'VCRMono',monospace;font-size:11px;letter-spacing:.1em;color:var(--accent);text-align:center;line-height:1.7;}
 .edu-deg{font-family:'KiwiSoda',cursive;font-size:clamp(20px,2vw,26px);line-height:1.2;color:var(--ink);}
-.edu-school{font-family:'UnifontExMono',monospace;font-size:13px;color:var(--ink-2);line-height:1.5;text-align:right;}
+.edu-school{font-family:'UnifontExMono',monospace;font-size:13px;color:var(--ink-2);line-height:1.5;grid-column:2;}
 .edu-honor{display:block;font-family:'VCRMono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--lime);margin-top:3px;}
 
 /* publications */
@@ -157,48 +178,49 @@ body.in-chapter .ch{bottom:50px;}
 .pub-filter-bar button{padding:6px 0;background:transparent;border:0;color:var(--ink-3);font-family:'VCRMono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;cursor:none;transition:color .18s,text-shadow .18s;min-height:30px;position:relative;}
 .pub-filter-bar button:hover{color:var(--ink);}
 .pub-filter-bar button.active{background:transparent;color:var(--accent);text-shadow:0 0 12px rgba(233,30,140,.35);}
-.pub-row{display:grid;grid-template-columns:1fr 160px;gap:32px;padding:22px 0;border-top:1px solid var(--rule);align-items:center;transition:background .2s,padding .2s;}
-.pub-row:hover{background:var(--paper-2);padding-left:10px;padding-right:10px;}
-.pub-num{font-family:'KiwiSoda',cursive;font-size:20px;color:rgba(0,229,255,.2);margin-bottom:4px;transition:color .25s;}
+.pub-row{display:grid;grid-template-columns:1fr auto;gap:20px;align-items:start;transition:background .2s;position:relative;}
+.pub-row:hover{background:rgba(255,255,255,.07);}
+.pub-num{display:none;}
 .pub-row:hover .pub-num{color:var(--cyan);}
 .pub-title{font-family:'Pix32',monospace;font-size:15px;line-height:1.4;color:var(--ink);margin-bottom:8px;}
 .pub-authors{font-family:'UnifontExMono',monospace;font-size:12px;color:var(--ink-2);margin-bottom:4px;}
 .pub-authors .me{color:var(--ink);font-weight:500;}
 .pub-venue{font-family:'VCRMono',monospace;font-size:10px;letter-spacing:.08em;color:var(--ink-3);text-transform:uppercase;}
-.pub-side{display:flex;flex-direction:column;gap:6px;align-items:center;}
+.pub-side{display:flex;flex-direction:column;gap:6px;align-items:center;text-align:center;}
 .pill{font-family:'VCRMono',monospace;font-size:9px;letter-spacing:.16em;text-transform:uppercase;padding:4px 10px;border:1px solid currentColor;display:inline-block;}
 .pill-accepted{color:var(--cyan);background:rgba(0,229,255,.08);border-color:transparent;}
 .pill-presented{color:var(--accent);background:var(--accent-soft);border-color:transparent;}
 .pill-review{color:var(--ink);}
 .pill-progress{color:var(--ink-3);border-style:dashed;}
-.pub-year{font-family:'VCRMono',monospace;font-size:10px;color:var(--ink-3);}
+.pub-year{font-family:'VCRMono',monospace;font-size:10px;color:var(--ink-3);width:100%;text-align:center;}
 .pub-link{color:var(--cyan);text-decoration:none;border-bottom:1px solid rgba(0,229,255,.35);transition:color .18s,border-color .18s,text-shadow .18s;}
 .pub-link:hover{color:var(--cyan);border-color:var(--cyan);text-shadow:0 0 10px rgba(0,229,255,.4);}
 
 /* experience */
 .exp-list{display:flex;flex-direction:column;}
-.exp-row{display:grid;grid-template-columns:80px 1fr 1fr;gap:40px;padding:36px 0;border-top:1px solid var(--rule);position:relative;transition:background .25s;}
-.exp-row:hover{background:var(--paper-2);padding-left:16px;padding-right:16px;}
-.exp-idx{font-family:'KiwiSoda',cursive;font-size:48px;line-height:1;color:rgba(0,229,255,.12);transition:color .25s;}
+.exp-row{display:block;position:relative;transition:background .25s;}
+.exp-row:hover{background:rgba(255,255,255,.07);}
+
+.exp-idx{display:none;}
 .exp-row:hover .exp-idx{color:var(--cyan);}
 .exp-period{font-family:'VCRMono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;}
 .exp-role{font-family:'KiwiSoda',cursive;font-size:clamp(20px,1.8vw,26px);line-height:1.15;color:var(--ink);margin-bottom:4px;}
 .exp-org{font-family:'UnifontExMono',monospace;font-size:12px;color:var(--ink-2);}
-.exp-details{display:flex;flex-direction:column;gap:8px;justify-content:center;}
+.exp-details{display:flex;flex-direction:column;gap:8px;margin-top:10px;}
 .exp-detail{font-family:'Pix32',monospace;font-size:13px;line-height:1.5;color:var(--ink-2);padding-left:18px;position:relative;}
 .exp-detail::before{content:'→';position:absolute;left:0;color:var(--accent);}
 
 /* skills */
-.skills-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--rule);border-left:1px solid var(--rule);}
-.skill-col{padding:28px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);}
+.skills-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;}
+.skill-col{padding:14px 6px;}
 .skill-col h4{font-family:'VCRMono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--cyan);margin-bottom:16px;}
 .skill-col li{font-family:'KiwiSoda',cursive;font-size:20px;line-height:1.4;color:var(--ink);list-style:none;}
 
 /* awards */
-.award-row{display:grid;grid-template-columns:100px 1fr 1fr;gap:32px;padding:20px 0;border-top:1px solid var(--rule);align-items:baseline;}
-.award-year{font-family:'VCRMono',monospace;font-size:11px;color:var(--lime);}
+.award-row{display:grid;grid-template-columns:var(--rail) 1fr;gap:4px 20px;align-items:start;}
+.award-year{grid-row:1/3;align-self:center;font-family:'VCRMono',monospace;font-size:11px;color:var(--lime);text-align:center;}
 .award-name{font-family:'KiwiSoda',cursive;font-size:clamp(18px,1.6vw,22px);color:var(--ink);line-height:1.3;}
-.award-org{font-family:'UnifontExMono',monospace;font-size:12px;color:var(--ink-2);text-align:right;}
+.award-org{font-family:'UnifontExMono',monospace;font-size:12px;color:var(--ink-2);grid-column:2;}
 
 /* guestbook */
 .gb-mac-window{max-width:720px;margin:0 auto;background:#1e1e1e;border:1px solid rgba(255,255,255,.12);border-radius:12px;box-shadow:0 40px 100px rgba(0,0,0,.9),0 0 0 .5px rgba(255,255,255,.06);overflow:hidden;}
@@ -216,9 +238,9 @@ body.in-chapter .ch{bottom:50px;}
 .gb-inp::placeholder{color:var(--ink-3);opacity:.5;}
 #gb-name{width:100px;border-right:1px solid rgba(255,255,255,.07);padding-right:10px;}
 #gb-message{flex:1;padding-left:10px;min-width:80px;}
-.gb-send{width:30px;height:30px;border-radius:50%;flex-shrink:0;background:rgba(233,30,140,.15);border:1px solid rgba(233,30,140,.55);cursor:pointer;color:#fff;font-size:13px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 18px rgba(233,30,140,.22);transition:background .15s,transform .08s,border-color .15s;}
-.gb-send:hover{background:rgba(233,30,140,.32);border-color:var(--accent);}
-.gb-send:active{transform:scale(.9);}
+.gb-send{flex-shrink:0;background:var(--accent);border:0;border-radius:6px;cursor:pointer;color:#fff;font-family:'VCRMono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:8px 16px;transition:background .15s;}
+.gb-send:hover{background:var(--accent-2);}
+.gb-send:active{background:var(--accent-2);}
 .gb-controls{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;gap:12px;flex-wrap:wrap;padding:0 2px 10px;border-bottom:1px solid rgba(255,255,255,.06);}
 .gb-ctrl-btn{font-family:'VCRMono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);background:transparent;border:0;padding:4px 0;cursor:pointer;transition:color .2s,text-shadow .2s;min-height:28px;position:relative;}
 .gb-ctrl-btn::before{content:'·';color:var(--rule);margin-right:6px;transition:color .2s;}
@@ -240,19 +262,43 @@ body.in-chapter .ch{bottom:50px;}
 .gb-bubble{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.06);border-radius:2px 8px 8px 8px;padding:7px 11px;font-family:'UnifontExMono',monospace;font-size:11px;color:var(--ink-2);line-height:1.5;}
 .gb-bubble-date{font-family:'VCRMono',monospace;font-size:9px;color:var(--ink-3);margin-top:2px;}
 
+/* rate gate (design only - nothing is stored or sent) */
+#rate-gate{max-width:560px;margin:0 auto;}
+.rate-spark{text-align:center;font-family:'VCRMono',monospace;font-size:11px;letter-spacing:.5em;color:var(--cyan);margin-bottom:14px;}
+.rate-title{font-family:'Cavalhatriz',cursive;font-size:clamp(30px,4.4vw,52px);line-height:1;color:var(--ink);text-align:center;}
+.rate-title em{color:var(--accent);font-style:normal;}
+.rate-sub{font-family:'PixelArial',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);text-align:center;margin:8px 0 22px;}
+.rate-stars{display:flex;justify-content:center;gap:10px;margin-bottom:20px;}
+.rate-star{font-size:34px;line-height:1;background:transparent;border:0;padding:0 2px;cursor:pointer;color:var(--rule);transition:color .15s,transform .15s,text-shadow .15s;-webkit-tap-highlight-color:transparent;}
+.rate-star:hover{transform:translateY(-3px);}
+.rate-star.on{color:var(--accent);text-shadow:0 0 14px rgba(233,30,140,.7);}
+.rate-note{font-family:'VCRMono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan);text-align:center;min-height:16px;margin-bottom:16px;}
+.rate-ta{width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:6px;outline:none;color:var(--ink);font-family:'UnifontExMono',monospace;font-size:12px;line-height:1.6;padding:12px;resize:none;transition:border-color .2s,box-shadow .2s;}
+.rate-ta:focus{border-color:rgba(233,30,140,.5);box-shadow:0 0 20px rgba(233,30,140,.1);}
+.rate-ta::placeholder{color:var(--ink-3);opacity:.6;}
+.rate-actions{display:flex;gap:10px;justify-content:center;margin-top:16px;flex-wrap:wrap;}
+.rate-btn{font-family:'VCRMono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;padding:11px 26px;border:1px solid rgba(233,30,140,.55);border-radius:8px;background:rgba(233,30,140,.15);color:var(--ink);cursor:pointer;box-shadow:0 0 18px rgba(233,30,140,.22);transition:background .15s,transform .08s,border-color .15s;-webkit-tap-highlight-color:transparent;}
+.rate-btn:hover{background:rgba(233,30,140,.32);border-color:var(--accent);}
+.rate-btn:active{transform:scale(.96);}
+.rate-skip{font-family:'VCRMono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);background:transparent;border:0;padding:11px 8px;cursor:pointer;text-decoration:underline;text-underline-offset:3px;}
+.rate-skip:hover{color:var(--cyan);}
+#gb-stage{display:none;}
+body.rated #rate-gate{display:none;}
+body.rated #gb-stage{display:block;}
+
 /* colophon */
 .colophon{padding:clamp(80px,14vh,160px) 48px;text-align:center;}
 .colophon-mark{font-family:'VCRMono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:28px;display:flex;justify-content:center;align-items:center;gap:14px;}
-.colophon-mark::before,.colophon-mark::after{content:'';width:44px;height:1px;background:var(--accent);}
+.colophon-mark::before,.colophon-mark::after{content:'\25A0';font-size:8px;color:var(--accent);}
 .colophon-title{font-family:'KiwiSoda',cursive;font-size:clamp(56px,9vw,140px);line-height:.92;color:var(--ink);margin-bottom:20px;}
 .colophon-title em{color:var(--accent);font-style:normal;}
 .colophon-sub{font-family:'UnifontExMono',monospace;font-size:clamp(14px,1.4vw,17px);color:var(--ink-2);max-width:36ch;margin:0 auto 40px;line-height:1.5;}
 .colophon-links{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;}
-footer{padding:22px 48px 16px;border-top:1px solid var(--rule);display:grid;grid-template-columns:1fr 1fr 1fr;font-family:'VCRMono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);}
+footer{padding:20px 24px 16px;border-top:1px solid rgba(255,255,255,.1);display:grid;grid-template-columns:1fr 1fr 1fr;font-family:'VCRMono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);}
 footer .fc{text-align:center;}
 footer .fr{text-align:right;}
 footer .acc{color:var(--accent);}
-.footer-kicker{grid-column:1/-1;border-top:1px solid var(--rule);margin-top:12px;padding-top:12px;text-align:center;font-family:'VCRMono',monospace;font-size:clamp(6.5px,1.75vw,9px);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.footer-kicker{grid-column:1/-1;margin-top:10px;padding-top:0;text-align:center;font-family:'VCRMono',monospace;font-size:clamp(6.5px,1.75vw,9px);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 
 /* buttons */
 .btn{position:relative;display:inline-flex;align-items:center;cursor:none;font-family:'VCRMono',monospace;text-transform:uppercase;letter-spacing:.12em;border:none;outline:none;overflow:hidden;transition:color .18s,transform .18s;text-decoration:none;min-height:34px;}
@@ -273,20 +319,28 @@ footer .acc{color:var(--accent);}
   .hero-lede{grid-template-columns:1fr;gap:32px;}
   .hero-deck{font-size:14px;line-height:1.5;}
   .hero-meta{grid-template-columns:1fr;}
-  .toc-item{grid-template-columns:44px 1fr auto;gap:12px;padding:14px 0;}
-  .toc-num{font-size:22px;}
-  .toc-label{font-size:22px;}
+  .toc{grid-template-columns:1fr;gap:6px;}
+  .toc-item{grid-template-columns:36px 1fr auto;gap:10px;padding:11px 12px;}
+  .toc-num{font-size:20px;}
+  .toc-label{font-size:20px;}
   .folio{left:20px;right:20px;top:16px;}
   .ch-sec{padding:28px 20px 80px;}
   .sec-head{grid-template-columns:1fr;gap:16px;}
+  :root{--rail:96px;}
   .edu-row{grid-template-columns:1fr;gap:4px;}
-  .edu-school{text-align:left;}
-  .pub-row{grid-template-columns:1fr;gap:8px;}
-  .exp-row{grid-template-columns:1fr;gap:12px;}
+  .edu-school{grid-column:1;}
+  .pub-row{grid-template-columns:1fr;gap:8px;padding-left:12px;}
+  .pub-num{position:static;font-size:20px;}
+  .exp-row{grid-template-columns:1fr;gap:6px;}
+  .exp-details{grid-column:1;}
   .exp-idx{display:none;}
-  .skills-grid{grid-template-columns:1fr 1fr;}
-  .award-row{grid-template-columns:80px 1fr;gap:12px;}
-  .award-org{text-align:left;grid-column:2;}
+  .skills-grid{grid-template-columns:1fr;}
+  .award-row{grid-template-columns:1fr;gap:2px;}
+  .award-org{grid-column:1;}
+  .ch-sec{padding-left:14px;padding-right:14px;}
+  .row-z{padding:13px 12px;}
+  .panel{box-shadow:0 20px 50px rgba(0,0,0,.9),0 0 0 .5px rgba(255,255,255,.06);}
+  .hero-lede{padding:14px;}
   .gb-body{padding:14px;}
   #gb-name{width:80px;}
   .colophon{padding:60px 20px 80px;}
@@ -354,7 +408,7 @@ footer .acc{color:var(--accent);}
     <a href="#" data-ch="guestbook" class="gb">Guestbook</a>
   </nav>
   <button class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-label="Menu">
-    <div class="mti"><span></span><span></span></div>
+    <div class="mti"><span></span><span></span><span></span></div>
     Menu
   </button>
 </header>
@@ -426,24 +480,24 @@ footer .acc{color:var(--accent);}
         <h2 class="sec-title">Academic <em>Path</em></h2>
       </div>
     </div>
-    <div>
-      <div class="edu-row">
-        <div class="edu-year">Mar 2025 — Aug 2027</div>
+    <div class="panel" data-title="Education"><div class="pnl-body">
+      <div class="edu-row row-z">
+        <div class="edu-year">Mar 2025<br>—<br>Aug 2027</div>
         <div class="edu-deg">M.A., Communication &amp; Media</div>
         <div class="edu-school">Ewha Womans University · Seoul<span class="edu-honor">Advisor: Prof. Jiyoung Kang · GPA 4.44/4.5 · expected Aug 2027</span></div>
       </div>
-      <div class="edu-row">
-        <div class="edu-year">Aug 2023 — Feb 2024</div>
+      <div class="edu-row row-z">
+        <div class="edu-year">Aug 2023<br>—<br>Feb 2024</div>
         <div class="edu-deg">Exchange Student, Applied Science</div>
         <div class="edu-school">University of Applied Sciences and Arts Northwestern Switzerland · Basel</div>
       </div>
-      <div class="edu-row">
-        <div class="edu-year">Mar 2021 — Feb 2025</div>
+      <div class="edu-row row-z">
+        <div class="edu-year">Mar 2021<br>—<br>Feb 2025</div>
         <div class="edu-deg">B.A., Communication &amp; Media</div>
         <div class="edu-school">Ewha Womans University · Scranton Honors Program<span class="edu-honor">GPA 4.32/4.5 · Summa Cum Laude</span></div>
       </div>
     </div>
-  </div>
+  </div></div>
 </div>
 
 <!-- 04 Publications -->
@@ -463,19 +517,19 @@ footer .acc{color:var(--accent);}
         </div>
       </div>
     </div>
-    <div id="pub-list">
-      <div class="pub-row" data-status="accepted"><div><div class="pub-num">01</div><div class="pub-title">Listening Between the Lines: Joint Learning of ASR Embeddings and LLM-Augmented Linguistics for Dementia Detection</div><div class="pub-authors"><span class="me">Jung, O. J.</span>†, Park, J.† &amp; Oh, M. (†equal contribution)</div><div class="pub-venue">INTERSPEECH · Accepted 2026 · <a class="pub-link" href="https://arxiv.org/abs/2606.30675" target="_blank" rel="noopener">arXiv</a></div></div><div class="pub-side"><span class="pill pill-accepted">Accepted</span><span class="pub-year">2026</span></div></div>
-      <div class="pub-row" data-status="accepted"><div><div class="pub-num">02</div><div class="pub-title">LoRA-Tuned Large Language Models for Dementia Detection via Multi-View Speech-Derived Features</div><div class="pub-authors">Park, J.†, <span class="me">Jung, O. J.</span>† &amp; Oh, M. (†equal contribution)</div><div class="pub-venue">INTERSPEECH · Accepted 2026 · <a class="pub-link" href="https://arxiv.org/abs/2606.28445" target="_blank" rel="noopener">arXiv</a></div></div><div class="pub-side"><span class="pill pill-accepted">Accepted</span><span class="pub-year">2026</span></div></div>
-      <div class="pub-row" data-status="presented"><div><div class="pub-num">03</div><div class="pub-title">Comparing Neural Responses to Human and Social Robot Interlocutors: An EEG Study on CASA and Perceived Pleasantness, Importance, and Cooperativeness</div><div class="pub-authors">Youk, S., <span class="me">Jung, O. J.</span>, Jie, Y., &amp; Lee, S. K.</div><div class="pub-venue">ICA 76th Annual Conference · 2026</div></div><div class="pub-side"><span class="pill pill-presented">Presented</span><span class="pub-year">2026</span></div></div>
-      <div class="pub-row" data-status="presented"><div><div class="pub-num">04</div><div class="pub-title">Analyzing V-Tuber Visual Tropes in South Korea Through Korea–Japan Media Circuits</div><div class="pub-authors"><span class="me">Jung, O. J.</span>, &amp; Youk, S.</div><div class="pub-venue">NCA 111th Annual Convention · 2025</div></div><div class="pub-side"><span class="pill pill-presented">Presented</span><span class="pub-year">2025</span></div></div>
-      <div class="pub-row" data-status="review"><div><div class="pub-num">05</div><div class="pub-title">Hearing Is Not Remembering: Labeled AI Exposure Protects Memory Without Improving Discrimination of Deepfake Audio</div><div class="pub-authors"><span class="me">Jung, O. J.</span></div><div class="pub-venue">ACM CHI 2027 · Under Review</div></div><div class="pub-side"><span class="pill pill-review">Under Review</span><span class="pub-year">2027</span></div></div>
-      <div class="pub-row" data-status="review"><div><div class="pub-num">06</div><div class="pub-title">How Policy Shapes Media Narratives of Environmental Risk: A Nine-Year Analysis of Particulate Matter News Coverage in South Korea</div><div class="pub-authors">Youk, S., Kim, H., <span class="me">Jung, O. J.</span>, &amp; Kim, Y.</div><div class="pub-venue">Journal submission · Under Review 2026</div></div><div class="pub-side"><span class="pill pill-review">Under Review</span><span class="pub-year">2026</span></div></div>
-      <div class="pub-row" data-status="review"><div><div class="pub-num">07</div><div class="pub-title">Mixed-Methods Approach to Analyzing Visual Characteristics of Virtual YouTubers</div><div class="pub-authors"><span class="me">Jung, O. J.</span>, &amp; Youk, S.</div><div class="pub-venue">Asian Communication Research · Under Review 2025</div></div><div class="pub-side"><span class="pill pill-review">Under Review</span><span class="pub-year">2025</span></div></div>
-      <div class="pub-row" data-status="progress"><div><div class="pub-num">08</div><div class="pub-title">Meme Politics: Effects of AI-Generated Short-Form Content on Young Voters in South Korea</div><div class="pub-authors"><span class="me">Jung, O. J.</span></div><div class="pub-venue">Computational Social Science · In Progress</div></div><div class="pub-side"><span class="pill pill-progress">In Progress</span><span class="pub-year">—</span></div></div>
-      <div class="pub-row" data-status="progress"><div><div class="pub-num">09</div><div class="pub-title">End-to-end Multimodal Explanation Generation for Audio Deepfake Detection</div><div class="pub-authors"><span class="me">Jung, O. J.</span></div><div class="pub-venue">Speech &amp; Audio · In Progress</div></div><div class="pub-side"><span class="pill pill-progress">In Progress</span><span class="pub-year">—</span></div></div>
-      <div class="pub-row" data-status="progress"><div><div class="pub-num">10</div><div class="pub-title">Multimodal Depression Detection from Clinical Interviews via Speech-Text Feature Fusion</div><div class="pub-authors"><span class="me">Jung, O. J.</span></div><div class="pub-venue">Clinical NLP · In Progress</div></div><div class="pub-side"><span class="pill pill-progress">In Progress</span><span class="pub-year">—</span></div></div>
+    <div class="panel" data-title="Publications" id="pub-list"><div class="pnl-body">
+      <div class="pub-row row-z" data-status="accepted"><div><div class="pub-num">01</div><div class="pub-title">Listening Between the Lines: Joint Learning of ASR Embeddings and LLM-Augmented Linguistics for Dementia Detection</div><div class="pub-authors"><span class="me">Jung, O. J.</span>†, Park, J.† &amp; Oh, M. (†equal contribution)</div><div class="pub-venue">INTERSPEECH · Accepted 2026 · <a class="pub-link" href="https://arxiv.org/abs/2606.30675" target="_blank" rel="noopener">arXiv</a></div></div><div class="pub-side"><span class="pill pill-accepted">Accepted</span><span class="pub-year">2026</span></div></div>
+      <div class="pub-row row-z" data-status="accepted"><div><div class="pub-num">02</div><div class="pub-title">LoRA-Tuned Large Language Models for Dementia Detection via Multi-View Speech-Derived Features</div><div class="pub-authors">Park, J.†, <span class="me">Jung, O. J.</span>† &amp; Oh, M. (†equal contribution)</div><div class="pub-venue">INTERSPEECH · Accepted 2026 · <a class="pub-link" href="https://arxiv.org/abs/2606.28445" target="_blank" rel="noopener">arXiv</a></div></div><div class="pub-side"><span class="pill pill-accepted">Accepted</span><span class="pub-year">2026</span></div></div>
+      <div class="pub-row row-z" data-status="presented"><div><div class="pub-num">03</div><div class="pub-title">Comparing Neural Responses to Human and Social Robot Interlocutors: An EEG Study on CASA and Perceived Pleasantness, Importance, and Cooperativeness</div><div class="pub-authors">Youk, S., <span class="me">Jung, O. J.</span>, Jie, Y., &amp; Lee, S. K.</div><div class="pub-venue">ICA 76th Annual Conference · 2026</div></div><div class="pub-side"><span class="pill pill-presented">Presented</span><span class="pub-year">2026</span></div></div>
+      <div class="pub-row row-z" data-status="presented"><div><div class="pub-num">04</div><div class="pub-title">Analyzing V-Tuber Visual Tropes in South Korea Through Korea–Japan Media Circuits</div><div class="pub-authors"><span class="me">Jung, O. J.</span>, &amp; Youk, S.</div><div class="pub-venue">NCA 111th Annual Convention · 2025</div></div><div class="pub-side"><span class="pill pill-presented">Presented</span><span class="pub-year">2025</span></div></div>
+      <div class="pub-row row-z" data-status="review"><div><div class="pub-num">05</div><div class="pub-title">Hearing Is Not Remembering: Labeled AI Exposure Protects Memory Without Improving Discrimination of Deepfake Audio</div><div class="pub-authors"><span class="me">Jung, O. J.</span></div><div class="pub-venue">ACM CHI 2027 · Under Review</div></div><div class="pub-side"><span class="pill pill-review">Under Review</span><span class="pub-year">2027</span></div></div>
+      <div class="pub-row row-z" data-status="review"><div><div class="pub-num">06</div><div class="pub-title">How Policy Shapes Media Narratives of Environmental Risk: A Nine-Year Analysis of Particulate Matter News Coverage in South Korea</div><div class="pub-authors">Youk, S., Kim, H., <span class="me">Jung, O. J.</span>, &amp; Kim, Y.</div><div class="pub-venue">Journal submission · Under Review 2026</div></div><div class="pub-side"><span class="pill pill-review">Under Review</span><span class="pub-year">2026</span></div></div>
+      <div class="pub-row row-z" data-status="review"><div><div class="pub-num">07</div><div class="pub-title">Mixed-Methods Approach to Analyzing Visual Characteristics of Virtual YouTubers</div><div class="pub-authors"><span class="me">Jung, O. J.</span>, &amp; Youk, S.</div><div class="pub-venue">Asian Communication Research · Under Review 2025</div></div><div class="pub-side"><span class="pill pill-review">Under Review</span><span class="pub-year">2025</span></div></div>
+      <div class="pub-row row-z" data-status="progress"><div><div class="pub-num">08</div><div class="pub-title">Meme Politics: Effects of AI-Generated Short-Form Content on Young Voters in South Korea</div><div class="pub-authors"><span class="me">Jung, O. J.</span></div><div class="pub-venue">Computational Social Science · In Progress</div></div><div class="pub-side"><span class="pill pill-progress">In Progress</span><span class="pub-year">—</span></div></div>
+      <div class="pub-row row-z" data-status="progress"><div><div class="pub-num">09</div><div class="pub-title">End-to-end Multimodal Explanation Generation for Audio Deepfake Detection</div><div class="pub-authors"><span class="me">Jung, O. J.</span></div><div class="pub-venue">Speech &amp; Audio · In Progress</div></div><div class="pub-side"><span class="pill pill-progress">In Progress</span><span class="pub-year">—</span></div></div>
+      <div class="pub-row row-z" data-status="progress"><div><div class="pub-num">10</div><div class="pub-title">Multimodal Depression Detection from Clinical Interviews via Speech-Text Feature Fusion</div><div class="pub-authors"><span class="me">Jung, O. J.</span></div><div class="pub-venue">Clinical NLP · In Progress</div></div><div class="pub-side"><span class="pill pill-progress">In Progress</span><span class="pub-year">—</span></div></div>
     </div>
-  </div>
+  </div></div>
 </div>
 
 <!-- 05 Experience -->
@@ -488,8 +542,8 @@ footer .acc{color:var(--accent);}
         <h2 class="sec-title">Research <em>&amp; Work</em></h2>
       </div>
     </div>
-    <div class="exp-list">
-      <div class="exp-row">
+    <div class="panel" data-title="Experience"><div class="pnl-body exp-list">
+      <div class="exp-row row-z">
         <div class="exp-idx">01</div>
         <div>
           <div class="exp-period">May 2026 — Present</div>
@@ -501,7 +555,7 @@ footer .acc{color:var(--accent);}
           <div class="exp-detail">Leading the audio analysis, building a speech pipeline (MFA, WhisperX, acoustic features) to test how prosody complements text-based measures.</div>
         </div>
       </div>
-      <div class="exp-row">
+      <div class="exp-row row-z">
         <div class="exp-idx">02</div>
         <div>
           <div class="exp-period">Nov 2025 — May 2026</div>
@@ -513,7 +567,7 @@ footer .acc{color:var(--accent);}
           <div class="exp-detail">Implemented and fine-tuned deep models in PyTorch for speech &amp; language processing.</div>
         </div>
       </div>
-      <div class="exp-row">
+      <div class="exp-row row-z">
         <div class="exp-idx">03</div>
         <div>
           <div class="exp-period">Mar 2025 — Present</div>
@@ -525,7 +579,7 @@ footer .acc{color:var(--accent);}
           <div class="exp-detail">Interdisciplinary collaborations across communication, HCI, and AI.</div>
         </div>
       </div>
-      <div class="exp-row">
+      <div class="exp-row row-z">
         <div class="exp-idx">04</div>
         <div>
           <div class="exp-period">2025</div>
@@ -537,7 +591,7 @@ footer .acc{color:var(--accent);}
         </div>
       </div>
     </div>
-  </div>
+  </div></div>
 </div>
 
 <!-- 06 Skills -->
@@ -550,13 +604,13 @@ footer .acc{color:var(--accent);}
         <h2 class="sec-title">Instruments <em>of the Trade</em></h2>
       </div>
     </div>
-    <div class="skills-grid">
+    <div class="panel" data-title="Tools & Methods"><div class="pnl-body skills-grid">
       <div class="skill-col"><h4>Programming</h4><ul><li>Python</li><li>R</li><li>JavaScript</li><li>LaTeX</li></ul></div>
       <div class="skill-col"><h4>Machine Learning</h4><ul><li>PyTorch</li><li>Deep Learning</li><li>NLP</li><li>LLM Fine-tuning</li><li>Speech Processing</li><li>Computer Vision</li></ul></div>
       <div class="skill-col"><h4>Research</h4><ul><li>SPSS</li><li>PsychoPy</li><li>EEG</li><li>Unreal Engine (VR)</li></ul></div>
       <div class="skill-col"><h4>Audio &amp; Creative</h4><ul><li>Ableton Live</li><li>Logic Pro</li><li>Melodyne</li><li>Adobe Photoshop</li><li>Microsoft Office</li></ul></div>
     </div>
-  </div>
+  </div></div>
 </div>
 
 <!-- 07 Awards -->
@@ -569,22 +623,44 @@ footer .acc{color:var(--accent);}
         <h2 class="sec-title">Honors <em>&amp; Awards</em></h2>
       </div>
     </div>
-    <div>
-      <div class="award-row"><div class="award-year">2025–2026</div><div class="award-name">Excellence Ewha-in Scholarship ($10,000)</div><div class="award-org">Ewha Womans University</div></div>
-      <div class="award-row"><div class="award-year">2025</div><div class="award-name">Summa Cum Laude</div><div class="award-org">Ewha Womans University</div></div>
-      <div class="award-row"><div class="award-year">2025</div><div class="award-name">Student Travel Grant, NCA 111th Convention</div><div class="award-org">National Communication Association</div></div>
-      <div class="award-row"><div class="award-year">2024</div><div class="award-name">Departmental Academic Excellence Scholarship</div><div class="award-org">Ewha Womans University</div></div>
-      <div class="award-row"><div class="award-year">2023</div><div class="award-name">FHNW International Merit Scholarship</div><div class="award-org">University of Applied Sciences and Arts Northwestern Switzerland</div></div>
-      <div class="award-row"><div class="award-year">2022</div><div class="award-name">Excellence Award, 5th Investigative Reporting Contest</div><div class="award-org">Korea News Agency Commission</div></div>
-      <div class="award-row"><div class="award-year">2021–2025</div><div class="award-name">Highest Honors (all semesters)</div><div class="award-org">Ewha Womans University</div></div>
+    <div class="panel" data-title="Honors & Awards"><div class="pnl-body">
+      <div class="award-row row-z"><div class="award-year">2025–2026</div><div class="award-name">Excellence Ewha-in Scholarship ($10,000)</div><div class="award-org">Ewha Womans University</div></div>
+      <div class="award-row row-z"><div class="award-year">2025</div><div class="award-name">Summa Cum Laude</div><div class="award-org">Ewha Womans University</div></div>
+      <div class="award-row row-z"><div class="award-year">2025</div><div class="award-name">Student Travel Grant, NCA 111th Convention</div><div class="award-org">National Communication Association</div></div>
+      <div class="award-row row-z"><div class="award-year">2024</div><div class="award-name">Departmental Academic Excellence Scholarship</div><div class="award-org">Ewha Womans University</div></div>
+      <div class="award-row row-z"><div class="award-year">2023</div><div class="award-name">FHNW International Merit Scholarship</div><div class="award-org">University of Applied Sciences and Arts Northwestern Switzerland</div></div>
+      <div class="award-row row-z"><div class="award-year">2022</div><div class="award-name">Excellence Award, 5th Investigative Reporting Contest</div><div class="award-org">Korea News Agency Commission</div></div>
+      <div class="award-row row-z"><div class="award-year">2021–2025</div><div class="award-name">Highest Honors (all semesters)</div><div class="award-org">Ewha Womans University</div></div>
     </div>
-  </div>
+  </div></div>
 </div>
 
 <!-- 08 Guestbook -->
 <div class="ch" id="ch-guestbook">
   <div class="ch-sec" style="background:#000">
     <div class="folio"><span><span class="num">08</span></span></div>
+    <div id="rate-gate" class="panel" data-title="Rate Your Experience">
+      <div style="padding:30px 24px 26px">
+        <div class="rate-spark">· ✦ · ✦ · ✦ ·</div>
+        <div class="rate-title">Rate Your <em>Experience</em></div>
+        <div class="rate-sub">How was your visit?</div>
+        <div class="rate-stars" id="rate-stars">
+          <button class="rate-star" data-v="1" aria-label="1 star">★</button>
+          <button class="rate-star" data-v="2" aria-label="2 stars">★</button>
+          <button class="rate-star" data-v="3" aria-label="3 stars">★</button>
+          <button class="rate-star" data-v="4" aria-label="4 stars">★</button>
+          <button class="rate-star" data-v="5" aria-label="5 stars">★</button>
+        </div>
+        <div class="rate-note" id="rate-note"></div>
+        <textarea class="rate-ta" id="rate-ta" rows="4" placeholder="Comment (optional)"></textarea>
+        <div class="rate-actions">
+          <button class="rate-btn" id="rate-submit">Enter Guestbook</button>
+          <button class="rate-skip" id="rate-skip">skip →</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="gb-stage">
     <div style="text-align:center;margin-bottom:36px;padding-top:20px">
       <div style="font-family:'Cavalhatriz',cursive;font-size:clamp(36px,5vw,64px);color:var(--ink);line-height:1">Say <span style="color:var(--accent)">Hello</span></div>
       <div style="font-family:'PixelArial',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-top:8px">Leave a message ↓</div>
@@ -598,7 +674,7 @@ footer .acc{color:var(--accent);}
         <div class="gb-form-wrap">
           <input class="gb-inp" id="gb-name" placeholder="your name" autocomplete="off" maxlength="30"/>
           <input class="gb-inp" id="gb-message" placeholder="say something nice..." autocomplete="off" maxlength="100" style="flex:1;padding-left:10px;"/>
-          <button class="gb-send" id="gb-btn">↑</button>
+          <button class="gb-send" id="gb-btn">Send</button>
         </div>
         <div class="gb-controls">
           <div style="display:flex;gap:8px;align-items:center">
@@ -620,6 +696,7 @@ footer .acc{color:var(--accent);}
       </div>
     </div>
   </div>
+</div>
 </div>
 
 <!-- 09 Contact -->
@@ -1032,6 +1109,60 @@ for(let i=0;i<60;i++){
   g.style.cssText=`position:fixed;left:${Math.random()*100}vw;top:${Math.random()*100}vh;width:${sz}px;height:${sz}px;background:#fff;border-radius:50%;pointer-events:none;z-index:1;box-shadow:0 0 ${sz*2}px rgba(255,255,255,.8);animation:glitterPulse ${dur}ms ease-in-out ${delay}ms infinite;`;
   document.body.appendChild(g);
 }
+</script>
+<script>
+/* Window chrome: build a real title bar so the red dot is clickable. */
+(function(){
+  document.querySelectorAll('.panel[data-title]').forEach(function(p){
+    var bar=document.createElement('div'); bar.className='pnl-bar';
+    bar.innerHTML='<div class="pnl-tls">'+
+      '<button class="pnl-tl r" aria-label="Close"></button>'+
+      '<span class="pnl-tl y"></span><span class="pnl-tl g"></span></div>'+
+      '<span class="pnl-tt"></span>';
+    bar.querySelector('.pnl-tt').textContent=p.dataset.title;
+    p.insertBefore(bar,p.firstChild);
+
+    var back=document.createElement('button');
+    back.className='pnl-reopen'; back.textContent='▸ reopen '+p.dataset.title;
+    p.parentNode.insertBefore(back,p.nextSibling);
+
+    bar.querySelector('.pnl-tl.r').addEventListener('click',function(){
+      p.classList.add('closed'); back.classList.add('show');
+    });
+    back.addEventListener('click',function(){
+      p.classList.remove('closed'); back.classList.remove('show');
+    });
+  });
+  /* the guestbook window already has its own bar - wire its red dot too */
+  var gw=document.querySelector('.gb-mac-window'), gr=document.querySelector('.gb-tl-r');
+  if(gw&&gr){
+    gr.style.cursor='pointer';
+    var gb=document.createElement('button');
+    gb.className='pnl-reopen'; gb.textContent='▸ reopen Guestbook';
+    gw.parentNode.insertBefore(gb,gw.nextSibling);
+    gr.addEventListener('click',function(){ gw.style.display='none'; gb.classList.add('show'); });
+    gb.addEventListener('click',function(){ gw.style.display=''; gb.classList.remove('show'); });
+  }
+})();
+
+/* Rate gate — presentation only. Nothing is stored, logged, or sent anywhere. */
+(function(){
+  var stars=document.querySelectorAll('#rate-stars .rate-star'),
+      note=document.getElementById('rate-note'),
+      gate=document.getElementById('rate-gate'),
+      picked=0;
+  var LABELS={1:'noted.',2:'noted.',3:'noted.',4:'thank you!',5:'you have excellent taste ✦'};
+  function paint(n){ stars.forEach(function(s,i){ s.classList.toggle('on', i<n); }); }
+  stars.forEach(function(s){
+    var v=+s.dataset.v;
+    s.addEventListener('mouseenter',function(){ paint(v); });
+    s.addEventListener('click',function(){ picked=v; paint(v); note.textContent=LABELS[v]; });
+  });
+  document.getElementById('rate-stars').addEventListener('mouseleave',function(){ paint(picked); });
+  function enter(){ document.body.classList.add('rated'); if(gate) gate.scrollIntoView({block:'start'}); }
+  document.getElementById('rate-submit').addEventListener('click',enter);
+  document.getElementById('rate-skip').addEventListener('click',enter);
+})();
 </script>
 </body>
 </html>
