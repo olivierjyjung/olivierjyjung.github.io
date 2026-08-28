@@ -19,26 +19,46 @@
 @font-face { font-family:'VCRMono';     src:url('./fonts/VCR_OSD_MONO_1.001.woff2') format('woff2'), url('./fonts/VCR_OSD_MONO_1.001.ttf') format('truetype'); font-display:block; }
 
 :root {
-  --paper:#000; --paper-2:#0a0a0a; --paper-3:#111;
-  --ink:#f9e5f9; --ink-2:#c9b8ff; --ink-3:#9b8db0;
-  --rule:#2a1040;
-  --accent:#e91e8c; --accent-2:#c2185b; --accent-soft:#2d0820;
+  --paper:#0a0206; --paper-2:#150309; --paper-3:#1e0513;
+  --ink:#ffe9f8; --ink-2:#ffb8e4; --ink-3:#cb8fb8;
+  --rule:#4a1236;
+  --accent:#ff2d95; --accent-2:#ff6ec7; --accent-soft:#3d0a26;
+  --accent-3:#ffa8dc; --glow:rgba(255,45,149,.55);
   --cyan:#00e5ff; --lime:#a8ff3e; --deep-purple:#7c3aed;
   --mh:52px;
   --rail:132px;   /* one shared left rail width across every section */
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-body{background:var(--paper);color:var(--ink);font-family:'UnifontExMono',monospace;font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased;cursor:none;overflow:hidden;}
+body{background:
+  radial-gradient(circle at 1px 1px, rgba(255,45,149,.16) 1px, transparent 1.6px) 0 0/26px 26px,
+  radial-gradient(1000px 620px at 50% -6%, rgba(255,45,149,.40), transparent 60%),
+  radial-gradient(760px 560px at 0% 102%, rgba(124,58,237,.34), transparent 62%),
+  radial-gradient(820px 560px at 102% 74%, rgba(255,110,199,.26), transparent 62%),
+  radial-gradient(600px 420px at 88% 4%, rgba(0,229,255,.10), transparent 64%),
+  var(--paper);
+  background-attachment:fixed;color:var(--ink);font-family:'UnifontExMono',monospace;font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased;cursor:none;overflow:hidden;}
 @media(pointer:coarse){body{cursor:auto;overflow:auto;}}
 
 /* grain */
 body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:2;opacity:.3;mix-blend-mode:screen;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.08 0 0 0 0 0.07 0 0 0 0 0.05 0 0 0 0.10 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");}
 
+/* aurora strip */
+.masthead::after{content:'';position:absolute;left:0;right:0;bottom:-2px;height:2px;
+  background:linear-gradient(90deg,transparent,var(--accent) 18%,var(--accent-3) 38%,var(--cyan) 52%,var(--accent-3) 66%,var(--accent) 84%,transparent);
+  filter:blur(.4px);opacity:.85;background-size:200% 100%;animation:auroraSlide 9s linear infinite;}
+@keyframes auroraSlide{to{background-position:200% 0;}}
+
+/* scanlines */
+html::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:3;opacity:.5;
+  background:repeating-linear-gradient(to bottom,rgba(255,45,149,.055) 0 1px,transparent 1px 3px);}
+
 /* cursor */
 #cursor-star{position:fixed;pointer-events:none;z-index:9999;width:18px;height:18px;transform:translate(-50%,-50%);background:rgba(249,229,249,.08);border:1px solid rgba(249,229,249,.75);box-shadow:0 0 0 1px rgba(233,30,140,.18),0 0 12px rgba(249,229,249,.16);}
 @media(pointer:coarse){#cursor-star{display:none;}}
-.deco-spark{position:fixed;pointer-events:none;z-index:1;animation:floatSpark linear infinite;font-size:6px;opacity:0;color:#fff;}
-@keyframes floatSpark{0%{transform:translateY(0) scale(.5);opacity:0;}20%{opacity:.9;}80%{opacity:.7;}100%{transform:translateY(-60px) scale(1.5);opacity:0;}}
+.deco-spark{position:fixed;pointer-events:none;z-index:1;animation:floatSpark linear infinite;font-size:15px;opacity:0;color:var(--accent-3);text-shadow:0 0 10px var(--glow);}
+.deco-spark.s2{color:var(--accent);font-size:9px;}
+.deco-spark.s3{color:var(--accent-2);font-size:10px;text-shadow:0 0 9px rgba(255,110,199,.6);}
+@keyframes floatSpark{0%{transform:translateY(0) scale(.4) rotate(0deg);opacity:0;}20%{opacity:1;}80%{opacity:.75;}100%{transform:translateY(-72px) scale(1.5) rotate(180deg);opacity:0;}}
 
 /* gate */
 #gate{position:fixed;inset:0;z-index:9000;background:var(--paper);display:flex;align-items:center;justify-content:center;transition:opacity .7s ease,visibility .7s ease;}
@@ -50,7 +70,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:2;opa
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
 
 /* masthead */
-.masthead{position:fixed;top:0;left:0;right:0;z-index:50;height:var(--mh);background:rgba(10,10,10,.92);backdrop-filter:blur(8px);padding:0 48px;display:flex;justify-content:space-between;align-items:center;gap:32px;}
+.masthead{position:fixed;top:0;left:0;right:0;z-index:50;height:var(--mh);background:rgba(16,3,10,.92);backdrop-filter:blur(8px);border-bottom:1px solid rgba(255,45,149,.22);box-shadow:0 1px 24px rgba(255,45,149,.14);padding:0 48px;display:flex;justify-content:space-between;align-items:center;gap:32px;}
 .brand{font-family:'KiwiSoda',cursive;font-size:20px;color:var(--ink);cursor:pointer;}
 .brand em{color:var(--accent);font-style:normal;}
 .topnav{display:flex;gap:22px;}
@@ -59,13 +79,8 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:2;opa
 .topnav a.gb{color:var(--accent);}
 
 /* hamburger */
-.menu-toggle{display:none;background:transparent;border:0;padding:10px 0;cursor:pointer;align-items:center;gap:8px;font-family:'VCRMono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);-webkit-tap-highlight-color:transparent;position:relative;}
+.menu-toggle{display:none;background:transparent;border:0;padding:10px 0;cursor:pointer;align-items:center;font-family:'VCRMono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);-webkit-tap-highlight-color:transparent;position:relative;}
 .menu-toggle:hover,.menu-toggle[aria-expanded="true"]{color:var(--accent);}
-.mti{display:inline-flex;flex-direction:column;gap:4px;width:16px;}
-.mti span{display:block;height:1.5px;background:var(--ink);transition:transform .3s,opacity .3s;}
-.menu-toggle[aria-expanded="true"] .mti span:nth-child(1){transform:translateY(5.5px) rotate(45deg);}
-.menu-toggle[aria-expanded="true"] .mti span:nth-child(2){opacity:0;}
-.menu-toggle[aria-expanded="true"] .mti span:nth-child(3){transform:translateY(-5.5px) rotate(-45deg);}
 
 /* mobile menu overlay */
 .mobile-menu{position:fixed;inset:0;z-index:200;background:var(--paper);padding:0 24px 32px;display:flex;flex-direction:column;opacity:0;visibility:hidden;transform:translateY(-8px);transition:opacity .3s,transform .3s,visibility .3s;overflow-y:auto;}
@@ -109,33 +124,41 @@ body.in-chapter .ch{bottom:50px;}
 #ch-publications .ch-sec{min-height:auto;}
 .sec-head{margin-bottom:26px;text-align:center;}
 .sec-eyebrow{font-family:'VCRMono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;}
-.sec-title{font-family:'KiwiSoda',cursive;font-size:clamp(36px,4.4vw,62px);line-height:.95;color:var(--ink);}
-.sec-title em{color:var(--accent);font-style:normal;}
+.sec-eyebrow::before{content:'\2726 ';color:var(--accent-3);}
+.sec-eyebrow::after{content:' \2726';color:var(--accent-3);}
+.sec-title{font-family:'KiwiSoda',cursive;font-size:clamp(36px,4.4vw,62px);line-height:.95;color:var(--ink);text-shadow:0 0 34px rgba(255,45,149,.38);}
+.sec-title em{color:var(--accent);font-style:normal;text-shadow:0 0 26px var(--glow);}
 
 /* ---- Y2K panel system ---- */
 /* same window chrome as the guestbook */
-.panel{background:#1e1e1e;border:1px solid rgba(255,255,255,.12);border-radius:12px;box-shadow:0 40px 100px rgba(0,0,0,.9),0 0 0 .5px rgba(255,255,255,.06);overflow:hidden;position:relative;}
-.pnl-bar{background:#2d2d2d;border-bottom:1px solid rgba(255,255,255,.08);padding:12px 16px;display:flex;align-items:center;user-select:none;position:relative;}
+.panel{background:linear-gradient(180deg,#1f0715,#130309);border:1px solid rgba(255,45,149,.30);border-radius:12px;box-shadow:0 40px 100px rgba(0,0,0,.9),0 0 0 1px rgba(255,45,149,.10),0 0 70px rgba(255,45,149,.14);overflow:hidden;position:relative;}
+.pnl-bar{background:linear-gradient(180deg,#3d1027,#280a1a);border-bottom:1px solid rgba(255,45,149,.24);padding:12px 16px;display:flex;align-items:center;user-select:none;position:relative;}
 .pnl-tls{display:flex;gap:8px;margin-right:auto;}
 .pnl-tl{width:12px;height:12px;border-radius:50%;border:0;padding:0;}
 .pnl-tl.r{background:#ff5f57;box-shadow:0 0 6px rgba(255,95,87,.6);cursor:pointer;}
 .pnl-tl.r:hover{filter:brightness(1.35);}
 .pnl-tl.y{background:#ffbd2e;}
 .pnl-tl.g{background:#28ca41;}
-.pnl-tt{font-family:'UnifontExMono',monospace;font-size:11px;color:rgba(255,255,255,.45);position:absolute;left:50%;transform:translateX(-50%);}
+.pnl-tt{font-family:'UnifontExMono',monospace;font-size:11px;color:rgba(255,184,228,.62);position:absolute;left:50%;transform:translateX(-50%);}
+.panel::before,.panel::after{content:'\2726';position:absolute;font-size:11px;color:var(--accent-3);opacity:.55;pointer-events:none;z-index:2;text-shadow:0 0 8px var(--glow);}
+.panel::before{left:10px;bottom:8px;}
+.panel::after{right:10px;bottom:8px;}
 .panel.closed{display:none;}
 .pnl-reopen{display:none;margin:0 auto;font-family:'VCRMono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);background:transparent;border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:9px 16px;cursor:pointer;}
 .pnl-reopen:hover{color:var(--accent);border-color:rgba(233,30,140,.5);}
 .pnl-reopen.show{display:block;}
 .pnl-body{padding:12px;}
 /* zebra rows replace hairlines */
-.row-z{padding:14px 6px;}
+.row-z{padding:14px 10px;border-radius:8px;transition:background .22s,box-shadow .22s;}
+.row-z:nth-child(odd){background:rgba(255,45,149,.035);}
+.row-z:hover{background:rgba(255,45,149,.10);box-shadow:inset 3px 0 0 var(--accent);}
 
 /* home / hero */
 .hero{padding:48px 48px 80px;position:relative;min-height:calc(100vh - var(--mh));display:flex;flex-direction:column;}
 .hero-kicker{font-family:'VCRMono',monospace;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--cyan);display:flex;align-items:center;gap:14px;margin-bottom:40px;}
 .hero-kicker::before{content:'\25A0';color:var(--cyan);font-size:9px;}
-.hero-title{font-family:'KiwiSoda',cursive;font-size:clamp(34px,8.8vw,90px);line-height:1;color:var(--ink);margin:clamp(60px,12vh,140px) 0 clamp(60px,12vh,140px);text-shadow:0 0 80px rgba(233,30,140,.15);text-align:center;white-space:nowrap;}
+.hero-title{font-family:'KiwiSoda',cursive;font-size:clamp(34px,8.8vw,90px);line-height:1;color:var(--ink);margin:clamp(60px,12vh,140px) 0 clamp(60px,12vh,140px);text-align:center;white-space:nowrap;animation:heroPulse 4.5s ease-in-out infinite;}
+@keyframes heroPulse{0%,100%{text-shadow:0 0 100px rgba(255,45,149,.55),0 0 38px rgba(255,45,149,.30),0 0 12px rgba(255,168,220,.20);}50%{text-shadow:0 0 130px rgba(255,45,149,.80),0 0 52px rgba(255,45,149,.45),0 0 16px rgba(255,168,220,.35);}}
 .hero-title em{color:var(--accent);font-style:normal;}
 .hero-lede{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;padding:0;margin-bottom:40px;}
 .hero-deck{font-family:'UnifontExMono',monospace;font-size:clamp(14px,1.2vw,16px);line-height:1.6;color:var(--ink-2);max-width:38ch;}
@@ -188,10 +211,11 @@ body.in-chapter .ch{bottom:50px;}
 .pub-venue{font-family:'VCRMono',monospace;font-size:10px;letter-spacing:.08em;color:var(--ink-3);text-transform:uppercase;}
 .pub-side{display:flex;flex-direction:column;gap:6px;align-items:center;text-align:center;}
 .pill{font-family:'VCRMono',monospace;font-size:9px;letter-spacing:.16em;text-transform:uppercase;padding:4px 10px;border:1px solid currentColor;display:inline-block;}
+.pill-published{color:var(--lime);background:rgba(168,255,62,.10);border-color:transparent;}
 .pill-accepted{color:var(--cyan);background:rgba(0,229,255,.08);border-color:transparent;}
 .pill-presented{color:var(--accent);background:var(--accent-soft);border-color:transparent;}
-.pill-review{color:var(--ink);}
-.pill-progress{color:var(--ink-3);border-style:dashed;}
+.pill-review{color:var(--accent-3);border-color:rgba(255,168,220,.55);background:rgba(255,45,149,.08);}
+.pill-progress{color:var(--ink-3);border-style:dashed;border-color:rgba(255,45,149,.35);}
 .pub-year{font-family:'VCRMono',monospace;font-size:10px;color:var(--ink-3);width:100%;text-align:center;}
 .pub-link{color:var(--cyan);text-decoration:none;border-bottom:1px solid rgba(0,229,255,.35);transition:color .18s,border-color .18s,text-shadow .18s;}
 .pub-link:hover{color:var(--cyan);border-color:var(--cyan);text-shadow:0 0 10px rgba(0,229,255,.4);}
@@ -224,7 +248,7 @@ body.in-chapter .ch{bottom:50px;}
 
 /* guestbook */
 .gb-mac-window{max-width:720px;margin:0 auto;background:#1e1e1e;border:1px solid rgba(255,255,255,.12);border-radius:12px;box-shadow:0 40px 100px rgba(0,0,0,.9),0 0 0 .5px rgba(255,255,255,.06);overflow:hidden;}
-.gb-titlebar{background:#2d2d2d;padding:12px 16px;display:flex;align-items:center;border-bottom:1px solid rgba(255,255,255,.08);user-select:none;position:relative;}
+.gb-titlebar{background:linear-gradient(180deg,#3d1027,#280a1a);padding:12px 16px;display:flex;align-items:center;border-bottom:1px solid rgba(255,45,149,.24);user-select:none;position:relative;}
 .gb-tls{display:flex;gap:8px;margin-right:auto;}
 .gb-tl{width:12px;height:12px;border-radius:50%;}
 .gb-tl-r{background:#ff5f57;box-shadow:0 0 6px rgba(255,95,87,.6);}
@@ -277,8 +301,8 @@ body.in-chapter .ch{bottom:50px;}
 .rate-ta:focus{border-color:rgba(233,30,140,.5);box-shadow:0 0 20px rgba(233,30,140,.1);}
 .rate-ta::placeholder{color:var(--ink-3);opacity:.6;}
 .rate-actions{display:flex;gap:10px;justify-content:center;margin-top:16px;flex-wrap:wrap;}
-.rate-btn{font-family:'VCRMono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;padding:11px 26px;border:1px solid rgba(233,30,140,.55);border-radius:8px;background:rgba(233,30,140,.15);color:var(--ink);cursor:pointer;box-shadow:0 0 18px rgba(233,30,140,.22);transition:background .15s,transform .08s,border-color .15s;-webkit-tap-highlight-color:transparent;}
-.rate-btn:hover{background:rgba(233,30,140,.32);border-color:var(--accent);}
+.rate-btn{font-family:'VCRMono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;padding:11px 4px;border:0;background:transparent;color:var(--ink);cursor:pointer;transition:color .15s,transform .08s;-webkit-tap-highlight-color:transparent;}
+.rate-btn:hover{color:var(--accent);}
 .rate-btn:active{transform:scale(.96);}
 .rate-skip{font-family:'VCRMono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);background:transparent;border:0;padding:11px 8px;cursor:pointer;text-decoration:underline;text-underline-offset:3px;}
 .rate-skip:hover{color:var(--cyan);}
@@ -294,7 +318,7 @@ body.rated #gb-stage{display:block;}
 .colophon-title em{color:var(--accent);font-style:normal;}
 .colophon-sub{font-family:'UnifontExMono',monospace;font-size:clamp(14px,1.4vw,17px);color:var(--ink-2);max-width:36ch;margin:0 auto 40px;line-height:1.5;}
 .colophon-links{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;}
-footer{padding:20px 24px 16px;border-top:1px solid rgba(255,255,255,.1);display:grid;grid-template-columns:1fr 1fr 1fr;font-family:'VCRMono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);}
+footer{padding:20px 24px 16px;border-top:1px solid rgba(255,45,149,.22);display:grid;grid-template-columns:1fr 1fr 1fr;font-family:'VCRMono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);}
 footer .fc{text-align:center;}
 footer .fr{text-align:right;}
 footer .acc{color:var(--accent);}
@@ -375,13 +399,24 @@ footer .acc{color:var(--accent);}
 <div id="cursor-star" aria-hidden="true"></div>
 
 <!-- Deco sparks -->
-<span class="deco-spark" style="left:8%;top:30%;animation-duration:4s;animation-delay:0s">·</span>
-<span class="deco-spark" style="left:92%;top:55%;animation-duration:5s;animation-delay:1.2s">·</span>
-<span class="deco-spark" style="left:15%;top:70%;animation-duration:3.5s;animation-delay:.5s">·</span>
-<span class="deco-spark" style="left:85%;top:20%;animation-duration:6s;animation-delay:2s">·</span>
-<span class="deco-spark" style="left:50%;top:90%;animation-duration:4.5s;animation-delay:.8s">·</span>
-<span class="deco-spark" style="left:3%;top:60%;animation-duration:5.5s;animation-delay:1.8s">·</span>
-<span class="deco-spark" style="left:96%;top:35%;animation-duration:3.8s;animation-delay:.3s">·</span>
+<span class="deco-spark" style="left:8%;top:30%;animation-duration:4.0s;animation-delay:0.0s">✦</span>
+<span class="deco-spark s2" style="left:92%;top:55%;animation-duration:5.0s;animation-delay:1.2s">✧</span>
+<span class="deco-spark s3" style="left:15%;top:70%;animation-duration:3.5s;animation-delay:0.5s">·</span>
+<span class="deco-spark" style="left:85%;top:20%;animation-duration:6.0s;animation-delay:2.0s">✦</span>
+<span class="deco-spark s2" style="left:50%;top:90%;animation-duration:4.5s;animation-delay:0.8s">♡</span>
+<span class="deco-spark s3" style="left:3%;top:60%;animation-duration:5.5s;animation-delay:1.8s">·</span>
+<span class="deco-spark" style="left:96%;top:35%;animation-duration:3.8s;animation-delay:0.3s">✧</span>
+<span class="deco-spark s2" style="left:24%;top:18%;animation-duration:4.8s;animation-delay:2.4s">✦</span>
+<span class="deco-spark s3" style="left:68%;top:12%;animation-duration:5.2s;animation-delay:0.9s">·</span>
+<span class="deco-spark" style="left:38%;top:64%;animation-duration:4.2s;animation-delay:1.5s">✧</span>
+<span class="deco-spark s2" style="left:78%;top:78%;animation-duration:5.8s;animation-delay:2.7s">✦</span>
+<span class="deco-spark s3" style="left:11%;top:46%;animation-duration:3.9s;animation-delay:1.1s">·</span>
+<span class="deco-spark" style="left:57%;top:38%;animation-duration:6.2s;animation-delay:3.1s">♡</span>
+<span class="deco-spark s2" style="left:89%;top:88%;animation-duration:4.6s;animation-delay:0.6s">✧</span>
+<span class="deco-spark s3" style="left:31%;top:86%;animation-duration:5.1s;animation-delay:2.2s">·</span>
+<span class="deco-spark" style="left:63%;top:66%;animation-duration:4.4s;animation-delay:1.7s">✦</span>
+<span class="deco-spark s2" style="left:45%;top:8%;animation-duration:5.6s;animation-delay:2.9s">·</span>
+<span class="deco-spark s3" style="left:20%;top:52%;animation-duration:4.1s;animation-delay:3.4s">✧</span>
 
 <!-- Mobile menu -->
 <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
@@ -408,7 +443,6 @@ footer .acc{color:var(--accent);}
     <a href="#" data-ch="guestbook" class="gb">Guestbook</a>
   </nav>
   <button class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-label="Menu">
-    <div class="mti"><span></span><span></span><span></span></div>
     Menu
   </button>
 </header>
@@ -510,6 +544,7 @@ footer .acc{color:var(--accent);}
         <h2 class="sec-title">Selected <em>Works</em></h2>
         <div class="pub-filter-bar" id="pub-filter" style="margin-top:20px;display:inline-flex">
           <button class="active" data-filter="all">All</button>
+          <button data-filter="published">Published</button>
           <button data-filter="accepted">Accepted</button>
           <button data-filter="presented">Presented</button>
           <button data-filter="review">Under Review</button>
@@ -518,17 +553,18 @@ footer .acc{color:var(--accent);}
       </div>
     </div>
     <div class="panel" data-title="Publications" id="pub-list"><div class="pnl-body">
-      <div class="pub-row row-z" data-status="accepted"><div><div class="pub-num">01</div><div class="pub-title">Listening Between the Lines: Joint Learning of ASR Embeddings and LLM-Augmented Linguistics for Dementia Detection</div><div class="pub-authors"><span class="me">Jung, O. J.</span>†, Park, J.† &amp; Oh, M. (†equal contribution)</div><div class="pub-venue">INTERSPEECH · Accepted 2026 · <a class="pub-link" href="https://arxiv.org/abs/2606.30675" target="_blank" rel="noopener">arXiv</a></div></div><div class="pub-side"><span class="pill pill-accepted">Accepted</span><span class="pub-year">2026</span></div></div>
-      <div class="pub-row row-z" data-status="accepted"><div><div class="pub-num">02</div><div class="pub-title">LoRA-Tuned Large Language Models for Dementia Detection via Multi-View Speech-Derived Features</div><div class="pub-authors">Park, J.†, <span class="me">Jung, O. J.</span>† &amp; Oh, M. (†equal contribution)</div><div class="pub-venue">INTERSPEECH · Accepted 2026 · <a class="pub-link" href="https://arxiv.org/abs/2606.28445" target="_blank" rel="noopener">arXiv</a></div></div><div class="pub-side"><span class="pill pill-accepted">Accepted</span><span class="pub-year">2026</span></div></div>
-      <div class="pub-row row-z" data-status="presented"><div><div class="pub-num">03</div><div class="pub-title">Comparing Neural Responses to Human and Social Robot Interlocutors: An EEG Study on CASA and Perceived Pleasantness, Importance, and Cooperativeness</div><div class="pub-authors">Youk, S., <span class="me">Jung, O. J.</span>, Jie, Y., &amp; Lee, S. K.</div><div class="pub-venue">ICA 76th Annual Conference · 2026</div></div><div class="pub-side"><span class="pill pill-presented">Presented</span><span class="pub-year">2026</span></div></div>
-      <div class="pub-row row-z" data-status="presented"><div><div class="pub-num">04</div><div class="pub-title">Analyzing V-Tuber Visual Tropes in South Korea Through Korea–Japan Media Circuits</div><div class="pub-authors"><span class="me">Jung, O. J.</span>, &amp; Youk, S.</div><div class="pub-venue">NCA 111th Annual Convention · 2025</div></div><div class="pub-side"><span class="pill pill-presented">Presented</span><span class="pub-year">2025</span></div></div>
-      <div class="pub-row row-z" data-status="review"><div><div class="pub-num">05</div><div class="pub-title">Hearing Is Not Remembering: Labeled AI Exposure Protects Memory Without Improving Discrimination of Deepfake Audio</div><div class="pub-authors"><span class="me">Jung, O. J.</span></div><div class="pub-venue">ACM CHI 2027 · Under Review</div></div><div class="pub-side"><span class="pill pill-review">Under Review</span><span class="pub-year">2027</span></div></div>
-      <div class="pub-row row-z" data-status="review"><div><div class="pub-num">06</div><div class="pub-title">How Policy Shapes Media Narratives of Environmental Risk: A Nine-Year Analysis of Particulate Matter News Coverage in South Korea</div><div class="pub-authors">Youk, S., Kim, H., <span class="me">Jung, O. J.</span>, &amp; Kim, Y.</div><div class="pub-venue">Journal submission · Under Review 2026</div></div><div class="pub-side"><span class="pill pill-review">Under Review</span><span class="pub-year">2026</span></div></div>
-      <div class="pub-row row-z" data-status="review"><div><div class="pub-num">07</div><div class="pub-title">Mixed-Methods Approach to Analyzing Visual Characteristics of Virtual YouTubers</div><div class="pub-authors"><span class="me">Jung, O. J.</span>, &amp; Youk, S.</div><div class="pub-venue">Asian Communication Research · Under Review 2025</div></div><div class="pub-side"><span class="pill pill-review">Under Review</span><span class="pub-year">2025</span></div></div>
-      <div class="pub-row row-z" data-status="progress"><div><div class="pub-num">08</div><div class="pub-title">Meme Politics: Effects of AI-Generated Short-Form Content on Young Voters in South Korea</div><div class="pub-authors"><span class="me">Jung, O. J.</span></div><div class="pub-venue">Computational Social Science · In Progress</div></div><div class="pub-side"><span class="pill pill-progress">In Progress</span><span class="pub-year">—</span></div></div>
-      <div class="pub-row row-z" data-status="progress"><div><div class="pub-num">09</div><div class="pub-title">End-to-end Multimodal Explanation Generation for Audio Deepfake Detection</div><div class="pub-authors"><span class="me">Jung, O. J.</span></div><div class="pub-venue">Speech &amp; Audio · In Progress</div></div><div class="pub-side"><span class="pill pill-progress">In Progress</span><span class="pub-year">—</span></div></div>
-      <div class="pub-row row-z" data-status="progress"><div><div class="pub-num">10</div><div class="pub-title">Multimodal Depression Detection from Clinical Interviews via Speech-Text Feature Fusion</div><div class="pub-authors"><span class="me">Jung, O. J.</span></div><div class="pub-venue">Clinical NLP · In Progress</div></div><div class="pub-side"><span class="pill pill-progress">In Progress</span><span class="pub-year">—</span></div></div>
-    </div>
+      <div class="pub-row row-z" data-status="published"><div><div class="pub-num">01</div><div class="pub-title">South Korean V-Tuber Visual Conventions within Korea–Japan Cultural Circuits</div><div class="pub-authors"><span class="me">Jung, O. J.</span>, &amp; Youk, S.</div><div class="pub-venue">Asian Communication Research, 23(2), Article 014 · 2026 · <a class="pub-link" href="https://doi.org/10.20879/acr.2026.23.014" target="_blank" rel="noopener">DOI</a></div></div><div class="pub-side"><span class="pill pill-published">Published</span><span class="pub-year">2026</span></div></div>
+      <div class="pub-row row-z" data-status="accepted"><div><div class="pub-num">02</div><div class="pub-title">Listening Between the Lines: Joint Learning of ASR Embeddings and LLM-Augmented Linguistics for Dementia Detection</div><div class="pub-authors"><span class="me">Jung, O. J.</span>†, Park, J.† &amp; Oh, M. (†equal contribution)</div><div class="pub-venue">INTERSPEECH · Accepted 2026 · <a class="pub-link" href="https://arxiv.org/abs/2606.30675" target="_blank" rel="noopener">arXiv</a></div></div><div class="pub-side"><span class="pill pill-accepted">Accepted</span><span class="pub-year">2026</span></div></div>
+      <div class="pub-row row-z" data-status="accepted"><div><div class="pub-num">03</div><div class="pub-title">LoRA-Tuned Large Language Models for Dementia Detection via Multi-View Speech-Derived Features</div><div class="pub-authors">Park, J.†, <span class="me">Jung, O. J.</span>† &amp; Oh, M. (†equal contribution)</div><div class="pub-venue">INTERSPEECH · Accepted 2026 · <a class="pub-link" href="https://arxiv.org/abs/2606.28445" target="_blank" rel="noopener">arXiv</a></div></div><div class="pub-side"><span class="pill pill-accepted">Accepted</span><span class="pub-year">2026</span></div></div>
+      <div class="pub-row row-z" data-status="presented"><div><div class="pub-num">04</div><div class="pub-title">Comparing Neural Responses to Human and Social Robot Interlocutors: An EEG Study on CASA and Perceived Pleasantness, Importance, and Cooperativeness</div><div class="pub-authors">Youk, S., <span class="me">Jung, O. J.</span>, Jie, Y., &amp; Lee, S. K.</div><div class="pub-venue">ICA 76th Annual Conference · 2026</div></div><div class="pub-side"><span class="pill pill-presented">Presented</span><span class="pub-year">2026</span></div></div>
+      <div class="pub-row row-z" data-status="presented"><div><div class="pub-num">05</div><div class="pub-title">Analyzing V-Tuber Visual Tropes in South Korea Through Korea–Japan Media Circuits</div><div class="pub-authors"><span class="me">Jung, O. J.</span>, &amp; Youk, S.</div><div class="pub-venue">NCA 111th Annual Convention · 2025</div></div><div class="pub-side"><span class="pill pill-presented">Presented</span><span class="pub-year">2025</span></div></div>
+      <div class="pub-row row-z" data-status="review"><div><div class="pub-num">06</div><div class="pub-title">Hearing Is Not Remembering: Labeled AI Exposure Protects Memory Without Improving Discrimination of Deepfake Audio</div><div class="pub-authors"><span class="me">Jung, O. J.</span></div><div class="pub-venue">ACM CHI 2027 · Under Review</div></div><div class="pub-side"><span class="pill pill-review">Under Review</span><span class="pub-year">2027</span></div></div>
+      <div class="pub-row row-z" data-status="review"><div><div class="pub-num">07</div><div class="pub-title">Toward a Neurocognitive Account of CASA: EEG Evidence from Human and ChatGPT-Enabled Social Robot Conversation</div><div class="pub-authors">Youk, S., <span class="me">Jung, O. J.</span>, Jie, Y., &amp; Lee, S. K.</div><div class="pub-venue">Computers in Human Behavior · Under Review 2026</div></div><div class="pub-side"><span class="pill pill-review">Under Review</span><span class="pub-year">2026</span></div></div>
+      <div class="pub-row row-z" data-status="progress"><div><div class="pub-num">08</div><div class="pub-title">How Policy Shapes Media Narratives of Environmental Risk: A Nine-Year Analysis of Particulate Matter News Coverage in South Korea</div><div class="pub-authors">Youk, S., Kim, H., <span class="me">Jung, O. J.</span>, &amp; Kim, Y.</div><div class="pub-venue">Under revision for resubmission · 2026</div></div><div class="pub-side"><span class="pill pill-progress">In Progress</span><span class="pub-year">2026</span></div></div>
+      <div class="pub-row row-z" data-status="progress"><div><div class="pub-num">09</div><div class="pub-title">Meme Politics: Effects of AI-Generated Short-Form Content on Young Voters in South Korea</div><div class="pub-authors"><span class="me">Jung, O. J.</span></div><div class="pub-venue">Computational Social Science · In Progress</div></div><div class="pub-side"><span class="pill pill-progress">In Progress</span><span class="pub-year">—</span></div></div>
+      <div class="pub-row row-z" data-status="progress"><div><div class="pub-num">10</div><div class="pub-title">End-to-end Multimodal Explanation Generation for Audio Deepfake Detection</div><div class="pub-authors"><span class="me">Jung, O. J.</span></div><div class="pub-venue">Speech &amp; Audio · In Progress</div></div><div class="pub-side"><span class="pill pill-progress">In Progress</span><span class="pub-year">—</span></div></div>
+      <div class="pub-row row-z" data-status="progress"><div><div class="pub-num">11</div><div class="pub-title">Multimodal Depression Detection from Clinical Interviews via Speech-Text Feature Fusion</div><div class="pub-authors"><span class="me">Jung, O. J.</span></div><div class="pub-venue">Clinical NLP · In Progress</div></div><div class="pub-side"><span class="pill pill-progress">In Progress</span><span class="pub-year">—</span></div></div>
+</div>
   </div></div>
 </div>
 
