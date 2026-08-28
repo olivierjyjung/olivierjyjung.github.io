@@ -19,7 +19,7 @@
 @font-face { font-family:'VCRMono';     src:url('./fonts/VCR_OSD_MONO_1.001.woff2') format('woff2'), url('./fonts/VCR_OSD_MONO_1.001.ttf') format('truetype'); font-display:block; }
 
 :root {
-  --paper:#0a0206; --paper-2:#150309; --paper-3:#1e0513;
+  --paper:#07070a; --paper-2:#0d0d12; --paper-3:#14141b;
   --ink:#ffe9f8; --ink-2:#ffb8e4; --ink-3:#cb8fb8;
   --rule:#4a1236;
   --accent:#ff2d95; --accent-2:#ff6ec7; --accent-soft:#3d0a26;
@@ -30,11 +30,11 @@
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 body{background:
-  radial-gradient(circle at 1px 1px, rgba(255,45,149,.16) 1px, transparent 1.6px) 0 0/26px 26px,
-  radial-gradient(1000px 620px at 50% -6%, rgba(255,45,149,.40), transparent 60%),
-  radial-gradient(760px 560px at 0% 102%, rgba(124,58,237,.34), transparent 62%),
-  radial-gradient(820px 560px at 102% 74%, rgba(255,110,199,.26), transparent 62%),
-  radial-gradient(600px 420px at 88% 4%, rgba(0,229,255,.10), transparent 64%),
+  radial-gradient(circle at 1px 1px, rgba(214,221,232,.10) 1px, transparent 1.6px) 0 0/26px 26px,
+  radial-gradient(1000px 620px at 50% -6%, rgba(216,223,235,.18), transparent 60%),
+  radial-gradient(760px 560px at 0% 102%, rgba(148,158,178,.15), transparent 62%),
+  radial-gradient(820px 560px at 102% 74%, rgba(226,232,240,.10), transparent 62%),
+  radial-gradient(600px 420px at 88% 4%, rgba(0,229,255,.07), transparent 64%),
   var(--paper);
   background-attachment:fixed;color:var(--ink);font-family:'UnifontExMono',monospace;font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased;cursor:none;overflow:hidden;}
 @media(pointer:coarse){body{cursor:auto;overflow:auto;}}
@@ -44,13 +44,13 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:2;opa
 
 /* aurora strip */
 .masthead::after{content:'';position:absolute;left:0;right:0;bottom:-2px;height:2px;
-  background:linear-gradient(90deg,transparent,var(--accent) 18%,var(--accent-3) 38%,var(--cyan) 52%,var(--accent-3) 66%,var(--accent) 84%,transparent);
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.50) 18%,rgba(203,213,225,.92) 38%,#ffffff 52%,rgba(203,213,225,.92) 66%,rgba(255,255,255,.50) 84%,transparent);
   filter:blur(.4px);opacity:.85;background-size:200% 100%;animation:auroraSlide 9s linear infinite;}
 @keyframes auroraSlide{to{background-position:200% 0;}}
 
 /* scanlines */
 html::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:3;opacity:.5;
-  background:repeating-linear-gradient(to bottom,rgba(255,45,149,.055) 0 1px,transparent 1px 3px);}
+  background:repeating-linear-gradient(to bottom,rgba(226,232,240,.045) 0 1px,transparent 1px 3px);}
 
 /* cursor */
 #cursor-star{position:fixed;pointer-events:none;z-index:9999;width:18px;height:18px;transform:translate(-50%,-50%);background:rgba(249,229,249,.08);border:1px solid rgba(249,229,249,.75);box-shadow:0 0 0 1px rgba(233,30,140,.18),0 0 12px rgba(249,229,249,.16);}
@@ -70,7 +70,7 @@ html::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:3;opac
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
 
 /* masthead */
-.masthead{position:fixed;top:0;left:0;right:0;z-index:50;height:var(--mh);background:rgba(16,3,10,.92);backdrop-filter:blur(8px);border-bottom:1px solid rgba(255,45,149,.22);box-shadow:0 1px 24px rgba(255,45,149,.14);padding:0 48px;display:flex;justify-content:space-between;align-items:center;gap:32px;}
+.masthead{position:fixed;top:0;left:0;right:0;z-index:50;height:var(--mh);background:rgba(10,10,14,.92);backdrop-filter:blur(8px);border-bottom:1px solid rgba(210,218,232,.16);box-shadow:0 1px 24px rgba(190,200,216,.10);padding:0 48px;display:flex;justify-content:space-between;align-items:center;gap:32px;}
 .brand{font-family:'KiwiSoda',cursive;font-size:20px;color:var(--ink);cursor:pointer;}
 .brand em{color:var(--accent);font-style:normal;}
 .topnav{display:flex;gap:22px;}
@@ -131,7 +131,7 @@ body.in-chapter .ch{bottom:50px;}
 
 /* ---- Y2K panel system ---- */
 /* same window chrome as the guestbook */
-.panel{background:linear-gradient(180deg,#1f0715,#130309);border:1px solid rgba(255,45,149,.30);border-radius:12px;box-shadow:0 40px 100px rgba(0,0,0,.9),0 0 0 1px rgba(255,45,149,.10),0 0 70px rgba(255,45,149,.14);overflow:hidden;position:relative;}
+.panel{background:linear-gradient(180deg,#15151d,#0d0d12);border:1px solid rgba(255,45,149,.26);border-radius:12px;box-shadow:0 40px 100px rgba(0,0,0,.9),0 0 0 1px rgba(210,218,232,.07),0 0 70px rgba(200,210,228,.09);overflow:hidden;position:relative;}
 .pnl-bar{background:linear-gradient(180deg,#3d1027,#280a1a);border-bottom:1px solid rgba(255,45,149,.24);padding:12px 16px;display:flex;align-items:center;user-select:none;position:relative;}
 .pnl-tls{display:flex;gap:8px;margin-right:auto;}
 .pnl-tl{width:12px;height:12px;border-radius:50%;border:0;padding:0;}
@@ -158,7 +158,7 @@ body.in-chapter .ch{bottom:50px;}
 .hero-kicker{font-family:'VCRMono',monospace;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--cyan);display:flex;align-items:center;gap:14px;margin-bottom:40px;}
 .hero-kicker::before{content:'\25A0';color:var(--cyan);font-size:9px;}
 .hero-title{font-family:'KiwiSoda',cursive;font-size:clamp(34px,8.8vw,90px);line-height:1;color:var(--ink);margin:clamp(60px,12vh,140px) 0 clamp(60px,12vh,140px);text-align:center;white-space:nowrap;animation:heroPulse 4.5s ease-in-out infinite;}
-@keyframes heroPulse{0%,100%{text-shadow:0 0 100px rgba(255,45,149,.55),0 0 38px rgba(255,45,149,.30),0 0 12px rgba(255,168,220,.20);}50%{text-shadow:0 0 130px rgba(255,45,149,.80),0 0 52px rgba(255,45,149,.45),0 0 16px rgba(255,168,220,.35);}}
+@keyframes heroPulse{0%,100%{text-shadow:0 0 90px rgba(226,232,240,.26),0 0 34px rgba(203,213,225,.17),0 0 12px rgba(255,255,255,.13);}50%{text-shadow:0 0 115px rgba(226,232,240,.38),0 0 46px rgba(203,213,225,.25),0 0 16px rgba(255,255,255,.19);}}
 .hero-title em{color:var(--accent);font-style:normal;}
 .hero-lede{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;padding:0;margin-bottom:40px;}
 .hero-deck{font-family:'UnifontExMono',monospace;font-size:clamp(14px,1.2vw,16px);line-height:1.6;color:var(--ink-2);max-width:38ch;}
@@ -552,9 +552,9 @@ footer .acc{color:var(--accent);}
       </div>
     </div>
     <div class="panel" data-title="Publications" id="pub-list"><div class="pnl-body">
-      <div class="pub-row row-z" data-status="published"><div><div class="pub-num">01</div><div class="pub-title">South Korean V-Tuber Visual Conventions within Korea–Japan Cultural Circuits</div><div class="pub-authors"><span class="me">Jung, O. J.</span>, &amp; Youk, S.</div><div class="pub-venue">Asian Communication Research, 23(2), Article 014 · 2026 · <a class="pub-link" href="https://doi.org/10.20879/acr.2026.23.014" target="_blank" rel="noopener">DOI</a></div></div><div class="pub-side"><span class="pill pill-published">Published</span><span class="pub-year">2026</span></div></div>
-      <div class="pub-row row-z" data-status="accepted"><div><div class="pub-num">02</div><div class="pub-title">Listening Between the Lines: Joint Learning of ASR Embeddings and LLM-Augmented Linguistics for Dementia Detection</div><div class="pub-authors"><span class="me">Jung, O. J.</span>†, Park, J.† &amp; Oh, M. (†equal contribution)</div><div class="pub-venue">INTERSPEECH · Accepted 2026 · <a class="pub-link" href="https://arxiv.org/abs/2606.30675" target="_blank" rel="noopener">arXiv</a></div></div><div class="pub-side"><span class="pill pill-accepted">Accepted</span><span class="pub-year">2026</span></div></div>
-      <div class="pub-row row-z" data-status="accepted"><div><div class="pub-num">03</div><div class="pub-title">LoRA-Tuned Large Language Models for Dementia Detection via Multi-View Speech-Derived Features</div><div class="pub-authors">Park, J.†, <span class="me">Jung, O. J.</span>† &amp; Oh, M. (†equal contribution)</div><div class="pub-venue">INTERSPEECH · Accepted 2026 · <a class="pub-link" href="https://arxiv.org/abs/2606.28445" target="_blank" rel="noopener">arXiv</a></div></div><div class="pub-side"><span class="pill pill-accepted">Accepted</span><span class="pub-year">2026</span></div></div>
+            <div class="pub-row row-z" data-status="accepted"><div><div class="pub-num">01</div><div class="pub-title">Listening Between the Lines: Joint Learning of ASR Embeddings and LLM-Augmented Linguistics for Dementia Detection</div><div class="pub-authors"><span class="me">Jung, O. J.</span>†, Park, J.† &amp; Oh, M. (†equal contribution)</div><div class="pub-venue">INTERSPEECH · Accepted 2026 · <a class="pub-link" href="https://arxiv.org/abs/2606.30675" target="_blank" rel="noopener">arXiv</a></div></div><div class="pub-side"><span class="pill pill-accepted">Accepted</span><span class="pub-year">2026</span></div></div>
+      <div class="pub-row row-z" data-status="accepted"><div><div class="pub-num">02</div><div class="pub-title">LoRA-Tuned Large Language Models for Dementia Detection via Multi-View Speech-Derived Features</div><div class="pub-authors">Park, J.†, <span class="me">Jung, O. J.</span>† &amp; Oh, M. (†equal contribution)</div><div class="pub-venue">INTERSPEECH · Accepted 2026 · <a class="pub-link" href="https://arxiv.org/abs/2606.28445" target="_blank" rel="noopener">arXiv</a></div></div><div class="pub-side"><span class="pill pill-accepted">Accepted</span><span class="pub-year">2026</span></div></div>
+      <div class="pub-row row-z" data-status="published"><div><div class="pub-num">03</div><div class="pub-title">South Korean V-Tuber Visual Conventions within Korea–Japan Cultural Circuits</div><div class="pub-authors"><span class="me">Jung, O. J.</span>, &amp; Youk, S.</div><div class="pub-venue">Asian Communication Research, 23(2), Article 014 · 2026 · <a class="pub-link" href="https://doi.org/10.20879/acr.2026.23.014" target="_blank" rel="noopener">DOI</a></div></div><div class="pub-side"><span class="pill pill-published">Published</span><span class="pub-year">2026</span></div></div>
       <div class="pub-row row-z" data-status="presented"><div><div class="pub-num">04</div><div class="pub-title">Comparing Neural Responses to Human and Social Robot Interlocutors: An EEG Study on CASA and Perceived Pleasantness, Importance, and Cooperativeness</div><div class="pub-authors">Youk, S., <span class="me">Jung, O. J.</span>, Jie, Y., &amp; Lee, S. K.</div><div class="pub-venue">ICA 76th Annual Conference · 2026</div></div><div class="pub-side"><span class="pill pill-presented">Presented</span><span class="pub-year">2026</span></div></div>
       <div class="pub-row row-z" data-status="presented"><div><div class="pub-num">05</div><div class="pub-title">Analyzing V-Tuber Visual Tropes in South Korea Through Korea–Japan Media Circuits</div><div class="pub-authors"><span class="me">Jung, O. J.</span>, &amp; Youk, S.</div><div class="pub-venue">NCA 111th Annual Convention · 2025</div></div><div class="pub-side"><span class="pill pill-presented">Presented</span><span class="pub-year">2025</span></div></div>
       <div class="pub-row row-z" data-status="review"><div><div class="pub-num">06</div><div class="pub-title">Hearing Is Not Remembering: Labeled AI Exposure Protects Memory Without Improving Discrimination of Deepfake Audio</div><div class="pub-authors"><span class="me">Jung, O. J.</span></div><div class="pub-venue">ACM CHI 2027 · Under Review</div></div><div class="pub-side"><span class="pill pill-review">Under Review</span><span class="pub-year">2027</span></div></div>
