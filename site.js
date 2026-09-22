@@ -295,12 +295,9 @@ loadGuestbook();
 /* ─── desktop: scale each Figma frame down to fit the window ─── */
 function fitTools() {
   $$('.tools-wrap').forEach(w => {
-    const gb = w.closest('#guestbook') && !isMobile();
-    const ref = gb ? w.closest('.picto') : w.parentElement.querySelector('.memo');
+    const ref = w.parentElement.querySelector('.memo');
     if (!ref || !ref.offsetHeight) return;
-    const avail = gb ? ref.offsetHeight - 38 : ref.offsetHeight;
-    const max = isMobile() ? 30 : (w.closest('#guestbook') ? 32 : 36);
-    w.style.width = Math.min(max, avail * 153 / 1858) + 'px';
+    w.style.width = Math.min(isMobile() ? 30 : 36, ref.offsetHeight * 153 / 1858) + 'px';
   });
 }
 function fit() {

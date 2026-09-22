@@ -57,7 +57,7 @@ body:not(.booting) #boot { display: none; }
 /* say-hi LCD — Figma render; menu rows are link hotspots */
 .lcd .row { position: absolute; left: 5.72%; width: 87.45%; height: 10.69%; display: block; }
 .r-email { top: 53.89%; } .r-li { top: 64.47%; } .r-cv { top: 75.04%; }
-.r-back { left: 79%; top: 86.5%; width: 17%; height: 11%; }
+.lcd .r-back { left: 79%; top: 86.5%; width: 17%; height: 11%; }
 .lcd .row:hover, .lcd .row:focus-visible { background: rgba(46,42,51,.16); outline: none; }
 .lcd .r-email:hover, .lcd .r-email:focus-visible { background: rgba(255,255,255,.12); }
 #say.buzz #say-gba { animation: buzz .32s linear 1; }
@@ -180,13 +180,8 @@ button.box:hover { background: var(--pink); }
 .memo-text p:last-child { margin-bottom: 0; }
 .keyboard { width: min(559px, 76%); margin-top: 16px; image-rendering: auto; }
 
-.memo-rate { --row: 66px; }
-.memo-rate .val { flex: 1; padding: 0 30px; font-size: 26px; }
-.memo-rate input.val { height: calc(var(--row) - 2.5px); line-height: calc(var(--row) - 2.5px); border: 0; background: transparent; font: 26px var(--pix); color: var(--ink); outline: none; }
-.memo-rate input.val::placeholder { color: var(--gray); }
-.memo-rate input.val:focus { background: rgba(255,255,255,.55); }
-.stars { display: flex; gap: 14px; }
-.stars button { width: 50px; height: 46px; background: url('./assets/v2/heart-empty.png') center / contain no-repeat; image-rendering: pixelated; }
+.stars { display: flex; align-items: center; gap: 6px; }
+.stars button { width: 20px; height: 17px; background: url('./assets/v2/heart-empty.png') center / contain no-repeat; image-rendering: pixelated; }
 .stars button.on { background-image: url('./assets/v2/heart-full.png'); }
 .kb-wrap { position: relative; width: min(840px, 84%); margin-top: 16px; }
 .kb-wrap .keyboard { width: 100%; margin: 0; }
@@ -261,10 +256,8 @@ button.box:hover { background: var(--pink); }
   .memo-text { font-size: 12px; line-height: 26px; padding: 0 8px; background: repeating-linear-gradient(transparent 0 24px, var(--pink) 24px 26px); }
   .memo-text p { margin-bottom: 26px; }
   .keyboard, .kb-wrap { width: 100%; }
-  .memo-rate { --row: 46px; }
-  .memo-rate .val, .memo-rate input.val { font-size: 13px; padding: 0 12px; }
-  .stars { gap: 6px; }
-  .stars button { width: 30px; height: 28px; }
+  .stars { gap: 4px; }
+  .stars button { width: 15px; height: 13px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -273,19 +266,6 @@ button.box:hover { background: var(--pink); }
   .view.on { animation: none; }
 }
 
-/* guestbook rate screen — Figma "09a" proportions (84% PictoChat) */
-@media (min-width: 721px) {
-  #guestbook .picto { position: relative; width: min(832px, 100%); padding-left: 54px; }
-  #guestbook .picto-main { position: static; padding-left: 0; }
-  #guestbook .tools { top: 38px; bottom: 0; height: auto; width: 40px; }
-  #guestbook .memo-rate { --row: 55px; }
-  #guestbook .tag { min-width: 165px; font-size: 20px; padding: 0 14px; }
-  #guestbook .tag.plain { font-size: 22px; }
-  #guestbook .memo-rate .val, #guestbook .memo-rate input.val { font-size: 20px; padding: 0 18px; }
-  #guestbook .stars { gap: 12px; }
-  #guestbook .stars button { width: 44px; height: 40px; }
-  #guestbook .kb-wrap { width: 100%; margin-top: 12px; }
-}
 
 /* ═══ Desktop stage: each screen is a Figma frame, scaled down to fit the window ═══ */
 @media (min-width: 721px) {
@@ -297,7 +277,6 @@ button.box:hover { background: var(--pink); }
   .picto-view .stage { background: var(--bg); }
   .finder-view .win-body { max-height: 560px; }
   .picto { width: 1000px; }
-  #guestbook .picto { width: 832px; }
 }
 
 /* live Finder scrollbars */
@@ -321,10 +300,6 @@ input { cursor: text; }
 .grow::after { left: 50%; top: 50%; transform: translate(-50%, -50%); }
 @media (max-width: 720px) { .vs .thumb { background-size: 10px 11.5px !important; } }
 
-/* guestbook: tool column centred between the memo and the keyboard */
-@media (min-width: 721px) {
-  #guestbook .tools { top: calc(38px + (100% - 38px) / 2); bottom: auto; height: auto; transform: translateY(-50%); }
-}
 
 /* ─── tool column: a real ▲▼ scroller ─── */
 .tools-wrap { position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 51px; }
@@ -333,7 +308,6 @@ input { cursor: text; }
 .t-up { top: 0; } .t-down { top: 12%; }
 .tools-wrap button:active { background: rgba(255,185,231,.45); }
 @media (min-width: 721px) {
-  #guestbook .tools-wrap { top: calc(38px + (100% - 38px) / 2); width: 40px; }
   .memo-about .memo-text { max-height: 432px; overflow-y: auto; scrollbar-width: none; background-attachment: local; overscroll-behavior: contain; }
   .memo-about .memo-text::-webkit-scrollbar { display: none; }
   .finder-view .win-body { max-height: 400px; }
@@ -348,21 +322,10 @@ input { cursor: text; }
 .gb-row.new b::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 7 6' shape-rendering='crispEdges'%3E%3Cpath d='M1 0h2v1H1zM4 0h2v1H4zM0 1h1v2H0zM3 1h1v1H3zM6 1h1v2H6zM1 3h1v1H1zM5 3h1v1H5zM2 4h1v1H2zM4 4h1v1H4zM3 5h1v1H3z' fill='%237B4F3A'/%3E%3Cpath d='M1 1h2v2H1zM4 1h2v2H4zM3 2h1v1H3zM2 3h3v1H2zM3 4h1v1H3z' fill='%23FFB9E7'/%3E%3C/svg%3E"); }
 .cols-gb .lh span:first-child { padding-left: 14px; }
 
-/* slimmer stars, guestbook boxes a size down */
-.stars button { width: 40px !important; height: 40px !important; }
-@media (min-width: 721px) {
-  #guestbook .memo-rate { --row: 48px; }
-  #guestbook .tag { min-width: 140px; font-size: 18px; }
-  #guestbook .memo-rate .val, #guestbook .memo-rate input.val { font-size: 18px; }
-  #guestbook .stars button { width: 34px !important; height: 34px !important; }
-  #guestbook .picto { width: 760px; }
-}
-@media (max-width: 720px) { .stars button { width: 26px !important; height: 26px !important; } }
 
 /* keyboard ENTER key moved when CAPS was widened */
 .hot-enter { left: 69.25%; top: 38.67%; width: 12.69%; height: 17.13%; }
 .hot-send  { left: 87.1%; top: 0; width: 12.9%; height: 32.6%; }
-#guestbook .tools-wrap .tools { transform: none; width: 100%; top: auto; bottom: auto; }
 
 /* ─── one X button everywhere (IMG_7949, recoloured) ─── */
 .box.close, .xbox, .a-close { background: url('./assets/v2/x-box.png') center / 100% 100% no-repeat; border: 0; box-shadow: none; image-rendering: pixelated; }
@@ -372,21 +335,6 @@ button.box.close:hover, .xbox:hover, .a-close:hover { filter: brightness(.95) sa
 .a-close { left: 2%; top: 2.5%; width: 5.6%; height: 12.7%; background-color: var(--panel); }
 @media (max-width: 720px) { .box.close { width: 18px; height: 20px; top: 5px; } .xbox { width: 22px; height: 24px; } }
 
-/* ─── guestbook rate screen: a size smaller overall ─── */
-@media (min-width: 721px) {
-  #guestbook .picto { width: 660px; padding-left: 44px; }
-  #guestbook .picto-head { font-size: 18px; }
-  #guestbook .memo-rate { --row: 40px; }
-  #guestbook .memo { border-width: 3px; border-radius: 12px; padding: 7px; }
-  #guestbook .memo::before { inset: 3px; border-width: 2px; border-radius: 9px; }
-  #guestbook .memo-row { border-bottom-width: 2px; }
-  #guestbook .tag { min-width: 112px; font-size: 16px; padding: 0 12px; }
-  #guestbook .tag.plain { font-size: 18px; }
-  #guestbook .memo-rate .val, #guestbook .memo-rate input.val { font-size: 16px; padding: 0 14px; }
-  #guestbook .stars { gap: 8px; }
-  #guestbook .stars button { width: 26px !important; height: 26px !important; }
-  #guestbook .kb-wrap { margin-top: 10px; }
-}
 
 /* ─── every window button shares the X button's pixel bevel ─── */
 .box.zoom, .box.collapse { width: 22px; height: 24px; top: 7px; border: 0; box-shadow: none; image-rendering: pixelated; background: center / 100% 100% no-repeat; }
@@ -453,17 +401,6 @@ button.box.close:hover, .xbox:hover, .a-close:hover { filter: brightness(.95) sa
   /* guestbook rate: a clear size down so everything fits */
   #guestbook .picto-head, #about .picto-head { font-size: 12px; gap: 6px; margin-bottom: 6px; }
   #guestbook .xbox, #about .xbox { width: 17px; height: 18px; }
-  #guestbook .memo-rate { --row: 34px; }
-  #guestbook .memo { border-width: 2px; border-radius: 10px; padding: 5px; }
-  #guestbook .memo::before { inset: 2px; border-width: 1.5px; border-radius: 8px; }
-  #guestbook .memo-row { border-bottom-width: 1.5px; }
-  #guestbook .tag { min-width: 68px; font-size: 11px; padding: 0 8px; }
-  #guestbook .tag.plain { font-size: 13px; }
-  #guestbook .memo-rate .val, #guestbook .memo-rate input.val { font-size: 11px; padding: 0 8px; min-width: 0; }
-  #guestbook .memo-rate input.val { width: 100%; }
-  #guestbook .stars { gap: 4px; }
-  #guestbook .stars button { width: 18px !important; height: 18px !important; }
-  #guestbook .kb-wrap { margin-top: 8px; }
 }
 
 /* dialog OK: smaller, drawn in CSS, blinking */
@@ -492,11 +429,8 @@ button.box.close:hover, .xbox:hover, .a-close:hover { filter: brightness(.95) sa
   .memo-about .memo-text p { margin-bottom: 30px; }
   .memo-about .tag { font-size: 20px; }
   .memo-top .deco { font-size: 18px; }
-  #about .picto { width: 860px; }
-  #about .keyboard { width: 460px; }
-  /* guestbook keyboard + send column in scale with the tool bar */
-  #guestbook .kb-wrap { width: 460px; align-self: center; margin-left: 0; }
-  #guestbook .picto { width: 600px; }
+  #about .picto, #guestbook .picto { width: 860px; }
+  #about .keyboard, #guestbook .kb-wrap { width: 460px; }
 }
 
 /* ─── round 13: narrower dialog, OK scales with it ─── */
@@ -510,21 +444,10 @@ button.box.close:hover, .xbox:hover, .a-close:hover { filter: brightness(.95) sa
   .a-ok, .a-ok:hover { left: 50%; right: auto; bottom: 8.7%; width: 22.7%; height: 17.3%; font-size: 5.7cqw; border-width: 1.2cqw; }
 }
 
-/* rating hearts (IMG_7953) */
-.stars button { width: 26px !important; height: 22px !important; background-size: contain; }
-#guestbook .stars button { width: 26px !important; height: 22px !important; }
-@media (max-width: 720px) { #guestbook .stars button, .stars button { width: 20px !important; height: 17px !important; } }
 
 /* ─── round 14 ─── */
 /* desktop dialog tucked just under guestbook.7 */
-@media (min-width: 721px) { .stage-home .alert { left: 640px; top: 532px; } }
-@media (min-width: 721px) {
-  #guestbook .picto { width: 540px; }
-  #guestbook .memo-rate { --row: 34px; }
-  #guestbook .tag { min-width: 96px; font-size: 14px; padding: 0 10px; }
-  #guestbook .memo-rate .val, #guestbook .memo-rate input.val { font-size: 14px; padding: 0 12px; }
-  #guestbook .kb-wrap { width: 420px; }
-}
+@media (min-width: 721px) { .stage-home .alert { left: 665px; top: 532px; } }
 /* smaller PictoChat close buttons */
 .xbox, #guestbook .xbox, #about .xbox { width: 20px; height: 22px; }
 @media (max-width: 720px) { .xbox, #guestbook .xbox, #about .xbox { width: 14px; height: 15px; } }
@@ -534,4 +457,25 @@ button.box.close:hover, .xbox:hover, .a-close:hover { filter: brightness(.95) sa
   .xbox, #guestbook .xbox, #about .xbox { width: 18px; height: 20px; }
   .tools-wrap { display: none; }
   .picto-main { padding-left: 0 !important; }
+}
+
+/* ─── guestbook = About me memo: tag, ruled lines, one field per line ─── */
+.gb-line { display: flex; align-items: flex-start; height: 36px; }
+.gb-lab { flex: none; width: 7em; color: var(--sub); }
+.gb-line .stars { height: calc(100% - 2.5px); }
+.gb-line input { flex: 1; min-width: 0; height: calc(100% - 2.5px); padding: 0 6px; border: 0; background: transparent; outline: none;
+  font: inherit; color: var(--ink); }
+.gb-line input::placeholder { color: var(--gray); }
+.gb-line input:focus { background: rgba(255,255,255,.55); }
+.memo-gb .memo-text { min-height: calc(8 * 36px); }
+@media (min-width: 721px) {
+  .gb-line { height: 30px; }
+  .gb-line .stars, .gb-line input { height: 28px; }
+  .memo-gb .memo-text { min-height: calc(9 * 30px); }
+}
+@media (max-width: 720px) {
+  .gb-line { height: 26px; }
+  .gb-line .stars, .gb-line input { height: 24px; }
+  .gb-lab { width: 6.5em; }
+  .memo-gb .memo-text { min-height: calc(6 * 26px); }
 }

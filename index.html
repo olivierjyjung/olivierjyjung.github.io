@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Pixelify+Sans:wght@500;600&family=Roboto+Condensed:ital,wght@1,800&family=Arimo:ital,wght@1,700&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="./assets/v2/gba.png">
-<link rel="stylesheet" href="./site.css?v=20260922224120">
+<link rel="stylesheet" href="./site.css?v=20260922225853">
 </head>
 <body class="booting">
 
@@ -202,13 +202,16 @@
     <div class="picto-head"><button type="button" class="xbox" data-home aria-label="Close">✕</button></div>
     <div class="picto-main">
       <div class="tools-wrap"><img class="tools" src="./assets/v2/tools.png" alt=""><button type="button" class="t-up" aria-label="Scroll up"></button><button type="button" class="t-down" aria-label="Scroll down"></button></div>
-      <div class="memo memo-rate">
-        <div class="memo-row"><span class="tag">rate ♡</span><span class="val">rate your experience</span></div>
-        <div class="memo-row"><span class="tag">hearts</span><span class="val stars" id="rate-stars" role="radiogroup" aria-label="Rating">
-          <button type="button" data-v="1" aria-label="1 heart"></button><button type="button" data-v="2" aria-label="2 hearts"></button><button type="button" data-v="3" aria-label="3 hearts"></button><button type="button" data-v="4" aria-label="4 hearts"></button><button type="button" data-v="5" aria-label="5 hearts"></button>
-        </span></div>
-        <label class="memo-row"><span class="tag">nickname</span><input class="val" id="gb-name" maxlength="30" placeholder="your name"></label>
-        <label class="memo-row"><span class="tag">message</span><input class="val" id="gb-message" maxlength="100" placeholder="say something nice ♡"></label>
+      <div class="memo memo-about memo-gb">
+        <div class="memo-row memo-top"><span class="tag">guestbook ♡</span></div>
+        <div class="memo-text">
+          <p>rate your experience, then leave a note ♡</p>
+          <div class="gb-line"><span class="gb-lab">hearts</span><span class="stars" id="rate-stars" role="radiogroup" aria-label="Rating">
+            <button type="button" data-v="1" aria-label="1 heart"></button><button type="button" data-v="2" aria-label="2 hearts"></button><button type="button" data-v="3" aria-label="3 hearts"></button><button type="button" data-v="4" aria-label="4 hearts"></button><button type="button" data-v="5" aria-label="5 hearts"></button>
+          </span></div>
+          <label class="gb-line"><span class="gb-lab">nickname</span><input id="gb-name" maxlength="30" placeholder="your name"></label>
+          <label class="gb-line"><span class="gb-lab">message</span><input id="gb-message" maxlength="100" placeholder="say something nice ♡"></label>
+        </div>
       </div>
     </div>
     <div class="kb-wrap">
@@ -257,6 +260,6 @@
 
 </main>
 
-<script src="./site.js?v=20260922224120"></script>
+<script src="./site.js?v=20260922225853"></script>
 </body>
 </html>
