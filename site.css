@@ -200,8 +200,6 @@ button.box:hover { background: var(--pink); }
   .stage { width: 100%; display: flex; flex-direction: column; align-items: stretch; }
   .stage-home .win-home, .stage-home .alert { position: relative; left: auto; top: auto; }
   .picto-view .stage { align-items: center; }
-  body:not(.booting) #site .view { display: flex; min-height: 0; animation: none; }
-  body:not(.booting) #site #home { padding-top: 28px; }
   .gba { height: auto; width: min(92vw, 380px); }
   #boot { min-height: 100dvh; }
   #say { padding: 28px 16px 60px; }
@@ -216,7 +214,8 @@ button.box:hover { background: var(--pink); }
   .win-info::before { display: none; }
   .win-title h1, .win-title h2 { line-height: 22px; }
   .win-main { margin: 0 6px 6px; grid-template-columns: minmax(0, 1fr) 20px; grid-template-rows: auto 20px; }
-  .win-body, .win-home .win-body { max-height: none; height: auto; overflow: visible; }
+  .win-body { max-height: calc(100dvh - 150px); overflow-y: auto; }
+  .win-home .win-body { height: auto; max-height: none; overflow: visible; }
   .vs i, .hs i { width: 20px; height: 20px; }
   .vs .thumb { width: 16px; height: 24px; top: 24px; background-position: 3px 6px; background-size: 10px 12px; }
   .vs .up::after, .vs .down::after { left: 4px; top: 6px; border-width: 0 5px 6px; }
@@ -419,3 +418,27 @@ button.box.close:hover, .xbox:hover, .a-close:hover { filter: brightness(.95) sa
 /* loading label above the bar; dialog nudged up */
 .boot-fill { top: 59.77%; }
 .stage-home .alert { top: 536px; }
+
+
+/* ═══ Mobile v2: same click-through as desktop, one window per screen ═══ */
+@media (max-width: 720px) {
+  #site .view { min-height: 100dvh; padding: 14px 12px; align-items: center; }
+  .stage { width: 100%; }
+  /* home: dialog sits in the empty cell beside guestbook.7 */
+  .stage-home { position: relative; }
+  .stage-home .alert { position: absolute; left: auto; top: auto; right: 20px; bottom: 42px; width: 168px; margin: 0; z-index: 3; }
+  /* works & guestbook: denser type */
+  .cols-works .lr b, .cols-gb .lr b { font-size: 12px; line-height: 16px; }
+  .cols-works .lr > div, .cols-gb .lr > div { font-size: 10px; line-height: 14px; }
+  .cols-works .lr, .cols-gb .lr { padding: 7px 8px 7px 10px; }
+  .doc > div:first-child { padding-left: 18px !important; }
+  .doc > div:first-child::before { width: 10px; height: 13px; }
+  .lr b { font-size: 13px; line-height: 17px; }
+  .lr small { font-size: 10px; line-height: 14px; }
+  .lr > div { font-size: 10px; line-height: 14px; }
+  /* about: memo scrolls inside, keyboard stays */
+  .memo-about .memo-text { max-height: calc(100dvh - 330px); overflow-y: auto; scrollbar-width: none; background-attachment: local; overscroll-behavior: contain; }
+  .memo-about .memo-text::-webkit-scrollbar { display: none; }
+  .picto-view .stage { justify-content: center; }
+  #say { padding: 14px 12px; }
+}

@@ -155,13 +155,10 @@ let current = 'home';
 function show(id, { buzz = false } = {}) {
   const el = document.getElementById(id);
   if (!el) return;
-  if (isMobile()) {
-    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  } else {
-    $$('#site .view').forEach(v => v.classList.toggle('on', v === el));
-    window.scrollTo(0, 0);
-    fit();
-  }
+  $$('#site .view').forEach(v => v.classList.toggle('on', v === el));
+  window.scrollTo(0, 0);
+  fit();
+  el.querySelectorAll('.win-body').forEach(b => b.dispatchEvent(new Event('scroll')));
   current = id;
   if (id === 'say' && buzz) {
     el.classList.remove('buzz'); void el.offsetWidth; el.classList.add('buzz', 'dim');
@@ -170,7 +167,7 @@ function show(id, { buzz = false } = {}) {
   if (id === 'wall') loadGuestbook();
 
 }
-const goHome = () => (isMobile() ? window.scrollTo({ top: 0, behavior: 'smooth' }) : show('home'));
+const goHome = () => show('home');
 
 document.addEventListener('click', e => {
   const go = e.target.closest('[data-go]');
@@ -298,9 +295,10 @@ loadGuestbook();
 /* ─── desktop: scale each Figma frame down to fit the window ─── */
 function fitTools() {
   $$('.tools-wrap').forEach(w => {
-    const ref = w.closest('#guestbook') ? w.closest('.picto') : w.parentElement.querySelector('.memo');
+    const gb = w.closest('#guestbook') && !isMobile();
+    const ref = gb ? w.closest('.picto') : w.parentElement.querySelector('.memo');
     if (!ref || !ref.offsetHeight) return;
-    const avail = w.closest('#guestbook') && !isMobile() ? ref.offsetHeight - 38 : ref.offsetHeight;
+    const avail = gb ? ref.offsetHeight - 38 : ref.offsetHeight;
     const max = isMobile() ? 30 : (w.closest('#guestbook') ? 32 : 51);
     w.style.width = Math.min(max, avail * 153 / 1858) + 'px';
   });
@@ -325,10 +323,10 @@ $$('.win-main').forEach(main => {
   const vs = main.querySelector('.vs'), thumb = vs.querySelector('.thumb');
   const up = vs.querySelector('.up'), down = vs.querySelector('.down');
   const lt = main.querySelector('.hs .lt'), rt = main.querySelector('.hs .rt');
-  const range = () => Math.max(0, vs.clientHeight - 64 - thumb.offsetHeight - 6);
+  const range = () => Math.max(0, vs.clientHeight - up.offsetHeight - down.offsetHeight - thumb.offsetHeight - 6);
   const sync = () => {
     const max = body.scrollHeight - body.clientHeight;
-    thumb.style.top = (38.5 + range() * (max > 0 ? body.scrollTop / max : 0)) + 'px';
+    thumb.style.top = (up.offsetHeight + 4 + range() * (max > 0 ? body.scrollTop / max : 0)) + 'px';
   };
   body.addEventListener('scroll', sync, { passive: true });
   addEventListener('resize', sync);
