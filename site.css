@@ -415,9 +415,8 @@ button.box.close:hover, .xbox:hover, .a-close:hover { filter: brightness(.95) sa
 .boot-fill { top: 41.14%; }
 
 .vs .thumb { background-size: 100% 100% !important; background-position: center !important; }
-/* loading label above the bar; dialog nudged up */
+/* loading label above the bar */
 .boot-fill { top: 59.77%; }
-.stage-home .alert { top: 536px; }
 
 
 /* ═══ Mobile v2: same click-through as desktop, one window per screen ═══ */
