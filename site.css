@@ -525,3 +525,6 @@ button.box.close:hover, .xbox:hover, .a-close:hover { filter: brightness(.95) sa
   #guestbook .memo-rate .val, #guestbook .memo-rate input.val { font-size: 14px; padding: 0 12px; }
   #guestbook .kb-wrap { width: 420px; }
 }
+/* smaller PictoChat close buttons */
+.xbox, #guestbook .xbox, #about .xbox { width: 20px; height: 22px; }
+@media (max-width: 720px) { .xbox, #guestbook .xbox, #about .xbox { width: 14px; height: 15px; } }
