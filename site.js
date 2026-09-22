@@ -293,15 +293,7 @@ $('#gb-form').addEventListener('submit', e => {
 loadGuestbook();
 
 /* ─── desktop: scale each Figma frame down to fit the window ─── */
-function fitTools() {
-  $$('.tools-wrap').forEach(w => {
-    const ref = w.parentElement.querySelector('.memo');
-    if (!ref || !ref.offsetHeight) return;
-    w.style.width = Math.min(isMobile() ? 30 : 36, ref.offsetHeight * 153 / 1858) + 'px';
-  });
-}
 function fit() {
-  fitTools();
   $$('.stage').forEach(st => {
     if (isMobile()) { st.style.zoom = ''; return; }
     if (!st.offsetParent) return;

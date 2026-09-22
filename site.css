@@ -471,7 +471,7 @@ button.box.close:hover, .xbox:hover, .a-close:hover { filter: brightness(.95) sa
 @media (min-width: 721px) {
   .gb-line { height: 30px; }
   .gb-line .stars, .gb-line input { height: 28px; }
-  .memo-gb .memo-text { min-height: calc(9 * 30px); }
+  .memo-gb .memo-text { min-height: calc(10 * 30px); }
 }
 @media (max-width: 720px) {
   .gb-line { height: 26px; }
@@ -483,3 +483,19 @@ button.box.close:hover, .xbox:hover, .a-close:hover { filter: brightness(.95) sa
 /* PictoChat close box on the left, over the memo's corner (like the Finder windows) */
 .picto-head { justify-content: flex-start; padding-left: 68px; }
 @media (max-width: 720px) { .picto-head, #guestbook .picto-head, #about .picto-head { padding-left: 0; } }
+
+/* desktop: one toolbar size, flush against the memo; close box level with the memo's top, toolbar right under it */
+@media (min-width: 721px) {
+  .picto { position: relative; }
+  .tools-wrap { width: 27px; left: auto; right: calc(100% - 64px); top: 30px; transform: none; }
+  .picto-head { position: absolute; left: 37px; top: 0; width: 27px; margin: 0; padding: 0; justify-content: center; z-index: 1; }
+}
+/* phone guestbook: name and message side by side, no heart */
+@media (max-width: 720px) {
+  .cols-gb .lr { display: grid; grid-template-columns: 30% minmax(0, 1fr) auto; column-gap: 10px; align-items: baseline; }
+  .cols-gb .lr > div, .cols-gb .lr > div:first-child { display: block; margin: 0; padding-left: 0 !important; }
+  .cols-gb .lr > div::after { content: none !important; }
+  .cols-gb .lr > div:last-child { color: var(--gray); }
+  .gb-row b::before { content: none; }
+  .cols-gb .lr b { overflow-wrap: anywhere; }
+}
