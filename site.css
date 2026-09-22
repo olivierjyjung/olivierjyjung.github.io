@@ -517,7 +517,7 @@ button.box.close:hover, .xbox:hover, .a-close:hover { filter: brightness(.95) sa
 
 /* ─── round 14 ─── */
 /* desktop dialog tucked just under guestbook.7 */
-@media (min-width: 721px) { .stage-home .alert { left: 598px; top: 532px; } }
+@media (min-width: 721px) { .stage-home .alert { left: 640px; top: 532px; } }
 @media (min-width: 721px) {
   #guestbook .picto { width: 540px; }
   #guestbook .memo-rate { --row: 34px; }
