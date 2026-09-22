@@ -226,7 +226,7 @@ function renderGuestbook() {
     return;
   }
   for (const e of rows) {
-    const stars = e.isNew && e.rating ? `<span class="stars-mini">${'★'.repeat(e.rating)}${'☆'.repeat(5 - e.rating)}</span>` : '';
+    const stars = e.isNew && e.rating ? `<span class="stars-mini">${'♥'.repeat(e.rating)}${'♡'.repeat(5 - e.rating)}</span>` : '';
     list.insertAdjacentHTML('beforeend',
       `<div class="lr gb-row${e.isNew ? ' new' : ''}"><div><b>${esc(e.name || 'Anonymous')}${stars}</b></div><div>${esc(e.message)}</div><div${e.date || e.isNew ? '' : ' class="na"'}>${esc(e.isNew ? 'today' : (fmtDate(e.date) || '—'))}</div></div>`);
   }

@@ -186,8 +186,8 @@ button.box:hover { background: var(--pink); }
 .memo-rate input.val::placeholder { color: var(--gray); }
 .memo-rate input.val:focus { background: rgba(255,255,255,.55); }
 .stars { display: flex; gap: 14px; }
-.stars button { width: 50px; height: 46px; background: url('./assets/v2/star-empty.png') center / contain no-repeat; image-rendering: pixelated; }
-.stars button.on { background-image: url('./assets/v2/star-full.png'); }
+.stars button { width: 50px; height: 46px; background: url('./assets/v2/heart-empty.png') center / contain no-repeat; image-rendering: pixelated; }
+.stars button.on { background-image: url('./assets/v2/heart-full.png'); }
 .kb-wrap { position: relative; width: min(840px, 84%); margin-top: 16px; }
 .kb-wrap .keyboard { width: 100%; margin: 0; }
 .kb-wrap .hot { border-radius: 4px; transform: none; }
@@ -509,3 +509,8 @@ button.box.close:hover, .xbox:hover, .a-close:hover { filter: brightness(.95) sa
   .stage-home .alert { width: 150px; }
   .a-ok, .a-ok:hover { left: 50%; right: auto; bottom: 8.7%; width: 22.7%; height: 17.3%; font-size: 5.7cqw; border-width: 1.2cqw; }
 }
+
+/* rating hearts (IMG_7953) */
+.stars button { width: 26px !important; height: 22px !important; background-size: contain; }
+#guestbook .stars button { width: 26px !important; height: 22px !important; }
+@media (max-width: 720px) { #guestbook .stars button, .stars button { width: 20px !important; height: 17px !important; } }
