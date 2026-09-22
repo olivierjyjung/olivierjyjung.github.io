@@ -301,7 +301,7 @@ function fitTools() {
     const ref = w.closest('#guestbook') ? w.closest('.picto') : w.parentElement.querySelector('.memo');
     if (!ref || !ref.offsetHeight) return;
     const avail = w.closest('#guestbook') && !isMobile() ? ref.offsetHeight - 38 : ref.offsetHeight;
-    const max = isMobile() ? 30 : (w.closest('#guestbook') ? 40 : 51);
+    const max = isMobile() ? 30 : (w.closest('#guestbook') ? 32 : 51);
     w.style.width = Math.min(max, avail * 153 / 1858) + 'px';
   });
 }
