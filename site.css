@@ -514,3 +514,14 @@ button.box.close:hover, .xbox:hover, .a-close:hover { filter: brightness(.95) sa
 .stars button { width: 26px !important; height: 22px !important; background-size: contain; }
 #guestbook .stars button { width: 26px !important; height: 22px !important; }
 @media (max-width: 720px) { #guestbook .stars button, .stars button { width: 20px !important; height: 17px !important; } }
+
+/* ─── round 14 ─── */
+/* desktop dialog tucked just under guestbook.7 */
+.stage-home .alert { left: 598px; top: 532px; }
+@media (min-width: 721px) {
+  #guestbook .picto { width: 540px; }
+  #guestbook .memo-rate { --row: 34px; }
+  #guestbook .tag { min-width: 96px; font-size: 14px; padding: 0 10px; }
+  #guestbook .memo-rate .val, #guestbook .memo-rate input.val { font-size: 14px; padding: 0 12px; }
+  #guestbook .kb-wrap { width: 420px; }
+}
