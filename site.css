@@ -444,3 +444,24 @@ button.box.close:hover, .xbox:hover, .a-close:hover { filter: brightness(.95) sa
 
 /* role / degree / award titles a size down */
 @media (min-width: 721px) { .cols-3 .lr b, .cols-2 .lr b { font-size: 16px; line-height: 21px; } }
+
+/* ─── mobile polish ─── */
+@media (max-width: 720px) {
+  /* works: status · date · link line centred */
+  .cols-works .lr { text-align: center; }
+  .cols-works .lr > div:first-child { text-align: left; }
+  /* guestbook rate: a clear size down so everything fits */
+  #guestbook .picto-head, #about .picto-head { font-size: 12px; gap: 6px; margin-bottom: 6px; }
+  #guestbook .xbox, #about .xbox { width: 17px; height: 18px; }
+  #guestbook .memo-rate { --row: 34px; }
+  #guestbook .memo { border-width: 2px; border-radius: 10px; padding: 5px; }
+  #guestbook .memo::before { inset: 2px; border-width: 1.5px; border-radius: 8px; }
+  #guestbook .memo-row { border-bottom-width: 1.5px; }
+  #guestbook .tag { min-width: 68px; font-size: 11px; padding: 0 8px; }
+  #guestbook .tag.plain { font-size: 13px; }
+  #guestbook .memo-rate .val, #guestbook .memo-rate input.val { font-size: 11px; padding: 0 8px; min-width: 0; }
+  #guestbook .memo-rate input.val { width: 100%; }
+  #guestbook .stars { gap: 4px; }
+  #guestbook .stars button { width: 18px !important; height: 18px !important; }
+  #guestbook .kb-wrap { margin-top: 8px; }
+}
