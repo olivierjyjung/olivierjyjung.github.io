@@ -296,7 +296,17 @@ $('#gb-form').addEventListener('submit', e => {
 loadGuestbook();
 
 /* ─── desktop: scale each Figma frame down to fit the window ─── */
+function fitTools() {
+  $$('.tools-wrap').forEach(w => {
+    const ref = w.closest('#guestbook') ? w.closest('.picto') : w.parentElement.querySelector('.memo');
+    if (!ref || !ref.offsetHeight) return;
+    const avail = w.closest('#guestbook') && !isMobile() ? ref.offsetHeight - 38 : ref.offsetHeight;
+    const max = isMobile() ? 30 : (w.closest('#guestbook') ? 40 : 51);
+    w.style.width = Math.min(max, avail * 153 / 1858) + 'px';
+  });
+}
 function fit() {
+  fitTools();
   $$('.stage').forEach(st => {
     if (isMobile()) { st.style.zoom = ''; return; }
     if (!st.offsetParent) return;
@@ -348,4 +358,17 @@ $$('.win-main').forEach(main => {
     thumb.addEventListener('pointerup', end);
   });
   sync();
+});
+
+/* ─── PictoChat ▲▼ tool buttons scroll the memo (or the page) ─── */
+$$('.tools-wrap').forEach(w => {
+  const target = () => { const m = w.closest('.picto').querySelector('.memo-text'); return m && m.scrollHeight > m.clientHeight + 2 ? m : document.scrollingElement; };
+  const step = d => { const t = target(); t.scrollBy({ top: d, behavior: 'smooth' }); };
+  let timer;
+  const hold = (btn, d) => {
+    btn.addEventListener('pointerdown', e => { e.preventDefault(); step(d); timer = setInterval(() => step(d), 180); });
+    ['pointerup', 'pointerleave', 'pointercancel'].forEach(ev => btn.addEventListener(ev, () => clearInterval(timer)));
+  };
+  hold(w.querySelector('.t-up'), -72);
+  hold(w.querySelector('.t-down'), 72);
 });
