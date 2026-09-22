@@ -408,7 +408,7 @@ button.box.close:hover, .xbox:hover, .a-close:hover { filter: brightness(.95) sa
 
 /* home dialog: smaller window, content left-aligned (Figma popup v3) */
 .alert { width: 206px; }
-.stage-home .alert { left: 700px; top: 564px; }
+
 .a-close { left: 2%; top: 2.6%; width: 7.2%; height: 15.5%; }
 .a-ok { left: 62.1%; top: 63.5%; width: 32%; height: 26.9%; }
 /* boot LCD: only the bar + "loading", centred */
@@ -476,7 +476,7 @@ button.box.close:hover, .xbox:hover, .a-close:hover { filter: brightness(.95) sa
 @media (max-width: 720px) { .a-ok { right: 9px; bottom: 7px; width: 38px; height: 17px; font-size: 9px; border-width: 2px; } }
 /* loading label +10pt; dialog placement */
 .boot-fill { top: 62.75%; }
-.stage-home .alert { top: 553px; }
+
 @media (max-width: 720px) { .stage-home .alert { bottom: 72px; } }
 
 /* ─── round 12 ─── */
@@ -501,7 +501,7 @@ button.box.close:hover, .xbox:hover, .a-close:hover { filter: brightness(.95) sa
 
 /* ─── round 13: narrower dialog, OK scales with it ─── */
 .alert { width: 176px; container-type: inline-size; }
-.stage-home .alert { left: 730px; }
+
 .a-close { left: 2.8%; top: 2.9%; width: 8%; height: 14%; }
 .a-ok, .a-ok:hover { left: 50%; right: auto; top: auto; bottom: 8.7%; transform: translateX(-50%); width: 22.7%; height: 17.3%;
   font-size: 5.7cqw; border-width: 1.2cqw; border-radius: 3.4cqw; box-shadow: inset 0 0 0 .85cqw var(--panel), inset 0 0 0 1.4cqw var(--choc); }
@@ -517,7 +517,7 @@ button.box.close:hover, .xbox:hover, .a-close:hover { filter: brightness(.95) sa
 
 /* ─── round 14 ─── */
 /* desktop dialog tucked just under guestbook.7 */
-.stage-home .alert { left: 598px; top: 532px; }
+@media (min-width: 721px) { .stage-home .alert { left: 598px; top: 532px; } }
 @media (min-width: 721px) {
   #guestbook .picto { width: 540px; }
   #guestbook .memo-rate { --row: 34px; }
