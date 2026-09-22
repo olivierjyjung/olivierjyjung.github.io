@@ -388,3 +388,31 @@ button.box.close:hover, .xbox:hover, .a-close:hover { filter: brightness(.95) sa
   #guestbook .stars button { width: 26px !important; height: 26px !important; }
   #guestbook .kb-wrap { margin-top: 10px; }
 }
+
+/* ─── every window button shares the X button's pixel bevel ─── */
+.box.zoom, .box.collapse { width: 22px; height: 24px; top: 7px; border: 0; box-shadow: none; image-rendering: pixelated; background: center / 100% 100% no-repeat; }
+.box.zoom { background-image: url('./assets/v2/btn-zoom.png'); }
+.box.collapse { background-image: url('./assets/v2/btn-collapse.png'); }
+.box.zoom::after, .box.collapse::after { content: none; }
+.vs i, .hs i { border: 0 !important; box-shadow: none !important; image-rendering: pixelated; background: center / 100% 100% no-repeat !important; }
+.vs i::after, .hs i::after { content: none !important; }
+.vs .up { background-image: url('./assets/v2/btn-up.png') !important; }
+.vs .down { background-image: url('./assets/v2/btn-down.png') !important; }
+.hs .lt { background-image: url('./assets/v2/btn-left.png') !important; }
+.hs .rt { background-image: url('./assets/v2/btn-right.png') !important; }
+.vs .thumb { background-image: url('./assets/v2/btn-thumb.png') !important; width: 28px; height: 34px; left: 0; }
+.vs .up:active, .vs .down:active, .hs .lt:active, .hs .rt:active, .vs .thumb:active { filter: brightness(.93); }
+@media (max-width: 720px) {
+  .box.zoom, .box.collapse { width: 18px; height: 20px; top: 5px; }
+  .vs .thumb { width: 18px; height: 22px; left: 0; }
+}
+
+/* home dialog: smaller window, content left-aligned (Figma popup v3) */
+.alert { width: 206px; }
+.stage-home .alert { left: 700px; top: 564px; }
+.a-close { left: 2%; top: 2.6%; width: 7.2%; height: 15.5%; }
+.a-ok { left: 62.1%; top: 63.5%; width: 32%; height: 26.9%; }
+/* boot LCD: only the bar + "loading", centred */
+.boot-fill { top: 41.14%; }
+
+.vs .thumb { background-size: 100% 100% !important; background-position: center !important; }
