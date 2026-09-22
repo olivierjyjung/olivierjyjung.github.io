@@ -167,6 +167,17 @@ function show(id, { buzz = false } = {}) {
     setTimeout(() => el.classList.remove('dim'), 60);
   }
   if (id === 'wall') loadGuestbook();
+
+/* the Finder scroll thumb follows the list */
+$$('.win-body').forEach(body => {
+  const thumb = body.parentElement.querySelector('.vs .thumb');
+  if (!thumb) return;
+  body.addEventListener('scroll', () => {
+    const track = body.clientHeight - 64 - thumb.offsetHeight - 8;
+    const r = body.scrollTop / Math.max(1, body.scrollHeight - body.clientHeight);
+    thumb.style.top = (38.5 + Math.max(0, track) * r) + 'px';
+  }, { passive: true });
+});
 }
 const goHome = () => (isMobile() ? window.scrollTo({ top: 0, behavior: 'smooth' }) : show('home'));
 
@@ -199,17 +210,17 @@ function finishBoot() {
 (function boot() {
   const fill = $('#boot-fill');
   if (sessionStorage.getItem('booted') || matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    fill.style.width = '100%'; setTimeout(finishBoot, 400); return;
+    fill.style.width = '39.93%'; setTimeout(finishBoot, 400); return;
   }
   let i = 0;
   const tick = () => {
-    fill.style.width = STEPS[i] + '%';
+    fill.style.width = (39.93 * STEPS[i] / 100) + '%';
     if (i === STEPS.length - 1) { sessionStorage.setItem('booted', '1'); setTimeout(finishBoot, WAITS[i]); return; }
     setTimeout(tick, WAITS[i++]);
   };
   tick();
 })();
-$$('[data-skip]').forEach(b => b.addEventListener('click', () => { $('#boot-fill').style.width = '100%'; setTimeout(finishBoot, 250); }));
+$$('[data-skip]').forEach(b => b.addEventListener('click', () => { $('#boot-fill').style.width = '39.93%'; setTimeout(finishBoot, 250); }));
 
 /* ─── guestbook ─── */
 let entries = [], pending = null, rating = 0;

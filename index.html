@@ -17,13 +17,10 @@
 <section id="boot" class="view gba-view" aria-label="Loading">
   <div class="gba" id="boot-gba">
     <img class="gba-img" src="./assets/v2/gba.png" alt="A pink Game Boy Advance SP decorated with stickers and a rhinestone name sticker">
-    <div class="lcd lcd-boot" aria-hidden="true">
-      <div class="lcd-in">
-        <p class="boot-name">Olivier Jiyoun Jung</p>
-        <div class="boot-bar"><i id="boot-fill"></i></div>
-        <p class="boot-loading">loading</p>
-      </div>
-      <div class="glass"></div>
+    <div class="lcd lcd-boot">
+      <img src="./assets/v2/lcd-boot.jpg" alt="">
+      <i class="boot-fill" id="boot-fill"></i>
+      <span class="sr">Olivier Jiyoun Jung — loading</span>
     </div>
     <button class="hot hot-a" data-skip aria-label="A button — skip loading"></button>
     <button class="hot hot-start" data-skip aria-label="Start button — skip loading"></button>
@@ -38,7 +35,7 @@
   <div class="win win-home">
     <div class="win-title"><span class="box close" aria-hidden="true"></span><h1>olivier's icons ♪</h1><span class="box zoom" aria-hidden="true"></span><span class="box collapse" aria-hidden="true"></span></div>
     <div class="win-info">7 items, 2026 MB available</div>
-    <div class="win-body">
+    <div class="win-main"><div class="win-body">
       <nav class="folders" aria-label="Sections">
         <a class="folder" href="#about" data-go="about"><img src="./assets/v2/folder-1.png" alt=""><span>about me.1</span></a>
         <a class="folder" href="#academic" data-go="academic"><img src="./assets/v2/folder-2.png" alt=""><span>academic path.2</span></a>
@@ -49,16 +46,14 @@
         <a class="folder" href="#guestbook" data-go="guestbook"><img src="./assets/v2/folder-7.png" alt=""><span>guestbook.7</span></a>
       </nav>
     </div>
-    <div class="win-hscroll" aria-hidden="true"></div>
+      <div class="vs" aria-hidden="true"><i class="up"></i><i class="thumb"></i><i class="down"></i></div><div class="hs" aria-hidden="true"><i class="lt"></i><i class="rt"></i></div><div class="grow" aria-hidden="true"></div>
+    </div>
   </div>
 
-  <div class="alert" id="alert" role="dialog" aria-label="New message">
-    <div class="alert-title"><button class="box close" data-close-alert aria-label="Close message"></button><span>message</span></div>
-    <div class="alert-body">
-      <svg class="env" viewBox="0 0 12 8" aria-hidden="true"><path d="M0 0h12v8H0z" fill="#fff"/><path d="M0 0h12v8H0zM1 1l5 4 5-4" fill="none" stroke="#7B4F3A" stroke-width="1"/></svg>
-      <p>1 message<br>from olivier</p>
-    </div>
-    <button class="alert-ok" data-go="say">OK</button>
+  <div class="alert" id="alert" role="dialog" aria-label="1 message from olivier">
+    <img src="./assets/v2/popup.png" alt="message — 1 message from olivier">
+    <button class="a-close" data-close-alert aria-label="Close message"></button>
+    <button class="a-ok" data-go="say" aria-label="OK — open the message"></button>
   </div>
 </section>
 
@@ -87,15 +82,16 @@
   <div class="win">
     <div class="win-title"><button class="box close" data-home aria-label="Close"></button><h2>academic path</h2><span class="box zoom" aria-hidden="true"></span><span class="box collapse" aria-hidden="true"></span></div>
     <div class="win-info">3 items</div>
-    <div class="win-body">
+    <div class="win-main"><div class="win-body">
       <div class="list cols-3">
         <div class="lh"><span>Degree</span><span>Institution</span><span>Period</span></div>
-        <div class="lr"><div><b>M.A., Communication &amp; Media</b><small>Advisor: Prof. Jiyoung Kang<br>GPA 4.44 / 4.5 · expected Aug 2027</small></div><div>Ewha Womans University<br>Seoul</div><div>Mar 2025 —<br>Aug 2027</div></div>
-        <div class="lr"><div><b>Exchange Student, Applied Science</b></div><div>University of Applied Sciences and Arts Northwestern Switzerland (FHNW)<br>Basel</div><div>Aug 2023 —<br>Feb 2024</div></div>
-        <div class="lr"><div><b>B.A., Communication &amp; Media</b><small>Scranton Honors Program<br>GPA 4.32 / 4.5 · Summa Cum Laude</small></div><div>Ewha Womans University<br>Seoul</div><div>Mar 2021 —<br>Feb 2025</div></div>
+        <div class="lr"><div><b>M.A., Communication &amp; Media</b><small>Advisor: Prof. Jiyoung Kang<br>GPA 4.44 / 4.5 · expected Aug 2027</small></div><div>Ewha Womans University<span class="br"></span>Seoul</div><div>Mar 2025 —<span class="br dash"></span>Aug 2027</div></div>
+        <div class="lr"><div><b>Exchange Student, Applied Science</b></div><div>University of Applied Sciences and Arts Northwestern Switzerland (FHNW)<span class="br"></span>Basel</div><div>Aug 2023 —<span class="br dash"></span>Feb 2024</div></div>
+        <div class="lr"><div><b>B.A., Communication &amp; Media</b><small>Scranton Honors Program<br>GPA 4.32 / 4.5 · Summa Cum Laude</small></div><div>Ewha Womans University<span class="br"></span>Seoul</div><div>Mar 2021 —<span class="br dash"></span>Feb 2025</div></div>
       </div>
     </div>
-    <div class="win-hscroll" aria-hidden="true"></div>
+      <div class="vs" aria-hidden="true"><i class="up"></i><i class="thumb"></i><i class="down"></i></div><div class="hs" aria-hidden="true"><i class="lt"></i><i class="rt"></i></div><div class="grow" aria-hidden="true"></div>
+    </div>
   </div>
 </section>
 
@@ -104,7 +100,7 @@
   <div class="win">
     <div class="win-title"><button class="box close" data-home aria-label="Close"></button><h2>selected works ♪</h2><span class="box zoom" aria-hidden="true"></span><span class="box collapse" aria-hidden="true"></span></div>
     <div class="win-info">11 items, 3 with links</div>
-    <div class="win-body">
+    <div class="win-main"><div class="win-body">
       <div class="list cols-works">
         <div class="lh"><span>Name</span><span>Status</span><span>Date</span><span>Link</span></div>
         <div class="lr doc on"><div><b>Listening Between the Lines: Joint Learning of ASR Embeddings and LLM-Augmented Linguistics for Dementia Detection</b></div><div>Accepted</div><div>2026</div><div><a href="https://arxiv.org/abs/2606.30675" target="_blank" rel="noopener">arXiv »</a></div></div>
@@ -120,7 +116,8 @@
         <div class="lr doc"><div><b>Multimodal Depression Detection from Clinical Interviews via Speech-Text Feature Fusion</b></div><div>In Progress</div><div class="na">—</div><div class="na">—</div></div>
       </div>
     </div>
-    <div class="win-hscroll" aria-hidden="true"></div>
+      <div class="vs" aria-hidden="true"><i class="up"></i><i class="thumb"></i><i class="down"></i></div><div class="hs" aria-hidden="true"><i class="lt"></i><i class="rt"></i></div><div class="grow" aria-hidden="true"></div>
+    </div>
   </div>
 </section>
 
@@ -129,16 +126,17 @@
   <div class="win">
     <div class="win-title"><button class="box close" data-home aria-label="Close"></button><h2>research &amp; work</h2><span class="box zoom" aria-hidden="true"></span><span class="box collapse" aria-hidden="true"></span></div>
     <div class="win-info">4 items, 2 current</div>
-    <div class="win-body">
+    <div class="win-main"><div class="win-body">
       <div class="list cols-3">
         <div class="lh"><span>Role</span><span>Organization</span><span>Period</span></div>
-        <div class="lr"><div><b>Research Collaborator</b><small>Operationalizing interpersonal communication constructs — self-disclosure, partner responsiveness, narrative structure — as measurable features of group dialogue.<br>Leading the audio analysis, building a speech pipeline (MFA, WhisperX, acoustic features) to test how prosody complements text-based measures.</small></div><div>MIT Media Lab<br>Center for Constructive Communication<br>Cambridge, MA</div><div>May 2026 —<br>Present</div></div>
-        <div class="lr"><div><b>AI Research Scientist Intern</b><small>Developed speech AI and LLM systems; extracted discourse and conversational features.<br>Implemented and fine-tuned deep models in PyTorch for speech &amp; language processing.</small></div><div>NAVER Cloud<br>HCX Application AI Modeling Team<br>Seongnam</div><div>Nov 2025 —<br>May 2026</div></div>
-        <div class="lr"><div><b>Graduate Research Assistant</b><small>Independent research on AI-mediated communication and computational media.<br>Interdisciplinary collaborations across communication, HCI, and AI.</small></div><div>Ewha Womans University<br>Division of Communication &amp; Media<br>Seoul</div><div>Mar 2025 —<br>Present</div></div>
-        <div class="lr"><div><b>Teaching Assistant</b><small>Supported instruction for Communication and Society.</small></div><div>Ewha Womans University<br>Communication and Society<br>Seoul</div><div>2025</div></div>
+        <div class="lr"><div><b>Research Collaborator</b><small>Operationalizing interpersonal communication constructs — self-disclosure, partner responsiveness, narrative structure — as measurable features of group dialogue.<br>Leading the audio analysis, building a speech pipeline (MFA, WhisperX, acoustic features) to test how prosody complements text-based measures.</small></div><div>MIT Media Lab<span class="br"></span>Center for Constructive Communication<span class="br"></span>Cambridge, MA</div><div>May 2026 —<span class="br dash"></span>Present</div></div>
+        <div class="lr"><div><b>AI Research Scientist Intern</b><small>Developed speech AI and LLM systems; extracted discourse and conversational features.<br>Implemented and fine-tuned deep models in PyTorch for speech &amp; language processing.</small></div><div>NAVER Cloud<span class="br"></span>HCX Application AI Modeling Team<span class="br"></span>Seongnam</div><div>Nov 2025 —<span class="br dash"></span>May 2026</div></div>
+        <div class="lr"><div><b>Graduate Research Assistant</b><small>Independent research on AI-mediated communication and computational media.<br>Interdisciplinary collaborations across communication, HCI, and AI.</small></div><div>Ewha Womans University<span class="br"></span>Division of Communication &amp; Media<span class="br"></span>Seoul</div><div>Mar 2025 —<span class="br dash"></span>Present</div></div>
+        <div class="lr"><div><b>Teaching Assistant</b><small>Supported instruction for Communication and Society.</small></div><div>Ewha Womans University<span class="br"></span>Communication and Society<span class="br"></span>Seoul</div><div>2025</div></div>
       </div>
     </div>
-    <div class="win-hscroll" aria-hidden="true"></div>
+      <div class="vs" aria-hidden="true"><i class="up"></i><i class="thumb"></i><i class="down"></i></div><div class="hs" aria-hidden="true"><i class="lt"></i><i class="rt"></i></div><div class="grow" aria-hidden="true"></div>
+    </div>
   </div>
 </section>
 
@@ -147,7 +145,7 @@
   <div class="win">
     <div class="win-title"><button class="box close" data-home aria-label="Close"></button><h2>instruments of the trade</h2><span class="box zoom" aria-hidden="true"></span><span class="box collapse" aria-hidden="true"></span></div>
     <div class="win-info">4 groups, 19 tools</div>
-    <div class="win-body">
+    <div class="win-main"><div class="win-body">
       <div class="list cols-2">
         <div class="lh"><span>Category</span><span>Tools</span></div>
         <div class="lr"><div><b>Programming</b></div><div class="big">Python · R · JavaScript · LaTeX</div></div>
@@ -156,7 +154,8 @@
         <div class="lr"><div><b>Audio &amp; Creative</b></div><div class="big">Ableton Live · Logic Pro · Melodyne · Adobe Photoshop · Microsoft Office</div></div>
       </div>
     </div>
-    <div class="win-hscroll" aria-hidden="true"></div>
+      <div class="vs" aria-hidden="true"><i class="up"></i><i class="thumb"></i><i class="down"></i></div><div class="hs" aria-hidden="true"><i class="lt"></i><i class="rt"></i></div><div class="grow" aria-hidden="true"></div>
+    </div>
   </div>
 </section>
 
@@ -165,7 +164,7 @@
   <div class="win">
     <div class="win-title"><button class="box close" data-home aria-label="Close"></button><h2>honors &amp; awards</h2><span class="box zoom" aria-hidden="true"></span><span class="box collapse" aria-hidden="true"></span></div>
     <div class="win-info">7 items</div>
-    <div class="win-body">
+    <div class="win-main"><div class="win-body">
       <div class="list cols-3">
         <div class="lh"><span>Award</span><span>Awarded by</span><span>Year</span></div>
         <div class="lr"><div><b>Excellence Ewha-in Scholarship</b><small>$10,000</small></div><div>Ewha Womans University</div><div>2025–2026</div></div>
@@ -177,7 +176,8 @@
         <div class="lr"><div><b>Highest Honors</b><small>all semesters</small></div><div>Ewha Womans University</div><div>2021–2025</div></div>
       </div>
     </div>
-    <div class="win-hscroll" aria-hidden="true"></div>
+      <div class="vs" aria-hidden="true"><i class="up"></i><i class="thumb"></i><i class="down"></i></div><div class="hs" aria-hidden="true"><i class="lt"></i><i class="rt"></i></div><div class="grow" aria-hidden="true"></div>
+    </div>
   </div>
 </section>
 
@@ -210,12 +210,13 @@
   <div class="win">
     <div class="win-title"><button class="box close" data-home aria-label="Close"></button><h2>guestbook ♪</h2><span class="box zoom" aria-hidden="true"></span><span class="box collapse" aria-hidden="true"></span></div>
     <div class="win-info" id="gb-info">loading entries…</div>
-    <div class="win-body">
+    <div class="win-main"><div class="win-body">
       <div class="list cols-gb" id="gb-list">
         <div class="lh"><span>Nickname</span><span>Message</span><span>Date</span></div>
       </div>
     </div>
-    <div class="win-hscroll" aria-hidden="true"></div>
+      <div class="vs" aria-hidden="true"><i class="up"></i><i class="thumb"></i><i class="down"></i></div><div class="hs" aria-hidden="true"><i class="lt"></i><i class="rt"></i></div><div class="grow" aria-hidden="true"></div>
+    </div>
   </div>
 </section>
 
@@ -224,18 +225,11 @@
   <div class="gba" id="say-gba">
     <img class="gba-img" src="./assets/v2/gba.png" alt="">
     <div class="lcd lcd-msg">
-      <div class="lcd-in">
-        <div class="msg-status" aria-hidden="true"><span>✉ ((•)) oo</span><span>🔔︎ 22:14</span></div>
-        <p class="msg-from">olivier:</p>
-        <p class="msg-text">open to research collabs, speaking invitations &amp; good conversations ♡</p>
-        <ul class="msg-menu">
-          <li><a href="mailto:olivierjiyounjung@gmail.com">@ email</a></li>
-          <li><a href="https://www.linkedin.com/in/olivier-jiyoun-jung-290287389" target="_blank" rel="noopener">LinkedIn</a></li>
-          <li><a href="./CV_OJJ.pdf" target="_blank">▤ CV_OJJ.pdf</a></li>
-        </ul>
-        <div class="msg-soft"><span>Select</span><button data-home>Back</button></div>
-      </div>
-      <div class="glass"></div>
+      <img src="./assets/v2/lcd-say.jpg" alt="olivier: open to research collabs, speaking invitations and good conversations">
+      <a class="row r-email" href="mailto:olivierjiyounjung@gmail.com"><span class="sr">Email</span></a>
+      <a class="row r-li" href="https://www.linkedin.com/in/olivier-jiyoun-jung-290287389" target="_blank" rel="noopener"><span class="sr">LinkedIn</span></a>
+      <a class="row r-cv" href="./CV_OJJ.pdf" target="_blank"><span class="sr">CV (PDF)</span></a>
+      <button class="row r-back" data-home><span class="sr">Back</span></button>
     </div>
     <button class="hot hot-a" data-home aria-label="A button — back home"></button>
     <button class="hot hot-b" data-home aria-label="B button — back home"></button>
