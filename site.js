@@ -160,6 +160,7 @@ function show(id, { buzz = false } = {}) {
   } else {
     $$('#site .view').forEach(v => v.classList.toggle('on', v === el));
     window.scrollTo(0, 0);
+    fit();
   }
   current = id;
   if (id === 'say' && buzz) {
@@ -168,16 +169,6 @@ function show(id, { buzz = false } = {}) {
   }
   if (id === 'wall') loadGuestbook();
 
-/* the Finder scroll thumb follows the list */
-$$('.win-body').forEach(body => {
-  const thumb = body.parentElement.querySelector('.vs .thumb');
-  if (!thumb) return;
-  body.addEventListener('scroll', () => {
-    const track = body.clientHeight - 64 - thumb.offsetHeight - 8;
-    const r = body.scrollTop / Math.max(1, body.scrollHeight - body.clientHeight);
-    thumb.style.top = (38.5 + Math.max(0, track) * r) + 'px';
-  }, { passive: true });
-});
 }
 const goHome = () => (isMobile() ? window.scrollTo({ top: 0, behavior: 'smooth' }) : show('home'));
 
@@ -303,3 +294,58 @@ $('#gb-form').addEventListener('submit', e => {
 });
 
 loadGuestbook();
+
+/* ─── desktop: scale each Figma frame down to fit the window ─── */
+function fit() {
+  $$('.stage').forEach(st => {
+    if (isMobile()) { st.style.zoom = ''; return; }
+    if (!st.offsetParent) return;
+    st.style.zoom = 1;
+    const r = st.getBoundingClientRect();
+    st.style.zoom = Math.min(1, (innerHeight - 32) / r.height, (innerWidth - 32) / r.width);
+  });
+}
+addEventListener('resize', fit);
+addEventListener('load', fit);
+if (document.fonts) document.fonts.ready.then(fit);
+
+/* ─── working Finder scrollbars ─── */
+$$('.win-main').forEach(main => {
+  const body = main.querySelector('.win-body');
+  const vs = main.querySelector('.vs'), thumb = vs.querySelector('.thumb');
+  const up = vs.querySelector('.up'), down = vs.querySelector('.down');
+  const lt = main.querySelector('.hs .lt'), rt = main.querySelector('.hs .rt');
+  const range = () => Math.max(0, vs.clientHeight - 64 - thumb.offsetHeight - 6);
+  const sync = () => {
+    const max = body.scrollHeight - body.clientHeight;
+    thumb.style.top = (38.5 + range() * (max > 0 ? body.scrollTop / max : 0)) + 'px';
+  };
+  body.addEventListener('scroll', sync, { passive: true });
+  addEventListener('resize', sync);
+  const hold = (el, fn) => {
+    let t;
+    const stop = () => clearInterval(t);
+    el.addEventListener('pointerdown', e => { e.preventDefault(); fn(); t = setInterval(fn, 60); });
+    ['pointerup', 'pointerleave', 'pointercancel'].forEach(ev => el.addEventListener(ev, stop));
+  };
+  hold(up, () => body.scrollBy({ top: -40 }));
+  hold(down, () => body.scrollBy({ top: 40 }));
+  hold(lt, () => body.scrollBy({ left: -40 }));
+  hold(rt, () => body.scrollBy({ left: 40 }));
+  vs.addEventListener('pointerdown', e => {           // click the track to page
+    if (e.target !== vs) return;
+    const tr = thumb.getBoundingClientRect();
+    body.scrollBy({ top: (e.clientY < tr.top ? -1 : 1) * body.clientHeight * 0.9, behavior: 'smooth' });
+  });
+  thumb.addEventListener('pointerdown', e => {        // drag the thumb
+    e.preventDefault(); e.stopPropagation();
+    thumb.setPointerCapture(e.pointerId);
+    const z = parseFloat(getComputedStyle(main.closest('.stage') || main).zoom) || 1;
+    const y0 = e.clientY, s0 = body.scrollTop, max = body.scrollHeight - body.clientHeight;
+    const move = ev => { body.scrollTop = s0 + ((ev.clientY - y0) / z) / Math.max(1, range()) * max; };
+    const end = () => { thumb.removeEventListener('pointermove', move); thumb.removeEventListener('pointerup', end); };
+    thumb.addEventListener('pointermove', move);
+    thumb.addEventListener('pointerup', end);
+  });
+  sync();
+});

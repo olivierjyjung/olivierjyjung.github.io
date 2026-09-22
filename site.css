@@ -84,7 +84,7 @@ button.box:hover { background: var(--pink); }
 .win-main { display: grid; grid-template-columns: minmax(0, 1fr) 32px; grid-template-rows: auto 32px; margin: 0 8px 8px; }
 .win-body { background: #fff; border: 1.5px solid var(--pink); border-right: 0; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: none; }
 .win-body::-webkit-scrollbar { display: none; }
-.vs, .hs, .grow { position: relative; background: var(--panel); border: 1.5px solid var(--pink); }
+.vs, .hs, .grow { position: relative; user-select: none; background: var(--panel); border: 1.5px solid var(--pink); }
 .hs { border-top: 0; } .grow { border-top: 0; border-left: 0; }
 .vs i, .hs i { position: absolute; width: 32px; height: 32px; background: var(--panel); border: 1.5px solid var(--choc); box-shadow: inset 2px 2px 0 #fff, inset -2px -2px 0 var(--pink); }
 .vs .up { left: -1.5px; top: -1.5px; } .vs .down { left: -1.5px; bottom: -1.5px; }
@@ -197,6 +197,9 @@ button.box:hover { background: var(--pink); }
 /* ═══ Mobile: one long scrolling page ═══ */
 @media (max-width: 720px) {
   .view { padding: 16px; }
+  .stage { width: 100%; display: flex; flex-direction: column; align-items: stretch; }
+  .stage-home .win-home, .stage-home .alert { position: relative; left: auto; top: auto; }
+  .picto-view .stage { align-items: center; }
   body:not(.booting) #site .view { display: flex; min-height: 0; animation: none; }
   body:not(.booting) #site #home { padding-top: 28px; }
   .gba { height: auto; width: min(92vw, 380px); }
@@ -283,4 +286,43 @@ button.box:hover { background: var(--pink); }
   #guestbook .stars { gap: 12px; }
   #guestbook .stars button { width: 44px; height: 40px; }
   #guestbook .kb-wrap { width: 100%; margin-top: 12px; }
+}
+
+/* ═══ Desktop stage: each screen is a Figma frame, scaled down to fit the window ═══ */
+@media (min-width: 721px) {
+  #site .view { padding: 16px; }
+  .stage { width: 1024px; flex: none; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 32px 0; }
+  .stage-home { position: relative; height: 768px; padding: 0; display: block; }
+  .stage-home .win-home { position: absolute; left: 102px; top: 127px; width: 820px; }
+  .stage-home .alert { left: 658px; top: 550px; }
+  .picto-view .stage { background: var(--bg); }
+  .finder-view .win-body { max-height: 560px; }
+  .picto { width: 1000px; }
+  #guestbook .picto { width: 832px; }
+}
+
+/* live Finder scrollbars */
+.vs i, .hs i { cursor: inherit; }
+.vs .up, .vs .down, .hs .lt, .hs .rt, .vs .thumb { pointer-events: auto; }
+.vs .up:active, .vs .down:active, .hs .lt:active, .hs .rt:active { box-shadow: inset -2px -2px 0 #fff, inset 2px 2px 0 var(--pink); background-color: var(--pink); }
+.vs .thumb { touch-action: none; }
+
+/* zoom box: inner square dead centre */
+.box.zoom::after { left: 50%; top: 50%; transform: translate(-50%, -50%); }
+
+/* mocha cursors ("mocha mouse cursor" by @a cup of di) */
+html, body { cursor: url('./assets/v2/cursor-mocha.png') 1 1, auto; }
+a, button, [data-go], [data-home], .folder, .row, .hot, .vs i, .hs i, input { cursor: url('./assets/v2/cursor-mocha-hand.png') 4 1, pointer; }
+input { cursor: text; }
+
+/* ─── centre every glyph inside its box ─── */
+.vs .up::after, .vs .down::after, .hs .lt::after, .hs .rt::after { left: 50% !important; top: 50% !important; transform: translate(-50%, -50%); }
+.vs .thumb { background-position: center !important; background-size: 16px 16.5px !important; }
+.box.collapse::after { left: 50%; top: 50%; transform: translate(-50%, -50%); }
+.grow::after { left: 50%; top: 50%; transform: translate(-50%, -50%); }
+@media (max-width: 720px) { .vs .thumb { background-size: 10px 11.5px !important; } }
+
+/* guestbook: tool column centred between the memo and the keyboard */
+@media (min-width: 721px) {
+  #guestbook .tools { top: calc(38px + (100% - 38px) / 2); bottom: auto; height: auto; transform: translateY(-50%); }
 }
