@@ -230,11 +230,11 @@ button.box:hover { background: var(--pink); }
   .lr { display: block; padding: 10px 10px 10px 12px; }
   .lr > div { padding: 0; background: none !important; display: inline; font-size: 11px; line-height: 16px; color: var(--choc); }
   .lr > div:first-child { display: block; padding-left: 0; color: var(--ink); margin-bottom: 4px; }
-  .lr > div:not(:first-child):not(:last-child)::after { content: ' · '; }
+  .lr > div:not(:first-child):not(:last-child)::after { content: ', '; }
   .lr > div.na { display: none; }
   .lr b, .cols-works .lr b, .cols-gb .lr b { font-size: 14px; line-height: 19px; }
   .lr small { font-size: 11px; line-height: 15px; margin-top: 3px; }
-  .lr .br::before { content: ' · '; white-space: normal; }
+  .lr .br::before { content: ', '; white-space: normal; }
   .lr .br.dash::before { content: ' '; }
   .lr .big { font-size: 12px; line-height: 17px; }
   .doc > div:first-child, .gb-row > div:first-child { padding-left: 20px; }
@@ -394,7 +394,7 @@ button.box.close:hover, .xbox:hover, .a-close:hover { filter: brightness(.95) sa
 
 /* ─── mobile polish ─── */
 @media (max-width: 720px) {
-  /* works: status · date · link line centred */
+  /* works: status, date, link line centred */
   .cols-works .lr { text-align: center; }
   .cols-works .lr > div:first-child { text-align: left; }
   /* guestbook rate: a clear size down so everything fits */
