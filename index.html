@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Pixelify+Sans:wght@500;600&family=Roboto+Condensed:ital,wght@1,800&family=Arimo:ital,wght@1,700&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="./assets/v2/gba.png">
-<link rel="stylesheet" href="./site.css?v=20260922234842">
+<link rel="stylesheet" href="./site.css?v=20261109">
 </head>
 <body class="booting">
 
@@ -41,7 +41,7 @@
         <a class="folder" href="#about" data-go="about"><img src="./assets/v2/folder-1.png" alt=""><span>about me.1</span></a>
         <a class="folder" href="#academic" data-go="academic"><img src="./assets/v2/folder-2.png" alt=""><span>academic path.2</span></a>
         <a class="folder" href="#works" data-go="works"><img src="./assets/v2/folder-3.png" alt=""><span>selected works.3</span></a>
-        <a class="folder" href="#research" data-go="research"><img src="./assets/v2/folder-4.png" alt=""><span>research &amp; work.4</span></a>
+        <a class="folder" href="./CV_OJJ.pdf" target="_blank" rel="noopener"><img src="./assets/v2/folder-4.png" alt=""><span>full cv.4</span></a>
         <a class="folder" href="#instruments" data-go="instruments"><img src="./assets/v2/folder-5.png" alt=""><span>instruments of<br>the trade.5</span></a>
         <a class="folder" href="#honors" data-go="honors"><img src="./assets/v2/folder-6.png" alt=""><span>honors &amp; awards.6</span></a>
         <a class="folder" href="#guestbook" data-go="guestbook"><img src="./assets/v2/folder-7.png" alt=""><span>guestbook.7</span></a>
@@ -69,9 +69,9 @@
       <div class="memo memo-about">
         <div class="memo-row memo-top"><span class="tag">about me ♡</span></div>
         <div class="memo-text">
-          <p>My research studies the quality of human conversation — and the points where it breaks down — through speech.</p>
-          <p>I model dialogue from two directions at once: what is said, through language and LLM-based analysis, and how it is said, through prosody and timing. Each direction captures what the other misses, and reading them together surfaces what neither shows alone: depth and responsiveness in facilitated group dialogue, early traces of cognitive and affective decline in how a person talks, and the shifts in trust and memory that follow when a voice turns out to be synthetic.</p>
-          <p>Working across Speech and Language Processing, Human–AI Interaction, and Computational Communication, I build interpretable models to understand how people communicate, connect, and respond through speech.</p>
+          <p>I study how people talk to each other: what they say, and how they say it.</p>
+          <p>I combine language analysis with prosody and timing to build computational models that stay interpretable. That work has taken me from depth and responsiveness in facilitated group conversations to early signs of cognitive and affective decline in how a person talks.</p>
+          <p>I also run behavioral experiments on what happens to trust and memory when a voice turns out to be synthetic.</p>
           <p>Speech &amp; Language Processing · Human–AI Interaction · Computational Communication</p>
         </div>
       </div>
@@ -90,7 +90,7 @@
     <div class="win-main"><div class="win-body">
       <div class="list cols-3">
         <div class="lh"><span>Degree</span><span>Institution</span><span>Period</span></div>
-        <div class="lr"><div><b>M.A., Communication &amp; Media</b><small>Advisor: Prof. Jiyoung Kang<br>GPA 4.44 / 4.5 · expected Aug 2027</small></div><div>Ewha Womans University<span class="br"></span>Seoul</div><div>Mar 2025 —<span class="br dash"></span>Aug 2027</div></div>
+        <div class="lr"><div><b>M.A., Communication &amp; Media</b><small>Advisor: Prof. Jiyoung Kang<br>GPA 4.42 / 4.5 · expected Aug 2027</small></div><div>Ewha Womans University<span class="br"></span>Seoul</div><div>Mar 2025 —<span class="br dash"></span>Aug 2027</div></div>
         <div class="lr"><div><b>Exchange Student, Applied Science</b></div><div>University of Applied Sciences and Arts Northwestern Switzerland (FHNW)<span class="br"></span>Basel</div><div>Aug 2023 —<span class="br dash"></span>Feb 2024</div></div>
         <div class="lr"><div><b>B.A., Communication &amp; Media</b><small>Scranton Honors Program<br>GPA 4.32 / 4.5 · Summa Cum Laude</small></div><div>Ewha Womans University<span class="br"></span>Seoul</div><div>Mar 2021 —<span class="br dash"></span>Feb 2025</div></div>
       </div>
@@ -101,47 +101,51 @@
 </div>
 </section>
 
-<!-- ═══ Selected works ═══ -->
+<!-- ═══ Selected works: project cards ═══ -->
 <section id="works" class="view finder-view" aria-label="Selected works">
 <div class="stage">
   <div class="win">
     <div class="win-title"><button class="box close" data-home aria-label="Close"></button><h2>selected works ♪</h2><span class="box zoom" aria-hidden="true"></span><span class="box collapse" aria-hidden="true"></span></div>
-    <div class="win-info">10 items, 3 with links</div>
+    <div class="win-info">3 projects, 4 more works</div>
     <div class="win-main"><div class="win-body">
+      <div class="projects">
+        <article class="pj">
+          <div class="pj-art pj-art-depth" aria-hidden="true"></div>
+          <div class="pj-body">
+            <h3>What makes a conversation deep?</h3>
+            <div class="pj-org">MIT Media Lab · Center for Constructive Communication<br>May 2026 — Present</div>
+            <p>A framework for measuring depth in facilitated group dialogue, tied to how people sound through prosody and timing.</p>
+            <ul class="pj-stats"><li>215 conversations</li><li>7 constructs</li></ul>
+          </div>
+        </article>
+        <article class="pj">
+          <div class="pj-art pj-art-speech" aria-hidden="true"></div>
+          <div class="pj-body">
+            <h3>Hearing decline in speech</h3>
+            <div class="pj-org">NAVER Cloud · AI Modeling – Speech Team<br>Nov 2025 — Present</div>
+            <p>Speech and language models for early detection of cognitive decline, now extending to depression in clinical interviews.</p>
+            <ul class="pj-stats"><li>90.14% F1 on ADReSSo</li><li>prior best 87.32%</li><li>2 papers at INTERSPEECH 2026</li></ul>
+            <div class="pj-links"><a href="https://arxiv.org/abs/2606.30675" target="_blank" rel="noopener">arXiv (fusion) »</a><a href="https://arxiv.org/abs/2606.28445" target="_blank" rel="noopener">arXiv (LoRA) »</a><a href="https://clova.ai/tech-blog/%EB%AA%A9%EC%86%8C%EB%A6%AC%EC%97%90-%EB%8B%B4%EA%B8%B4-%EC%9D%B8%EC%A7%80-%EA%B1%B4%EA%B0%95%EC%9D%98-%EB%8B%A8%EC%84%9C-%EC%B9%98%EB%A7%A4-%EC%A1%B0%EA%B8%B0-%EC%8B%A0%ED%98%B8%EB%A5%BC-%EC%B0%BE" target="_blank" rel="noopener">CLOVA Tech Blog »</a></div>
+          </div>
+        </article>
+        <article class="pj">
+          <div class="pj-art pj-art-voice" aria-hidden="true"></div>
+          <div class="pj-body">
+            <h3>When a voice turns out to be synthetic</h3>
+            <div class="pj-org">Ewha Womans University<br>Independent research</div>
+            <p>Experiments on how people perceive and remember AI-generated speech. Labeled AI exposure protects memory without improving discrimination of deepfake audio.</p>
+            <ul class="pj-stats"><li>CHI 2027 · under review</li><li>APCAM 2026 · presented</li></ul>
+          </div>
+        </article>
+      </div>
+      <div class="pj-more-head">more works</div>
       <div class="list cols-works">
-        <div class="lh"><span>Name</span><span>Status</span><span>Date</span><span>Link</span></div>
-        <div class="lr doc on"><div><b>Listening Between the Lines: Joint Learning of ASR Embeddings and LLM-Augmented Linguistics for Dementia Detection</b><small>INTERSPEECH 2026</small></div><div>Accepted</div><div>2026</div><div><a href="https://arxiv.org/abs/2606.30675" target="_blank" rel="noopener">arXiv »</a></div></div>
-        <div class="lr doc on"><div><b>LoRA-Tuned Large Language Models for Dementia Detection via Multi-View Speech-Derived Features</b><small>INTERSPEECH 2026</small></div><div>Accepted</div><div>2026</div><div><a href="https://arxiv.org/abs/2606.28445" target="_blank" rel="noopener">arXiv »</a></div></div>
-        <div class="lr doc on"><div><b>South Korean V-Tuber Visual Conventions within Korea–Japan Cultural Circuits</b><small><i>Asian Communication Research</i>, 23(2)</small></div><div>Published</div><div>2026</div><div><a href="https://doi.org/10.20879/acr.2026.23.014" target="_blank" rel="noopener">DOI »</a></div></div>
-        <div class="lr doc on"><div><b>Labeled AI Covers Reduce False Memories of Unlabeled Ones Without Improving Auditory Discrimination</b><small>Auditory Perception, Cognition, and Action Meeting (APCAM 2026)</small></div><div>Presented</div><div>2026</div><div class="na">—</div></div>
-        <div class="lr doc on"><div><b>Comparing Neural Responses to Human and Social Robot Interlocutors: An EEG Study on CASA and Perceived Pleasantness, Importance, and Cooperativeness</b><small>International Communication Association (ICA) 76th Annual Conference</small></div><div>Presented</div><div>2026</div><div class="na">—</div></div>
-        <div class="lr doc on"><div><b>Analyzing V-Tuber Visual Tropes in South Korea Through Korea–Japan Media Circuits</b><small>National Communication Association (NCA) 111th Annual Convention</small></div><div>Presented</div><div>2025</div><div class="na">—</div></div>
-        <div class="lr doc"><div><b>Hearing Is Not Remembering: Labeled AI Exposure Protects Memory Without Improving Discrimination of Deepfake Audio</b><small>ACM CHI 2027</small></div><div>Under Review</div><div>2027</div><div class="na">—</div></div>
-        <div class="lr doc"><div><b>Toward a Neurocognitive Account of CASA: EEG Evidence from Human and ChatGPT-Enabled Social Robot Conversation</b><small><i>Computers in Human Behavior</i></small></div><div>Under Review</div><div>2026</div><div class="na">—</div></div>
-        <div class="lr doc"><div><b>How Policy Shapes Media Narratives of Environmental Risk: A Nine-Year Analysis of Particulate Matter News Coverage in South Korea</b></div><div>In Progress</div><div>2026</div><div class="na">—</div></div>
-        <div class="lr doc"><div><b>Multimodal Depression Detection from Clinical Interviews via Speech-Text Feature Fusion</b></div><div>In Progress</div><div class="na">—</div><div class="na">—</div></div>
+        <div class="lr doc on"><div><b>South Korean V-Tuber Visual Conventions within Korea–Japan Cultural Circuits</b><small><i>Asian Communication Research</i>, 23(2) · presented at NCA 2025</small></div><div>Published</div><div>2026</div><div><a href="https://doi.org/10.20879/acr.2026.23.014" target="_blank" rel="noopener">DOI »</a></div></div>
+        <div class="lr doc on"><div><b>Toward a Neurocognitive Account of CASA: EEG Evidence from Human and ChatGPT-Enabled Social Robot Conversation</b><small><i>International Journal of Human-Computer Interaction</i> · presented at ICA 2026</small></div><div>Accepted</div><div>2026</div><div class="na">—</div></div>
+        <div class="lr doc"><div><b>How Policy Shapes Media Narratives of Environmental Risk: A Nine-Year Analysis of Particulate Matter News Coverage in South Korea</b></div><div>Under Review</div><div>2026</div><div class="na">—</div></div>
+        <div class="lr doc"><div><b>How AI Chatbots Present Alternatives: Effects of Sequential vs. Simultaneous Presentation and a Visible Idea Tree on Users' Decision Experience</b></div><div>In Progress</div><div class="na">—</div><div class="na">—</div></div>
       </div>
-    </div>
-      <div class="vs" aria-hidden="true"><i class="up"></i><i class="thumb"></i><i class="down"></i></div><div class="hs" aria-hidden="true"><i class="lt"></i><i class="rt"></i></div><div class="grow" aria-hidden="true"></div>
-    </div>
-  </div>
-</div>
-</section>
-
-<!-- ═══ Research & work ═══ -->
-<section id="research" class="view finder-view" aria-label="Research and work">
-<div class="stage">
-  <div class="win">
-    <div class="win-title"><button class="box close" data-home aria-label="Close"></button><h2>research &amp; work</h2><span class="box zoom" aria-hidden="true"></span><span class="box collapse" aria-hidden="true"></span></div>
-    <div class="win-info">4 items, 2 current</div>
-    <div class="win-main"><div class="win-body">
-      <div class="list cols-3">
-        <div class="lh"><span>Role</span><span>Organization</span><span>Period</span></div>
-        <div class="lr"><div><b>Research Collaborator</b><small>Operationalizing interpersonal communication constructs — self-disclosure, partner responsiveness, narrative structure — as measurable features of group dialogue.<br>Leading the audio analysis, building a speech pipeline to test how prosody complements text-based measures.</small></div><div>MIT Media Lab<span class="br"></span>Center for Constructive Communication<span class="br"></span>Cambridge, MA</div><div>May 2026 —<span class="br dash"></span>Present</div></div>
-        <div class="lr"><div><b>AI Research Scientist Intern</b><small>Developed speech AI and LLM systems; extracted discourse and conversational features.<br>Implemented and fine-tuned deep models in PyTorch for speech &amp; language processing.</small></div><div>NAVER Cloud<span class="br"></span>HCX Application AI Modeling Team<span class="br"></span>Seongnam</div><div>Nov 2025 —<span class="br dash"></span>May 2026</div></div>
-        <div class="lr"><div><b>Graduate Research Assistant</b><small>Independent research on AI-mediated communication and computational media.<br>Interdisciplinary collaborations across communication, HCI, and AI.</small></div><div>Ewha Womans University<span class="br"></span>Division of Communication &amp; Media<span class="br"></span>Seoul</div><div>Mar 2025 —<span class="br dash"></span>Present</div></div>
-        <div class="lr"><div><b>Teaching Assistant</b><small>Supported instruction for Communication and Society.</small></div><div>Ewha Womans University<span class="br"></span>Communication and Society<span class="br"></span>Seoul</div><div>2025</div></div>
-      </div>
+      <a class="pj-cv" href="./CV_OJJ.pdf" target="_blank" rel="noopener">full publication list in my CV (PDF) »</a>
     </div>
       <div class="vs" aria-hidden="true"><i class="up"></i><i class="thumb"></i><i class="down"></i></div><div class="hs" aria-hidden="true"><i class="lt"></i><i class="rt"></i></div><div class="grow" aria-hidden="true"></div>
     </div>
@@ -154,14 +158,15 @@
 <div class="stage">
   <div class="win">
     <div class="win-title"><button class="box close" data-home aria-label="Close"></button><h2>instruments of the trade</h2><span class="box zoom" aria-hidden="true"></span><span class="box collapse" aria-hidden="true"></span></div>
-    <div class="win-info">4 groups, 19 tools</div>
+    <div class="win-info">5 groups, 27 tools</div>
     <div class="win-main"><div class="win-body">
       <div class="list cols-2">
         <div class="lh"><span>Category</span><span>Tools</span></div>
-        <div class="lr"><div><b>Programming</b></div><div class="big">Python · R · JavaScript · LaTeX</div></div>
-        <div class="lr"><div><b>Machine Learning</b></div><div class="big">PyTorch · Deep Learning · NLP · LLM Fine-tuning · Speech Processing · Computer Vision</div></div>
-        <div class="lr"><div><b>Research</b></div><div class="big">SPSS · PsychoPy · EEG · Unreal Engine (VR)</div></div>
-        <div class="lr"><div><b>Audio &amp; Creative</b></div><div class="big">Ableton Live · Logic Pro · Melodyne · Adobe Photoshop · Microsoft Office</div></div>
+        <div class="lr"><div><b>Programming</b></div><div class="big">Python · R · JavaScript · LaTeX · Docker</div></div>
+        <div class="lr"><div><b>Machine Learning &amp; NLP</b></div><div class="big">PyTorch · Hugging Face Transformers · scikit-learn · LLM Fine-tuning (LoRA) · RAG · Computer Vision</div></div>
+        <div class="lr"><div><b>Speech &amp; Audio</b></div><div class="big">ASR (Whisper) · Speech Emotion Recognition · Prosodic Analysis (Praat) · Audio LLMs</div></div>
+        <div class="lr"><div><b>Research Methods</b></div><div class="big">Mixed-effects Models · Experimental &amp; Survey Design · Content Analysis · PsychoPy · SPSS · MNE-Python (EEG)</div></div>
+        <div class="lr"><div><b>Audio &amp; Creative</b></div><div class="big">Ableton Live · Melodyne · Logic Pro · Unreal Engine (VR) · Adobe Premiere Pro · Adobe Photoshop</div></div>
       </div>
     </div>
       <div class="vs" aria-hidden="true"><i class="up"></i><i class="thumb"></i><i class="down"></i></div><div class="hs" aria-hidden="true"><i class="lt"></i><i class="rt"></i></div><div class="grow" aria-hidden="true"></div>
@@ -175,11 +180,13 @@
 <div class="stage">
   <div class="win">
     <div class="win-title"><button class="box close" data-home aria-label="Close"></button><h2>honors &amp; awards</h2><span class="box zoom" aria-hidden="true"></span><span class="box collapse" aria-hidden="true"></span></div>
-    <div class="win-info">7 items</div>
+    <div class="win-info">9 items</div>
     <div class="win-main"><div class="win-body">
       <div class="list cols-3">
         <div class="lh"><span>Award</span><span>Awarded by</span><span>Year</span></div>
-        <div class="lr"><div><b>Excellence Ewha-in Scholarship</b><small>$10,000</small></div><div>Ewha Womans University</div><div>2025–2026</div></div>
+        <div class="lr"><div><b>SSK Graduate Assistantship</b><small>$6,700 / yr</small></div><div>Ewha Womans University</div><div>2026–2027</div></div>
+        <div class="lr"><div><b>SSK Travel Support</b><small>INTERSPEECH 2026 · $750</small></div><div>Ewha Womans University</div><div>2026</div></div>
+        <div class="lr"><div><b>Excellence Ewha-in Scholarship</b><small>$10,000</small></div><div>Ewha Womans University</div><div>2025–2027</div></div>
         <div class="lr"><div><b>Summa Cum Laude</b></div><div>Ewha Womans University</div><div>2025</div></div>
         <div class="lr"><div><b>Student Travel Grant</b><small>NCA 111th Convention</small></div><div>National Communication Association</div><div>2025</div></div>
         <div class="lr"><div><b>Departmental Academic Excellence Scholarship</b></div><div>Ewha Womans University</div><div>2024</div></div>
@@ -259,6 +266,6 @@
 
 </main>
 
-<script src="./site.js?v=20260922234842"></script>
+<script src="./site.js?v=20261109"></script>
 </body>
 </html>

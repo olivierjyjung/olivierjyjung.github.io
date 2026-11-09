@@ -11,11 +11,16 @@
 \usepackage{longtable}
 \usepackage{setspace}
 \usepackage[T1]{fontenc}
-\usepackage{microtype}[tracking=true]
+\usepackage[tracking=true]{microtype}
 \SetTracking{encoding=*}{-20}  % Tighter letter spacing
 
 % Bold without the extended (wide) cut
 \renewcommand{\bfdefault}{b}
+
+% Name and section titles: TeX Gyre Pagella (Palatino-style serif), regular weight
+\newcommand{\headingfont}{\fontfamily{qpl}\fontseries{m}\selectfont}
+% Letterspacing for small-caps titles
+\newcommand{\headingtitle}[1]{\textls[80]{#1}}
 
 % Line spacing
 \setstretch{1.15}
@@ -36,10 +41,11 @@
 }
 
 % Section formatting
-\titleformat{\section}[block]{\large\bfseries\color{navyblue}\filcenter}{}{0em}{\MakeUppercase}[\vspace{-8pt}\textcolor{rulegray}{\titlerule[0.4pt]}]
+\titleformat{\section}[block]{\headingfont\large\scshape\color{navyblue}\filcenter}{}{0em}{\headingtitle}[\vspace{-8pt}\textcolor{rulegray}{\titlerule[0.4pt]}]
 \titlespacing{\section}{0pt}{11pt}{7pt}
 
 % Subsection formatting
+\titleformat{\subsection}{\headingfont\large\scshape}{}{0em}{\headingtitle}
 \titlespacing{\subsection}{0pt}{8pt}{4pt}
 
 % Remove page numbers
@@ -59,11 +65,11 @@
     \cvrole{#3}{#4}%
 }
 % Compact one-line entry: organization, role, dates
-\newcommand{\cvline}[3]{\noindent\textbf{#1} $\cdot$ \textit{#2} \hfill \textit{#3}}
+\newcommand{\cvactivity}[3]{\noindent\textbf{#1} \textit{#2} \hfill \textit{#3}}
 \begin{document}
 
 \begin{center}
-    {\LARGE\textbf{Olivier Jiyoun Jung}}\\[6pt]
+    {\LARGE\headingfont Olivier Jiyoun Jung}\\[6pt]
     \faEnvelope\ \href{mailto:olivierjiyounjung@gmail.com}{olivierjiyounjung@gmail.com} \quad
     \faGlobe\ \href{https://olivierjyjung.github.io}{olivierjyjung.github.io} \quad
     \faLinkedin\ \href{https://www.linkedin.com/in/olivier-jiyoun-jung-290287389/}{LinkedIn} \quad
@@ -143,9 +149,9 @@ GPA: 4.32/4.5 $\cdot$ \textit{Summa Cum Laude}
 
 \begin{enumerate}[leftmargin=*, label={[\arabic*]}, itemsep=2pt]
     \interlinepenalty=10000
-    \item\label{pub:listening} \textbf{Jung, O. J.}$^{\dagger}$, Park, J.$^{\dagger}$, \& Oh, M.$^{*}$ (2026). Listening Between the Lines: Joint Learning of ASR Embeddings and LLM-Augmented Linguistics for Dementia Detection. Accepted at \textit{INTERSPEECH 2026}. \href{https://arxiv.org/abs/2606.30675}{[arXiv]}
+    \item\label{pub:listening} \textbf{Jung, O. J.}$^{\dagger}$, Park, J.$^{\dagger}$, \& Oh, M.$^{*}$ (2026). Listening Between the Lines: Joint Learning of ASR Embeddings and LLM-Augmented Linguistics for Dementia Detection. In \textit{Proceedings of INTERSPEECH 2026}. \href{https://arxiv.org/abs/2606.30675}{[arXiv]}
 
-    \item\label{pub:lora} Park, J.$^{\dagger}$, \textbf{Jung, O. J.}$^{\dagger}$, \& Oh, M.$^{*}$ (2026). LoRA-Tuned Large Language Models for Dementia Detection via Multi-View Speech-Derived Features. Accepted at \textit{INTERSPEECH 2026}. \href{https://arxiv.org/abs/2606.28445}{[arXiv]}
+    \item\label{pub:lora} Park, J.$^{\dagger}$, \textbf{Jung, O. J.}$^{\dagger}$, \& Oh, M.$^{*}$ (2026). LoRA-Tuned Large Language Models for Dementia Detection via Multi-View Speech-Derived Features. In \textit{Proceedings of INTERSPEECH 2026}. \href{https://arxiv.org/abs/2606.28445}{[arXiv]}
 
     \item\label{pub:vtuber} \textbf{Jung, O. J.}, \& Youk, S.$^{*}$ (2026). South Korean V-Tuber Visual Conventions within Korea--Japan Cultural Circuits. \textit{Asian Communication Research}, 23(2), Article 014. \href{https://doi.org/10.20879/acr.2026.23.014}{[DOI]}
 
@@ -184,7 +190,7 @@ GPA: 4.32/4.5 $\cdot$ \textit{Summa Cum Laude}
 %====================
 \section{Teaching Experience}
 
-\cvline{Ewha Womans University}{Teaching Assistant, ``Communication and Society''}{2025}
+\cvactivity{Ewha Womans University}{Teaching Assistant, ``Communication and Society''}{2025}
 
 %====================
 % HONORS & AWARDS
@@ -195,8 +201,8 @@ GPA: 4.32/4.5 $\cdot$ \textit{Summa Cum Laude}
 \small
 \setlength{\LTpre}{0pt}\setlength{\LTpost}{0pt}
 \begin{longtable}{@{}p{1.8cm} >{\raggedright\arraybackslash}p{\dimexpr\textwidth-7.8cm-4\tabcolsep\relax} >{\raggedleft\arraybackslash}p{6cm}@{}}
-2026--2027 & SSK Graduate Assistantship (approx.\ US\$6,700/yr) & Ewha Womans University \\
-2026 & SSK Travel Support, INTERSPEECH (approx.\ US\$750) & Ewha Womans University \\
+2026--2027 & SSK Graduate Assistantship (\$6,700/yr) & Ewha Womans University \\
+2026 & SSK Travel Support, INTERSPEECH (\$750) & Ewha Womans University \\
 2025--2027 & Excellence Ewha-in Scholarship (\$10,000) & Ewha Womans University \\
 2025 & \textit{Summa Cum Laude} & Ewha Womans University \\
 2025 & Student Travel Grant, NCA 111th Annual Convention & National Communication Association \\
@@ -212,14 +218,14 @@ GPA: 4.32/4.5 $\cdot$ \textit{Summa Cum Laude}
 %====================
 \section{Leadership, Activities \& Volunteering}
 
-\cvline{ALSA (Asian Law Students' Association)}{President, Ewha Chapter}{2022 -- 2023}
+\cvactivity{ALSA (Asian Law Students' Association)}{President, Ewha Chapter}{2022 -- 2023}
 \begin{itemize}[leftmargin=*, itemsep=2pt, topsep=4pt]
     \item Led chapter to Best Chapter recognition; organized a seminar on AI and technology law reform
 \end{itemize}
 \vspace{6pt}
-\cvline{YJS Journalism School}{Student Reporter}{2022 -- 2024}\\[3pt]
-\cvline{Scranton College Student Council, Ewha Womans University}{PR Team Member}{2022}\\[3pt]
-\cvline{Korea Association for Ethical Organ Transplants}{Volunteer Translator}{2022 -- 2024}
+\cvactivity{YJS Journalism School}{Student Reporter}{2022 -- 2024}\\[3pt]
+\cvactivity{Scranton College Student Council, Ewha Womans University}{PR Team Member}{2022}\\[3pt]
+\cvactivity{Korea Association for Ethical Organ Transplants}{Volunteer Translator}{2022 -- 2024}
 
 %====================
 % SKILLS

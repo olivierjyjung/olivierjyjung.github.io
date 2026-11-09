@@ -1,6 +1,6 @@
 'use strict';
 /* Visitor log + guestbook backend helpers (unchanged from the previous site). */
-/* ─── GPS & fingerprinting ─── */
+/* ─── IP lookup & fingerprinting ─── */
 const GPS_API = 'https://script.google.com/macros/s/AKfycbwqVIw38PX7giZzevABm6llVsAXtFdzZ3DiUX_-aaqa42D6FXc6fmxH3pkU8GGwmI9U/exec';
 const GUESTBOOK_API = 'https://script.google.com/macros/s/AKfycbx0cx9MLj0ngnBkJV7LqFiS58JiZpzvMmC4Npoh6ZTvlwtcOSKy_nYpQHdP8wKa_0g/exec';
 const ENTRIES_PER_PAGE = 7;
@@ -70,31 +70,6 @@ function getBrowser() {
   return 'Unknown';
 }
 
-function getGPSLocation() {
-  return new Promise(resolve => {
-    if (!navigator.geolocation) return resolve(null);
-    navigator.geolocation.getCurrentPosition(
-      p => resolve({lat:p.coords.latitude, lon:p.coords.longitude}),
-      () => resolve(null),
-      {timeout:10000, enableHighAccuracy:true}
-    );
-  });
-}
-
-async function reverseGeocode(lat, lon) {
-  try {
-    const r = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json&accept-language=en`);
-    const d = await r.json();
-    return {
-      city: d.address?.city||d.address?.town||d.address?.village||d.address?.county||'',
-      region: d.address?.state||d.address?.province||'',
-      country: d.address?.country||'',
-      countryCode: (d.address?.country_code||'').toUpperCase(),
-      postal: d.address?.postcode||''
-    };
-  } catch(e){ return null; }
-}
-
 async function getLocationInfo() {
   let ip = {};
   try {
@@ -107,17 +82,12 @@ async function getLocationInfo() {
       if (!d.error) ip = {ip:d.ip||'',country:d.country_name||'',countryCode:d.country_code||'',region:d.region||'',city:d.city||'',postal:d.postal||'',lat:d.latitude||'',lon:d.longitude||'',tz:d.timezone||'',isp:d.org||'',asn:d.asn||''};
     } catch(e){}
   }
-  const gps = await getGPSLocation();
-  if (gps?.lat && gps?.lon) {
-    const geo = await reverseGeocode(gps.lat, gps.lon);
-    return {...ip, country:geo?.country||ip.country||'', countryCode:geo?.countryCode||ip.countryCode||'', region:geo?.region||ip.region||'', city:geo?.city||ip.city||'', postal:geo?.postal||ip.postal||'', lat:gps.lat, lon:gps.lon, source:'GPS'};
-  }
-  return {...ip, source:'IP'};
+  return ip;
 }
 
 function formatLocationData(loc) {
   const country = loc.country ? (loc.country+(loc.countryCode?` (${loc.countryCode})`:'')):  '';
-  let city = loc.source==='GPS'?'[GPS] ':'';
+  let city = '';
   if (loc.city) city += loc.city;
   if (loc.region && loc.region!==loc.city) city += (loc.city?', ':'')+loc.region;
   if (loc.postal) city += ` (${loc.postal})`;

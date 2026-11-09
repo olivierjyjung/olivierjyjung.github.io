@@ -288,9 +288,9 @@ button.box:hover { background: var(--pink); }
 /* zoom box: inner square dead centre */
 .box.zoom::after { left: 50%; top: 50%; transform: translate(-50%, -50%); }
 
-/* mocha cursors ("mocha mouse cursor" by @a cup of di) */
-html, body { cursor: url('./assets/v2/cursor-mocha.png') 1 1, auto; }
-a, button, [data-go], [data-home], .folder, .row, .hot, .vs i, .hs i, input { cursor: url('./assets/v2/cursor-mocha-hand.png') 4 1, pointer; }
+/* pixel arrow cursor; hand stays on clickable things */
+html, body { cursor: url('./assets/v2/cursor-arrow.png') 0 0, auto; }
+a, button, [data-go], [data-home], .folder, .row, .hot, .vs i, .hs i { cursor: pointer; }
 input { cursor: text; }
 
 /* ─── centre every glyph inside its box ─── */
@@ -498,4 +498,34 @@ button.box.close:hover, .xbox:hover, .a-close:hover { filter: brightness(.95) sa
   .cols-gb .lr > div:last-child { color: var(--gray); }
   .gb-row b::before { content: none; }
   .cols-gb .lr b { overflow-wrap: anywhere; }
+}
+
+/* ─── selected works: project cards ─── */
+.projects { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; padding: 12px; }
+.pj { display: flex; flex-direction: column; min-width: 0; background: var(--panel); border: 1.5px solid var(--choc); box-shadow: 2px 2px 0 rgba(94,58,42,.22); }
+/* drop project-depth.png, project-speech.png, project-voice.png into assets/v2/ */
+.pj-art { flex: none; height: 116px; background: #fff center / 96px 96px no-repeat; border-bottom: 1.5px solid var(--pink); image-rendering: pixelated; }
+.pj-art-depth { background-image: url('./assets/v2/project-depth.png'); }
+.pj-art-speech { background-image: url('./assets/v2/project-speech.png'); }
+.pj-art-voice { background-image: url('./assets/v2/project-voice.png'); }
+.pj-body { flex: 1; display: flex; flex-direction: column; padding: 10px 12px 12px; }
+.pj h3 { margin: 0; font: 400 18px/23px var(--pix); }
+.pj-org { margin-top: 5px; font-size: 12px; line-height: 16px; color: var(--sub); }
+.pj p { margin: 9px 0 10px; font-size: 14px; line-height: 20px; }
+.pj-stats { display: flex; flex-wrap: wrap; gap: 5px; margin: 0; padding: 0; list-style: none; }
+.pj-stats li { padding: 1px 6px; background: var(--pink); font-size: 12px; line-height: 18px; }
+.pj-links { display: flex; flex-wrap: wrap; gap: 3px 12px; margin-top: auto; padding-top: 10px; font-size: 13px; line-height: 18px; }
+.pj-links a, .pj-cv { color: var(--link); }
+.pj-more-head { padding: 3px 14px; background: var(--panel); border-top: 1.5px solid var(--pink); border-bottom: 1.5px solid var(--pink); font-size: 16px; line-height: 22px; }
+.pj-cv { display: block; padding: 10px 14px 12px; font-size: 14px; line-height: 20px; }
+@media (max-width: 720px) {
+  .projects { grid-template-columns: minmax(0, 1fr); gap: 10px; padding: 10px; }
+  .pj-art { height: 88px; background-size: 64px 64px; }
+  .pj h3 { font-size: 15px; line-height: 20px; }
+  .pj-org { font-size: 10px; line-height: 14px; }
+  .pj p { font-size: 12px; line-height: 17px; }
+  .pj-stats li { font-size: 10px; line-height: 15px; }
+  .pj-links { font-size: 11px; line-height: 16px; }
+  .pj-more-head { font-size: 13px; line-height: 18px; padding: 3px 10px; }
+  .pj-cv { padding: 8px 10px 10px; font-size: 11px; line-height: 16px; }
 }
