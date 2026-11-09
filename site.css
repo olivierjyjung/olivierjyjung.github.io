@@ -288,8 +288,7 @@ button.box:hover { background: var(--pink); }
 /* zoom box: inner square dead centre */
 .box.zoom::after { left: 50%; top: 50%; transform: translate(-50%, -50%); }
 
-/* pixel arrow cursor; hand stays on clickable things */
-html, body { cursor: url('./assets/v2/cursor-arrow.png') 0 0, auto; }
+/* standard system cursors */
 a, button, [data-go], [data-home], .folder, .row, .hot, .vs i, .hs i { cursor: pointer; }
 input { cursor: text; }
 
