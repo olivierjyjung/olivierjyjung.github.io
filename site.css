@@ -502,11 +502,11 @@ button.box.close:hover, .xbox:hover, .a-close:hover { filter: brightness(.95) sa
 /* ─── selected works: project cards ─── */
 .projects { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; padding: 12px; }
 .pj { display: flex; flex-direction: column; min-width: 0; background: var(--panel); border: 1.5px solid var(--choc); box-shadow: 2px 2px 0 rgba(94,58,42,.22); }
-/* drop project-depth.png, project-speech.png, project-voice.png into assets/v2/ */
+/* project icons: 32x32 pixel art saved at 192x192 in assets/v2/ */
 .pj-art { flex: none; height: 116px; background: #fff center / 96px 96px no-repeat; border-bottom: 1.5px solid var(--pink); image-rendering: pixelated; }
 .pj-art-depth { background-image: url('./assets/v2/project-depth.png'); }
 .pj-art-speech { background-image: url('./assets/v2/project-speech.png'); }
-.pj-art-voice { background-image: url('./assets/v2/project-voice.png'); }
+.pj-art-choice { background-image: url('./assets/v2/project-choice.png'); }
 .pj-body { flex: 1; display: flex; flex-direction: column; padding: 10px 12px 12px; }
 .pj h3 { margin: 0; font: 400 18px/23px var(--pix); }
 .pj-org { margin-top: 5px; font-size: 12px; line-height: 16px; color: var(--sub); }
