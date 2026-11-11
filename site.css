@@ -54,6 +54,15 @@ body:not(.booting) #boot { display: none; }
 #flash { position: fixed; inset: 0; background: #fff; opacity: 0; pointer-events: none; z-index: 50; transition: opacity .45s ease-out; }
 #flash.on { opacity: 1; transition-duration: .5s; transition-timing-function: ease-in; }
 
+/* boot = gate: after the bar fills, PRESS START blinks until the visitor clicks, taps, or presses a key */
+#boot { cursor: pointer; }
+.boot-press { position: absolute; left: 0; right: 0; top: 76%; text-align: center; visibility: hidden;
+  font: italic 700 6.2cqw/1 'Arimo', sans-serif; letter-spacing: .06em; text-transform: uppercase;
+  color: #F4F2F8; text-shadow: 0 0 1.4cqw rgba(255,255,255,.55); }
+#boot.ready .boot-press { visibility: visible; animation: pressBlink 1.1s steps(1, end) infinite; }
+@keyframes pressBlink { 50% { visibility: hidden; } }
+@media (prefers-reduced-motion: reduce) { #boot.ready .boot-press { animation: none; } }
+
 /* say-hi LCD — Figma render; menu rows are link hotspots */
 .lcd .row { position: absolute; left: 5.72%; width: 87.45%; height: 10.69%; display: block; }
 .r-email { top: 53.89%; } .r-li { top: 64.47%; } .r-cv { top: 75.04%; }

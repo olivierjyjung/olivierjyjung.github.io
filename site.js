@@ -115,10 +115,9 @@ const $$ = s => [...document.querySelectorAll(s)];
 const isMobile = () => matchMedia('(max-width: 720px)').matches;
 
 /* first interaction of the session → visitor log (same trigger as the old gate) */
+/* the boot screen is the gate: entering it logs the visit once per session */
 let logged = !!sessionStorage.getItem('gateEntered');
 function logOnce() { if (logged) return; logged = true; sessionStorage.setItem('gateEntered', '1'); collectGPS(); }
-document.addEventListener('click', logOnce, { once: true });
-document.addEventListener('keydown', logOnce, { once: true });
 
 /* ─── views ─── */
 let current = 'home';
@@ -165,20 +164,30 @@ function finishBoot() {
     requestAnimationFrame(() => flash.classList.remove('on'));
   }, 600);
 }
+function enterSite() {
+  if (booted) return;
+  logOnce();
+  $('#boot-fill').style.width = '39.93%';
+  setTimeout(finishBoot, 250);
+}
 (function boot() {
   const fill = $('#boot-fill');
-  if (sessionStorage.getItem('booted') || matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    fill.style.width = '39.93%'; setTimeout(finishBoot, 400); return;
-  }
+  if (logged) { fill.style.width = '39.93%'; setTimeout(finishBoot, 400); return; }   // already entered this session
+  const ready = () => $('#boot').classList.add('ready');                               // show PRESS START, wait for a press
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) { fill.style.width = '39.93%'; ready(); return; }
   let i = 0;
   const tick = () => {
     fill.style.width = (39.93 * STEPS[i] / 100) + '%';
-    if (i === STEPS.length - 1) { sessionStorage.setItem('booted', '1'); setTimeout(finishBoot, WAITS[i]); return; }
+    if (i === STEPS.length - 1) { setTimeout(ready, WAITS[i]); return; }
     setTimeout(tick, WAITS[i++]);
   };
   tick();
 })();
-$$('[data-skip]').forEach(b => b.addEventListener('click', () => { $('#boot-fill').style.width = '39.93%'; setTimeout(finishBoot, 250); }));
+$('#boot').addEventListener('click', enterSite);
+document.addEventListener('keydown', e => {
+  if (!document.body.classList.contains('booting') || e.metaKey || e.ctrlKey || e.altKey) return;
+  e.preventDefault(); enterSite();
+});
 
 /* ─── guestbook ─── */
 let entries = [], pending = null, rating = 0;
