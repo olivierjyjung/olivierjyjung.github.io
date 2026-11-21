@@ -1,3 +1,4 @@
+% Public CV: concise version for website / LinkedIn.
 \documentclass[11pt,a4paper]{article}
 
 % Packages
@@ -10,6 +11,7 @@
 \usepackage{tabularx}
 \usepackage{longtable}
 \usepackage{setspace}
+\newcommand{\Needspace}[1]{\par\ifdim\dimexpr\pagegoal-\pagetotal\relax<#1\relax\newpage\fi}
 \usepackage[T1]{fontenc}
 \usepackage[tracking=true]{microtype}
 \SetTracking{encoding=*}{-20}  % Tighter letter spacing
@@ -23,7 +25,7 @@
 \newcommand{\headingtitle}[1]{\textls[80]{#1}}
 
 % Line spacing
-\setstretch{1.15}
+\setstretch{1.10}
 
 % Remove paragraph indentation
 \setlength{\parindent}{0pt}
@@ -61,7 +63,7 @@
     \noindent\textit{#1} \hfill \textit{#2}%
 }
 \newcommand{\cvresearch}[4]{%
-    \noindent\textbf{#1} \hfill #2 \\[3pt]
+    \Needspace{6\baselineskip}\noindent\textbf{#1} \hfill #2 \\[3pt]
     \cvrole{#3}{#4}%
 }
 % Compact one-line entry: organization, role, dates
@@ -82,7 +84,7 @@
 % RESEARCH INTERESTS
 %====================
 \section{Research Interests}
-My research seeks to understand human communication and interaction through speech. I study spoken interaction from two complementary directions: \textbf{what} is said, through language and LLM-based analysis, and \textbf{how} it is said, through prosody and timing. By integrating linguistic and acoustic signals, I develop interpretable computational models of spoken interaction, from depth and responsiveness in facilitated group dialogue to early traces of cognitive and affective decline in how a person talks; through behavioral experiments, I also examine how trust and memory shift when a voice turns out to be synthetic. Working across \textbf{Speech and Language Processing}, \textbf{Human-AI Interaction}, and \textbf{Computational Communication}, I aim to uncover how speech reflects and shapes the ways people understand and relate to one another.
+I study human communication through speech, combining linguistic content, prosody, and interactional timing. My work connects \textbf{speech and language processing}, \textbf{computational communication}, and \textbf{human--AI interaction}: from conversational depth and listener responsiveness to cognitive and affective assessment, and the effects of synthetic speech on memory and judgment.
 
 %====================
 % EDUCATION
@@ -93,7 +95,7 @@ My research seeks to understand human communication and interaction through spee
 Advisor: Prof. Jiyoung Kang, GPA: 4.42/4.5
 \vspace{10pt}
 
-\cventry{University of Applied Sciences and Arts Northwestern Switzerland}{Basel, Switzerland}{Exchange Student, School of Business}{Sep 2023 -- Feb 2024}
+\cventry{University of Applied Sciences and Arts Northwestern Switzerland}{Olten, Switzerland}{Exchange Student, School of Business}{Sep 2023 -- Feb 2024}
 \vspace{10pt}
 
 \cventry{Ewha Womans University}{Seoul, South Korea}{B.A. in Communication \& Media, Scranton Honors Program}{Mar 2021 -- Feb 2025}\\
@@ -107,7 +109,7 @@ GPA: 4.32/4.5, \textit{Summa Cum Laude}
 \cvresearch{MIT Media Lab}{Cambridge, MA, USA (Remote)}{Research Collaborator, Center for Constructive Communication}{May 2026 -- Present}
 \begin{itemize}[leftmargin=*, itemsep=3pt, topsep=6pt]
     \item Developed a seven-construct framework of conversational depth grounded in interpersonal communication theory, extending speaker-centered measures to listener responses and multi-turn dynamics
-    \item Leading prosodic analysis of 215 facilitated group conversations, linking acoustic features to LLM-derived depth measures with mixed-effects models
+    \item Proposed and conducting prosodic analysis of 215 facilitated group conversations, linking acoustic features to LLM-derived depth measures with mixed-effects models
     \item Developing a LoRA-tuned Whisper pipeline that preserves disfluencies for timing analysis
 \end{itemize}
 \vspace{10pt}
@@ -130,9 +132,9 @@ GPA: 4.32/4.5, \textit{Summa Cum Laude}
 \end{minipage}\par
 \vspace{10pt}
 
-\cvresearch{Ewha Womans University}{Seoul, South Korea}{Graduate Research Assistant, Division of Communication \& Media}{Sep 2024 -- Present}
+\cvresearch{Ewha Womans University}{Seoul, South Korea}{Research Assistant, Division of Communication \& Media}{Sep 2024 -- Present}
 \begin{itemize}[leftmargin=*, itemsep=3pt, topsep=6pt]
-    \item Conducting independent research on how people perceive and remember AI-generated speech \ref{pub:chi}, \ref{pub:apcam}, and collaborating on studies of human--AI interaction and computational media analysis \ref{pub:casa}, \ref{pub:vtuber}
+    \item Research assistance in communication and media
 \end{itemize}
 \vspace{6pt}
 
@@ -155,35 +157,26 @@ GPA: 4.32/4.5, \textit{Summa Cum Laude}
 
     \item\label{pub:vtuber} \textbf{Jung, O. J.}, \& Youk, S.$^{*}$ (2026). South Korean V-Tuber Visual Conventions within Korea--Japan Cultural Circuits. \textit{Asian Communication Research}, 23(2), Article 014. \href{https://doi.org/10.20879/acr.2026.23.014}{[DOI]}
 
-    \item\label{pub:casa} Youk, S., Jie, Y., \textbf{Jung, O. J.}, \& Lee, S. K.$^{*}$ (2026). Toward a Neurocognitive Account of CASA: EEG Evidence from Human and ChatGPT-Enabled Social Robot Conversation. Accepted for publication in \textit{International Journal of Human-Computer Interaction}.
+    \item\label{pub:casa} Youk, S., Jie, Y., \textbf{Jung, O. J.}, \& Lee, S. K.$^{*}$ (2026). Toward a Neurocognitive Account of CASA: EEG Evidence from Human and ChatGPT-Enabled Social Robot Conversation. \textit{International Journal of Human-Computer Interaction}. Advance online publication. \href{https://doi.org/10.1080/10447318.2026.2762653}{[DOI]}
 \end{enumerate}
 
 \subsection*{Conference Presentations}
 
 \begin{enumerate}[leftmargin=*, label={[\arabic*]}, resume, itemsep=2pt]
     \interlinepenalty=10000
-    \item\label{pub:apcam} \textbf{Jung, O. J.} (2026). Labeled AI Covers Reduce False Memories of Unlabeled Ones Without Improving Auditory Discrimination. Presented at \textit{Auditory Perception, Cognition, and Action Meeting (APCAM 2026)}.
+    \item\label{pub:apcam} \textbf{Jung, O. J.} (2026). Labeled AI Covers Reduce False Memories of Unlabeled Ones Without Improving Auditory Discrimination. Poster presented at \textit{Auditory Perception, Cognition, and Action Meeting (APCAM 2026)}.
 
     \item Youk, S., Jie, Y., \textbf{Jung, O. J.}, \& Lee, S. K.$^{*}$ (2026). Comparing Neural Responses to Human and Social Robot Interlocutors: An EEG Study on CASA and Perceived Pleasantness, Importance, and Cooperativeness. Paper presented at \textit{International Communication Association (ICA) 76th Annual Conference}.
 
-    \item \textbf{Jung, O. J.}, \& Youk, S.$^{*}$ (2025). Analyzing V-Tuber Visual Tropes in South Korea Through Korea–Japan Media Circuits. Paper presented at \textit{National Communication Association (NCA) 111th Annual Convention}.
+    \item \textbf{Jung, O. J.}, \& Youk, S.$^{*}$ (2025). Analyzing V-Tuber Visual Tropes in South Korea Through Korea--Japan Media Circuits. Paper presented at \textit{National Communication Association (NCA) 111th Annual Convention}.
 \end{enumerate}
 
-\subsection*{Under Review}
-
-\begin{enumerate}[leftmargin=*, label={[\arabic*]}, resume, itemsep=2pt]
-    \item\label{pub:chi} \textbf{Jung, O. J.} (2027). Hearing Is Not Remembering: Labeled AI Exposure Protects Memory Without Improving Discrimination of Deepfake Audio. \textit{ACM CHI Conference on Human Factors in Computing Systems (CHI 2027)}.
-
-    \item Youk, S., Kim, H., \textbf{Jung, O. J.}, \& Kim, Y.$^{*}$ (2026). How Policy Shapes Media Narratives of Environmental Risk: A Nine-Year Analysis of Particulate Matter News Coverage in South Korea. \textit{Manuscript under review}.
-\end{enumerate}
-
-\subsection*{Work in Progress}
-
-\begin{enumerate}[leftmargin=*, label={[\arabic*]}, resume, itemsep=2pt]
-    \item Multimodal Depression Detection from Clinical Interviews via Speech-Text Feature Fusion. \textit{ACL 2027}.
-
-    \item \textbf{Jung, O. J.}, \& Kang, J.$^{*}$ (2026). How AI Chatbots Present Alternatives: Effects of Sequential vs.\ Simultaneous Presentation and a Visible Idea Tree on Users' Decision Experience. \textit{CHI 2027 Late-Breaking Work}.
-\end{enumerate}
+\Needspace{12\baselineskip}
+\section{Ongoing Projects}
+\begin{itemize}[leftmargin=*, itemsep=3pt, topsep=6pt]
+    \item \textbf{AI-generated speech and memory:} Independent behavioral research on memory and authenticity judgments after exposure to synthetic audio
+    \item \textbf{AI-assisted decisions:} Master's thesis on how the presentation of alternatives and choice history affects decision experience
+\end{itemize}
 
 %====================
 % TEACHING EXPERIENCE
@@ -209,7 +202,7 @@ GPA: 4.32/4.5, \textit{Summa Cum Laude}
 2024 & Departmental Academic Excellence Scholarship & Ewha Womans University \\
 2023 & FHNW International Merit Scholarship & FHNW Switzerland \\
 2022 & Excellence Award, 5th Investigative Reporting Contest & Korea News Agency Commission \\
-2021--2025 & Highest Honors (all semesters) & Ewha Womans University \\
+2021--2024 & Dean's List (6 semesters) & Ewha Womans University \\
 \end{longtable}
 \endgroup
 
@@ -232,20 +225,22 @@ GPA: 4.32/4.5, \textit{Summa Cum Laude}
 %====================
 \section{Technical Skills}
 
-\textbf{Programming \& Development:} Python, R, JavaScript, LaTeX, Docker\\
-\textbf{Machine Learning \& NLP:} PyTorch, Hugging Face Transformers, scikit-learn, LLM Fine-tuning (LoRA), Retrieval-Augmented Generation (RAG), Computer Vision\\
-\textbf{Speech \& Audio:} Automatic Speech Recognition (Whisper), Speech Emotion Recognition, Prosodic Analysis (Praat), Audio LLMs\\
-\textbf{Research Methods \& Tools:} Mixed-effects Models, Experimental \& Survey Design, Content Analysis, PsychoPy, SPSS, MNE-Python (EEG)\\
-\textbf{Creative \& Multimedia Tools:} Ableton Live, Melodyne, Logic Pro, Unreal Engine (VR), Adobe Premiere Pro, Adobe Photoshop
+\textbf{Speech \& Audio Processing:} Whisper, pyannote, openSMILE (eGeMAPS), Praat/Parselmouth, librosa\\
+\textbf{Machine Learning \& NLP:} PyTorch, Hugging Face Transformers, PEFT (LoRA), scikit-learn\\
+\textbf{Statistical Modeling:} Mixed-effects modeling (statsmodels)\\
+\textbf{Research Methods:} Experimental design (PsychoPy), EEG analysis (MNE-Python), content analysis\\
+\textbf{Programming Languages:} Python, R, JavaScript\\
+\textbf{Relevant Coursework:} Speech Signal Processing (Department of Electronic Engineering, Sogang University; in progress), Special Topics in HCI (Division of Artificial Intelligence and Software, Ewha Womans University; in progress), Multimodal Deep Learning (Division of Artificial Intelligence and Software, Ewha Womans University)
 
 %====================
 % LANGUAGES
 %====================
-\section{Languages \& Interests}
+\section{Additional Skills \& Interests}
 
 \textbf{Languages:} English (Native/Bilingual) $\cdot$ Korean (Native/Bilingual) $\cdot$ Japanese (Elementary)\\
+\textbf{Media Production \& Prototyping:} Ableton Live, Melodyne, Logic Pro, Unreal Engine (VR)\\
 \textbf{Interests:} Music (Vocalist, Bassist, Producer) $\cdot$ Skiing (Korea Ski Instructor Level 1)
 
-{\centering\small\textit{Last updated: \today}\par}
+{\centering\small\textit{Last updated: November 21, 2026}\par}
 
 \end{document}
